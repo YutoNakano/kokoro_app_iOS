@@ -14,40 +14,33 @@ final class QuestionViewController: ViewController {
     
     lazy var questionContentView: QuestionContentView = {
         let v = QuestionContentView()
+        v.backgroundColor = UIColor.white
         view.addSubview(v)
         return v
     }()
     
     lazy var selectAnserView: SelectAnserView = {
         let v = SelectAnserView()
+        v.backgroundColor = UIColor.white
         view.addSubview(v)
         return v
     }()
-    
     
     override func setupView() {
         view.backgroundColor = UIColor.white
     }
     
     override func loadView() {
-//            Session.send(QuestionResponse.SearchRepositories()) { result in
-//                switch result {
-//                case .success(let response):
-//                    print(response)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//
-//
-//            Session.send(ResultResponse.SearchRepositories()) { result in
-//                switch result {
-//                case .success(let response):
-//                    print(response)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
+        super.loadView()
+            Session.send(QuestionResponse.SearchRepositories()) { result in
+                switch result {
+                case .success(let response):
+                    print(response)
+                    self.questionContentView.question = response
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
     
     override func makeConstraints() {

@@ -10,17 +10,38 @@ import SnapKit
 import UIKit
 
 
-final class QuestionContentView: View {
+final class QuestionContentView: UIView {
+    
+    var question: Question?
     
     lazy var titleLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
         v.text = "質問1:お腹すいてますか?"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        v.numberOfLines = 0
+        v.font = UIFont(name: "GillSans-UltraBold", size: 36)
         addSubview(v)
         return v
     }()
+    
+    lazy var descriptionLabel: UILabel = {
+        let v = UILabel()
+        v.numberOfLines = 0
+        v.font = UIFont(name: "GillSans", size: 26)
+        addSubview(v)
+        return v
+    }()
+    
+    lazy var commentLabel: UILabel = {
+        let v = UILabel()
+        v.numberOfLines = 0
+        v.font = UIFont(name: "GillSans", size: 26)
+        addSubview(v)
+        return v
+    }()
+    
+    lazy var imageView: UIImageView = {
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,11 +53,17 @@ final class QuestionContentView: View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setup() {
+    func setup() {
         backgroundColor = UIColor.white
+        setModel()
     }
     
-    override func makeConstraints() {
+    func setModel() {
+        titleLabel.text = question?.title
+        
+    }
+    
+    func makeConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(140)

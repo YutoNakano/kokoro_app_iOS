@@ -8,6 +8,7 @@ target 'kokoroAppiOS' do
   # Pods for kokoroAppiOS
 pod 'APIKit'
 pod 'SnapKit'
+pod 'Kingfisher'
   target 'kokoroAppiOSTests' do
     inherit! :search_paths
     # Pods for testing
