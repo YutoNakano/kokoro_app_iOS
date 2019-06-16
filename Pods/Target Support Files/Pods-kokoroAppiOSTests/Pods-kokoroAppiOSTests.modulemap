@@ -1,0 +1,6 @@
+framework module Pods_kokoroAppiOSTests {
+  umbrella header "Pods-kokoroAppiOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

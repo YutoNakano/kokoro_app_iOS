@@ -1,0 +1,6 @@
+framework module Pods_kokoroAppiOS {
+  umbrella header "Pods-kokoroAppiOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

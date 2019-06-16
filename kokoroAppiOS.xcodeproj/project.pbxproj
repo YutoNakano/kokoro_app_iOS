@@ -1,0 +1,755 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F1853C39B492FC485B4DEC0 /* Pods_kokoroAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */; };
+		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
+		57C9204722B6117700A8B45D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9204622B6117700A8B45D /* AppDelegate.swift */; };
+		57C9204922B6117700A8B45D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9204822B6117700A8B45D /* ViewController.swift */; };
+		57C9204C22B6117700A8B45D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204A22B6117700A8B45D /* Main.storyboard */; };
+		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
+		57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */; };
+		57C9205C22B6117900A8B45D /* kokoroAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9205B22B6117900A8B45D /* kokoroAppiOSTests.swift */; };
+		57C9206722B6117900A8B45D /* kokoroAppiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9206622B6117900A8B45D /* kokoroAppiOSUITests.swift */; };
+		57C9207822B6174E00A8B45D /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9207722B6174E00A8B45D /* DataParser.swift */; };
+		57C9207A22B6176C00A8B45D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9207922B6176C00A8B45D /* Request.swift */; };
+		57C9207C22B617B400A8B45D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9207B22B617B400A8B45D /* Repository.swift */; };
+		57C9207E22B6181F00A8B45D /* ResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9207D22B6181F00A8B45D /* ResultResponse.swift */; };
+		57C9208022B6248000A8B45D /* QuestionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9207F22B6248000A8B45D /* QuestionResponse.swift */; };
+		DAF9BAA5716AD98D87B3E93A /* Pods_kokoroAppiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		57C9205822B6117900A8B45D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57C9203B22B6117700A8B45D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57C9204222B6117700A8B45D;
+			remoteInfo = kokoroAppiOS;
+		};
+		57C9206322B6117900A8B45D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57C9203B22B6117700A8B45D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57C9204222B6117700A8B45D;
+			remoteInfo = kokoroAppiOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57C9204622B6117700A8B45D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		57C9204822B6117700A8B45D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		57C9204B22B6117700A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		57C9204D22B6117900A8B45D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		57C9205022B6117900A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		57C9205222B6117900A8B45D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57C9205722B6117900A8B45D /* kokoroAppiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kokoroAppiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57C9205B22B6117900A8B45D /* kokoroAppiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kokoroAppiOSTests.swift; sourceTree = "<group>"; };
+		57C9205D22B6117900A8B45D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57C9206222B6117900A8B45D /* kokoroAppiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kokoroAppiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57C9206622B6117900A8B45D /* kokoroAppiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kokoroAppiOSUITests.swift; sourceTree = "<group>"; };
+		57C9206822B6117900A8B45D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57C9207722B6174E00A8B45D /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
+		57C9207922B6176C00A8B45D /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		57C9207B22B617B400A8B45D /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		57C9207D22B6181F00A8B45D /* ResultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultResponse.swift; sourceTree = "<group>"; };
+		57C9207F22B6248000A8B45D /* QuestionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResponse.swift; sourceTree = "<group>"; };
+		64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BBBD5F9FCDE252ADA0FAAA0 /* Pods-kokoroAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOS/Pods-kokoroAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD3CF7E3CDCF5D94307C81EB /* Pods-kokoroAppiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C1F762CBBAA04E8C2137D838 /* Pods-kokoroAppiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOS.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOS/Pods-kokoroAppiOS.release.xcconfig"; sourceTree = "<group>"; };
+		C38FDC11FD397E2978F107CF /* Pods-kokoroAppiOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		57C9204022B6117700A8B45D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57C9205422B6117900A8B45D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF9BAA5716AD98D87B3E93A /* Pods_kokoroAppiOSTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57C9205F22B6117900A8B45D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F1853C39B492FC485B4DEC0 /* Pods_kokoroAppiOSUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		57C9203A22B6117700A8B45D = {
+			isa = PBXGroup;
+			children = (
+				57C9204522B6117700A8B45D /* kokoroAppiOS */,
+				57C9205A22B6117900A8B45D /* kokoroAppiOSTests */,
+				57C9206522B6117900A8B45D /* kokoroAppiOSUITests */,
+				57C9204422B6117700A8B45D /* Products */,
+				FFB8FBF60D10C19E55CB9C49 /* Pods */,
+				A9D7CFF88C2FE999C1303A7F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		57C9204422B6117700A8B45D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				57C9204322B6117700A8B45D /* kokoroAppiOS.app */,
+				57C9205722B6117900A8B45D /* kokoroAppiOSTests.xctest */,
+				57C9206222B6117900A8B45D /* kokoroAppiOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		57C9204522B6117700A8B45D /* kokoroAppiOS */ = {
+			isa = PBXGroup;
+			children = (
+				57C9207422B6167E00A8B45D /* Model */,
+				57C9204622B6117700A8B45D /* AppDelegate.swift */,
+				57C9204822B6117700A8B45D /* ViewController.swift */,
+				57C9204A22B6117700A8B45D /* Main.storyboard */,
+				57C9204D22B6117900A8B45D /* Assets.xcassets */,
+				57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */,
+				57C9205222B6117900A8B45D /* Info.plist */,
+			);
+			path = kokoroAppiOS;
+			sourceTree = "<group>";
+		};
+		57C9205A22B6117900A8B45D /* kokoroAppiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				57C9205B22B6117900A8B45D /* kokoroAppiOSTests.swift */,
+				57C9205D22B6117900A8B45D /* Info.plist */,
+			);
+			path = kokoroAppiOSTests;
+			sourceTree = "<group>";
+		};
+		57C9206522B6117900A8B45D /* kokoroAppiOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				57C9206622B6117900A8B45D /* kokoroAppiOSUITests.swift */,
+				57C9206822B6117900A8B45D /* Info.plist */,
+			);
+			path = kokoroAppiOSUITests;
+			sourceTree = "<group>";
+		};
+		57C9207422B6167E00A8B45D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57C9207722B6174E00A8B45D /* DataParser.swift */,
+				57C9207922B6176C00A8B45D /* Request.swift */,
+				57C9207B22B617B400A8B45D /* Repository.swift */,
+				57C9207D22B6181F00A8B45D /* ResultResponse.swift */,
+				57C9207F22B6248000A8B45D /* QuestionResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9D7CFF88C2FE999C1303A7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */,
+				1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */,
+				64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFB8FBF60D10C19E55CB9C49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BBBD5F9FCDE252ADA0FAAA0 /* Pods-kokoroAppiOS.debug.xcconfig */,
+				C1F762CBBAA04E8C2137D838 /* Pods-kokoroAppiOS.release.xcconfig */,
+				AD3CF7E3CDCF5D94307C81EB /* Pods-kokoroAppiOSTests.debug.xcconfig */,
+				1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */,
+				542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */,
+				C38FDC11FD397E2978F107CF /* Pods-kokoroAppiOSUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		57C9204222B6117700A8B45D /* kokoroAppiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57C9206B22B6117900A8B45D /* Build configuration list for PBXNativeTarget "kokoroAppiOS" */;
+			buildPhases = (
+				AED8DC10139CA6185EEE174F /* [CP] Check Pods Manifest.lock */,
+				57C9203F22B6117700A8B45D /* Sources */,
+				57C9204022B6117700A8B45D /* Frameworks */,
+				57C9204122B6117700A8B45D /* Resources */,
+				7F0D01DFB81250FA6516A9A4 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = kokoroAppiOS;
+			productName = kokoroAppiOS;
+			productReference = 57C9204322B6117700A8B45D /* kokoroAppiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		57C9205622B6117900A8B45D /* kokoroAppiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57C9206E22B6117900A8B45D /* Build configuration list for PBXNativeTarget "kokoroAppiOSTests" */;
+			buildPhases = (
+				B0134589D89D51E6F0789EA0 /* [CP] Check Pods Manifest.lock */,
+				57C9205322B6117900A8B45D /* Sources */,
+				57C9205422B6117900A8B45D /* Frameworks */,
+				57C9205522B6117900A8B45D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				57C9205922B6117900A8B45D /* PBXTargetDependency */,
+			);
+			name = kokoroAppiOSTests;
+			productName = kokoroAppiOSTests;
+			productReference = 57C9205722B6117900A8B45D /* kokoroAppiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		57C9206122B6117900A8B45D /* kokoroAppiOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57C9207122B6117900A8B45D /* Build configuration list for PBXNativeTarget "kokoroAppiOSUITests" */;
+			buildPhases = (
+				DDCE0DEB47DE71EF375F88FD /* [CP] Check Pods Manifest.lock */,
+				57C9205E22B6117900A8B45D /* Sources */,
+				57C9205F22B6117900A8B45D /* Frameworks */,
+				57C9206022B6117900A8B45D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				57C9206422B6117900A8B45D /* PBXTargetDependency */,
+			);
+			name = kokoroAppiOSUITests;
+			productName = kokoroAppiOSUITests;
+			productReference = 57C9206222B6117900A8B45D /* kokoroAppiOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		57C9203B22B6117700A8B45D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "中野湧仁";
+				TargetAttributes = {
+					57C9204222B6117700A8B45D = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					57C9205622B6117900A8B45D = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 57C9204222B6117700A8B45D;
+					};
+					57C9206122B6117900A8B45D = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 57C9204222B6117700A8B45D;
+					};
+				};
+			};
+			buildConfigurationList = 57C9203E22B6117700A8B45D /* Build configuration list for PBXProject "kokoroAppiOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 57C9203A22B6117700A8B45D;
+			productRefGroup = 57C9204422B6117700A8B45D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				57C9204222B6117700A8B45D /* kokoroAppiOS */,
+				57C9205622B6117900A8B45D /* kokoroAppiOSTests */,
+				57C9206122B6117900A8B45D /* kokoroAppiOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		57C9204122B6117700A8B45D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */,
+				57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */,
+				57C9204C22B6117700A8B45D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57C9205522B6117900A8B45D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57C9206022B6117900A8B45D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F0D01DFB81250FA6516A9A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kokoroAppiOS/Pods-kokoroAppiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kokoroAppiOS/Pods-kokoroAppiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kokoroAppiOS/Pods-kokoroAppiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AED8DC10139CA6185EEE174F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kokoroAppiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0134589D89D51E6F0789EA0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kokoroAppiOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDCE0DEB47DE71EF375F88FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kokoroAppiOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		57C9203F22B6117700A8B45D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57C9204922B6117700A8B45D /* ViewController.swift in Sources */,
+				57C9207A22B6176C00A8B45D /* Request.swift in Sources */,
+				57C9207822B6174E00A8B45D /* DataParser.swift in Sources */,
+				57C9207E22B6181F00A8B45D /* ResultResponse.swift in Sources */,
+				57C9204722B6117700A8B45D /* AppDelegate.swift in Sources */,
+				57C9207C22B617B400A8B45D /* Repository.swift in Sources */,
+				57C9208022B6248000A8B45D /* QuestionResponse.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57C9205322B6117900A8B45D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57C9205C22B6117900A8B45D /* kokoroAppiOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57C9205E22B6117900A8B45D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57C9206722B6117900A8B45D /* kokoroAppiOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		57C9205922B6117900A8B45D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57C9204222B6117700A8B45D /* kokoroAppiOS */;
+			targetProxy = 57C9205822B6117900A8B45D /* PBXContainerItemProxy */;
+		};
+		57C9206422B6117900A8B45D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57C9204222B6117700A8B45D /* kokoroAppiOS */;
+			targetProxy = 57C9206322B6117900A8B45D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		57C9204A22B6117700A8B45D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57C9204B22B6117700A8B45D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				57C9205022B6117900A8B45D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		57C9206922B6117900A8B45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		57C9206A22B6117900A8B45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		57C9206C22B6117900A8B45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BBBD5F9FCDE252ADA0FAAA0 /* Pods-kokoroAppiOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 372QHH966L;
+				INFOPLIST_FILE = kokoroAppiOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		57C9206D22B6117900A8B45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1F762CBBAA04E8C2137D838 /* Pods-kokoroAppiOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 372QHH966L;
+				INFOPLIST_FILE = kokoroAppiOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		57C9206F22B6117900A8B45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD3CF7E3CDCF5D94307C81EB /* Pods-kokoroAppiOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 372QHH966L;
+				INFOPLIST_FILE = kokoroAppiOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kokoroAppiOS.app/kokoroAppiOS";
+			};
+			name = Debug;
+		};
+		57C9207022B6117900A8B45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 372QHH966L;
+				INFOPLIST_FILE = kokoroAppiOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kokoroAppiOS.app/kokoroAppiOS";
+			};
+			name = Release;
+		};
+		57C9207222B6117900A8B45D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 372QHH966L;
+				INFOPLIST_FILE = kokoroAppiOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = kokoroAppiOS;
+			};
+			name = Debug;
+		};
+		57C9207322B6117900A8B45D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C38FDC11FD397E2978F107CF /* Pods-kokoroAppiOSUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 372QHH966L;
+				INFOPLIST_FILE = kokoroAppiOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = kokoroAppiOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		57C9203E22B6117700A8B45D /* Build configuration list for PBXProject "kokoroAppiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57C9206922B6117900A8B45D /* Debug */,
+				57C9206A22B6117900A8B45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57C9206B22B6117900A8B45D /* Build configuration list for PBXNativeTarget "kokoroAppiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57C9206C22B6117900A8B45D /* Debug */,
+				57C9206D22B6117900A8B45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57C9206E22B6117900A8B45D /* Build configuration list for PBXNativeTarget "kokoroAppiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57C9206F22B6117900A8B45D /* Debug */,
+				57C9207022B6117900A8B45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57C9207122B6117900A8B45D /* Build configuration list for PBXNativeTarget "kokoroAppiOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57C9207222B6117900A8B45D /* Debug */,
+				57C9207322B6117900A8B45D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 57C9203B22B6117700A8B45D /* Project object */;
+}

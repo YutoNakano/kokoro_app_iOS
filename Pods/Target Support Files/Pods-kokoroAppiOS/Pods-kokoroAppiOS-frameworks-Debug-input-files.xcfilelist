@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-kokoroAppiOS/Pods-kokoroAppiOS-frameworks.sh
+${BUILT_PRODUCTS_DIR}/APIKit/APIKit.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
