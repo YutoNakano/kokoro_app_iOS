@@ -9,8 +9,8 @@
 import UIKit
 public class ViewController: UIViewController {
     
-    public override func loadView() {
-        super.loadView()
+    public override func viewDidLoad() {
+        super.viewDidLoad()
         setupNavigation()
         setupView()
         makeConstraints()

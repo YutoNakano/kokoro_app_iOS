@@ -50,24 +50,7 @@ final class TopViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        Session.send(QuestionResponse.SearchRepositories()) { result in
-//            switch result {
-//            case .success(let response):
-//                print(response)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//
-//
-//        Session.send(ResultResponse.SearchRepositories()) { result in
-//            switch result {
-//            case .success(let response):
-//                print(response)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+
     }
     
     override func setupView() {

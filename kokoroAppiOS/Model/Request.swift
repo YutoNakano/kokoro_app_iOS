@@ -15,7 +15,7 @@ protocol KokoroApp: Request {
 
 extension KokoroApp {
     var baseURL: URL {
-        return URL(string: "http://0e7e7e43.ngrok.io")!
+        return URL(string: "http://a9335953.ngrok.io")!
     }
 }
 

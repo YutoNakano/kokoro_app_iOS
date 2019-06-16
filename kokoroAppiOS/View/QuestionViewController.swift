@@ -43,14 +43,18 @@ final class QuestionViewController: ViewController {
             }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func makeConstraints() {
         questionContentView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(500)
             make.bottom.equalTo(selectAnserView.snp.top)
         }
         selectAnserView.snp.makeConstraints { make in
-            make.top.equalTo(questionContentView.snp.top)
+            make.height.equalTo(100)
+            make.top.equalTo(questionContentView.snp.bottom)
             make.bottom.left.right.equalToSuperview()
         }
     }
