@@ -9,8 +9,15 @@
 /* Begin PBXBuildFile section */
 		1F1853C39B492FC485B4DEC0 /* Pods_kokoroAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */; };
 		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
+		574E045722B65622008628C5 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045622B65622008628C5 /* AppColor.swift */; };
+		574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045822B65649008628C5 /* EnhancedCircle.swift */; };
+		574E045B22B6564A008628C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045A22B6564A008628C5 /* Extensions.swift */; };
+		574E045F22B6564E008628C5 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045E22B6564E008628C5 /* View.swift */; };
+		57B6AECD22B64AEE00007724 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AECC22B64AEE00007724 /* TopViewController.swift */; };
+		57B6AECF22B64B1400007724 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AECE22B64B1400007724 /* QuestionViewController.swift */; };
+		57B6AED122B64B2900007724 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AED022B64B2900007724 /* ResultViewController.swift */; };
+		57B6AED322B6503E00007724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AED222B6503E00007724 /* ViewController.swift */; };
 		57C9204722B6117700A8B45D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9204622B6117700A8B45D /* AppDelegate.swift */; };
-		57C9204922B6117700A8B45D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9204822B6117700A8B45D /* ViewController.swift */; };
 		57C9204C22B6117700A8B45D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204A22B6117700A8B45D /* Main.storyboard */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
 		57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */; };
@@ -45,9 +52,16 @@
 		1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		574E045622B65622008628C5 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		574E045822B65649008628C5 /* EnhancedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedCircle.swift; sourceTree = "<group>"; };
+		574E045A22B6564A008628C5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		574E045E22B6564E008628C5 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		57B6AECC22B64AEE00007724 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		57B6AECE22B64B1400007724 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		57B6AED022B64B2900007724 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		57B6AED222B6503E00007724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C9204622B6117700A8B45D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		57C9204822B6117700A8B45D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		57C9204B22B6117700A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57C9204D22B6117900A8B45D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C9205022B6117900A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +113,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		574E046022B6565A008628C5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				57B6AED222B6503E00007724 /* ViewController.swift */,
+				574E045622B65622008628C5 /* AppColor.swift */,
+				574E045822B65649008628C5 /* EnhancedCircle.swift */,
+				574E045A22B6564A008628C5 /* Extensions.swift */,
+				574E045E22B6564E008628C5 /* View.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		57B6AECB22B64AB000007724 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57B6AECC22B64AEE00007724 /* TopViewController.swift */,
+				57B6AECE22B64B1400007724 /* QuestionViewController.swift */,
+				57B6AED022B64B2900007724 /* ResultViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		57C9203A22B6117700A8B45D = {
 			isa = PBXGroup;
 			children = (
@@ -124,9 +160,10 @@
 		57C9204522B6117700A8B45D /* kokoroAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				574E046022B6565A008628C5 /* Base */,
 				57C9207422B6167E00A8B45D /* Model */,
 				57C9204622B6117700A8B45D /* AppDelegate.swift */,
-				57C9204822B6117700A8B45D /* ViewController.swift */,
+				57B6AECB22B64AB000007724 /* View */,
 				57C9204A22B6117700A8B45D /* Main.storyboard */,
 				57C9204D22B6117900A8B45D /* Assets.xcassets */,
 				57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */,
@@ -409,13 +446,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57C9204922B6117700A8B45D /* ViewController.swift in Sources */,
 				57C9207A22B6176C00A8B45D /* Request.swift in Sources */,
 				57C9207822B6174E00A8B45D /* DataParser.swift in Sources */,
+				574E045F22B6564E008628C5 /* View.swift in Sources */,
 				57C9207E22B6181F00A8B45D /* ResultResponse.swift in Sources */,
+				57B6AED322B6503E00007724 /* ViewController.swift in Sources */,
+				57B6AECD22B64AEE00007724 /* TopViewController.swift in Sources */,
+				57B6AED122B64B2900007724 /* ResultViewController.swift in Sources */,
 				57C9204722B6117700A8B45D /* AppDelegate.swift in Sources */,
 				57C9207C22B617B400A8B45D /* Repository.swift in Sources */,
+				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
 				57C9208022B6248000A8B45D /* QuestionResponse.swift in Sources */,
+				574E045722B65622008628C5 /* AppColor.swift in Sources */,
+				57B6AECF22B64B1400007724 /* QuestionViewController.swift in Sources */,
+				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
