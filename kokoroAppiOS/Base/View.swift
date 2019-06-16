@@ -10,7 +10,7 @@ import UIKit
 
 public class View: UIView {
     
-    override public init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
         makeConstraints()

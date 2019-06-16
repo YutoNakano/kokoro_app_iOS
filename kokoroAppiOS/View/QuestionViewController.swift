@@ -8,60 +8,57 @@
 
 import UIKit
 import SnapKit
+import APIKit
 
 final class QuestionViewController: ViewController {
     
-    lazy var titleLabel: UILabel = {
-        let v = UILabel()
-        v.numberOfLines = 0
-        v.text = "質問1:お腹すいてますか?"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        v.numberOfLines = 0
+    lazy var questionContentView: QuestionContentView = {
+        let v = QuestionContentView()
         view.addSubview(v)
         return v
     }()
     
-    lazy var yesButton: UIButton = {
-        let v = UIButton()
-        v.setTitle("YES", for: .normal)
-        v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        v.backgroundColor = UIColor.appColor(.yesPink)
-        v.layer.cornerRadius = 15
+    lazy var selectAnserView: SelectAnserView = {
+        let v = SelectAnserView()
         view.addSubview(v)
         return v
     }()
     
-    lazy var noButton: UIButton = {
-        let v = UIButton()
-        v.setTitle("NO", for: .normal)
-        v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        v.backgroundColor = UIColor.appColor(.noBlue)
-        v.layer.cornerRadius = 15
-        view.addSubview(v)
-        return v
-    }()
     
     override func setupView() {
         view.backgroundColor = UIColor.white
     }
     
+    override func loadView() {
+//            Session.send(QuestionResponse.SearchRepositories()) { result in
+//                switch result {
+//                case .success(let response):
+//                    print(response)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//
+//
+//            Session.send(ResultResponse.SearchRepositories()) { result in
+//                switch result {
+//                case .success(let response):
+//                    print(response)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+    }
+    
     override func makeConstraints() {
-        titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(140)
+        questionContentView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(500)
+            make.bottom.equalTo(selectAnserView.snp.top)
         }
-        yesButton.snp.makeConstraints { make in
-            make.width.equalTo(140)
-            make.height.equalTo(50)
-            make.right.bottom.equalToSuperview().offset(-40)
-        }
-        noButton.snp.makeConstraints { make in
-            make.width.equalTo(140)
-            make.height.equalTo(50)
-            make.left.equalToSuperview().offset(40)
-            make.bottom.equalToSuperview().offset(-40)
+        selectAnserView.snp.makeConstraints { make in
+            make.top.equalTo(questionContentView.snp.top)
+            make.bottom.left.right.equalToSuperview()
         }
     }
     
