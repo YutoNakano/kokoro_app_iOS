@@ -37,6 +37,16 @@ final class QuestionViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Session.send(QuestionResponse.SearchRepositories()) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                self.questionContentView.question = response
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     override func makeConstraints() {
@@ -53,9 +63,21 @@ final class QuestionViewController: ViewController {
 }
 
 extension QuestionViewController: QuestionPresenterOutput {
-    func reload(data: Question) {
-        questionContentView.question = data
-        loadView()
-        viewDidLoad()
+    func reload() {
+//        Session.send(QuestionResponse.SearchRepositories()) { result in
+//            switch result {
+//            case .success(let response):
+//                print(response)
+//                self.questionContentView.question = response
+//                DispatchQueue.main.async {
+//                    self.titleLabel.text = response.title
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//            DispatchQueue.main.async {
+//                self.loadView()
+//                self.viewDidLoad()
+//            }
+        }
     }
-}

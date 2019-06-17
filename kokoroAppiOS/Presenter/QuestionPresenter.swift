@@ -14,7 +14,7 @@ protocol QuestionPresenterInput {
 }
 
 protocol QuestionPresenterOutput: AnyObject {
-    func reload(data: Question)
+    func reload()
 }
 
 
@@ -31,14 +31,6 @@ final class QuestionPresenter {
 
 extension QuestionPresenter: QuestionPresenterInput {
     func didTapStartButton() {
-        Session.send(QuestionResponse.SearchRepositories()) { result in
-            switch result {
-            case .success(let response):
-                print(response)
-                self.view?.reload(data: response)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        view?.reload()
     }
 }

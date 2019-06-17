@@ -15,9 +15,7 @@ final class QuestionContentView: UIView {
     
     var question: Question? {
         didSet {
-            self.setModel()
-//            self.viewController?.loadView()
-//            self.viewController?.viewDidLoad()
+            self.setup()
         }
     }
     var id: Int?
@@ -49,8 +47,8 @@ final class QuestionContentView: UIView {
     }()
     
     lazy var imageView: UIImageView = {
-        let v = UIImageView()
-        v.backgroundColor = UIColor(hex: "F3AFF8")
+        let v = UIImageView(image: UIImage(named: "mask_animal_kuma"))
+//        v.backgroundColor = UIColor(hex: "F3AFF8")
         addSubview(v)
         return v
     }()
@@ -76,7 +74,7 @@ final class QuestionContentView: UIView {
 //        descriptionLabel.text = question?.description
         commentLabel.text = question?.comment ?? "該当する場合YESボタンを押してね!"
         let imageString = question?.imageURL ?? "https://illust8.com/contents/3775"
-        imageView.setImage(with: imageString)
+//        imageView.setImage(with: imageString)
     }
     
     func makeConstraints() {
@@ -93,7 +91,7 @@ final class QuestionContentView: UIView {
             make.centerY.equalToSuperview()
         }
         imageView.snp.makeConstraints { make in
-            make.size.equalTo(130)
+            make.size.equalTo(160)
             make.centerX.equalToSuperview()
             make.top.equalTo(commentLabel.snp.bottom).offset(80)
         }
