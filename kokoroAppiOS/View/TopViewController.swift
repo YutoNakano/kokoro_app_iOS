@@ -35,6 +35,21 @@ final class TopViewController: ViewController {
         return v
     }()
     
+    private var presenter: QuestionPresenterInput?
+    
+    
+    func inject(presenter: QuestionPresenterInput) {
+        self.presenter = presenter
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func makeConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -62,6 +77,7 @@ final class TopViewController: ViewController {
 
 extension TopViewController {
     @objc func startButtonTapped() {
+        presenter?.didTapStartButton()
         navigationController?.pushViewController(questionViewController, animated: true)
     }
 }

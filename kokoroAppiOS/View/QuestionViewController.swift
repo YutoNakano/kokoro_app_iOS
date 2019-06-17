@@ -32,15 +32,7 @@ final class QuestionViewController: ViewController {
     
     override func loadView() {
         super.loadView()
-            Session.send(QuestionResponse.SearchRepositories()) { result in
-                switch result {
-                case .success(let response):
-                    print(response)
-                    self.questionContentView.question = response
-                case .failure(let error):
-                    print(error)
-                }
-            }
+        questionContentView.viewController = self
     }
     
     override func viewDidLoad() {
@@ -58,8 +50,12 @@ final class QuestionViewController: ViewController {
             make.bottom.left.right.equalToSuperview()
         }
     }
-    
-    
-    
-    
+}
+
+extension QuestionViewController: QuestionPresenterOutput {
+    func reload(data: Question) {
+        questionContentView.question = data
+        loadView()
+        viewDidLoad()
+    }
 }

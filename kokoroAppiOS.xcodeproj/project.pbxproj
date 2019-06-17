@@ -16,6 +16,7 @@
 		574E046222B67668008628C5 /* QuestionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E046122B67668008628C5 /* QuestionTitleView.swift */; };
 		574E046422B67886008628C5 /* SelectAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E046322B67886008628C5 /* SelectAnswerView.swift */; };
 		574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */; };
+		57A2078E22B717A4002B6D9B /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A2078D22B717A4002B6D9B /* QuestionPresenter.swift */; };
 		57B6AECD22B64AEE00007724 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AECC22B64AEE00007724 /* TopViewController.swift */; };
 		57B6AECF22B64B1400007724 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AECE22B64B1400007724 /* QuestionViewController.swift */; };
 		57B6AED122B64B2900007724 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AED022B64B2900007724 /* ResultViewController.swift */; };
@@ -62,6 +63,7 @@
 		574E046122B67668008628C5 /* QuestionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTitleView.swift; sourceTree = "<group>"; };
 		574E046322B67886008628C5 /* SelectAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAnswerView.swift; sourceTree = "<group>"; };
 		574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+kingfisher.swift"; sourceTree = "<group>"; };
+		57A2078D22B717A4002B6D9B /* QuestionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		57B6AECC22B64AEE00007724 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		57B6AECE22B64B1400007724 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		57B6AED022B64B2900007724 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		57A2078F22B71EAA002B6D9B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				57A2078D22B717A4002B6D9B /* QuestionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		57B6AECB22B64AB000007724 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +179,7 @@
 		57C9204522B6117700A8B45D /* kokoroAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				57A2078F22B71EAA002B6D9B /* Presenter */,
 				574E046022B6565A008628C5 /* Base */,
 				57C9207422B6167E00A8B45D /* Model */,
 				57C9204622B6117700A8B45D /* AppDelegate.swift */,
@@ -459,6 +470,7 @@
 				574E046222B67668008628C5 /* QuestionTitleView.swift in Sources */,
 				57C9207822B6174E00A8B45D /* DataParser.swift in Sources */,
 				574E045F22B6564E008628C5 /* View.swift in Sources */,
+				57A2078E22B717A4002B6D9B /* QuestionPresenter.swift in Sources */,
 				57C9207E22B6181F00A8B45D /* ResultResponse.swift in Sources */,
 				57B6AED322B6503E00007724 /* ViewController.swift in Sources */,
 				57B6AECD22B64AEE00007724 /* TopViewController.swift in Sources */,

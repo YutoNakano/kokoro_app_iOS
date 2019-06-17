@@ -12,8 +12,16 @@ import UIKit
 
 final class QuestionContentView: UIView {
     
-    var question: Question?
+    
+    var question: Question? {
+        didSet {
+            self.setModel()
+//            self.viewController?.loadView()
+//            self.viewController?.viewDidLoad()
+        }
+    }
     var id: Int?
+    var viewController: QuestionViewController?
     
     lazy var titleLabel: UILabel = {
         let v = UILabel()
