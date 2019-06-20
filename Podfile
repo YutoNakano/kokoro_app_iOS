@@ -6,9 +6,12 @@ target 'kokoroAppiOS' do
   use_frameworks!
 
   # Pods for kokoroAppiOS
-pod 'APIKit'
+pod 'Firebase/Core'
+pod 'Firebase/Firestore'
 pod 'SnapKit'
 pod 'Kingfisher'
+pod 'LTMorphingLabel'
+pod 'lottie-ios'
   target 'kokoroAppiOSTests' do
     inherit! :search_paths
     # Pods for testing

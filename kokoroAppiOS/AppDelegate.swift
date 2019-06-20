@@ -1,29 +1,31 @@
 //
 //  AppDelegate.swift
-//  kokoroAppiOS
+//  Interview100
 //
-//  Created by 中野湧仁 on 2019/06/16.
+//  Created by 中野湧仁 on 2019/06/19.
 //  Copyright © 2019 中野湧仁. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let topViewController = TopViewController()
-    let questionViewController = QuestionViewController()
+//    let questionViewController = QuestionViewController()
     var navigationController = UINavigationController()
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let presenter = QuestionPresenter(view: questionViewController)
-        topViewController.inject(presenter: presenter)
+//        let presenter = QuestionPresenter(view: questionViewController)
+//        topViewController.inject(presenter: presenter)
         window = UIWindow(frame: UIScreen.main.bounds)
         navigationController = UINavigationController(rootViewController: topViewController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        FirebaseApp.configure()
         return true
     }
 
