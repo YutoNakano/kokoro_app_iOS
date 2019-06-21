@@ -8,54 +8,46 @@
 
 import UIKit
 import SnapKit
+import LTMorphingLabel
 
 
 final class ResultViewController: ViewController {
     
     let screenWidth = UIScreen.main.bounds.width
     
-    // VegaFlowLayoutのようにカードみたいなコレクションビューを目指す
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: screenWidth - 12, height: 87)
-        let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        v.backgroundColor = UIColor.white
-        v.register(ResultCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        v.dataSource = self
-        v.delegate = self
+    lazy var titleLabel: LTMorphingLabel = {
+        let v = LTMorphingLabel()
+        v.numberOfLines = 0
+        v.morphingEffect = .scale
+        v.text = "あなたは心療内科に行くことをオススメします"
+        v.font = UIFont(name: "GillSans-UltraBold", size: 36)
         view.addSubview(v)
+        return v
+    }()
+    
+    lazy var backButton: UIBarButtonItem = {
+        let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
         return v
     }()
     
     override func loadView() {
         super.loadView()
+        self.navigationItem.leftBarButtonItem = backButton
     }
     
     override func makeConstraints() {
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(140)
         }
     }
     
     
 }
 
-extension ResultViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+extension ResultViewController {
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell: ResultCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? ResultCollectionViewCell else { fatalError() }
-        return cell
-    }
-    
-    
-}
-
-extension ResultViewController: UICollectionViewDelegate {
-    
 }
 

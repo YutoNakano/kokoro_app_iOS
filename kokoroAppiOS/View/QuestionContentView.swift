@@ -32,7 +32,7 @@ final class QuestionContentView: UIView {
     lazy var questionTitleLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.text = "yyyyyyyyyy"
+        v.text = ""
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
 //        v.morphingEffect = .scale
         v.lineBreakMode = .byWordWrapping

@@ -26,6 +26,11 @@ final class QuestionViewController: ViewController {
         return v
     }()
     
+    lazy var backButton: UIBarButtonItem = {
+        let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
+        return v
+    }()
+    
     private var presenter: QuestionPresenterInput?
     var questionNumber: Int?
     
@@ -47,6 +52,7 @@ final class QuestionViewController: ViewController {
     
     override func loadView() {
         super.loadView()
+        self.navigationItem.leftBarButtonItem = backButton
         questionContentView.viewController = self
         selectAnserView.viewController = self
         selectAnserView.delegate = self
@@ -73,6 +79,9 @@ final class QuestionViewController: ViewController {
 }
 
 extension QuestionViewController {
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
     func reload() {
         presenter?.fetchQuestionData()
     }

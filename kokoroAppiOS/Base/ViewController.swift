@@ -9,12 +9,14 @@
 import UIKit
 public class ViewController: UIViewController {
     
-    public override func viewDidLoad() {
+    public override func loadView() {
+        super.loadView()
         super.viewDidLoad()
         setupNavigation()
         setupView()
         makeConstraints()
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
     }
     
     public func setupNavigation() { } // NavigationController の設定

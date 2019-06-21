@@ -16,7 +16,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
     lazy var questionIndexLabel: UILabel = {
         let v = UILabel()
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
-        v.text = "2:"
+        v.text = "2,"
         contentView.addSubview(v)
         return v
     }()

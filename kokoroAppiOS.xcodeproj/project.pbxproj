@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1F1853C39B492FC485B4DEC0 /* Pods_kokoroAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */; };
 		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
+		574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36F922BC5CC60041D39E /* MaterialButton.swift */; };
+		574D36FC22BC62F90041D39E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36FB22BC62F90041D39E /* HistoryViewController.swift */; };
+		574D36FF22BC6C170041D39E /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36FE22BC6C170041D39E /* HistoryCollectionViewCell.swift */; };
 		574E045722B65622008628C5 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045622B65622008628C5 /* AppColor.swift */; };
 		574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045822B65649008628C5 /* EnhancedCircle.swift */; };
 		574E045B22B6564A008628C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045A22B6564A008628C5 /* Extensions.swift */; };
@@ -54,6 +57,9 @@
 		1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		574D36F922BC5CC60041D39E /* MaterialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
+		574D36FB22BC62F90041D39E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		574D36FE22BC6C170041D39E /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		574E045622B65622008628C5 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		574E045822B65649008628C5 /* EnhancedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedCircle.swift; sourceTree = "<group>"; };
 		574E045A22B6564A008628C5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -117,6 +123,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		574D36FD22BC6BFF0041D39E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				576DD22C22BBC6BB00B83A8E /* ResultCollectionViewCell.swift */,
+				574D36FE22BC6C170041D39E /* HistoryCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		574E046022B6565A008628C5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +142,7 @@
 				574E045E22B6564E008628C5 /* View.swift */,
 				574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */,
 				576DD23222BBC9BF00B83A8E /* UIViewAnimation.swift */,
+				574D36F922BC5CC60041D39E /* MaterialButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -137,6 +153,7 @@
 				576DD21C22BBC69500B83A8E /* TopViewController.swift */,
 				576DD22222BBC69500B83A8E /* QuestionViewController.swift */,
 				576DD21F22BBC69500B83A8E /* ResultViewController.swift */,
+				574D36FB22BC62F90041D39E /* HistoryViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -152,7 +169,7 @@
 		57B6AECB22B64AB000007724 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				576DD22C22BBC6BB00B83A8E /* ResultCollectionViewCell.swift */,
+				574D36FD22BC6BFF0041D39E /* Cell */,
 				576DD21E22BBC69500B83A8E /* QuestionContentView.swift */,
 				576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */,
 				576DD22122BBC69500B83A8E /* ViewController */,
@@ -466,15 +483,18 @@
 				576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */,
 				576DD21A22BBC64A00B83A8E /* QuestionPresenter.swift in Sources */,
 				576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */,
+				574D36FF22BC6C170041D39E /* HistoryCollectionViewCell.swift in Sources */,
 				576DD22D22BBC6BB00B83A8E /* ResultCollectionViewCell.swift in Sources */,
 				57B6AED322B6503E00007724 /* ViewController.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
 				576DD23322BBC9BF00B83A8E /* UIViewAnimation.swift in Sources */,
+				574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */,
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,
 				574E045722B65622008628C5 /* AppColor.swift in Sources */,
 				576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */,
 				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,
+				574D36FC22BC62F90041D39E /* HistoryViewController.swift in Sources */,
 				576DD22722BBC69500B83A8E /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
