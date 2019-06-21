@@ -17,7 +17,7 @@ final class HistoryViewController: ViewController {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
         layout.itemSize = CGSize(width: screenWidth - 12, height: 87)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = UIColor.white

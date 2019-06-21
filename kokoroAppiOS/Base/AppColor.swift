@@ -10,6 +10,7 @@ import UIKit
 
 public enum AppColorType: String {
     
+    case white = "FFFFFF"
     case black = "000000"
     case yesPink = "F05656"
     case noBlue = "4996E9"

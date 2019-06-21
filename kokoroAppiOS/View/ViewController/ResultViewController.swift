@@ -15,11 +15,11 @@ final class ResultViewController: ViewController {
     
     let screenWidth = UIScreen.main.bounds.width
     
-    lazy var titleLabel: LTMorphingLabel = {
-        let v = LTMorphingLabel()
+    lazy var titleLabel: UILabel = {
+        let v = UILabel()
         v.numberOfLines = 0
-        v.morphingEffect = .scale
-        v.text = "あなたは心療内科に行くことをオススメします"
+//        v.morphingEffect = .scale
+        v.text = "あなたは心療内科に行くことをオススメします!"
         v.font = UIFont(name: "GillSans-UltraBold", size: 36)
         view.addSubview(v)
         return v
@@ -37,8 +37,9 @@ final class ResultViewController: ViewController {
     
     override func makeConstraints() {
         titleLabel.snp.makeConstraints { make in
+            make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
-            make.top.equalTo(140)
+            make.top.equalTo(80)
         }
     }
     
@@ -47,7 +48,7 @@ final class ResultViewController: ViewController {
 
 extension ResultViewController {
     @objc func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+       self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
