@@ -20,19 +20,24 @@ final class QuestionContentView: UIView {
         }
     }
     
-//    lazy var contentView: UIView = {
-//        let v = UIView()
-//        v.backgroundColor = UIColor.appColor(.navbar)
-//        addSubview(v)
-//        return v
-//    }()
+    lazy var contentView: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.appColor(.navbar)
+        v.layer.cornerRadius = 10
+        v.layer.shadowOpacity = 0.1
+        v.layer.shadowColor = UIColor.black.cgColor
+        v.layer.shadowOffset = CGSize(width: 0.2, height: 0.2)
+        v.layer.shadowRadius = 10
+        addSubview(v)
+        return v
+    }()
     
     lazy var questionLabel: UILabel = {
         let v = UILabel()
         v.textColor = UIColor.appColor(.character)
         v.text = "質問"
         v.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        addSubview(v)
+        contentView.addSubview(v)
         return v
     }()
     
@@ -42,7 +47,7 @@ final class QuestionContentView: UIView {
         v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
         v.morphingEffect = .scale
-        addSubview(v)
+        contentView.addSubview(v)
         return v
     }()
     
@@ -51,7 +56,7 @@ final class QuestionContentView: UIView {
         v.textColor = UIColor.appColor(.character)
         v.text = " /15"
         v.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        addSubview(v)
+        contentView.addSubview(v)
         return v
     }()
     
@@ -64,15 +69,15 @@ final class QuestionContentView: UIView {
 //        v.morphingEffect = .scale
         v.lineBreakMode = .byWordWrapping
         v.sizeToFit()
-        addSubview(v)
+        contentView.addSubview(v)
         return v
     }()
     
     
     lazy var underLineView: UIView = {
         let v = UIView()
-        v.backgroundColor = UIColor.appColor(.character, alpha: 0.8)
-        addSubview(v)
+        v.backgroundColor = UIColor.appColor(.character, alpha: 0.4)
+        contentView.addSubview(v)
         return v
     }()
     
@@ -100,16 +105,16 @@ final class QuestionContentView: UIView {
     }
     
     func makeConstraints() {
-//        contentView.snp.makeConstraints { make in
-//            make.top.equalTo(100)
-//            make.height.equalTo(300)
-//            make.width.equalTo(screenWidth - 15)
-//            make.centerX.equalToSuperview()
-//        }
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(80)
+            make.height.equalTo(250)
+            make.width.equalTo(screenWidth - 30)
+            make.centerX.equalToSuperview()
+        }
         questionLabel.snp.makeConstraints { make in
             make.width.equalTo(50)
             make.left.equalTo(18)
-            make.top.equalTo(100)
+            make.top.equalTo(20)
         }
         questionNumberLabel.snp.makeConstraints { make in
             make.width.equalTo(20)
@@ -125,13 +130,13 @@ final class QuestionContentView: UIView {
         underLineView.snp.makeConstraints { make in
             make.height.equalTo(2)
             make.width.equalTo(screenWidth - 50)
-            make.top.equalTo(questionLabel.snp.bottom).offset(4)
+            make.top.equalTo(questionLabel.snp.bottom).offset(6)
             make.left.equalTo(questionLabel.snp.left)
         }
         questionTitleLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 70)
             make.centerX.equalToSuperview()
-            make.top.equalTo(questionNumberLabel.snp.bottom).offset(20)
+            make.top.equalTo(questionNumberLabel.snp.bottom).offset(40)
         }
     }
 }
