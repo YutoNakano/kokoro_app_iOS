@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 import LTMorphingLabel
 import Lottie
 
@@ -15,6 +16,8 @@ final class TopViewController: ViewController {
     
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
+    
+    private let isTest = true
     
     lazy var charactorImageView: UIImageView = {
         let v = UIImageView(image: UIImage(named: "charactor"))
@@ -61,6 +64,21 @@ final class TopViewController: ViewController {
         let presenter = QuestionPresenter(view: questionViewController)
         questionViewController.inject(presenter: presenter)
 //        navigationController?.isNavigationBarHidden = true
+        
+        
+        
+
+//        guard let user = Auth.auth().currentUser else {
+//            print("登録しているユーザー情報がないよ")
+//            return }
+//        print(user)
+        guard let user = UserManager.shared.currentUser else {
+            return
+        }
+        
+        //　試しにユーザー情報にデータを作成できるか
+        // HistoryのStructを作る CartItem参照
+        Document<History>.create(parentDocument: user, model:)
     }
     
     override func setupView() {

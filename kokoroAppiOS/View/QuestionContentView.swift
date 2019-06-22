@@ -45,6 +45,7 @@ final class QuestionContentView: UIView {
         let v = LTMorphingLabel()
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
+        v.adjustsFontSizeToFitWidth = true
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
         v.morphingEffect = .scale
         contentView.addSubview(v)
@@ -54,7 +55,7 @@ final class QuestionContentView: UIView {
     lazy var maxNunberLabel: UILabel = {
         let v = UILabel()
         v.textColor = UIColor.appColor(.character)
-        v.text = " /15"
+        v.text = " /10"
         v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         contentView.addSubview(v)
         return v
@@ -66,7 +67,6 @@ final class QuestionContentView: UIView {
         v.text = ""
         v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 32)
-//        v.morphingEffect = .scale
         v.lineBreakMode = .byWordWrapping
         v.sizeToFit()
         contentView.addSubview(v)
@@ -112,15 +112,15 @@ final class QuestionContentView: UIView {
             make.centerX.equalToSuperview()
         }
         questionLabel.snp.makeConstraints { make in
-            make.width.equalTo(50)
+            make.width.equalTo(43)
             make.left.equalTo(18)
             make.top.equalTo(20)
         }
         questionNumberLabel.snp.makeConstraints { make in
-            make.width.equalTo(20)
+//            make.width.equalTo(38)
             make.height.equalTo(30)
             make.top.equalTo(questionLabel.snp.top).offset(-5)
-            make.left.equalTo(questionLabel.snp.right).offset(5)
+            make.left.equalTo(questionLabel.snp.right).offset(7)
         }
         maxNunberLabel.snp.makeConstraints { make in
             make.width.equalTo(100)

@@ -6,16 +6,15 @@
 //  Copyright © 2019 中野湧仁. All rights reserved.
 //
 
-import FirebaseAuth
-import FirebaseFirestore
 import Foundation
+import Firebase
 
 final class UserManager {
     
     enum State {
         case initial
         case notAuthenticated
-        case authenticated
+        case authenticated(Document<User>)
     }
     // テスト
     private let isTest = true
@@ -29,7 +28,41 @@ final class UserManager {
         }
     }
     
-    private init() { }
+    var currentUser: Document<User>? {
+        switch currentState {
+        case .initial: return nil
+        case .notAuthenticated: return nil
+        case let .authenticated(user): return user
+        }
+    }
+    
+    private init() {
+        // ログインしているユーザーをリッスンする
+        hundle = Auth.auth().addStateDidChangeListener { [unowned self] _, user in
+            self.fetch(authUser: user)
+        }
+    }
+    
+    private func fetch(authUser: Firebase.User? = Auth.auth().currentUser) {
+        guard let authUser =  authUser else {
+            currentState = .notAuthenticated
+            return
+        }
+        
+        Document<User>.get(documentID: authUser.uid) { result in
+            switch result {
+            case let .success(user):
+                if let user = user {
+                    self.currentState = .authenticated(user)
+                } else {
+                    self.currentState = .notAuthenticated
+                }
+            case let .failure(error):
+                print(error)
+                self.currentState = .notAuthenticated
+            }
+        }
+    }
     
     func register(listener: @escaping (State) -> Void) {
         listeners.append(listener)
@@ -39,15 +72,16 @@ final class UserManager {
     func signUp(withName name: String, completion:@escaping (Result<String, Error>) -> Void) {
         // 認証済み
         if Auth.auth().currentUser != nil {
-            if isTest == true {
-                Auth.auth().currentUser?.delete { error in
-                    if let error = error {
-                        print(error)
-                    } else {
-                     print("テストのためカレントユーザーデータ削除")
-                    }
-                }
-            }
+//            if isTest == true {
+//                Auth.auth().currentUser?.delete { error in
+//                    if let error = error {
+//                        print(error)
+//                    } else {
+//                     print("テストのためカレントユーザーデータ削除")
+//                    }
+//                }
+//            }
+            return 
         }
         //　新規登録の処理
         Auth.auth().signInAnonymously { authDataResult, error in
