@@ -91,7 +91,9 @@ final class SelectAnserView: UIView {
 extension SelectAnserView {
     @objc func yesButtonTapped() {
         questionCount += 1
+        // 質問番号をQuestionContentViewに渡す
         delegate?.getQuestionNumber(number: questionCount)
+        
         guard questionCount < limitNumber else {
             viewController?.navigationController?.pushViewController(resultViewController, animated: true)
          return
@@ -100,6 +102,7 @@ extension SelectAnserView {
     }
     @objc func noButtonTapped() {
         questionCount += 1
+        delegate?.getQuestionNumber(number: questionCount)
         viewController?.reload()
     }
 }

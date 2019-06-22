@@ -7,6 +7,7 @@
 //
 
 import FirebaseAuth
+import FirebaseFirestore
 import Foundation
 
 final class UserManager {
@@ -26,6 +27,10 @@ final class UserManager {
         Auth.auth().signInAnonymously { authDataResult, error in
             switch Result(authDataResult, error) {
             case let .success(authDataResult):
+                let db = Firestore.firestore()
+                db.collection("Users").document(authDataResult.user.uid).setData([
+                    "name": name
+                    ])
                 print("登録成功")
             case let .failure(error):
                 print(error)

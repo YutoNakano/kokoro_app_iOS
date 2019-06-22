@@ -10,10 +10,18 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import LTMorphingLabel
+import KRProgressHUD
 
 final class SignUpViewController: ViewController {
     
     let screenWidth = UIScreen.main.bounds.width
+    
+    
+    private var name: String = "" {
+        didSet {
+            singUpButton.isEnabled = !name.isEmpty
+        }
+    }
     
     lazy var titleLabel: LTMorphingLabel = {
         let v = LTMorphingLabel()
@@ -35,6 +43,7 @@ final class SignUpViewController: ViewController {
     lazy var textField: UITextField = {
         let v = UITextField()
         v.font = UIFont(name: "GillSans", size: 28)
+        v.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
         view.addSubview(v)
         return v
     }()
@@ -80,13 +89,19 @@ final class SignUpViewController: ViewController {
 
 extension SignUpViewController {
     @objc func singUpButtonTapped() {
-        handle = Auth.auth().addIDTokenDidChangeListener { auth, user in
-            if let user = user {
-                
-            } else {
-                
-            }
+        KRProgressHUD.show()
+        UserManager.shared.signUp(withName: name) { result in
+            KRProgressHUD.dismiss()
+            print(result)
         }
+    }
+    @objc func editingChanged(_ textField: UITextField) {
+        name = textField.text ?? ""
     }
 }
 
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
+    }
+}
