@@ -9,6 +9,61 @@
 import FirebaseAuth
 import UIKit
 
-final class RootViewController: UIViewController {
+final class RootViewController: ViewController {
+    enum ViewType {
+        // signUpではなくcase intro を追加する
+        case signUp
+        case main
+    }
     
+    private var viewType: ViewType? {
+        didSet {
+            guard let type = viewType, oldValue != type else {
+                return
+            }
+            
+            switch type {
+            case .signUp: currentViewController =
+                SignUpViewController()
+                
+            case .main: currentViewController =
+                NavigationController.build()
+            }
+        }
+    }
+    
+    private(set) var currentViewController: UIViewController? {
+        didSet {
+            guard let currentViewController = currentViewController else { return }
+            
+            addChild(currentViewController)
+            view.addSubview(currentViewController.view)
+            currentViewController.didMove(toParent: self)
+            currentViewController.view.frame = view.bounds
+            
+            guard let oldViewController = oldValue else { return }
+            
+            view.sendSubviewToBack(currentViewController.view)
+            UIView.transition(from: oldViewController.view, to: currentViewController.view, duration: 0.35, options: .transitionCrossDissolve) { _ in
+                oldViewController.willMove(toParent: nil)
+                oldViewController.view.removeFromSuperview()
+                oldViewController.removeFromParent()
+            }
+        }
+    }
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = UIColor.appColor(.white)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UserManager.shared.register { [weak self] state in
+            switch state {
+            case .initial: self?.viewType = .main
+            case .notAuthenticated: self?.viewType = .signUp
+            case .authenticated: self?.viewType = .main
+            }
+        }
+    }
 }

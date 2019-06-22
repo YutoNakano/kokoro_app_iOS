@@ -20,7 +20,7 @@ final class HistoryViewController: ViewController {
         layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
         layout.itemSize = CGSize(width: screenWidth - 12, height: 87)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        v.backgroundColor = UIColor.white
+        v.backgroundColor = UIColor.appColor(.navbar)
         v.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         v.dataSource = self
         v.delegate = self

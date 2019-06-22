@@ -21,11 +21,12 @@ public class ViewController: UIViewController {
     public func setupNavigation() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
     }
     
     // 自身のviewの設定
     public func setupView() {
-        view.backgroundColor = UIColor.appColor(.white)
+        view.backgroundColor = UIColor.appColor(.background)
     }
     
     public func makeConstraints() { } // レイアウトに制約を付加

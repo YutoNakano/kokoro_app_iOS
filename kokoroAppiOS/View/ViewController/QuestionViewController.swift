@@ -14,14 +14,14 @@ final class QuestionViewController: ViewController {
     
     lazy var questionContentView: QuestionContentView = {
         let v = QuestionContentView()
-        v.backgroundColor = UIColor.white
+        v.backgroundColor = UIColor.appColor(.background)
         view.addSubview(v)
         return v
     }()
     
     lazy var selectAnserView: SelectAnserView = {
         let v = SelectAnserView()
-        v.backgroundColor = UIColor.white
+        v.backgroundColor = UIColor.appColor(.background)
         view.addSubview(v)
         return v
     }()
@@ -47,7 +47,7 @@ final class QuestionViewController: ViewController {
     }
     
     override func setupView() {
-        view.backgroundColor = UIColor.white
+        
     }
     
     override func loadView() {

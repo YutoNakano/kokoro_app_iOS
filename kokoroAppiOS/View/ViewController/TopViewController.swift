@@ -16,11 +16,8 @@ final class TopViewController: ViewController {
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
     
-    lazy var titleLabel: UILabel = {
-        let v = LTMorphingLabel()
-        v.numberOfLines = 0
-        v.text = "キャラの写真をアニメーション付きで貼る"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 36)
+    lazy var charactorImageView: UIImageView = {
+        let v = UIImageView(image: UIImage(named: "charactor"))
         view.addSubview(v)
         return v
     }()
@@ -30,6 +27,7 @@ final class TopViewController: ViewController {
         v.setTitle("診断を始める", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
         v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.titleLabel?.textColor = UIColor.white
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
@@ -59,17 +57,18 @@ final class TopViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        charactorAnimation()
         let presenter = QuestionPresenter(view: questionViewController)
         questionViewController.inject(presenter: presenter)
 //        navigationController?.isNavigationBarHidden = true
     }
     
     override func setupView() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.appColor(.background)
     }
     
     override func makeConstraints() {
-        titleLabel.snp.makeConstraints { make in
+        charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(140)
         }
@@ -96,6 +95,14 @@ extension TopViewController {
     }
     @objc func watchHistoryButtonTapped() {
         navigationController?.pushViewController(historyViewController, animated: true)
+    }
+    
+    func charactorAnimation() {
+        UIView.animate(withDuration: 2.0, delay: 0.5, options: [.repeat,.autoreverse], animations: {
+                self.charactorImageView.center.y += 30
+            }) { _ in
+                self.charactorImageView.center.y -= 30
+        }
     }
 }
 

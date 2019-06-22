@@ -30,6 +30,7 @@
 		57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DC922BDD0CC00142ADF /* SignUpViewController.swift */; };
 		57721DCD22BDD68200142ADF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DCC22BDD68200142ADF /* UserManager.swift */; };
 		57721DCF22BDF37100142ADF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DCE22BDF37100142ADF /* RootViewController.swift */; };
+		57721DD122BDFA6400142ADF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DD022BDFA6400142ADF /* NavigationController.swift */; };
 		57B6AED322B6503E00007724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AED222B6503E00007724 /* ViewController.swift */; };
 		57C9204C22B6117700A8B45D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204A22B6117700A8B45D /* Main.storyboard */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		57721DC922BDD0CC00142ADF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		57721DCC22BDD68200142ADF /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		57721DCE22BDF37100142ADF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		57721DD022BDFA6400142ADF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		57B6AED222B6503E00007724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C9204B22B6117700A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				574D36FB22BC62F90041D39E /* HistoryViewController.swift */,
 				57721DC922BDD0CC00142ADF /* SignUpViewController.swift */,
 				57721DCE22BDF37100142ADF /* RootViewController.swift */,
+				57721DD022BDFA6400142ADF /* NavigationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				57B6AED322B6503E00007724 /* ViewController.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
+				57721DD122BDFA6400142ADF /* NavigationController.swift in Sources */,
 				576DD23322BBC9BF00B83A8E /* UIViewAnimation.swift in Sources */,
 				574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */,
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,

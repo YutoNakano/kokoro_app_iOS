@@ -19,6 +19,7 @@ final class SelectAnserView: UIView {
     lazy var timeLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
+        v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 30)
         addSubview(v)
         return v

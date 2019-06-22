@@ -35,6 +35,10 @@ final class ResultViewController: ViewController {
         self.navigationItem.leftBarButtonItem = backButton
     }
     
+    override func setupView() {
+        view.backgroundColor = UIColor.appColor(.background)
+    }
+    
     override func makeConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 30)

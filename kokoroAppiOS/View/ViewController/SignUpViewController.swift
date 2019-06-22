@@ -23,11 +23,8 @@ final class SignUpViewController: ViewController {
         }
     }
     
-    lazy var titleLabel: LTMorphingLabel = {
-        let v = LTMorphingLabel()
-        v.text = "心の案内所"
-        v.morphingEffect = .scale
-        v.font = UIFont(name: "GillSans-UltraBold", size: 36)
+    lazy var titleImageView: UIImageView = {
+        let v = UIImageView(image: UIImage(named: "logo"))
         view.addSubview(v)
         return v
     }()
@@ -35,7 +32,8 @@ final class SignUpViewController: ViewController {
     lazy var descriptionLabel: UILabel = {
         let v = UILabel()
         v.text = "ニックネームを入力してください"
-        v.font = UIFont(name: "GillSans", size: 22)
+        v.textColor = UIColor.appColor(.character)
+        v.font = UIFont(name: "GillSans", size: 15)
         view.addSubview(v)
         return v
     }()
@@ -44,6 +42,13 @@ final class SignUpViewController: ViewController {
         let v = UITextField()
         v.font = UIFont(name: "GillSans", size: 28)
         v.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
+        v.layer.cornerRadius = 5
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 20))
+//        paddingView.backgroundColor = UIColor.appColor(.subPink)
+        v.leftView = paddingView
+        v.leftViewMode = .always
+        v.backgroundColor = UIColor.appColor(.navbar)
+        v.delegate = self
         view.addSubview(v)
         return v
     }()
@@ -61,26 +66,26 @@ final class SignUpViewController: ViewController {
     }()
     
     override func makeConstraints() {
-        titleLabel.snp.makeConstraints { make in
+        titleImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalTo(200)
-            make.top.equalTo(300)
+            make.top.equalTo(100)
         }
         descriptionLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-20)
             make.left.equalTo(textField.snp.left)
-            make.width.equalTo(150)
-            make.height.equalTo(50)
+            make.width.equalTo(screenWidth)
         }
         textField.snp.makeConstraints { make in
-            make.centerX.equalTo(titleLabel.snp.centerX)
-            make.width.equalTo(screenWidth - 40)
-            make.height.equalTo(90)
+            make.height.equalTo(50)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
+            make.centerX.equalTo(titleImageView.snp.centerX)
+            make.width.equalTo(screenWidth - 50)
         }
         singUpButton.snp.makeConstraints { make in
+            make.top.equalTo(textField.snp.bottom).offset(80)
             make.centerX.equalTo(textField.snp.centerX)
-            make.height.equalTo(90)
-            make.width.equalTo(textField.snp.width)
-            make.top.equalTo(textField.snp.top).offset(30)
+            make.height.equalTo(80)
+            make.width.equalTo(220)
         }
     }
     
@@ -102,6 +107,7 @@ extension SignUpViewController {
 
 extension SignUpViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }
