@@ -7,6 +7,7 @@ target 'kokoroAppiOS' do
 
   # Pods for kokoroAppiOS
 pod 'Firebase/Core'
+pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'SnapKit'
 pod 'Kingfisher'

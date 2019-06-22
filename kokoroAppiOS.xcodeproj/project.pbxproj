@@ -27,6 +27,8 @@
 		576DD22F22BBC76500B83A8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 576DD22E22BBC76500B83A8E /* GoogleService-Info.plist */; };
 		576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD23022BBC83A00B83A8E /* AppDelegate.swift */; };
 		576DD23322BBC9BF00B83A8E /* UIViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD23222BBC9BF00B83A8E /* UIViewAnimation.swift */; };
+		57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DC922BDD0CC00142ADF /* SignUpViewController.swift */; };
+		57721DCD22BDD68200142ADF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DCC22BDD68200142ADF /* UserManager.swift */; };
 		57B6AED322B6503E00007724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AED222B6503E00007724 /* ViewController.swift */; };
 		57C9204C22B6117700A8B45D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204A22B6117700A8B45D /* Main.storyboard */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		576DD22E22BBC76500B83A8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		576DD23022BBC83A00B83A8E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		576DD23222BBC9BF00B83A8E /* UIViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAnimation.swift; sourceTree = "<group>"; };
+		57721DC922BDD0CC00142ADF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		57721DCC22BDD68200142ADF /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		57B6AED222B6503E00007724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C9204B22B6117700A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,8 +158,17 @@
 				576DD22222BBC69500B83A8E /* QuestionViewController.swift */,
 				576DD21F22BBC69500B83A8E /* ResultViewController.swift */,
 				574D36FB22BC62F90041D39E /* HistoryViewController.swift */,
+				57721DC922BDD0CC00142ADF /* SignUpViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		57721DCB22BDD66200142ADF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57721DCC22BDD68200142ADF /* UserManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		57A2078F22B71EAA002B6D9B /* Presenter */ = {
@@ -202,6 +215,7 @@
 		57C9204522B6117700A8B45D /* kokoroAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				57721DCB22BDD66200142ADF /* Model */,
 				57A2078F22B71EAA002B6D9B /* Presenter */,
 				574E046022B6565A008628C5 /* Base */,
 				576DD23022BBC83A00B83A8E /* AppDelegate.swift */,
@@ -485,6 +499,7 @@
 				576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */,
 				574D36FF22BC6C170041D39E /* HistoryCollectionViewCell.swift in Sources */,
 				576DD22D22BBC6BB00B83A8E /* ResultCollectionViewCell.swift in Sources */,
+				57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */,
 				57B6AED322B6503E00007724 /* ViewController.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
@@ -495,6 +510,7 @@
 				576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */,
 				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,
 				574D36FC22BC62F90041D39E /* HistoryViewController.swift in Sources */,
+				57721DCD22BDD68200142ADF /* UserManager.swift in Sources */,
 				576DD22722BBC69500B83A8E /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

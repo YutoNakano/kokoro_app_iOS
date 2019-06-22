@@ -16,11 +16,10 @@ final class TopViewController: ViewController {
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
     
-    lazy var titleLabel: LTMorphingLabel = {
+    lazy var titleLabel: UILabel = {
         let v = LTMorphingLabel()
         v.numberOfLines = 0
-        v.morphingEffect = .scale
-        v.text = "心の案内所"
+        v.text = "キャラの写真をアニメーション付きで貼る"
         v.font = UIFont(name: "GillSans-UltraBold", size: 36)
         view.addSubview(v)
         return v
