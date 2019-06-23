@@ -1,0 +1,71 @@
+//
+//  HistoryCollectionView.swift
+//  kokoroAppiOS
+//
+//  Created by 中野湧仁 on 2019/06/23.
+//  Copyright © 2019 中野湧仁. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import SnapKit
+
+final class HistoryCollectionView: UIView {
+    
+    let screenWidth = UIScreen.main.bounds.width
+    
+    //     VegaFlowLayoutのようにカードみたいなコレクションビューを目指す
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 20
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: screenWidth - 12, height: 87)
+        let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        v.backgroundColor = UIColor.clear
+        v.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        v.dataSource = self
+        v.delegate = self
+        addSubview(v)
+        return v
+    }()
+    
+    var numberIndex = ["1","2","3","4","5","6","7","8","9","10"]
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+        makeConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setup() {
+        backgroundColor = UIColor.clear
+    }
+    
+    func makeConstraints() {
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+}
+
+extension HistoryCollectionView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell: HistoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
+            HistoryCollectionViewCell else { fatalError() }
+        cell.resultIndexLabel.text = numberIndex[indexPath.row]
+        
+        return cell
+    }
+}
+
+extension HistoryCollectionView: UICollectionViewDelegate {
+    
+}

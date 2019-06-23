@@ -67,7 +67,7 @@ final class SelectAnserView: UIView {
     }
     
     func setup() {
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor.appColor(.navbar)
     }
 
     func makeConstraints() {

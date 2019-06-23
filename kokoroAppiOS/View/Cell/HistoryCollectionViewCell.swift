@@ -16,14 +16,14 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     lazy var resultIndexLabel: UILabel = {
         let v = UILabel()
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
-        v.text = "1,"
+        v.text = "1"
         contentView.addSubview(v)
         return v
     }()
     lazy var resultLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.text = "保健所に行ってみてはいかがでしょうか?"
+        v.text = "診断結果:　保健所"
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
         contentView.addSubview(v)
         return v
@@ -51,7 +51,7 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
         resultLabel.snp.makeConstraints { make in
             make.width.equalTo(240)
             make.centerY.equalTo(resultIndexLabel.snp.centerY)
-            make.left.equalTo(resultIndexLabel.snp.right).offset(30)
+            make.left.equalToSuperview().offset(80)
         }
     }
 }

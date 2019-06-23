@@ -19,6 +19,7 @@
 		574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */; };
 		5757F40E22BEF0E3008783F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */; };
 		5757F41022BEF18A008783F6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F40F22BEF18A008783F6 /* History.swift */; };
+		5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */; };
 		576DD21A22BBC64A00B83A8E /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21922BBC64900B83A8E /* QuestionPresenter.swift */; };
 		576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21C22BBC69500B83A8E /* TopViewController.swift */; };
 		576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */; };
@@ -75,6 +76,7 @@
 		574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+kingfisher.swift"; sourceTree = "<group>"; };
 		5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5757F40F22BEF18A008783F6 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionView.swift; sourceTree = "<group>"; };
 		576DD21922BBC64900B83A8E /* QuestionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		576DD21C22BBC69500B83A8E /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAnswerView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				576DD21E22BBC69500B83A8E /* QuestionContentView.swift */,
 				576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */,
 				576DD22122BBC69500B83A8E /* ViewController */,
+				5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				57B6AED322B6503E00007724 /* ViewController.swift in Sources */,
 				5757F41022BEF18A008783F6 /* History.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
+				5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
 				57721DD122BDFA6400142ADF /* NavigationController.swift in Sources */,
 				57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */,

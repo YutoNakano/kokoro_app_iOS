@@ -95,6 +95,7 @@ final class SignUpViewController: ViewController {
 extension SignUpViewController {
     @objc func singUpButtonTapped() {
         KRProgressHUD.show()
+        
         UserManager.shared.signUp(withName: name) { result in
             KRProgressHUD.dismiss()
             print(result)
@@ -111,3 +112,21 @@ extension SignUpViewController: UITextFieldDelegate {
         return true
     }
 }
+
+
+class KRProgressHUDAppearance {
+    /// HUDのスタイル.
+    public var style = KRProgressHUDStyle.white
+    /// マスクタイプ
+    public var maskType = KRProgressHUDMaskType.custom(color: UIColor.appColor(.subPink))
+    /// ローディングインジケータのグラデーションカラー
+    public var activityIndicatorColors = [UIColor]([.black, .lightGray])
+    /// ラベルのフォント
+    public var font = UIFont.systemFont(ofSize: 13)
+    /// HUDのセンター位置
+    public var viewCenterPosition = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
+    /// HUDの表示時間.
+    public var duration = Double(1.0)
+}
+
+

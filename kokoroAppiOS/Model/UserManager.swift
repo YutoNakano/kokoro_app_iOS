@@ -72,15 +72,6 @@ final class UserManager {
     func signUp(withName name: String, completion:@escaping (Result<String, Error>) -> Void) {
         // 認証済み
         if Auth.auth().currentUser != nil {
-//            if isTest == true {
-//                Auth.auth().currentUser?.delete { error in
-//                    if let error = error {
-//                        print(error)
-//                    } else {
-//                     print("テストのためカレントユーザーデータ削除")
-//                    }
-//                }
-//            }
             return 
         }
         //　新規登録の処理

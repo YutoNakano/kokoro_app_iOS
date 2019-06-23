@@ -8,6 +8,7 @@
 
 import FirebaseAuth
 import UIKit
+import KRProgressHUD
 
 final class RootViewController: ViewController {
     enum ViewType {
@@ -15,6 +16,8 @@ final class RootViewController: ViewController {
         case signUp
         case main
     }
+    
+    private var isTest = true
     
     private var viewType: ViewType? {
         didSet {
@@ -58,10 +61,21 @@ final class RootViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        if isTest == true {
+//        Auth.auth().currentUser?.delete { error in
+//        if let error = error {
+//            print(error)
+//        } else {
+//            print("テストのためカレントユーザーデータ削除")
+//                }
+//            }
+//        }
+        
         UserManager.shared.register { [weak self] state in
             switch state {
             case .initial: break
-            case .notAuthenticated: self?.viewType = .main
+            case .notAuthenticated: self?.viewType = .signUp
             case .authenticated: self?.viewType = .main
             }
         }
