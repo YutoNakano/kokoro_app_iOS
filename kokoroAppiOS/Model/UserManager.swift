@@ -88,7 +88,7 @@ final class UserManager {
             switch Result(authDataResult, error) {
             case let .success(authDataResult):
                 let db = Firestore.firestore()
-                db.collection("Users").document(authDataResult.user.uid).setData([
+                db.collection("users").document(authDataResult.user.uid).setData([
                     "name": name
                     ])
                 print("登録成功")

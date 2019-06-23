@@ -78,7 +78,7 @@ final class TopViewController: ViewController {
         
         //　試しにユーザー情報にデータを作成できるか
         // HistoryのStructを作る CartItem参照
-        Document<History>.create(parentDocument: user, model:)
+//        Document<History>.create(parentDocument: user, model:)
     }
     
     override func setupView() {

@@ -16,7 +16,7 @@ struct User: FirestoreModelReadable, FirestoreModelWritable {
     }
     
     static var collectionRef: CollectionReference {
-        return Firestore.firestore().collection("Users")
+        return Firestore.firestore().collection("users")
     }
     
     var name: String = ""

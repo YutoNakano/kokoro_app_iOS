@@ -61,7 +61,7 @@ final class RootViewController: ViewController {
         UserManager.shared.register { [weak self] state in
             switch state {
             case .initial: break
-            case .notAuthenticated: self?.viewType = .signUp
+            case .notAuthenticated: self?.viewType = .main
             case .authenticated: self?.viewType = .main
             }
         }
