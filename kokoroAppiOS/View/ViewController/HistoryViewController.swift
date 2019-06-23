@@ -13,8 +13,8 @@ final class HistoryViewController: ViewController {
     
     let screenWidth = UIScreen.main.bounds.width
     
-    lazy var historyCollectionView: HistoryCollectionView = {
-        let v = HistoryCollectionView()
+    lazy var historyCollectionView: HistoryDetailCollectionView = {
+        let v = HistoryDetailCollectionView()
         view.addSubview(v)
         return v
     }()

@@ -31,15 +31,16 @@ final class ResultViewController: ViewController {
         let v = LTMorphingLabel()
         v.numberOfLines = 0
         v.morphingEffect = .scale
+        v.adjustsFontSizeToFitWidth = true
         v.text = "診断結果: 心療内科"
         v.font = UIFont(name: "GillSans", size: 28)
         contentView.addSubview(v)
         return v
     }()
     
-    lazy var historyCollectionView: HistoryCollectionView = {
-        let v = HistoryCollectionView()
-        view.addSubview(v)
+    lazy var historyCollectionView: HistoryDetailCollectionView = {
+        let v = HistoryDetailCollectionView()
+        contentView.addSubview(v)
         return v
     }()
     
@@ -61,12 +62,11 @@ final class ResultViewController: ViewController {
     override func makeConstraints() {
         contentView.snp.makeConstraints { make in
             make.top.equalTo(30)
-            make.height.equalTo(300)
+            make.height.equalTo(800)
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
         }
         titleLabel.snp.makeConstraints { make in
-            make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
             make.top.equalTo(20)
         }

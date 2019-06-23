@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class HistoryCollectionView: UIView {
+final class HistoryDetailCollectionView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -18,10 +18,10 @@ final class HistoryCollectionView: UIView {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: screenWidth - 12, height: 87)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: screenWidth - 24, height: 87)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        v.backgroundColor = UIColor.clear
+        v.backgroundColor = UIColor.appColor(.background)
         v.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         v.dataSource = self
         v.delegate = self
@@ -42,7 +42,7 @@ final class HistoryCollectionView: UIView {
     }
     
     func setup() {
-        backgroundColor = UIColor.clear
+        
     }
     
     func makeConstraints() {
@@ -52,7 +52,7 @@ final class HistoryCollectionView: UIView {
     }
 }
 
-extension HistoryCollectionView: UICollectionViewDataSource {
+extension HistoryDetailCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
@@ -66,6 +66,6 @@ extension HistoryCollectionView: UICollectionViewDataSource {
     }
 }
 
-extension HistoryCollectionView: UICollectionViewDelegate {
+extension HistoryDetailCollectionView: UICollectionViewDelegate {
     
 }

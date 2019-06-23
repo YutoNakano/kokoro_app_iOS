@@ -29,6 +29,12 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
         return v
     }()
     
+    lazy var goNextImageView: UIImageView = {
+        let v = UIImageView(image: UIImage(named: "go"))
+        contentView.addSubview(v)
+        return v
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -40,7 +46,13 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     }
     
     func setup() {
+        backgroundColor = UIColor.appColor(.navbar)
         
+        layer.cornerRadius = 10
+        layer.shadowOpacity = 0.1
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.2, height: 0.2)
+        layer.shadowRadius = 10
     }
     
     func makeConstraints() {
@@ -52,6 +64,10 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
             make.width.equalTo(240)
             make.centerY.equalTo(resultIndexLabel.snp.centerY)
             make.left.equalToSuperview().offset(80)
+        }
+        goNextImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-10)
         }
     }
 }
