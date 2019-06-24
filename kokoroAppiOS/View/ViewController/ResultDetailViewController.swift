@@ -18,14 +18,22 @@ final class ResultDetailViewController: ViewController {
         return v
     }()
     
-    lazy var memoTextView: UITextView = {
-        let v = UITextView()
-        v.text = "自分の心の内側をメモしておきましょう"
-        v.font = UIFont(name: "GillSans", size: 28)
+    lazy var memoTextView: PlaceHolderTextView = {
+        let v = PlaceHolderTextView()
+        v.font = UIFont(name: "GillSans", size: 16)
         v.textColor = UIColor.appColor(.character)
         v.layer.cornerRadius = 5
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.sizeToFit()
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(closeButtonTapped))
+        toolBar.items = [spacer, closeButton]
+        v.inputAccessoryView = toolBar
+        v.placeHolder = "今の状態をメモしましょう"
         v.contentInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         v.backgroundColor = UIColor.appColor(.navbar)
+        
         v.delegate = self
         view.addSubview(v)
         return v
@@ -53,6 +61,7 @@ final class ResultDetailViewController: ViewController {
     override func loadView() {
         super.loadView()
         self.navigationItem.leftBarButtonItem = backButton
+        configureObserver()
     }
     
     override func makeConstraints() {
@@ -84,6 +93,37 @@ extension ResultDetailViewController {
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
+    @objc func closeButtonTapped() {
+        self.view.endEditing(true)
+    }
+    
+    func configureObserver() {
+        
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification?) {
+        
+        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            let transform = CGAffineTransform(translationX: 0, y: -(rect?.size.height)!)
+            self.view.transform = transform
+            
+        })
+        memoTextView.changeVisiblePlaceHolder()
+    }
+    @objc func keyboardWillHide(notification: Notification?) {
+        
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            
+            self.view.transform = CGAffineTransform.identity
+        })
+        memoTextView.changeVisiblePlaceHolder()
+    }
 }
 
 extension ResultDetailViewController: UITextViewDelegate {
@@ -93,8 +133,6 @@ extension ResultDetailViewController: UITextViewDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (memoTextView.isFirstResponder) {
-            memoTextView.resignFirstResponder()
-        }
+        memoTextView.resignFirstResponder()
     }
 }

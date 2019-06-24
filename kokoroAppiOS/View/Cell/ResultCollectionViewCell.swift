@@ -17,6 +17,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
         let v = UILabel()
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
         v.textColor = UIColor.appColor(.character)
+        v.adjustsFontSizeToFitWidth = true
         v.text = "2,"
         contentView.addSubview(v)
         return v
@@ -24,9 +25,19 @@ final class ResultCollectionViewCell: UICollectionViewCell {
     lazy var questionLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.text = "aaaaaaaaaaaaaaaaa?"
+        v.text = "今現在体にも不調が出ていますか?"
         v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        contentView.addSubview(v)
+        return v
+    }()
+    
+    lazy var answerLabel: UILabel = {
+        let v = UILabel()
+        v.text = "A: YES"
+        v.textColor = UIColor.appColor(.yesPink)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.adjustsFontSizeToFitWidth = true
         contentView.addSubview(v)
         return v
     }()
@@ -42,7 +53,12 @@ final class ResultCollectionViewCell: UICollectionViewCell {
     }
     
     func setup() {
-        
+        backgroundColor = UIColor.appColor(.navbar)
+        layer.cornerRadius = 10
+        layer.shadowOpacity = 0.1
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.2, height: 0.2)
+        layer.shadowRadius = 10
     }
     
     func makeConstraints() {
@@ -54,6 +70,10 @@ final class ResultCollectionViewCell: UICollectionViewCell {
             make.width.equalTo(240)
             make.centerY.equalTo(questionIndexLabel.snp.centerY)
             make.left.equalTo(questionIndexLabel.snp.right).offset(30)
+        }
+        answerLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-3)
         }
     }
 }

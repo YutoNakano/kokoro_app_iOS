@@ -34,7 +34,7 @@ final class ResultViewController: ViewController {
         v.adjustsFontSizeToFitWidth = true
         v.text = "診断結果: 心療内科"
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans", size: 28)
+        v.font = UIFont(name: "GillSan-UltraBolds", size: 24)
         contentView.addSubview(v)
         return v
     }()
@@ -44,6 +44,7 @@ final class ResultViewController: ViewController {
         v.numberOfLines = 0
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
+        v.font = UIFont(name: "GillSan-UltraBolds", size: 20)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         contentView.addSubview(v)
         return v
