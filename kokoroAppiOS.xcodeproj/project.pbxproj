@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F1853C39B492FC485B4DEC0 /* Pods_kokoroAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */; };
 		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
-		572DF7FF22BF6D1E00AEC945 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DF7FE22BF6D1E00AEC945 /* HistoryView.swift */; };
 		574C0A5F22C0576B004CA340 /* ResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */; };
 		574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36F922BC5CC60041D39E /* MaterialButton.swift */; };
 		574D36FC22BC62F90041D39E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36FB22BC62F90041D39E /* HistoryViewController.swift */; };
@@ -39,6 +38,7 @@
 		57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DD622BE5E5300142ADF /* FirestoreModel.swift */; };
 		57721DD922BE66EA00142ADF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DD822BE66EA00142ADF /* User.swift */; };
 		57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */; };
+		577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */; };
 		57B6AED322B6503E00007724 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6AED222B6503E00007724 /* ViewController.swift */; };
 		57C9204C22B6117700A8B45D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204A22B6117700A8B45D /* Main.storyboard */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
@@ -69,7 +69,6 @@
 		1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		572DF7FE22BF6D1E00AEC945 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailViewController.swift; sourceTree = "<group>"; };
 		574D36F922BC5CC60041D39E /* MaterialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
 		574D36FB22BC62F90041D39E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		57721DD622BE5E5300142ADF /* FirestoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreModel.swift; sourceTree = "<group>"; };
 		57721DD822BE66EA00142ADF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSnapshot.swift; sourceTree = "<group>"; };
+		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		57B6AED222B6503E00007724 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C9204B22B6117700A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				576DD21E22BBC69500B83A8E /* QuestionContentView.swift */,
 				576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */,
 				5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */,
-				572DF7FE22BF6D1E00AEC945 /* HistoryView.swift */,
+				577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */,
 				576DD22122BBC69500B83A8E /* ViewController */,
 			);
 			path = View;
@@ -529,6 +529,7 @@
 				576DD21A22BBC64A00B83A8E /* QuestionPresenter.swift in Sources */,
 				576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */,
 				574D36FF22BC6C170041D39E /* HistoryCollectionViewCell.swift in Sources */,
+				577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */,
 				576DD22D22BBC6BB00B83A8E /* ResultCollectionViewCell.swift in Sources */,
 				57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */,
 				57B6AED322B6503E00007724 /* ViewController.swift in Sources */,
@@ -544,7 +545,6 @@
 				5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */,
 				574E045722B65622008628C5 /* AppColor.swift in Sources */,
 				576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */,
-				572DF7FF22BF6D1E00AEC945 /* HistoryView.swift in Sources */,
 				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,
 				574C0A5F22C0576B004CA340 /* ResultDetailViewController.swift in Sources */,
 				57721DCF22BDF37100142ADF /* RootViewController.swift in Sources */,

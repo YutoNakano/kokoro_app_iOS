@@ -12,8 +12,8 @@ import SnapKit
 
 final class ResultDetailViewController: ViewController {
     
-    lazy var historyCollectionView: HistoryDetailCollectionView = {
-        let v = HistoryDetailCollectionView()
+    lazy var resultCollectionView: ResultCollectionView = {
+        let v = ResultCollectionView()
         view.addSubview(v)
         return v
     }()
@@ -65,13 +65,13 @@ final class ResultDetailViewController: ViewController {
     }
     
     override func makeConstraints() {
-        historyCollectionView.snp.makeConstraints { make in
+        resultCollectionView.snp.makeConstraints { make in
             make.height.equalTo(350)
             make.top.left.right.equalToSuperview()
         }
         memoTextView.snp.makeConstraints { make in
             make.height.equalTo(150)
-            make.top.equalTo(historyCollectionView.snp.bottom).offset(30)
+            make.top.equalTo(resultCollectionView.snp.bottom).offset(30)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }

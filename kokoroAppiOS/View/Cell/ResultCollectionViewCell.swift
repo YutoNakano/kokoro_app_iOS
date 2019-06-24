@@ -15,7 +15,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
 //    let screenWidth = UIScreen.main.bounds.width
     lazy var questionIndexLabel: UILabel = {
         let v = UILabel()
-        v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         v.textColor = UIColor.appColor(.character)
         v.adjustsFontSizeToFitWidth = true
         v.text = "2,"
@@ -26,8 +26,9 @@ final class ResultCollectionViewCell: UICollectionViewCell {
         let v = UILabel()
         v.numberOfLines = 0
         v.text = "今現在体にも不調が出ていますか?"
+        v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
         contentView.addSubview(v)
         return v
     }()
@@ -69,7 +70,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
         questionLabel.snp.makeConstraints { make in
             make.width.equalTo(240)
             make.centerY.equalTo(questionIndexLabel.snp.centerY)
-            make.left.equalTo(questionIndexLabel.snp.right).offset(30)
+            make.left.equalToSuperview().offset(80)
         }
         answerLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-10)

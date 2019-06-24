@@ -1,8 +1,8 @@
 //
-//  HistoryCollectionView.swift
+//  ResultCollectionView.swift
 //  kokoroAppiOS
 //
-//  Created by 中野湧仁 on 2019/06/23.
+//  Created by 中野湧仁 on 2019/06/24.
 //  Copyright © 2019 中野湧仁. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class HistoryDetailCollectionView: UIView {
+final class ResultCollectionView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -21,7 +21,7 @@ final class HistoryDetailCollectionView: UIView {
         layout.itemSize = CGSize(width: screenWidth - 24, height: 87)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = UIColor.appColor(.background)
-        v.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        v.register(ResultCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         v.dataSource = self
         v.delegate = self
         addSubview(v)
@@ -29,7 +29,7 @@ final class HistoryDetailCollectionView: UIView {
     }()
     
     var numberIndex = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -51,20 +51,19 @@ final class HistoryDetailCollectionView: UIView {
     }
 }
 
-extension HistoryDetailCollectionView: UICollectionViewDataSource {
+extension ResultCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 15
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell: HistoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
-            HistoryCollectionViewCell else { fatalError() }
-        cell.resultIndexLabel.text = numberIndex[indexPath.row]
-        
+        guard let cell: ResultCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
+            ResultCollectionViewCell else { fatalError() }
+        cell.questionIndexLabel.text = numberIndex[indexPath.row]
         return cell
     }
 }
 
-extension HistoryDetailCollectionView: UICollectionViewDelegate {
+extension ResultCollectionView: UICollectionViewDelegate {
     
 }
