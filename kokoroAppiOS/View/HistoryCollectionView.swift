@@ -14,7 +14,6 @@ final class HistoryDetailCollectionView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
     
-    //     VegaFlowLayoutのようにカードみたいなコレクションビューを目指す
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20

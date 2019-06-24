@@ -24,7 +24,7 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
         let v = UILabel()
         v.numberOfLines = 0
         v.text = "診断結果:　保健所"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         contentView.addSubview(v)
         return v
     }()

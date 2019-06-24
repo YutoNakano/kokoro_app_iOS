@@ -38,9 +38,18 @@ final class ResultViewController: ViewController {
         return v
     }()
     
+    lazy var descriptionLabel: UILabel = {
+        let v = UILabel()
+        v.numberOfLines = 0
+        v.adjustsFontSizeToFitWidth = true
+        v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
+        contentView.addSubview(v)
+        return v
+    }()
+    
     lazy var historyCollectionView: HistoryDetailCollectionView = {
         let v = HistoryDetailCollectionView()
-        contentView.addSubview(v)
+        view.addSubview(v)
         return v
     }()
     
@@ -62,18 +71,22 @@ final class ResultViewController: ViewController {
     override func makeConstraints() {
         contentView.snp.makeConstraints { make in
             make.top.equalTo(30)
-            make.height.equalTo(800)
+            make.height.equalTo(300)
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
         }
         titleLabel.snp.makeConstraints { make in
+            make.width.equalTo(contentView.snp.width).offset(-50)
             make.centerX.equalToSuperview()
             make.top.equalTo(20)
         }
+        descriptionLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(titleLabel.snp.centerX)
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+        }
         historyCollectionView.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.bottom).offset(30)
-            make.width.equalTo(screenWidth - 30)
-            make.centerX.equalToSuperview()
+            make.bottom.left.right.equalToSuperview()
         }
     }
     
@@ -81,7 +94,8 @@ final class ResultViewController: ViewController {
 }
 
 extension ResultViewController {
-    @objc func backButtonTapped() {       self.navigationController?.popToRootViewController(animated: true)
+    @objc func backButtonTapped() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
