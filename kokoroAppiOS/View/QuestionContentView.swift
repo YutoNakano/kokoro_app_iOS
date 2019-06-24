@@ -66,7 +66,7 @@ final class QuestionContentView: UIView {
         v.numberOfLines = 0
         v.text = ""
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 32)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 28)
         v.lineBreakMode = .byWordWrapping
         v.sizeToFit()
         contentView.addSubview(v)

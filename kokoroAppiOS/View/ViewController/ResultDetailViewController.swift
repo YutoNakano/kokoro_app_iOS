@@ -57,6 +57,7 @@ final class ResultDetailViewController: ViewController {
     
     let screenWidth = UIScreen.main.bounds.width
     let memoText: String = ""
+    let questionViewController = QuestionViewController()
     
     override func loadView() {
         super.loadView()
@@ -91,6 +92,7 @@ extension ResultDetailViewController {
         navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
+        questionViewController.questionNumber = 0
         navigationController?.popViewController(animated: true)
     }
     @objc func closeButtonTapped() {

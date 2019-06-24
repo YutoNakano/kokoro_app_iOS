@@ -28,7 +28,6 @@ final class HistoryDetailCollectionView: UIView {
         return v
     }()
     
-    var numberIndex = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,7 +58,6 @@ extension HistoryDetailCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell: HistoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
             HistoryCollectionViewCell else { fatalError() }
-        cell.resultIndexLabel.text = numberIndex[indexPath.row]
         
         return cell
     }

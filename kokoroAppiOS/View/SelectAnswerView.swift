@@ -10,10 +10,6 @@ import SnapKit
 import UIKit
 
 
-protocol SelectAnserViewDelegate: class {
-    func getQuestionNumber(number: Int)
-}
-
 final class SelectAnserView: UIView {
     
     lazy var timeLabel: UILabel = {
@@ -50,11 +46,9 @@ final class SelectAnserView: UIView {
     }()
 
     var viewController: QuestionViewController?
-    weak var delegate: SelectAnserViewDelegate?
     
     let resultViewController = ResultViewController()
     private var limitNumber: Int = 10
-    var questionCount: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,19 +85,18 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func yesButtonTapped() {
-        questionCount += 1
         // 質問番号をQuestionContentViewに渡す
-        delegate?.getQuestionNumber(number: questionCount)
-        
-        guard questionCount < limitNumber else {
-            viewController?.navigationController?.pushViewController(resultViewController, animated: true)
-         return
+        viewController?.questionNumber += 1
+        if let number = viewController?.questionNumber {
+            guard number < limitNumber else {
+                viewController?.navigationController?.pushViewController(resultViewController, animated: true)
+                return
         }
+    }
         viewController?.reload()
     }
     @objc func noButtonTapped() {
-        questionCount += 1
-        delegate?.getQuestionNumber(number: questionCount)
+        viewController?.questionNumber += 1
         viewController?.reload()
     }
 }

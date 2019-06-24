@@ -12,7 +12,6 @@ import SnapKit
 
 final class ResultCollectionViewCell: UICollectionViewCell {
     
-//    let screenWidth = UIScreen.main.bounds.width
     lazy var questionIndexLabel: UILabel = {
         let v = UILabel()
         v.font = UIFont(name: "GillSans-UltraBold", size: 20)

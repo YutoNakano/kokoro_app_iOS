@@ -32,7 +32,7 @@ final class QuestionViewController: ViewController {
     }()
     
     private var presenter: QuestionPresenterInput?
-    var questionNumber: Int?
+    var questionNumber = 0
     
     func inject(presenter: QuestionPresenterInput) {
         self.presenter = presenter
@@ -55,8 +55,6 @@ final class QuestionViewController: ViewController {
         self.navigationItem.leftBarButtonItem = backButton
         questionContentView.viewController = self
         selectAnserView.viewController = self
-        selectAnserView.delegate = self
-        questionNumber = selectAnserView.questionCount
         reload()
     }
     
@@ -80,17 +78,22 @@ final class QuestionViewController: ViewController {
 
 extension QuestionViewController {
     @objc func backButtonTapped() {
+        resetQuestionNumber()
         navigationController?.popViewController(animated: true)
     }
     func reload() {
         presenter?.fetchQuestionData()
     }
+    
+    func resetQuestionNumber() {
+        questionNumber = 0
+        reload()
+    }
 }
 
 extension QuestionViewController: QuestionPresenterOutput {
     func giveQuextionIndex() -> Int {
-        guard let number = questionNumber else { return 0 }
-        return number
+        return questionNumber
     }
     
     func giveQuestionText(questionText: String) {
@@ -99,8 +102,3 @@ extension QuestionViewController: QuestionPresenterOutput {
     
 }
 
-extension QuestionViewController: SelectAnserViewDelegate {
-    func getQuestionNumber(number: Int) {
-        questionNumber = number
-    }
-}

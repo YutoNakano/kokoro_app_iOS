@@ -12,11 +12,11 @@ import SnapKit
 
 final class HistoryCollectionViewCell: UICollectionViewCell {
     
-    //    let screenWidth = UIScreen.main.bounds.width
-    lazy var resultIndexLabel: UILabel = {
+    
+    lazy var diagnosticTime: UILabel = {
         let v = UILabel()
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        v.text = "1"
+        v.font = UIFont(name: "GillSans-UltraBold", size: 16)
+        v.text = "3/24 3:24"
         v.textColor = UIColor.appColor(.character)
         contentView.addSubview(v)
         return v
@@ -58,13 +58,13 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     }
     
     func makeConstraints() {
-        resultIndexLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
+        diagnosticTime.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(5)
+            make.left.equalToSuperview().offset(10)
         }
         resultLabel.snp.makeConstraints { make in
             make.width.equalTo(240)
-            make.centerY.equalTo(resultIndexLabel.snp.centerY)
+            make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(80)
         }
         goNextImageView.snp.makeConstraints { make in
