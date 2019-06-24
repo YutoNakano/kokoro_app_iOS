@@ -44,7 +44,6 @@ final class SignUpViewController: ViewController {
         v.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
         v.layer.cornerRadius = 5
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 20))
-//        paddingView.backgroundColor = UIColor.appColor(.subPink)
         v.leftView = paddingView
         v.leftViewMode = .always
         v.backgroundColor = UIColor.appColor(.navbar)

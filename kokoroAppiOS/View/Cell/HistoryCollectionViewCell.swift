@@ -15,8 +15,9 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     //    let screenWidth = UIScreen.main.bounds.width
     lazy var resultIndexLabel: UILabel = {
         let v = UILabel()
-        v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         v.text = "1"
+        v.textColor = UIColor.appColor(.character)
         contentView.addSubview(v)
         return v
     }()
@@ -24,6 +25,7 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
         let v = UILabel()
         v.numberOfLines = 0
         v.text = "診断結果:　保健所"
+        v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         contentView.addSubview(v)
         return v

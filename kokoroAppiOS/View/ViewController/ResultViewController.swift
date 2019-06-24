@@ -33,6 +33,7 @@ final class ResultViewController: ViewController {
         v.morphingEffect = .scale
         v.adjustsFontSizeToFitWidth = true
         v.text = "診断結果: 心療内科"
+        v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans", size: 28)
         contentView.addSubview(v)
         return v
@@ -42,13 +43,20 @@ final class ResultViewController: ViewController {
         let v = UILabel()
         v.numberOfLines = 0
         v.adjustsFontSizeToFitWidth = true
+        v.textColor = UIColor.appColor(.character)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         contentView.addSubview(v)
         return v
     }()
     
-    lazy var historyCollectionView: HistoryDetailCollectionView = {
-        let v = HistoryDetailCollectionView()
+    lazy var goNextButton: MaterialButton = {
+        let v = MaterialButton()
+        v.setTitle("次へ", for: .normal)
+        v.setTitleColor(UIColor.white, for: .normal)
+        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.backgroundColor = UIColor.appColor(.yesPink)
+        v.layer.cornerRadius = 20
+        v.addTarget(self, action: #selector(goNextButtonTapped), for: .touchUpInside)
         view.addSubview(v)
         return v
     }()
@@ -57,6 +65,8 @@ final class ResultViewController: ViewController {
         let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
         return v
     }()
+    
+    let resultDetailViewController = ResultDetailViewController()
     
     
     override func loadView() {
@@ -76,17 +86,19 @@ final class ResultViewController: ViewController {
             make.centerX.equalToSuperview()
         }
         titleLabel.snp.makeConstraints { make in
-            make.width.equalTo(contentView.snp.width).offset(-50)
             make.centerX.equalToSuperview()
             make.top.equalTo(20)
         }
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalTo(titleLabel.snp.centerX)
+            make.width.equalTo(contentView.snp.width).offset(-30)
             make.top.equalTo(titleLabel.snp.bottom).offset(30)
         }
-        historyCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.bottom).offset(30)
-            make.bottom.left.right.equalToSuperview()
+        goNextButton.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.bottom).offset(80)
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.height.equalTo(80)
+            make.width.equalTo(220)
         }
     }
     
@@ -94,6 +106,9 @@ final class ResultViewController: ViewController {
 }
 
 extension ResultViewController {
+    @objc func goNextButtonTapped() {
+        self.navigationController?.pushViewController(resultDetailViewController, animated: true)
+    }
     @objc func backButtonTapped() {
         self.navigationController?.popToRootViewController(animated: true)
     }

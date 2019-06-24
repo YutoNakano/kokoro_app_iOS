@@ -16,6 +16,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
     lazy var questionIndexLabel: UILabel = {
         let v = UILabel()
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.textColor = UIColor.appColor(.character)
         v.text = "2,"
         contentView.addSubview(v)
         return v
@@ -24,6 +25,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
         let v = UILabel()
         v.numberOfLines = 0
         v.text = "aaaaaaaaaaaaaaaaa?"
+        v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 28)
         contentView.addSubview(v)
         return v
