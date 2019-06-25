@@ -89,6 +89,7 @@ extension SelectAnserView {
         viewController?.questionNumber += 1
         if let number = viewController?.questionNumber {
             guard number < limitNumber else {
+                viewController?.resetQuestionNumber()
                 viewController?.navigationController?.pushViewController(resultViewController, animated: true)
                 return
         }
