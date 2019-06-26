@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class HistoryViewController: ViewController {
+final class HistoryViewController: UIViewController {
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -26,15 +26,21 @@ final class HistoryViewController: ViewController {
     
     override func loadView() {
         super.loadView()
+        setupView()
+        makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
     }
     
-    override func makeConstraints() {
+    func makeConstraints() {
         historyCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    
+    func setupView() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
+    }
     
 }
 

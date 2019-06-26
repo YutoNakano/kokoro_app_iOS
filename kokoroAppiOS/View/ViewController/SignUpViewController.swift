@@ -12,7 +12,7 @@ import FirebaseAuth
 import LTMorphingLabel
 import KRProgressHUD
 
-final class SignUpViewController: ViewController {
+final class SignUpViewController: UIViewController {
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -64,7 +64,19 @@ final class SignUpViewController: ViewController {
         return v
     }()
     
-    override func makeConstraints() {
+    override func loadView() {
+        super.loadView()
+        setupView()
+        makeConstraints()
+    }
+    
+    func setupView() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
+    }
+    
+    func makeConstraints() {
         titleImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(100)
@@ -110,22 +122,6 @@ extension SignUpViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-}
-
-
-class KRProgressHUDAppearance {
-    /// HUDのスタイル.
-    public var style = KRProgressHUDStyle.white
-    /// マスクタイプ
-    public var maskType = KRProgressHUDMaskType.custom(color: UIColor.appColor(.subPink))
-    /// ローディングインジケータのグラデーションカラー
-    public var activityIndicatorColors = [UIColor]([.black, .lightGray])
-    /// ラベルのフォント
-    public var font = UIFont.systemFont(ofSize: 13)
-    /// HUDのセンター位置
-    public var viewCenterPosition = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
-    /// HUDの表示時間.
-    public var duration = Double(1.0)
 }
 
 

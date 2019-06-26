@@ -47,7 +47,6 @@ final class SelectAnserView: UIView {
 
     var viewController: QuestionViewController?
     
-    let resultViewController = ResultViewController()
     private var limitNumber: Int = 10
     
     override init(frame: CGRect) {
@@ -85,19 +84,20 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func yesButtonTapped() {
-        viewController?.selectedAnswer(selectedYes: true)
+        viewController?.selectedAnswer(selected: "YES")
         validateLimitCount()
     }
     @objc func noButtonTapped() {
-        viewController?.selectedAnswer(selectedYes: false)
+        viewController?.selectedAnswer(selected: "NO")
         validateLimitCount()
     }
     
     func validateLimitCount() {
         if let number = viewController?.questionNumber {
             guard number < limitNumber else {
+//                viewController?.fetchResult()
                 viewController?.saveQuestions()
-                viewController?.navigationController?.pushViewController(resultViewController, animated: true)
+                viewController?.goResultVC()
                 return
             }
         }

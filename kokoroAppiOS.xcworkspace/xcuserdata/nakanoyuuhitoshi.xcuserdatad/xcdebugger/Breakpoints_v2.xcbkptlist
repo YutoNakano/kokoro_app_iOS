@@ -25,30 +25,106 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/View/QuestionContentView.swift"
-            timestampString = "583205685.481295"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "setModel()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "kokoroAppiOS/View/ViewController/QuestionViewController.swift"
-            timestampString = "583205685.481371"
+            timestampString = "583227959.677354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "giveQuextionIndex()"
-            landmarkType = "7">
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "QuestionViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kokoroAppiOS.QuestionViewController.resultViewController.getter : Swift.Optional&lt;kokoroAppiOS.ResultViewController&gt;"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/View/ViewController/QuestionViewController.swift"
+                  timestampString = "583228240.500151"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kokoroAppiOS.QuestionViewController.resultViewController.setter : Swift.Optional&lt;kokoroAppiOS.ResultViewController&gt;"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/View/ViewController/QuestionViewController.swift"
+                  timestampString = "583228240.503577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kokoroAppiOS.QuestionViewController.resultViewController.modify : Swift.Optional&lt;kokoroAppiOS.ResultViewController&gt;"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/View/ViewController/QuestionViewController.swift"
+                  timestampString = "583228240.5067641"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kokoroAppiOS.QuestionViewController.resultViewController.modify : Swift.Optional&lt;kokoroAppiOS.ResultViewController&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/View/ViewController/QuestionViewController.swift"
+                  timestampString = "583228240.509861"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kokoroAppiOS.QuestionViewController.init() -&gt; kokoroAppiOS.QuestionViewController"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/View/ViewController/QuestionViewController.swift"
+                  timestampString = "583228240.513096"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "352">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kokoroAppiOS.QuestionViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;kokoroAppiOS.QuestionViewController&gt;"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/View/ViewController/QuestionViewController.swift"
+                  timestampString = "583228240.515952"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "404">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

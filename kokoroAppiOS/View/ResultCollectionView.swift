@@ -12,8 +12,6 @@ import SnapKit
 
 final class ResultCollectionView: UIView {
     
-    let screenWidth = UIScreen.main.bounds.width
-    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
@@ -28,15 +26,19 @@ final class ResultCollectionView: UIView {
         return v
     }()
     
+    let screenWidth = UIScreen.main.bounds.width
     var numberIndex = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+    var questions = [String]()
+    var selectedAnswers = [String]()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
         makeConstraints()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -53,13 +55,15 @@ final class ResultCollectionView: UIView {
 
 extension ResultCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return questions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell: ResultCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
             ResultCollectionViewCell else { fatalError() }
         cell.questionIndexLabel.text = numberIndex[indexPath.row]
+        cell.questionLabel.text = questions[indexPath.row]
+        cell.answerLabel.text = selectedAnswers[indexPath.row]
         return cell
     }
 }

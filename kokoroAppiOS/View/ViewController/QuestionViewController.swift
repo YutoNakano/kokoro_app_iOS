@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import FirebaseFirestore
 
-final class QuestionViewController: ViewController {
+final class QuestionViewController: UIViewController {
     
     lazy var questionContentView: QuestionContentView = {
         let v = QuestionContentView()
@@ -32,25 +32,15 @@ final class QuestionViewController: ViewController {
     }()
     
     private var presenter: QuestionPresenterInput?
+    var resultViewController: ResultViewController?
     var questionNumber = 0
     var questionTitle = ""
+    var prepareReciveData: (() -> Void)?
     var questionTitles = [String]()
-    var selectedAnswers = [Bool]()
+    var selectedAnswers = [String]()
     
     func inject(presenter: QuestionPresenterInput) {
         self.presenter = presenter
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func setupView() {
-        
     }
     
     override func loadView() {
@@ -59,6 +49,8 @@ final class QuestionViewController: ViewController {
         questionContentView.viewController = self
         selectAnserView.viewController = self
         reload()
+        setupView()
+        makeConstraints()
     }
     
     override func viewDidLoad() {
@@ -66,7 +58,13 @@ final class QuestionViewController: ViewController {
         
     }
     
-    override func makeConstraints() {
+    func setupView() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
+    }
+    
+    func makeConstraints() {
         questionContentView.snp.makeConstraints { make in
             make.height.equalTo(350)
             make.top.left.right.equalToSuperview()
@@ -90,35 +88,53 @@ extension QuestionViewController {
     
     func resetQuestionNumber() {
         questionTitles = [String]()
-        selectedAnswers = [Bool]()
+        selectedAnswers = [String]()
         questionNumber = 0
         reload()
     }
     
-    func selectedAnswer(selectedYes: Bool) {
-        appendQuestionToArray(selectedYes: selectedYes)
+    func selectedAnswer(selected: String) {
+        appendQuestionToArray(selected: selected)
         questionNumber += 1
         reload()
     }
     
-    func appendQuestionToArray(selectedYes: Bool) {
+    func appendQuestionToArray(selected: String) {
         questionTitles.append(questionTitle)
-        selectedAnswers.append(selectedYes)
+        selectedAnswers.append(selected)
     }
     func saveQuestions() {
         presenter?.saveQuestions(titles: questionTitles, selectedAnswers: selectedAnswers)
     }
+    func fetchResult(completion: @escaping () -> Void) {
+        presenter?.fetchResultData(completion: completion)
+    }
+    func goResultVC() {
+        prepareReciveData = ({ () in
+            self.resultViewController = ResultViewController(questions: self.questionTitles, selectedAnswers: self.selectedAnswers)
+            guard let resultVC = self.resultViewController else { return }
+            print("やあああああ")
+            self.navigationController?.pushViewController(resultVC, animated: true)
+        })
+        guard let completion = prepareReciveData else { return }
+        fetchResult(completion: completion)
+    }
 }
 
 extension QuestionViewController: QuestionPresenterOutput {
-    func giveQuextionIndex() -> Int {
-        return questionNumber
-    }
-    
-    func giveQuestionText(questionText: String) {
+    func passQuestionText(questionText: String) {
         questionContentView.questionTitle = questionText
         questionTitle = questionText
     }
     
+    func passQuestionResult(title: String, description: String) {
+        guard let resultVC = resultViewController else { return }
+        resultVC.resultTitle = title
+        resultVC.resultDescription = description
+    }
+    
+    func giveQuextionIndex() -> Int {
+        return questionNumber
+    }
 }
 

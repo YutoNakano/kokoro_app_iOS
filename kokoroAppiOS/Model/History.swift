@@ -13,9 +13,10 @@ import Foundation
 struct History: FirestoreModelReadable, FirestoreModelWritable {
     enum Field: String {
         case title
-        case diagnosticTime
-        // yesと答えた質問の配列。質問受けるごとに配列にappendしていく?
         case questions
+        case selectedAnswers
+        case diagnosticTime
+//        case memo
     }
     
     static var collectionRef: CollectionReference {
@@ -25,12 +26,12 @@ struct History: FirestoreModelReadable, FirestoreModelWritable {
     var title: String = ""
     var diagnosticTime: Timestamp
     var questions = [String]()
+    var selectedAnswers = [String]()
+//    var memo: String = ""
     
     init(snapshot: DocumentSnapshot) {
         title = snapshot.stringValue(forKey: Field.title, default: "")
         diagnosticTime = snapshot.getValue(forKey: Field.diagnosticTime) ?? Timestamp()
-//        questions =
-        
     }
     
     init(title: String, diagnosticTime: Timestamp = .init()) {
@@ -39,6 +40,9 @@ struct History: FirestoreModelReadable, FirestoreModelWritable {
     }
     
     var writeFields: [Field : Any] {
-        return [.title: title]
+        return [.title: title,
+                .questions: questions,
+                .selectedAnswers: selectedAnswers,
+                .diagnosticTime: diagnosticTime]
     }
 }

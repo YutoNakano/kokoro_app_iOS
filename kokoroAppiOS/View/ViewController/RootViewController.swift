@@ -10,7 +10,7 @@ import FirebaseAuth
 import UIKit
 import KRProgressHUD
 
-final class RootViewController: ViewController {
+final class RootViewController: UIViewController {
     enum ViewType {
         // signUpではなくcase intro を追加する
         case signUp

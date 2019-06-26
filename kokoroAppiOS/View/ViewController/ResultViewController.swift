@@ -10,11 +10,7 @@ import UIKit
 import SnapKit
 import LTMorphingLabel
 
-
-final class ResultViewController: ViewController {
-    
-    let screenWidth = UIScreen.main.bounds.width
-    
+final class ResultViewController: UIViewController {
     lazy var contentView: UIView = {
         let v = UIView()
         v.backgroundColor = UIColor.appColor(.navbar)
@@ -67,17 +63,34 @@ final class ResultViewController: ViewController {
         return v
     }()
     
-    let questionViewController = QuestionViewController()
-    let resultDetailViewController = ResultDetailViewController()
+    var questions: [String]
+    var selectedAnswers: [String]
     
+    let screenWidth = UIScreen.main.bounds.width
+    var resultTitle: String = ""
+    var resultDescription: String = ""
+
+    init(questions: [String], selectedAnswers: [String]) {
+        self.questions = questions
+        self.selectedAnswers = selectedAnswers
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
+        setupView()
+        makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
     }
     
     override func setupView() {
         view.backgroundColor = UIColor.appColor(.background)
+        titleLabel.text = resultTitle
+        descriptionLabel.text = resultDescription
     }
     
     override func makeConstraints() {
@@ -109,6 +122,7 @@ final class ResultViewController: ViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
+        let resultDetailViewController = ResultDetailViewController(questions: questions, selectedAnswers: selectedAnswers)
         self.navigationController?.pushViewController(resultDetailViewController, animated: true)
     }
     @objc func backButtonTapped() {

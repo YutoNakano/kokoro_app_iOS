@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class ResultDetailViewController: ViewController {
+final class ResultDetailViewController: UIViewController {
     
     lazy var resultCollectionView: ResultCollectionView = {
         let v = ResultCollectionView()
@@ -55,14 +55,36 @@ final class ResultDetailViewController: ViewController {
         return v
     }()
     
+    var questions: [String]
+    var selectedAnswers: [String]
+    
     let screenWidth = UIScreen.main.bounds.width
     let memoText: String = ""
-    let questionViewController = QuestionViewController()
+    
+    init(questions: [String], selectedAnswers: [String]) {
+        self.questions = questions
+        self.selectedAnswers = selectedAnswers
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
+        setupView()
+        makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
         configureObserver()
+        resultCollectionView.questions = questions
+        resultCollectionView.selectedAnswers = selectedAnswers
+    }
+    
+    func setupView() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
     }
     
     override func makeConstraints() {

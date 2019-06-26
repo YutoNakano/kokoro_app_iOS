@@ -16,7 +16,7 @@ protocol TopViewControllerDelegate: class {
     func resetQuestionCount()
 }
 
-final class TopViewController: ViewController {
+final class TopViewController: UIViewController {
     
     lazy var charactorImageView: UIImageView = {
         let v = UIImageView(image: UIImage(named: "charactor"))
@@ -51,14 +51,7 @@ final class TopViewController: ViewController {
     
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,19 +59,23 @@ final class TopViewController: ViewController {
         let presenter = QuestionPresenter(view: questionViewController)
         questionViewController.inject(presenter: presenter)
         
-        //　試しにユーザー情報にデータを作成できるか
-        // HistoryのStructを作る CartItem参照
-//        Document<History>.create(parentDocument: user, model:)
+        let user = Auth.auth().currentUser; if let user = user {
+            let uid = user.uid
+            print(uid)
+        }
     }
     
     override func loadView() {
         super.loadView()
-//        questionViewController.selectAnserView.questionCount = 0
-//        questionViewController.reload()
+        setupView()
+        makeConstraints()
     }
     
     override func setupView() {
         view.backgroundColor = UIColor.appColor(.background)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
     }
     
     override func makeConstraints() {
