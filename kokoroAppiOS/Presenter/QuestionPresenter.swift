@@ -12,6 +12,7 @@ import FirebaseFirestore
 protocol QuestionPresenterInput {
     func fetchQuestionData()
     func fetchResultData()
+    func saveQuestions(titles: [String], selectedAnswers: [Bool])
 }
 
 protocol QuestionPresenterOutput: AnyObject {
@@ -32,10 +33,6 @@ final class QuestionPresenter {
 
 
 extension QuestionPresenter: QuestionPresenterInput {
-    func fetchResultData() {
-        
-    }
-    
     func fetchQuestionData(){
         let db = Firestore.firestore()
         db.collection("Questions")
@@ -50,6 +47,16 @@ extension QuestionPresenter: QuestionPresenterInput {
                 }
         }
     }
+    
+    func fetchResultData() {
+
+    }
+
+    func saveQuestions(titles: [String], selectedAnswers: [Bool]) {
+        print(titles)
+        print(selectedAnswers)
+    }
+    
 }
 
 extension QuestionPresenter {

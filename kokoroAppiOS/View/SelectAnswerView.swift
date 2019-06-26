@@ -85,18 +85,18 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func yesButtonTapped() {
-        viewController?.updateQuestionNumber(selectedYes: true)
+        viewController?.selectedAnswer(selectedYes: true)
         validateLimitCount()
     }
     @objc func noButtonTapped() {
-        viewController?.updateQuestionNumber(selectedYes: false)
+        viewController?.selectedAnswer(selectedYes: false)
         validateLimitCount()
     }
     
     func validateLimitCount() {
         if let number = viewController?.questionNumber {
             guard number < limitNumber else {
-                viewController?.resetQuestionNumber()
+                viewController?.saveQuestions()
                 viewController?.navigationController?.pushViewController(resultViewController, animated: true)
                 return
             }

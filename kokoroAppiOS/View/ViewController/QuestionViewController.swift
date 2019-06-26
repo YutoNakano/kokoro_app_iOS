@@ -34,8 +34,8 @@ final class QuestionViewController: ViewController {
     private var presenter: QuestionPresenterInput?
     var questionNumber = 0
     var questionTitle = ""
-    var questionTitles: [String]?
-    var selectedAnswers: [Bool]?
+    var questionTitles = [String]()
+    var selectedAnswers = [Bool]()
     
     func inject(presenter: QuestionPresenterInput) {
         self.presenter = presenter
@@ -89,15 +89,24 @@ extension QuestionViewController {
     }
     
     func resetQuestionNumber() {
+        questionTitles = [String]()
+        selectedAnswers = [Bool]()
         questionNumber = 0
         reload()
     }
     
-    func updateQuestionNumber(selectedYes: Bool) {
-        questionTitles?.append(questionTitle)
-        selectedAnswers?.append(selectedYes)
+    func selectedAnswer(selectedYes: Bool) {
+        appendQuestionToArray(selectedYes: selectedYes)
         questionNumber += 1
         reload()
+    }
+    
+    func appendQuestionToArray(selectedYes: Bool) {
+        questionTitles.append(questionTitle)
+        selectedAnswers.append(selectedYes)
+    }
+    func saveQuestions() {
+        presenter?.saveQuestions(titles: questionTitles, selectedAnswers: selectedAnswers)
     }
 }
 

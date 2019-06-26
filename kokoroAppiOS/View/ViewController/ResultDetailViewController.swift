@@ -92,7 +92,6 @@ extension ResultDetailViewController {
         navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
-        questionViewController.questionNumber = 0
         navigationController?.popViewController(animated: true)
     }
     @objc func closeButtonTapped() {

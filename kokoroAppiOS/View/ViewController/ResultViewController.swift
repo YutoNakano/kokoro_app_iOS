@@ -109,7 +109,6 @@ final class ResultViewController: ViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
-        questionViewController.resetQuestionNumber()
         self.navigationController?.pushViewController(resultDetailViewController, animated: true)
     }
     @objc func backButtonTapped() {

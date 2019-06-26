@@ -105,6 +105,7 @@ final class TopViewController: ViewController {
 
 extension TopViewController {
     @objc func startButtonTapped() {
+        questionViewController.resetQuestionNumber()
         navigationController?.pushViewController(questionViewController, animated: true)
     }
     @objc func watchHistoryButtonTapped() {
