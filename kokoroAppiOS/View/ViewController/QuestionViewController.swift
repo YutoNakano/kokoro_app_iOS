@@ -103,18 +103,17 @@ extension QuestionViewController {
         questionTitles.append(questionTitle)
         selectedAnswers.append(selected)
     }
-    func saveQuestions() {
-        presenter?.saveQuestions(titles: questionTitles, selectedAnswers: selectedAnswers)
-    }
     func fetchResult(completion: @escaping () -> Void) {
         presenter?.fetchResultData(completion: completion)
     }
     func goResultVC() {
         prepareReciveData = ({ () in
             self.resultViewController = ResultViewController(questions: self.questionTitles, selectedAnswers: self.selectedAnswers)
-            guard let resultVC = self.resultViewController else { return }
-            print("やあああああ")
-            self.navigationController?.pushViewController(resultVC, animated: true)
+            guard let resultViewController = self.resultViewController else { return }
+            self.navigationController?.pushViewController(resultViewController, animated: true)
+            resultViewController.resultDetailViewController.questions = self.questionTitles
+            resultViewController.resultDetailViewController.selectedAnswers = self.selectedAnswers
+            resultViewController.resultDetailViewController.delegate = self
         })
         guard let completion = prepareReciveData else { return }
         fetchResult(completion: completion)
@@ -138,3 +137,10 @@ extension QuestionViewController: QuestionPresenterOutput {
     }
 }
 
+extension QuestionViewController: ResultDetailViewControllerDelegate {
+    func saveQuestions(memoText: String) {
+        
+        presenter?.saveQuestions(titles: questionTitles, selectedAnswers: selectedAnswers, memoText: memoText)
+    }
+
+}

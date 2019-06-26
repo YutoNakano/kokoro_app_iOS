@@ -65,6 +65,7 @@ final class ResultViewController: UIViewController {
     
     var questions: [String]
     var selectedAnswers: [SelectedAnswers]
+    let resultDetailViewController = ResultDetailViewController()
     
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
@@ -122,7 +123,6 @@ final class ResultViewController: UIViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
-        let resultDetailViewController = ResultDetailViewController(questions: questions, selectedAnswers: selectedAnswers)
         self.navigationController?.pushViewController(resultDetailViewController, animated: true)
     }
     @objc func backButtonTapped() {

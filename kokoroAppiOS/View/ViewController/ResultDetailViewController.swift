@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol ResultDetailViewControllerDelegate: class {
+    func saveQuestions(memoText: String)
+}
+
 final class ResultDetailViewController: UIViewController {
     
     lazy var resultCollectionView: ResultCollectionView = {
@@ -55,22 +59,13 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
-    var questions: [String]
-    var selectedAnswers: [SelectedAnswers]
+    var questions: [String]?
+    var selectedAnswers: [SelectedAnswers]?
+    weak var delegate: ResultDetailViewControllerDelegate?
     
     let screenHeight = UIScreen.main.bounds.height
     let screenWidth = UIScreen.main.bounds.width
     let memoText: String = ""
-    
-    init(questions: [String], selectedAnswers: [SelectedAnswers]) {
-        self.questions = questions
-        self.selectedAnswers = selectedAnswers
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func loadView() {
         super.loadView()
@@ -78,8 +73,8 @@ final class ResultDetailViewController: UIViewController {
         makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
         configureObserver()
-        resultCollectionView.questions = questions
-        resultCollectionView.selectedAnswers = selectedAnswers
+        resultCollectionView.questions = questions!
+        resultCollectionView.selectedAnswers = selectedAnswers!
     }
     
     func setupView() {
@@ -106,12 +101,12 @@ final class ResultDetailViewController: UIViewController {
             make.height.equalTo(80)
             make.width.equalTo(220)
         }
-        view.bringSubviewToFront(memoTextView)
     }
 }
 
 extension ResultDetailViewController {
     @objc func goTopButtonTapped() {
+        delegate?.saveQuestions(memoText: memoTextView.text)
         navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
@@ -133,7 +128,7 @@ extension ResultDetailViewController {
 //        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         UIView.animate(withDuration: duration!, animations: { () in
-            let transform = CGAffineTransform(translationX: 0, y: -self.screenHeight / 3.5)
+            let transform = CGAffineTransform(translationX: 0, y: -200)
             self.view.transform = transform
             
         })

@@ -12,7 +12,7 @@ import FirebaseFirestore
 protocol QuestionPresenterInput {
     func fetchQuestionData()
     func fetchResultData(completion: @escaping () -> Void)
-    func saveQuestions(titles: [String], selectedAnswers: [SelectedAnswers])
+    func saveQuestions(titles: [String], selectedAnswers: [SelectedAnswers], memoText: String)
 }
 
 protocol QuestionPresenterOutput: AnyObject {
@@ -66,9 +66,10 @@ extension QuestionPresenter: QuestionPresenterInput {
         }
     }
 
-    func saveQuestions(titles: [String], selectedAnswers: [SelectedAnswers]) {
+    func saveQuestions(titles: [String], selectedAnswers: [SelectedAnswers], memoText: String) {
         print(titles)
         print(selectedAnswers)
+        print(memoText)
 //        let history = History(title: <#T##String#>, diagnosticTime: <#T##Timestamp#>)
     }
     

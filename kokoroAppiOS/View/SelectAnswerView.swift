@@ -95,8 +95,6 @@ extension SelectAnserView {
     func validateLimitCount() {
         if let number = viewController?.questionNumber {
             guard number < limitNumber else {
-//                viewController?.fetchResult()
-                viewController?.saveQuestions()
                 viewController?.goResultVC()
                 return
             }
