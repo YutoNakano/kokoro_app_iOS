@@ -51,7 +51,6 @@ final class TopViewController: UIViewController {
     
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -69,7 +69,7 @@ final class UserManager {
         listener(currentState)
     }
     
-    func signUp(withName name: String, completion:@escaping (Result<String, Error>) -> Void) {
+    func signUp(user_id: String, withName name: String, completion:@escaping (Result<String, Error>) -> Void) {
         // 認証済み
         if Auth.auth().currentUser != nil {
             return 
@@ -80,6 +80,7 @@ final class UserManager {
             case let .success(authDataResult):
                 let db = Firestore.firestore()
                 db.collection("users").document(authDataResult.user.uid).setData([
+                    "user_id": user_id,
                     "name": name
                     ])
                 print("登録成功")

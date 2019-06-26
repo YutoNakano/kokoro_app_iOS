@@ -74,6 +74,7 @@ final class SignUpViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
+        view.backgroundColor = UIColor.appColor(.background)
     }
     
     func makeConstraints() {
@@ -106,8 +107,8 @@ final class SignUpViewController: UIViewController {
 extension SignUpViewController {
     @objc func singUpButtonTapped() {
         KRProgressHUD.show()
-        
-        UserManager.shared.signUp(withName: name) { result in
+        let user_id = "\(name)_\(Int.random(in: 0...9999).description)"
+        UserManager.shared.signUp(user_id: user_id,withName: name) { result in
             KRProgressHUD.dismiss()
             print(result)
         }
