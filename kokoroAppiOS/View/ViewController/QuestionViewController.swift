@@ -37,7 +37,7 @@ final class QuestionViewController: UIViewController {
     var questionTitle = ""
     var prepareReciveData: (() -> Void)?
     var questionTitles = [String]()
-    var selectedAnswers = [String]()
+    var selectedAnswers = [SelectedAnswers]()
     
     func inject(presenter: QuestionPresenterInput) {
         self.presenter = presenter
@@ -88,18 +88,18 @@ extension QuestionViewController {
     
     func resetQuestionNumber() {
         questionTitles = [String]()
-        selectedAnswers = [String]()
+        selectedAnswers = [SelectedAnswers]()
         questionNumber = 0
         reload()
     }
     
-    func selectedAnswer(selected: String) {
+    func selectedAnswer(selected: SelectedAnswers) {
         appendQuestionToArray(selected: selected)
         questionNumber += 1
         reload()
     }
     
-    func appendQuestionToArray(selected: String) {
+    func appendQuestionToArray(selected: SelectedAnswers) {
         questionTitles.append(questionTitle)
         selectedAnswers.append(selected)
     }

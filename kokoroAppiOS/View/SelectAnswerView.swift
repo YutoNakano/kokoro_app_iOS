@@ -84,11 +84,11 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func yesButtonTapped() {
-        viewController?.selectedAnswer(selected: "YES")
+        viewController?.selectedAnswer(selected: .yes)
         validateLimitCount()
     }
     @objc func noButtonTapped() {
-        viewController?.selectedAnswer(selected: "NO")
+        viewController?.selectedAnswer(selected: .no)
         validateLimitCount()
     }
     

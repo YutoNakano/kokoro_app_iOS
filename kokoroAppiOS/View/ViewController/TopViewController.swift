@@ -71,14 +71,14 @@ final class TopViewController: UIViewController {
         makeConstraints()
     }
     
-    override func setupView() {
+    func setupView() {
         view.backgroundColor = UIColor.appColor(.background)
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
     }
     
-    override func makeConstraints() {
+    func makeConstraints() {
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(140)

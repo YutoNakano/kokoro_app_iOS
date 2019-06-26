@@ -10,12 +10,17 @@ import Foundation
 import UIKit
 import SnapKit
 
+enum SelectedAnswers: String {
+    case yes = "YES"
+    case no = "NO"
+}
+
 final class ResultCollectionView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 15, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: screenWidth - 24, height: 87)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = UIColor.appColor(.background)
@@ -29,7 +34,7 @@ final class ResultCollectionView: UIView {
     let screenWidth = UIScreen.main.bounds.width
     var numberIndex = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
     var questions = [String]()
-    var selectedAnswers = [String]()
+    var selectedAnswers = [SelectedAnswers]()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +43,6 @@ final class ResultCollectionView: UIView {
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -63,7 +67,7 @@ extension ResultCollectionView: UICollectionViewDataSource {
             ResultCollectionViewCell else { fatalError() }
         cell.questionIndexLabel.text = numberIndex[indexPath.row]
         cell.questionLabel.text = questions[indexPath.row]
-        cell.answerLabel.text = selectedAnswers[indexPath.row]
+        cell.answerLabel.text = "A: \(selectedAnswers[indexPath.row].rawValue)"
         return cell
     }
 }

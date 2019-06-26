@@ -46,7 +46,7 @@ final class QuestionContentView: UIView {
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
         v.adjustsFontSizeToFitWidth = true
-        v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
         v.morphingEffect = .scale
         contentView.addSubview(v)
         return v
@@ -66,7 +66,7 @@ final class QuestionContentView: UIView {
         v.numberOfLines = 0
         v.text = ""
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
         v.lineBreakMode = .byWordWrapping
         v.sizeToFit()
         contentView.addSubview(v)

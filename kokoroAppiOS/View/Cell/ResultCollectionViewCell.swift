@@ -27,7 +27,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
         v.text = "今現在体にも不調が出ていますか?"
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         contentView.addSubview(v)
         return v
     }()
@@ -63,6 +63,7 @@ final class ResultCollectionViewCell: UICollectionViewCell {
     
     func makeConstraints() {
         questionIndexLabel.snp.makeConstraints { make in
+            make.height.equalTo(80)
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(20)
         }

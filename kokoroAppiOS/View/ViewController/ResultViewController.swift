@@ -64,16 +64,16 @@ final class ResultViewController: UIViewController {
     }()
     
     var questions: [String]
-    var selectedAnswers: [String]
+    var selectedAnswers: [SelectedAnswers]
     
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
 
-    init(questions: [String], selectedAnswers: [String]) {
+    init(questions: [String], selectedAnswers: [SelectedAnswers]) {
         self.questions = questions
         self.selectedAnswers = selectedAnswers
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,13 +87,13 @@ final class ResultViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
     }
     
-    override func setupView() {
+    func setupView() {
         view.backgroundColor = UIColor.appColor(.background)
         titleLabel.text = resultTitle
         descriptionLabel.text = resultDescription
     }
     
-    override func makeConstraints() {
+    func makeConstraints() {
         contentView.snp.makeConstraints { make in
             make.top.equalTo(30)
             make.height.equalTo(300)

@@ -56,15 +56,16 @@ final class ResultDetailViewController: UIViewController {
     }()
     
     var questions: [String]
-    var selectedAnswers: [String]
+    var selectedAnswers: [SelectedAnswers]
     
+    let screenHeight = UIScreen.main.bounds.height
     let screenWidth = UIScreen.main.bounds.width
     let memoText: String = ""
     
-    init(questions: [String], selectedAnswers: [String]) {
+    init(questions: [String], selectedAnswers: [SelectedAnswers]) {
         self.questions = questions
         self.selectedAnswers = selectedAnswers
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,9 +86,10 @@ final class ResultDetailViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
+        view.backgroundColor = UIColor.appColor(.background)
     }
     
-    override func makeConstraints() {
+    func makeConstraints() {
         resultCollectionView.snp.makeConstraints { make in
             make.height.equalTo(350)
             make.top.left.right.equalToSuperview()
@@ -104,9 +106,8 @@ final class ResultDetailViewController: UIViewController {
             make.height.equalTo(80)
             make.width.equalTo(220)
         }
+        view.bringSubviewToFront(memoTextView)
     }
-    
-    
 }
 
 extension ResultDetailViewController {
@@ -129,10 +130,10 @@ extension ResultDetailViewController {
     
     @objc func keyboardWillShow(notification: Notification?) {
         
-        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+//        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         UIView.animate(withDuration: duration!, animations: { () in
-            let transform = CGAffineTransform(translationX: 0, y: -(rect?.size.height)!)
+            let transform = CGAffineTransform(translationX: 0, y: -self.screenHeight / 3.5)
             self.view.transform = transform
             
         })
