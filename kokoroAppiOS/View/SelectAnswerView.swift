@@ -85,19 +85,21 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func yesButtonTapped() {
-        // 質問番号をQuestionContentViewに渡す
-        viewController?.questionNumber += 1
+        viewController?.updateQuestionNumber(selectedYes: true)
+        validateLimitCount()
+    }
+    @objc func noButtonTapped() {
+        viewController?.updateQuestionNumber(selectedYes: false)
+        validateLimitCount()
+    }
+    
+    func validateLimitCount() {
         if let number = viewController?.questionNumber {
             guard number < limitNumber else {
                 viewController?.resetQuestionNumber()
                 viewController?.navigationController?.pushViewController(resultViewController, animated: true)
                 return
+            }
         }
-    }
-        viewController?.reload()
-    }
-    @objc func noButtonTapped() {
-        viewController?.questionNumber += 1
-        viewController?.reload()
     }
 }

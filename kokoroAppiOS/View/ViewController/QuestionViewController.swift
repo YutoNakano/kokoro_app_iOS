@@ -33,6 +33,9 @@ final class QuestionViewController: ViewController {
     
     private var presenter: QuestionPresenterInput?
     var questionNumber = 0
+    var questionTitle = ""
+    var questionTitles: [String]?
+    var selectedAnswers: [Bool]?
     
     func inject(presenter: QuestionPresenterInput) {
         self.presenter = presenter
@@ -89,6 +92,13 @@ extension QuestionViewController {
         questionNumber = 0
         reload()
     }
+    
+    func updateQuestionNumber(selectedYes: Bool) {
+        questionTitles?.append(questionTitle)
+        selectedAnswers?.append(selectedYes)
+        questionNumber += 1
+        reload()
+    }
 }
 
 extension QuestionViewController: QuestionPresenterOutput {
@@ -98,6 +108,7 @@ extension QuestionViewController: QuestionPresenterOutput {
     
     func giveQuestionText(questionText: String) {
         questionContentView.questionTitle = questionText
+        questionTitle = questionText
     }
     
 }
