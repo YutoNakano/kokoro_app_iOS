@@ -10,12 +10,27 @@ import Foundation
 import UIKit
 import SnapKit
 
+
 enum SelectedAnswers: String {
     case yes = "YES"
     case no = "NO"
+    
+    func selectedColor() -> UIColor {
+        switch self {
+        case .yes: return UIColor.appColor(.yesPink)
+        case .no: return UIColor.appColor(.noBlue)
+        }
+    }
 }
 
 final class ResultCollectionView: UIView {
+    
+//    var selectedColor: UIColor {
+//        switch SelectedAnswers {
+//        case .yes: return UIColor.appColor(.yesPink)
+//        case .no: return UIColor.appColor(.no)
+//        }
+//    }
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -68,6 +83,7 @@ extension ResultCollectionView: UICollectionViewDataSource {
         cell.questionIndexLabel.text = numberIndex[indexPath.row]
         cell.questionLabel.text = questions[indexPath.row]
         cell.answerLabel.text = "A: \(selectedAnswers[indexPath.row].rawValue)"
+        cell.answerLabel.textColor = SelectedAnswers.selectedColor(selectedAnswers[indexPath.row])()
         return cell
     }
 }
