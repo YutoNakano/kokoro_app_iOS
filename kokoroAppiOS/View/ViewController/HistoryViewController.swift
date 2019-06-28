@@ -23,22 +23,16 @@ final class HistoryViewController: UIViewController {
         let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
         return v
     }()
-    
-    var presenter: HistoryPresenter?
-    var topViewController: TopViewController?
-    
-    func inject(presenter: HistoryPresenter, topVC: TopViewController) {
-        self.presenter = presenter
-        self.topViewController = topVC
-    }
+
+    var watchButtonTapHandler: (() -> Void)?
+    var histories: [Document<History>] = []
     
     override func loadView() {
         super.loadView()
-        reloadData()
         setupView()
         makeConstraints()
+        handeler()
         self.navigationItem.leftBarButtonItem = backButton
-        
     }
     
     func makeConstraints() {
@@ -52,19 +46,39 @@ final class HistoryViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
     }
     
+    func handeler() {
+        watchButtonTapHandler = ({ () in
+            self.historyCollectionView.collectionView.reloadData()
+        })
+        guard let completion = watchButtonTapHandler else { return }
+        fetchResultData(completion: completion)
+    }
+    
 }
 
 extension HistoryViewController {
-    func reloadData() {
-        presenter?.fetchResultData()
-    }
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
-}
-
-extension HistoryViewController: HistoryPresenterOutput {
-    func passQuestionResult(histories: [Document<History>]) {
+    
+    func fetchResultData(completion: @escaping () -> Void) {
+        guard let user = UserManager.shared.currentUser else { return }
+        let user_id = user.data.user_id
+        Document<History>.get(queryBuilder: { q in
+            q.whereField("user_id", isEqualTo: user_id)
+                .order(by: "diagnosticTime", descending: true)}) { result in
+                    switch result {
+                    case let .success(histories):
+                        print(histories)
+                        self.passResultData(histories: histories)
+                        completion()
+                    case let .failure(error):
+                        print(error)
+                    }
+        }
+    }
+    
+    func passResultData(histories: [Document<History>]) {
         historyCollectionView.histories = histories
     }
 }

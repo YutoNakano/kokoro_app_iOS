@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kokoroAppiOS/View/Cell/HistoryCollectionViewCell.swift"
-            timestampString = "583378513.178381"
+            timestampString = "583422909.341706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -25,60 +25,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Presenter/HistoryPresenter.swift"
-            timestampString = "583378513.178465"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "fetchResultData()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRQuery) -&gt; __C.FIRQuery in kokoroAppiOS.HistoryPresenter.fetchResultData() -&gt; ()"
-                  moduleName = "kokoroAppiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Presenter/HistoryPresenter.swift"
-                  timestampString = "583378513.454998"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38"
-                  offsetFromSymbolStart = "276">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Result&lt;Swift.Array&lt;kokoroAppiOS.Document&lt;kokoroAppiOS.History&gt;&gt;, Swift.Error&gt;) -&gt; () in kokoroAppiOS.HistoryPresenter.fetchResultData() -&gt; ()"
-                  moduleName = "kokoroAppiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Presenter/HistoryPresenter.swift"
-                  timestampString = "583378513.458553"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "176">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "kokoroAppiOS/View/HistoryCollectionView.swift"
-            timestampString = "583378513.178525"
+            timestampString = "583422909.341779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -89,28 +41,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/View/ViewController/HistoryViewController.swift"
-            timestampString = "583378513.17858"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "passQuestionResult(histories:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "kokoroAppiOS/View/HistoryCollectionView.swift"
-            timestampString = "583378513.179234"
+            timestampString = "583422909.3422199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -121,45 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/View/HistoryCollectionView.swift"
-            timestampString = "583378513.179286"
+            filePath = "kokoroAppiOS/View/ViewController/HistoryViewController.swift"
+            timestampString = "583422909.342494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/View/HistoryCollectionView.swift"
-            timestampString = "583378513.179333"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/View/ViewController/TopViewController.swift"
-            timestampString = "583378513.179382"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "watchHistoryButtonTapped()"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "passResultData(histories:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,28 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kokoroAppiOS/View/ViewController/HistoryViewController.swift"
-            timestampString = "583378513.179852"
+            timestampString = "583422909.34286"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "loadView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/View/ViewController/TopViewController.swift"
-            timestampString = "583378513.180119"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "watchHistoryButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

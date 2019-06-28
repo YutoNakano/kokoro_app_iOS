@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import LTMorphingLabel
-import Lottie
+import FirebaseFirestore
 
 protocol TopViewControllerDelegate: class {
     func resetQuestionCount()
@@ -108,10 +108,10 @@ extension TopViewController {
         navigationController?.pushViewController(questionViewController, animated: true)
     }
     @objc func watchHistoryButtonTapped() {
-        let historyPresenter = HistoryPresenter(view: historyViewController)
-        historyViewController.inject(presenter: historyPresenter, topVC: self)
-        watchButtonTapHandler?()
-        navigationController?.pushViewController(historyViewController, animated: true)
+//        watchButtonTapHandler = ({ () in
+            self.navigationController?.pushViewController(self.historyViewController, animated: true)
+//        guard let completion = watchButtonTapHandler else { return }
+//        fetchResultData(completion: completion)
     }
     
     func charactorAnimation() {
@@ -122,4 +122,26 @@ extension TopViewController {
         }
     }
 }
+    
+//    func fetchResultData(completion: @escaping () -> Void) {
+//        guard let user = UserManager.shared.currentUser else { return }
+//        let user_id = user.data.user_id
+//        Document<History>.get(queryBuilder: { q in
+//            q.whereField("user_id", isEqualTo: user_id)
+//                .order(by: "diagnosticTime", descending: true)}) { result in
+//                    switch result {
+//                    case let .success(histories):
+//                        print(histories)
+//                        completion()
+//                        self.passResultData(histories: histories)
+//                    case let .failure(error):
+//                        print(error)
+//                    }
+//            }
+//    }
+//
+//    func passResultData(histories: [Document<History>]) {
+//        historyViewController.historyCollectionView.histories = histories
+//    }
+//}
 

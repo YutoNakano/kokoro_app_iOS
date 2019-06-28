@@ -24,14 +24,7 @@ enum SelectedAnswers: String {
 }
 
 final class ResultCollectionView: UIView {
-    
-//    var selectedColor: UIColor {
-//        switch SelectedAnswers {
-//        case .yes: return UIColor.appColor(.yesPink)
-//        case .no: return UIColor.appColor(.no)
-//        }
-//    }
-    
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20

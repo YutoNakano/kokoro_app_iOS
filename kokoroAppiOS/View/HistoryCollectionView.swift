@@ -9,15 +9,13 @@
 import Foundation
 import UIKit
 import SnapKit
-import FirebaseFirestore
-import FirebaseAuth
 
 final class HistoryDetailCollectionView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 15, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: screenWidth - 24, height: 87)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = UIColor.appColor(.background)
@@ -42,6 +40,7 @@ final class HistoryDetailCollectionView: UIView {
     }
     
     func setup() {
+        
     }
     
     func makeConstraints() {
@@ -57,9 +56,9 @@ extension HistoryDetailCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("セルフォいてムアと")
         guard let cell: HistoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
             HistoryCollectionViewCell else { fatalError() }
-        
         cell.configure(histories: histories[indexPath.row])
         
         return cell
