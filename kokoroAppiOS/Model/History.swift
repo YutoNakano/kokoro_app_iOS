@@ -33,6 +33,7 @@ struct History: FirestoreModelReadable, FirestoreModelWritable {
     
     init(snapshot: DocumentSnapshot) {
         title = snapshot.stringValue(forKey: Field.title, default: "")
+        memo = snapshot.stringValue(forKey: Field.memo, default: "")
         diagnosticTime = snapshot.getValue(forKey: Field.diagnosticTime) ?? Timestamp()
     }
     

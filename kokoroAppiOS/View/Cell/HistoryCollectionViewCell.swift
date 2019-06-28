@@ -73,3 +73,14 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
         }
     }
 }
+
+extension HistoryCollectionViewCell {
+    
+    func configure(histories: Document<History>) {
+        let date = histories.data.diagnosticTime.dateValue()
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd HH:mm"
+        diagnosticTime.text = format.string(from: date)
+        resultLabel.text = histories.data.title
+    }
+}

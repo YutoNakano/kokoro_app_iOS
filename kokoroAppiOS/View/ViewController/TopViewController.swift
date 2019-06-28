@@ -52,6 +52,9 @@ final class TopViewController: UIViewController {
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
     
+    var watchButtonTapHandler: (() -> Void)?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         charactorAnimation()
@@ -105,6 +108,9 @@ extension TopViewController {
         navigationController?.pushViewController(questionViewController, animated: true)
     }
     @objc func watchHistoryButtonTapped() {
+        let historyPresenter = HistoryPresenter(view: historyViewController)
+        historyViewController.inject(presenter: historyPresenter, topVC: self)
+        watchButtonTapHandler?()
         navigationController?.pushViewController(historyViewController, animated: true)
     }
     

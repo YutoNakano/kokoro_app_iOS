@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 import SnapKit
+import FirebaseFirestore
+import FirebaseAuth
 
 final class HistoryDetailCollectionView: UIView {
-    
-    let screenWidth = UIScreen.main.bounds.width
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -28,6 +28,8 @@ final class HistoryDetailCollectionView: UIView {
         return v
     }()
     
+    let screenWidth = UIScreen.main.bounds.width
+    var histories: [Document<History>] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,7 +42,6 @@ final class HistoryDetailCollectionView: UIView {
     }
     
     func setup() {
-        
     }
     
     func makeConstraints() {
@@ -52,12 +53,14 @@ final class HistoryDetailCollectionView: UIView {
 
 extension HistoryDetailCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return histories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell: HistoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
             HistoryCollectionViewCell else { fatalError() }
+        
+        cell.configure(histories: histories[indexPath.row])
         
         return cell
     }

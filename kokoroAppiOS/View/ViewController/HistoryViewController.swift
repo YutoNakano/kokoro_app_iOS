@@ -24,11 +24,21 @@ final class HistoryViewController: UIViewController {
         return v
     }()
     
+    var presenter: HistoryPresenter?
+    var topViewController: TopViewController?
+    
+    func inject(presenter: HistoryPresenter, topVC: TopViewController) {
+        self.presenter = presenter
+        self.topViewController = topVC
+    }
+    
     override func loadView() {
         super.loadView()
+        reloadData()
         setupView()
         makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
+        
     }
     
     func makeConstraints() {
@@ -45,7 +55,16 @@ final class HistoryViewController: UIViewController {
 }
 
 extension HistoryViewController {
+    func reloadData() {
+        presenter?.fetchResultData()
+    }
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension HistoryViewController: HistoryPresenterOutput {
+    func passQuestionResult(histories: [Document<History>]) {
+        historyCollectionView.histories = histories
     }
 }
