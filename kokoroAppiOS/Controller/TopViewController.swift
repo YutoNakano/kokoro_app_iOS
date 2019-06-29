@@ -49,6 +49,18 @@ final class TopViewController: UIViewController {
         return v
     }()
     
+    lazy var lineButton: MaterialButton = {
+        let v = MaterialButton()
+        v.setTitle("LINE@", for: .normal)
+        v.setTitleColor(UIColor.white, for: .normal)
+        v.titleLabel?.font = UIFont(name: "GillSans-Bold", size: 14)
+        v.backgroundColor = UIColor.appColor(.lineGreen)
+        v.layer.cornerRadius = 30
+        v.addTarget(self, action: #selector(lineButtonTapped), for: .touchUpInside)
+        view.addSubview(v)
+        return v
+    }()
+    
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
     
@@ -97,6 +109,10 @@ final class TopViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.centerY.equalTo(startButton.snp.bottom).offset(60)
         }
+        lineButton.snp.makeConstraints { make in
+            make.size.equalTo(68)
+            make.bottom.right.equalToSuperview().offset(-25)
+        }
     }
     
 }
@@ -121,27 +137,29 @@ extension TopViewController {
                 self.charactorImageView.center.y -= 30
         }
     }
+    @objc func lineButtonTapped() {
+        //        let urlscheme = "https://line.me/R/ti/p/hoghoge" // Universal links
+        let urlscheme = "http://nav.cx/dY8Nj4x" //カスタムURLスキーム
+        
+        // URL作成
+        guard let url = URL(string: urlscheme) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: { (succes) in
+                    
+                })
+            }else{
+                UIApplication.shared.openURL(url)
+            }
+        }else {
+            // LINEアプリが無い場合
+            let alertController = UIAlertController(title: "エラー",
+                                                    message: "LINEがインストールされていません",
+                                                    preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        }
+    }
 }
-    
-//    func fetchResultData(completion: @escaping () -> Void) {
-//        guard let user = UserManager.shared.currentUser else { return }
-//        let user_id = user.data.user_id
-//        Document<History>.get(queryBuilder: { q in
-//            q.whereField("user_id", isEqualTo: user_id)
-//                .order(by: "diagnosticTime", descending: true)}) { result in
-//                    switch result {
-//                    case let .success(histories):
-//                        print(histories)
-//                        completion()
-//                        self.passResultData(histories: histories)
-//                    case let .failure(error):
-//                        print(error)
-//                    }
-//            }
-//    }
-//
-//    func passResultData(histories: [Document<History>]) {
-//        historyViewController.historyCollectionView.histories = histories
-//    }
-//}
-
