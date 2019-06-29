@@ -191,11 +191,9 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		57A2078F22B71EAA002B6D9B /* Controller */ = {
+		5783A04B22C7325300A3EE18 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				576DD21922BBC64900B83A8E /* QuestionPresenter.swift */,
-				5752132522C4FA3A00D1D582 /* HistoryPresenter.swift */,
 				576DD21C22BBC69500B83A8E /* TopViewController.swift */,
 				576DD22222BBC69500B83A8E /* QuestionViewController.swift */,
 				576DD21F22BBC69500B83A8E /* ResultViewController.swift */,
@@ -207,6 +205,15 @@
 				5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		57A2078F22B71EAA002B6D9B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				576DD21922BBC64900B83A8E /* QuestionPresenter.swift */,
+				5752132522C4FA3A00D1D582 /* HistoryPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		57B6AECB22B64AB000007724 /* View */ = {
@@ -247,8 +254,9 @@
 		57C9204522B6117700A8B45D /* kokoroAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				5783A04B22C7325300A3EE18 /* Controller */,
 				57721DCB22BDD66200142ADF /* Model */,
-				57A2078F22B71EAA002B6D9B /* Controller */,
+				57A2078F22B71EAA002B6D9B /* Presenter */,
 				574E046022B6565A008628C5 /* Base */,
 				576DD23022BBC83A00B83A8E /* AppDelegate.swift */,
 				57B6AECB22B64AB000007724 /* View */,
