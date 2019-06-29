@@ -73,8 +73,10 @@ final class ResultDetailViewController: UIViewController {
         makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
         configureObserver()
-        resultCollectionView.questions = questions!
-        resultCollectionView.selectedAnswers = selectedAnswers!
+        guard let questions = questions else { return }
+        resultCollectionView.questions = questions
+        guard let selectedAnswers = selectedAnswers else { return }
+        resultCollectionView.selectedAnswers = selectedAnswers
     }
     
     func setupView() {

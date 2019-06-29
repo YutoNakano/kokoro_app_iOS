@@ -24,6 +24,9 @@
 		5757F40E22BEF0E3008783F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */; };
 		5757F41022BEF18A008783F6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F40F22BEF18A008783F6 /* History.swift */; };
 		5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */; };
+		5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */; };
+		5769D4A722C70972006E15CB /* HistoryDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */; };
+		5769D4A922C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A822C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift */; };
 		576DD21A22BBC64A00B83A8E /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21922BBC64900B83A8E /* QuestionPresenter.swift */; };
 		576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21C22BBC69500B83A8E /* TopViewController.swift */; };
 		576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */; };
@@ -85,6 +88,9 @@
 		5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5757F40F22BEF18A008783F6 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionView.swift; sourceTree = "<group>"; };
+		5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
+		5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailCollectionView.swift; sourceTree = "<group>"; };
+		5769D4A822C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		576DD21922BBC64900B83A8E /* QuestionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		576DD21C22BBC69500B83A8E /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAnswerView.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 			children = (
 				576DD22C22BBC6BB00B83A8E /* ResultCollectionViewCell.swift */,
 				574D36FE22BC6C170041D39E /* HistoryCollectionViewCell.swift */,
+				5769D4A822C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -185,6 +192,7 @@
 				57721DCE22BDF37100142ADF /* RootViewController.swift */,
 				57721DD022BDFA6400142ADF /* NavigationController.swift */,
 				574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */,
+				5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -201,13 +209,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		57A2078F22B71EAA002B6D9B /* Presenter */ = {
+		57A2078F22B71EAA002B6D9B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				576DD21922BBC64900B83A8E /* QuestionPresenter.swift */,
 				5752132522C4FA3A00D1D582 /* HistoryPresenter.swift */,
 			);
-			path = Presenter;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		57B6AECB22B64AB000007724 /* View */ = {
@@ -219,6 +227,7 @@
 				5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */,
 				577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */,
 				576DD22122BBC69500B83A8E /* ViewController */,
+				5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				57721DCB22BDD66200142ADF /* Model */,
-				57A2078F22B71EAA002B6D9B /* Presenter */,
+				57A2078F22B71EAA002B6D9B /* Controller */,
 				574E046022B6565A008628C5 /* Base */,
 				576DD23022BBC83A00B83A8E /* AppDelegate.swift */,
 				57B6AECB22B64AB000007724 /* View */,
@@ -525,11 +534,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */,
 				576DD22622BBC69500B83A8E /* QuestionContentView.swift in Sources */,
 				574E045F22B6564E008628C5 /* View.swift in Sources */,
 				57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */,
 				576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */,
 				576DD21A22BBC64A00B83A8E /* QuestionPresenter.swift in Sources */,
+				5769D4A722C70972006E15CB /* HistoryDetailCollectionView.swift in Sources */,
 				576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */,
 				574D36FF22BC6C170041D39E /* HistoryCollectionViewCell.swift in Sources */,
 				577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */,
@@ -537,6 +548,7 @@
 				576DD22D22BBC6BB00B83A8E /* ResultCollectionViewCell.swift in Sources */,
 				57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */,
 				5757F41022BEF18A008783F6 /* History.swift in Sources */,
+				5769D4A922C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
 				5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,

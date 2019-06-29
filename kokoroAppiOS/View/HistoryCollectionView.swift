@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class HistoryDetailCollectionView: UIView {
+protocol HistoryCollectionViewDelegate: class {
+    func didSelectRow(indexPath: IndexPath)
+}
+
+final class HistoryCollectionView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,6 +31,8 @@ final class HistoryDetailCollectionView: UIView {
     }()
     
     let screenWidth = UIScreen.main.bounds.width
+    weak var delegate: HistoryCollectionViewDelegate?
+    
     var histories: [Document<History>] = []
 
     override init(frame: CGRect) {
@@ -50,21 +56,24 @@ final class HistoryDetailCollectionView: UIView {
     }
 }
 
-extension HistoryDetailCollectionView: UICollectionViewDataSource {
+extension HistoryCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return histories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("セルフォいてムアと")
         guard let cell: HistoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
             HistoryCollectionViewCell else { fatalError() }
         cell.configure(histories: histories[indexPath.row])
-        
         return cell
     }
 }
 
-extension HistoryDetailCollectionView: UICollectionViewDelegate {
+extension HistoryCollectionView: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        delegate?.didSelectRow(indexPath: indexPath)
+    }
 }
+

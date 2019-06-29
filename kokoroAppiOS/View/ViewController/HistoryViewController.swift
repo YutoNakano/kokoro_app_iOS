@@ -11,10 +11,9 @@ import SnapKit
 
 final class HistoryViewController: UIViewController {
     
-    let screenWidth = UIScreen.main.bounds.width
-    
-    lazy var historyCollectionView: HistoryDetailCollectionView = {
-        let v = HistoryDetailCollectionView()
+    lazy var historyCollectionView: HistoryCollectionView = {
+        let v = HistoryCollectionView()
+        v.delegate = self
         view.addSubview(v)
         return v
     }()
@@ -23,15 +22,18 @@ final class HistoryViewController: UIViewController {
         let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
         return v
     }()
-
+    
     var watchButtonTapHandler: (() -> Void)?
+    var didSelectCellTapHandler: (() -> Void)?
     var histories: [Document<History>] = []
+    
+    let screenWidth = UIScreen.main.bounds.width
     
     override func loadView() {
         super.loadView()
         setupView()
         makeConstraints()
-        handeler()
+        fetch()
         self.navigationItem.leftBarButtonItem = backButton
     }
     
@@ -46,7 +48,7 @@ final class HistoryViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
     }
     
-    func handeler() {
+    func fetch() {
         watchButtonTapHandler = ({ () in
             self.historyCollectionView.collectionView.reloadData()
         })
@@ -79,6 +81,17 @@ extension HistoryViewController {
     }
     
     func passResultData(histories: [Document<History>]) {
+        self.histories = histories
         historyCollectionView.histories = histories
+    }
+}
+
+extension HistoryViewController: HistoryCollectionViewDelegate {
+    func didSelectRow(indexPath: IndexPath) {
+        let questions = histories[indexPath.row].data.questions
+       let selectedAnswersString = histories[indexPath.row].data.selectedAnswers
+        let memoText = histories[indexPath.row].data.memo
+        let historyDetailViewController = HistoryDetailViewController(questions: questions, selectedAnswersString: selectedAnswersString, memoText: memoText)
+        navigationController?.pushViewController(historyDetailViewController, animated: true)
     }
 }

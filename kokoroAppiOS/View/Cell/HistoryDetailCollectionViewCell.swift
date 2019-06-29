@@ -1,8 +1,8 @@
 //
-//  HistoryCollectionViewCell.swift
+//  HistoryDetailCollectionViewCell.swift
 //  kokoroAppiOS
 //
-//  Created by 中野湧仁 on 2019/06/21.
+//  Created by 中野湧仁 on 2019/06/29.
 //  Copyright © 2019 中野湧仁. All rights reserved.
 //
 
@@ -10,29 +10,34 @@ import UIKit
 import SnapKit
 
 
-final class HistoryCollectionViewCell: UICollectionViewCell {
+final class HistoryDetailCollectionViewCell: UICollectionViewCell {
     
-    
-    lazy var diagnosticTime: UILabel = {
+    lazy var questionIndexLabel: UILabel = {
         let v = UILabel()
-        v.font = UIFont(name: "GillSans-UltraBold", size: 16)
-        v.text = "3/24 3:24"
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         v.textColor = UIColor.appColor(.character)
+        v.adjustsFontSizeToFitWidth = true
+        v.text = "2,"
         contentView.addSubview(v)
         return v
     }()
-    lazy var resultLabel: UILabel = {
+    lazy var questionLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
-        v.text = "診断結果:　保健所"
+        v.text = "今現在体にも不調が出ていますか?"
+        v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 20)
         contentView.addSubview(v)
         return v
     }()
     
-    lazy var goNextImageView: UIImageView = {
-        let v = UIImageView(image: UIImage(named: "go"))
+    lazy var answerLabel: UILabel = {
+        let v = UILabel()
+        v.text = "A: YES"
+        v.textColor = UIColor.appColor(.yesPink)
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.adjustsFontSizeToFitWidth = true
         contentView.addSubview(v)
         return v
     }()
@@ -49,7 +54,6 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     
     func setup() {
         backgroundColor = UIColor.appColor(.navbar)
-        
         layer.cornerRadius = 10
         layer.shadowOpacity = 0.1
         layer.shadowColor = UIColor.black.cgColor
@@ -58,29 +62,19 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     }
     
     func makeConstraints() {
-        diagnosticTime.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(5)
-            make.left.equalToSuperview().offset(10)
-        }
-        resultLabel.snp.makeConstraints { make in
-            make.width.equalTo(240)
+        questionIndexLabel.snp.makeConstraints { make in
+            make.height.equalTo(80)
             make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+        }
+        questionLabel.snp.makeConstraints { make in
+            make.width.equalTo(240)
+            make.centerY.equalTo(questionIndexLabel.snp.centerY)
             make.left.equalToSuperview().offset(80)
         }
-        goNextImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+        answerLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-3)
         }
-    }
-}
-
-extension HistoryCollectionViewCell {
-    
-    func configure(histories: Document<History>) {
-        let date = histories.data.diagnosticTime.dateValue()
-        let format = DateFormatter()
-        format.dateFormat = "MM/dd HH:mm"
-        diagnosticTime.text = format.string(from: date)
-        resultLabel.text = "診断結果: \(histories.data.title)"
     }
 }

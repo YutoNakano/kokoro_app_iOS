@@ -72,6 +72,8 @@ final class RootViewController: UIViewController {
 //            }
 //        }
         
+//        UserManager.shared.signOut()
+        
         UserManager.shared.register { [weak self] state in
             switch state {
             case .initial: break
