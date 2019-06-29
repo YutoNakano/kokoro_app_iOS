@@ -18,13 +18,8 @@ final class HistoryDetailViewController: UIViewController {
         return v
     }()
     
-    lazy var memoLabel: UILabel = {
-        let v = UILabel()
-        v.numberOfLines = 0
-        v.font = UIFont(name: "GillSans", size: 16)
-        v.textColor = UIColor.appColor(.character)
-        v.layer.cornerRadius = 5
-        v.backgroundColor = UIColor.appColor(.navbar)
+    lazy var historyDetailMemoView: HistoryDetailMemoView = {
+        let v = HistoryDetailMemoView()
         view.addSubview(v)
         return v
     }()
@@ -69,14 +64,12 @@ final class HistoryDetailViewController: UIViewController {
     
     func makeConstraints() {
         historyDetailCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(520)
             make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(historyDetailMemoView.snp.top).offset(30)
         }
-        memoLabel.snp.makeConstraints { make in
-            make.height.equalTo(100)
-            make.top.equalTo(historyDetailCollectionView.snp.bottom).offset(30)
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().offset(-30)
-            make.bottom.equalToSuperview().offset(-30)
+        historyDetailMemoView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
         }
     }
 }
@@ -85,7 +78,7 @@ extension HistoryDetailViewController {
     func setModel() {
         historyDetailCollectionView.questions = questions
         historyDetailCollectionView.selectedAnswersString = selectedAnswersString
-        memoLabel.text = memoText
+        historyDetailMemoView.memoLabel.text = memoText
     }
     @objc func goTopButtonTapped() {
         navigationController?.popToRootViewController(animated: true)

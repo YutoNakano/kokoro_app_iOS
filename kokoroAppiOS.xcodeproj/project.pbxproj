@@ -44,6 +44,7 @@
 		57721DD922BE66EA00142ADF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DD822BE66EA00142ADF /* User.swift */; };
 		57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */; };
 		577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */; };
+		5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
 		57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */; };
 		57C9205C22B6117900A8B45D /* kokoroAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9205B22B6117900A8B45D /* kokoroAppiOSTests.swift */; };
@@ -107,6 +108,7 @@
 		57721DD822BE66EA00142ADF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSnapshot.swift; sourceTree = "<group>"; };
 		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
+		5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailMemoView.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C9204D22B6117900A8B45D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C9205022B6117900A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */,
 				577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */,
 				5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */,
+				5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,11 +257,11 @@
 		57C9204522B6117700A8B45D /* kokoroAppiOS */ = {
 			isa = PBXGroup;
 			children = (
-				5783A04B22C7325300A3EE18 /* Controller */,
 				57721DCB22BDD66200142ADF /* Model */,
 				57A2078F22B71EAA002B6D9B /* Presenter */,
 				574E046022B6565A008628C5 /* Base */,
 				576DD23022BBC83A00B83A8E /* AppDelegate.swift */,
+				5783A04B22C7325300A3EE18 /* Controller */,
 				57B6AECB22B64AB000007724 /* View */,
 				57C9204D22B6117900A8B45D /* Assets.xcassets */,
 				57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */,
@@ -533,6 +536,7 @@
 				5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */,
 				576DD22622BBC69500B83A8E /* QuestionContentView.swift in Sources */,
 				574E045F22B6564E008628C5 /* View.swift in Sources */,
+				5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */,
 				57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */,
 				576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */,
 				576DD21A22BBC64A00B83A8E /* QuestionPresenter.swift in Sources */,

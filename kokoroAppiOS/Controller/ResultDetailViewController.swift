@@ -34,7 +34,7 @@ final class ResultDetailViewController: UIViewController {
         let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(closeButtonTapped))
         toolBar.items = [spacer, closeButton]
         v.inputAccessoryView = toolBar
-        v.placeHolder = "今の状態をメモしましょう"
+        v.placeHolder = "MEMO"
         v.contentInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         v.backgroundColor = UIColor.appColor(.navbar)
         

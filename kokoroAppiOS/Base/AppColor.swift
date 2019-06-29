@@ -14,7 +14,7 @@ public enum AppColorType: String {
     case black = "000000"
     case character = "5B5355"
     case yesPink = "DE8892"
-    case subPink = "FAEBEF"
+    case subPink = "FAC5D4"
     case noBlue = "4996E9"
     case gray = "A0A2A2"
     case background = "F4F4F5"
