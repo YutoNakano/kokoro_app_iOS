@@ -88,6 +88,8 @@ final class TopViewController: UIViewController {
         super.loadView()
         setupView()
         makeConstraints()
+        
+        
     }
     
     func setupView() {
@@ -132,6 +134,15 @@ extension TopViewController {
             self.charactorImageView.center.y -= 30
         }
     }
+    
+    @objc func startButtonTapped() {
+        questionViewController.resetQuestionNumber()
+        navigationController?.pushViewController(questionViewController, animated: true)
+    }
+    @objc func watchHistoryButtonTapped() {
+        self.navigationController?.pushViewController(self.historyViewController, animated: true)
+    }
+    
     @objc func signOutButtonTapped() {
         Alert.showWithCancel(
             title: "確認",
@@ -142,13 +153,6 @@ extension TopViewController {
             }),
             on: self
         )
-    }
-    @objc func startButtonTapped() {
-        questionViewController.resetQuestionNumber()
-        navigationController?.pushViewController(questionViewController, animated: true)
-    }
-    @objc func watchHistoryButtonTapped() {
-        self.navigationController?.pushViewController(self.historyViewController, animated: true)
     }
     
     @objc func lineButtonTapped() {

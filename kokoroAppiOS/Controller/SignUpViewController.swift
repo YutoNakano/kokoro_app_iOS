@@ -64,37 +64,29 @@ extension SignUpViewController {
             
             let credentials = TwitterAuthProvider.credential(withToken: token, secret: secret)
             
-            Auth.auth().signIn(with: credentials, completion: { (user, error) in
+            Auth.auth().signInAndRetrieveData(with: credentials, completion: { (authDataResult, error) in
                 if let err = error {
                     print("認証失敗:\(err)")
                     return
                 }
-                print("Successfully created a Twitter account in Firebase: \(user?.uid ?? "")")
-                let db = Firestore.firestore()
-                db.collection("users").document(user?.uid ?? "").setData([
-                    "user_id": user?.uid ?? "",
-                    "name": user?.displayName ?? ""
-                    ])
+                self.registerUser(user: authDataResult)
             })
         }
         twitterButton.center = self.view.center
         self.view.addSubview(twitterButton)
     }
     
-    func registerUser(user: User?) {
+    func registerUser(user: AuthDataResult?) {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
             let displayName = user.displayName
-            //            let email = user.email
-            //            let photoURL = user.photoURL
-            
-            print("Successfully created a Twitter account in Firebase: \(uid)")
             let db = Firestore.firestore()
             db.collection("users").document(uid).setData([
                 "user_id": uid,
                 "name": displayName!
                 ])
+            print("認証成功: \(displayName)")
         }
 
     }
