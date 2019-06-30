@@ -72,11 +72,6 @@ final class TopViewController: UIViewController {
         charactorAnimation()
         let presenter = QuestionPresenter(view: questionViewController)
         questionViewController.inject(presenter: presenter)
-        
-        let user = Auth.auth().currentUser; if let user = user {
-            let uid = user.uid
-            print(uid)
-        }
     }
     
     override func loadView() {

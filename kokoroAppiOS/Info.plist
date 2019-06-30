@@ -21,7 +21,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-h8PaoRQDk5YMQEdihAVm3eYRu</string>
+				<string>twitterkit-Roim3fouWkfma0yEMLCX42UtH</string>
 			</array>
 		</dict>
 	</array>
@@ -30,6 +30,8 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>line</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

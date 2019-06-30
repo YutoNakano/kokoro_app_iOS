@@ -18,12 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after
         FirebaseApp.configure()
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "Roim3fouWkfma0yEMLCX42UtH", consumerSecret: "pCgrg20quOFqsezMCIfnO33hRgPIdCxtD9rWL0ODJBZYhnkaCi")
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
-        
-        TWTRTwitter.sharedInstance().start(withConsumerKey: "h8PaoRQDk5YMQEdihAVm3eYRu", consumerSecret: "ElNrTwoWSU9JoIt6muy0EsHD6xcwoVObLfBrqsPascW0Wr0HKS")
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
