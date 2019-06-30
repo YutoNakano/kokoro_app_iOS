@@ -61,8 +61,14 @@ final class TopViewController: UIViewController {
         return v
     }()
     
+    lazy var signOutButton: UIBarButtonItem = {
+        let v = UIBarButtonItem(image: UIImage(named: "user"), style: .plain, target: self, action: #selector(signOutButtonTapped))
+        return v
+    }()
+    
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
+    let signUpViewController = SignUpViewController()
     
     var watchButtonTapHandler: (() -> Void)?
     
@@ -85,6 +91,7 @@ final class TopViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
+        navigationItem.rightBarButtonItem = signOutButton
     }
     
     func makeConstraints() {
@@ -114,6 +121,17 @@ final class TopViewController: UIViewController {
 
 
 extension TopViewController {
+    @objc func signOutButtonTapped() {
+        Alert.showWithCancel(
+            title: "確認",
+            message: "サインアウトしますか?",
+            button: ("サインアウト", .destructive, {
+                UserManager.shared.signOut()
+                self.navigationController?.pushViewController(self.signUpViewController, animated: true)
+            }),
+            on: self
+        )
+    }
     @objc func startButtonTapped() {
         questionViewController.resetQuestionNumber()
         navigationController?.pushViewController(questionViewController, animated: true)

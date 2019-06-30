@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F1853C39B492FC485B4DEC0 /* Pods_kokoroAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */; };
 		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
+		574B128222C8816A00B4F304 /* Alart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B128122C8816A00B4F304 /* Alart.swift */; };
 		574C0A5F22C0576B004CA340 /* ResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */; };
 		574C60A922C3539C002A5366 /* PresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C60A822C3539C002A5366 /* PresenterInterface.swift */; };
 		574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36F922BC5CC60041D39E /* MaterialButton.swift */; };
@@ -73,6 +74,7 @@
 		1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		574B128122C8816A00B4F304 /* Alart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alart.swift; sourceTree = "<group>"; };
 		574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailViewController.swift; sourceTree = "<group>"; };
 		574C60A822C3539C002A5366 /* PresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterInterface.swift; sourceTree = "<group>"; };
 		574D36F922BC5CC60041D39E /* MaterialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				574D36F922BC5CC60041D39E /* MaterialButton.swift */,
 				5754079422C0CD670097D07F /* PlaceHolderTextView.swift */,
 				574C60A822C3539C002A5366 /* PresenterInterface.swift */,
+				574B128122C8816A00B4F304 /* Alart.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,
 				5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */,
 				574E045722B65622008628C5 /* AppColor.swift in Sources */,
+				574B128222C8816A00B4F304 /* Alart.swift in Sources */,
 				5752132622C4FA3A00D1D582 /* HistoryPresenter.swift in Sources */,
 				576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */,
 				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,
