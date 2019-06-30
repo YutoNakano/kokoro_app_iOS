@@ -11,6 +11,8 @@ import SnapKit
 import FirebaseAuth
 import LTMorphingLabel
 import FirebaseFirestore
+import FirebaseStorage
+import TwitterKit
 
 protocol TopViewControllerDelegate: class {
     func resetQuestionCount()
@@ -66,6 +68,11 @@ final class TopViewController: UIViewController {
         return v
     }()
     
+    var profileImage: UIImage?
+    var name: String?
+    var twitterSession: TWTRSession?
+    
+    
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
     let signUpViewController = SignUpViewController()
@@ -78,6 +85,7 @@ final class TopViewController: UIViewController {
         charactorAnimation()
         let presenter = QuestionPresenter(view: questionViewController)
         questionViewController.inject(presenter: presenter)
+        registerUser()
     }
     
     override func loadView() {
@@ -121,6 +129,13 @@ final class TopViewController: UIViewController {
 
 
 extension TopViewController {
+    func charactorAnimation() {
+        UIView.animate(withDuration: 2.0, delay: 0.5, options: [.repeat,.autoreverse], animations: {
+            self.charactorImageView.center.y += 30
+        }) { _ in
+            self.charactorImageView.center.y -= 30
+        }
+    }
     @objc func signOutButtonTapped() {
         Alert.showWithCancel(
             title: "確認",
@@ -140,13 +155,6 @@ extension TopViewController {
         self.navigationController?.pushViewController(self.historyViewController, animated: true)
     }
     
-    func charactorAnimation() {
-        UIView.animate(withDuration: 2.0, delay: 0.5, options: [.repeat,.autoreverse], animations: {
-                self.charactorImageView.center.y += 30
-            }) { _ in
-                self.charactorImageView.center.y -= 30
-        }
-    }
     @objc func lineButtonTapped() {
         let urlscheme = "http://nav.cx/dY8Nj4x"
         guard let url = URL(string: urlscheme) else {
@@ -167,4 +175,95 @@ extension TopViewController {
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         }
     }
+    
+    func registerUser() {
+        let logInButton = TWTRLogInButton(logInCompletion: { session, err in
+            if let err = err { return }
+            if let session = session {
+                let authToken = session.authToken
+                let authTokenSecret = session.authTokenSecret
+                self.twitterSession = session
+                let credential = TwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
+                Auth.auth().signInAndRetrieveData(with: credential) { (authResult, err) in
+                    if let err = err { return }
+                    //Session情報からログインしたユーザー情報を取得で使用
+                    self.fetchTwitterUser()
+                }
+            }
+        })
+        logInButton.center = self.view.center
+        self.view.addSubview(logInButton)
+    }
+    
+    func fetchTwitterUser() {
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+            print("Successfully created a Twitter account in Firebase: \(user.uid)")
+        }
+        //            guard let url = URL(string: photoUrlString) else { return }
+        
+        
+        guard let twitterSession = twitterSession else { return }
+        let client = TWTRAPIClient()
+        client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
+            if let err = err { print(err)
+                return }
+            guard let user = user else { return }
+            
+            self.name = user.name
+            let profileImageLargeURL = user.profileImageLargeURL
+            
+            guard let url = URL(string: profileImageLargeURL) else { return }
+            
+            URLSession.shared.dataTask(with: url) { (data, response, err) in
+                if err != nil { return }
+                guard let data = data else { return }
+                self.profileImage = UIImage(data: data)
+                self.saveUserInfoFirebaseDatabase()
+                }.resume()
+        })
+    }
+    
+    func saveUserInfoFirebaseDatabase() {
+        guard let uid = Auth.auth().currentUser?.uid,
+            let name = self.name, let profileImage = profileImage,
+            let profileImageUploadData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        
+        let profileImageRef = Storage.storage().reference().child("profileImages").child(uid)
+        
+        let uploadTask = profileImageRef.putData(profileImageUploadData, metadata: nil) { (metadata, err) in
+            guard metadata != nil else { return }
+            profileImageRef.downloadURL { (url, err) in
+                guard let url = url else { return }
+                let db = Firestore.firestore()
+                db.collection("users").document(uid).setData([
+                    "user_id": uid,
+                    "name": name,
+                    "profileImageUrl": url.absoluteString])
+            }
+        }
+    }
+    
+    func displayUserImage() {
+        if let user = Auth.auth().currentUser {
+            let userRef = Firestore.firestore().collection("users").document(user.uid)
+            userRef.getDocument(completion: { (document, error) in
+                if let document = document, document.exists {
+                    let profileImageUrl = document["profileImageUrl"]
+//                    let name = document["name"]
+                    let url = URL(string: profileImageUrl as! String)
+                    do {
+                        let data = try Data(contentsOf: url!)
+                        let image = UIImage(data: data)
+                        self.signOutButton.image = image
+//                        self.label.text = name as! String
+                    }catch let err {
+                        print(err)
+                    }
+                }
+            })
+        }
+    }
+    
 }

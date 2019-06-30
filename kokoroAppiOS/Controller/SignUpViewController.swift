@@ -10,10 +10,12 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseUI
+import FirebaseStorage
 import LTMorphingLabel
 import KRProgressHUD
 import TwitterKit
-import FirebaseUI
+
 
 final class SignUpViewController: UIViewController {
 
@@ -31,6 +33,27 @@ final class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerUser()
+    }
+    
+    func setupView() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
+        view.backgroundColor = UIColor.appColor(.background)
+    }
+    
+    func makeConstraints() {
+        titleImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(100)
+        }
+    }
+    
+}
+
+extension SignUpViewController {
+    func registerUser() {
         let twitterButton = TWTRLogInButton { (session, error) in
             if let err = error {
                 print("Twitter login has failed with error:\(err)")
@@ -51,7 +74,7 @@ final class SignUpViewController: UIViewController {
                 db.collection("users").document(user?.uid ?? "").setData([
                     "user_id": user?.uid ?? "",
                     "name": user?.displayName ?? ""
-                ])
+                    ])
             })
         }
         twitterButton.center = self.view.center
@@ -65,7 +88,7 @@ final class SignUpViewController: UIViewController {
             let displayName = user.displayName
             //            let email = user.email
             //            let photoURL = user.photoURL
-
+            
             print("Successfully created a Twitter account in Firebase: \(uid)")
             let db = Firestore.firestore()
             db.collection("users").document(uid).setData([
@@ -75,21 +98,4 @@ final class SignUpViewController: UIViewController {
         }
 
     }
-    
-    func setupView() {
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
-        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
-        view.backgroundColor = UIColor.appColor(.background)
-    }
-    
-    func makeConstraints() {
-        titleImageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(100)
-        }
-    }
-    
 }
-
-
