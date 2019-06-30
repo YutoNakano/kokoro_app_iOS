@@ -35,7 +35,7 @@ final class ResultDetailViewController: UIViewController {
         toolBar.items = [spacer, closeButton]
         v.inputAccessoryView = toolBar
         v.placeHolder = "MEMO"
-        v.contentInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        v.contentInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
         v.backgroundColor = UIColor.appColor(.navbar)
         
         v.delegate = self

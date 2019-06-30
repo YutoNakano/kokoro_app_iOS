@@ -79,6 +79,9 @@ final class UserManager {
             switch Result(authDataResult, error) {
             case let .success(authDataResult):
                 let db = Firestore.firestore()
+                let settings = db.settings
+                settings.areTimestampsInSnapshotsEnabled = true
+                db.settings = settings
                 db.collection("users").document(authDataResult.user.uid).setData([
                     "user_id": user_id,
                     "name": name

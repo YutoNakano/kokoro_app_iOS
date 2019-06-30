@@ -82,6 +82,14 @@ extension HistoryViewController {
     
     func passResultData(histories: [Document<History>]) {
         self.histories = histories
+        let array = histories.map { $0.data.diagnosticTime.dateValue() }
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd HH:mm"
+        print(format.string(from: array[0]))
+        print(format.string(from: array[1]))
+        print(format.string(from: array[2]))
+        print(format.string(from: array[3]))
+        print(format.string(from: array[4]))
         historyCollectionView.histories = histories
     }
 }
