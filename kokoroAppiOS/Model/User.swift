@@ -31,7 +31,7 @@ struct User: FirestoreModelReadable, FirestoreModelWritable {
         diagnosticTime = snapshot.getValue(forKey: Field.diagnosticTime) ?? Timestamp()
     }
     
-    init(user_id: String, name: String, diagnosticTime: Timestamp) {
+    init(user_id: String, name: String, diagnosticTime: Timestamp = .init()) {
         self.user_id = user_id
         self.name = name
         self.diagnosticTime = diagnosticTime

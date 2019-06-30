@@ -83,9 +83,7 @@ final class UserManager {
                     "user_id": user_id,
                     "name": name
                     ])
-                print("登録成功")
-                completion(.success("渡された!!!--"))
-                completion(.success(self.practice(name: "Trailing Closure内で実行")))
+                completion(.success(self.practice(name: "登録成功")))
             case let .failure(error):
                 print(error)
                 completion(.failure(error))

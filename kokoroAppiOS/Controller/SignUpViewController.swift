@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import FirebaseFirestore
 import LTMorphingLabel
 import KRProgressHUD
 import TwitterKit
@@ -30,12 +31,6 @@ final class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let user = Auth.auth().currentUser; if let user = user {
-            let uid = user.uid
-            print(uid)
-        }
-        
         let twitterButton = TWTRLogInButton { (session, error) in
             if let err = error {
                 print("Twitter login has failed with error:\(err)")
@@ -51,21 +46,34 @@ final class SignUpViewController: UIViewController {
                     print("認証失敗:\(err)")
                     return
                 }
-                
                 print("Successfully created a Twitter account in Firebase: \(user?.uid ?? "")")
-                
+                let db = Firestore.firestore()
+                db.collection("users").document(user?.uid ?? "").setData([
+                    "user_id": user?.uid ?? "",
+                    "name": user?.displayName ?? ""
+                ])
             })
         }
         twitterButton.center = self.view.center
         self.view.addSubview(twitterButton)
-        
-        if let user = Auth.auth().currentUser {
-            // User is signed in.
-            print(user)
-        }else{
-            // No user is signed in.
-            print("認証しているユーザーはいない")
+    }
+    
+    func registerUser(user: User?) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            let displayName = user.displayName
+            //            let email = user.email
+            //            let photoURL = user.photoURL
+
+            print("Successfully created a Twitter account in Firebase: \(uid)")
+            let db = Firestore.firestore()
+            db.collection("users").document(uid).setData([
+                "user_id": uid,
+                "name": displayName!
+                ])
         }
+
     }
     
     func setupView() {

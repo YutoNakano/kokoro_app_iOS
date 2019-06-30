@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after
         FirebaseApp.configure()
-        TWTRTwitter.sharedInstance().start(withConsumerKey: "Roim3fouWkfma0yEMLCX42UtH", consumerSecret: "pCgrg20quOFqsezMCIfnO33hRgPIdCxtD9rWL0ODJBZYhnkaCi")
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "m1kbFkBsjnrIPMzLi58FhPbO9", consumerSecret: "a7dXeSSC1iwfYV3JMefxqQmyQi5XXDOcVRXjNGGSknGjlub7Qp")
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
