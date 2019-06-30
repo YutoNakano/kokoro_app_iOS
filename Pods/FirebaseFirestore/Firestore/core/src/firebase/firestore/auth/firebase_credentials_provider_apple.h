@@ -33,7 +33,6 @@
 #include "absl/strings/string_view.h"
 
 @class FIRApp;
-@protocol FIRAuthInterop;
 
 namespace firebase {
 namespace firestore {
@@ -43,9 +42,9 @@ namespace auth {
  * `FirebaseCredentialsProvider` uses Firebase Auth via `FIRApp` to get an auth
  * token.
  *
- * NOTE: To simplify the implementation, it requires that you call
- * `SetCredentialChangeListener()` with a non-nullptr value no more than once
- * and don't call `GetToken()` after setting it to `nullptr`.
+ * NOTE: To simplify the implementation, it requires that you set
+ * `userChangeListener` with a non-`nil` value no more than once and don't call
+ * `getTokenForcingRefresh:` after setting it to `nil`.
  *
  * This class must be implemented in a thread-safe manner since it is accessed
  * from the thread backing our internal worker queue and the callbacks from
@@ -60,18 +59,15 @@ class FirebaseCredentialsProvider : public CredentialsProvider {
   /**
    * Initializes a new FirebaseCredentialsProvider.
    *
-   * @param app The Firebase app instance associated with the credentials
-   *            received.
-   * @param auth The auth instance from which to get credentials.
+   * @param app The Firebase app from which to get credentials.
    */
-  explicit FirebaseCredentialsProvider(FIRApp* app, id<FIRAuthInterop> auth);
+  explicit FirebaseCredentialsProvider(FIRApp* app);
 
   ~FirebaseCredentialsProvider() override;
 
   void GetToken(TokenListener completion) override;
 
-  void SetCredentialChangeListener(
-      CredentialChangeListener changeListener) override;
+  void SetUserChangeListener(UserChangeListener listener) override;
 
   void InvalidateToken() override;
 
@@ -83,13 +79,11 @@ class FirebaseCredentialsProvider : public CredentialsProvider {
    * avoid races between notifications arriving and C++ object destruction.
    */
   struct Contents {
-    Contents(FIRApp* app, id<FIRAuthInterop> auth, User&& user)
-        : app(app), auth(auth), current_user(std::move(user)) {
+    Contents(FIRApp* app, User&& user)
+        : app(app), current_user(std::move(user)) {
     }
 
     const FIRApp* app;
-
-    const id<FIRAuthInterop> auth;
 
     /**
      * The current user as reported to us via our AuthStateDidChangeListener.
@@ -97,10 +91,10 @@ class FirebaseCredentialsProvider : public CredentialsProvider {
     User current_user;
 
     /**
-     * Counter used to detect if the token changed while a GetToken() request
-     * was outstanding.
+     * Counter used to detect if the user changed while a
+     * -getTokenForcingRefresh: request was outstanding.
      */
-    int token_counter = 0;
+    int user_counter = 0;
 
     std::mutex mutex;
 

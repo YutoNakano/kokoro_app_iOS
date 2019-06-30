@@ -124,10 +124,7 @@ extension TopViewController {
         navigationController?.pushViewController(questionViewController, animated: true)
     }
     @objc func watchHistoryButtonTapped() {
-//        watchButtonTapHandler = ({ () in
-            self.navigationController?.pushViewController(self.historyViewController, animated: true)
-//        guard let completion = watchButtonTapHandler else { return }
-//        fetchResultData(completion: completion)
+        self.navigationController?.pushViewController(self.historyViewController, animated: true)
     }
     
     func charactorAnimation() {
@@ -138,27 +135,22 @@ extension TopViewController {
         }
     }
     @objc func lineButtonTapped() {
-        //        let urlscheme = "https://line.me/R/ti/p/hoghoge" // Universal links
-        let urlscheme = "http://nav.cx/dY8Nj4x" //カスタムURLスキーム
-        
-        // URL作成
+        let urlscheme = "http://nav.cx/dY8Nj4x"
         guard let url = URL(string: urlscheme) else {
             return
         }
-        
         if UIApplication.shared.canOpenURL(url) {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: { (succes) in
-                    
                 })
             }else{
                 UIApplication.shared.openURL(url)
             }
         }else {
-            // LINEアプリが無い場合
-            let alertController = UIAlertController(title: "エラー",
-                                                    message: "LINEがインストールされていません",
-                                                    preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(
+                title: "エラー",
+                message: "LINEがインストールされていません",
+                preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         }
     }

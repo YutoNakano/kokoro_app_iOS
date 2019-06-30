@@ -56,9 +56,7 @@ class LevelDbTransaction {
     /**
      * Returns true if this iterator points to an entry
      */
-    bool Valid() {
-      return is_valid_;
-    }
+    bool Valid();
 
     /**
      * Seeks this iterator to the first key equal to or greater than the given
@@ -154,14 +152,14 @@ class LevelDbTransaction {
    * Remove the database entry (if any) for "key".  It is not an error if "key"
    * did not exist in the database.
    */
-  void Delete(absl::string_view key);
+  void Delete(const absl::string_view& key);
 
 #if __OBJC__
   /**
    * Schedules the row identified by `key` to be set to the given protocol
    * buffer message when this transaction commits.
    */
-  void Put(absl::string_view key, GPBMessage* message) {
+  void Put(const absl::string_view& key, GPBMessage* message) {
     NSData* data = [message data];
     std::string key_string(key);
     mutations_[key_string] = std::string((const char*)data.bytes, data.length);
@@ -173,7 +171,7 @@ class LevelDbTransaction {
    * Schedules the row identified by `key` to be set to `value` when this
    * transaction commits.
    */
-  void Put(std::string key, std::string value);
+  void Put(const absl::string_view& key, const absl::string_view& value);
 
   /**
    * Sets the contents of `value` to the latest known value for the given key,
@@ -181,7 +179,7 @@ class LevelDbTransaction {
    * doesn't exist in leveldb, or it is scheduled for deletion in this
    * transaction, `Status::NotFound` is returned.
    */
-  leveldb::Status Get(absl::string_view key, std::string* value);
+  leveldb::Status Get(const absl::string_view& key, std::string* value);
 
   /**
    * Returns a new Iterator over the pending changes in this transaction, merged
@@ -206,13 +204,6 @@ class LevelDbTransaction {
   int32_t version_;
   std::string label_;
 };
-
-/**
- * Returns a description of the current key if the iterator is Valid, otherwise
- * the string "the end of the table."
- */
-std::string DescribeKey(
-    const std::unique_ptr<LevelDbTransaction::Iterator>& iterator);
 
 }  // namespace local
 }  // namespace firestore

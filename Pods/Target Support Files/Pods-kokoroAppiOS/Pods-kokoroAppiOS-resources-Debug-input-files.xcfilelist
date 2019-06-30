@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-kokoroAppiOS/Pods-kokoroAppiOS-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle
+${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle

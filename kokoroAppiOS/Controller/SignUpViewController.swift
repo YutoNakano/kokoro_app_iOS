@@ -11,6 +11,8 @@ import SnapKit
 import FirebaseAuth
 import LTMorphingLabel
 import KRProgressHUD
+import TwitterKit
+import FirebaseUI
 
 final class SignUpViewController: UIViewController {
     
@@ -68,6 +70,23 @@ final class SignUpViewController: UIViewController {
         super.loadView()
         setupView()
         makeConstraints()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
+            if let session = session {
+                let credential = TwitterAuthProvider.credential(withToken: session.authToken, secret: session.authTokenSecret)
+                
+                Auth.auth().signIn(with: credential) { (authResult, error) in
+                    if let error = error { return }
+                    //Sign In Completed
+                }
+            }
+        })
+        logInButton.center = self.view.center
+        self.view.addSubview(logInButton)
     }
     
     func setupView() {

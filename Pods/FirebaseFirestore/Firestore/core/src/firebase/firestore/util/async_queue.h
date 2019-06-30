@@ -34,7 +34,7 @@ namespace util {
  * presence of delayed operations or to run them early.
  */
 enum class TimerId {
-  /** All can be used with `RunScheduledOperationsUntil` to run all timers. */
+  /** All can be used with `RunDelayedOperationsUntil` to run all timers. */
   All,
 
   /**
@@ -54,10 +54,6 @@ enum class TimerId {
    * indefinitely for success or failure.
    */
   OnlineStateTimeout,
-  /**
-   * A timer used to periodically attempt LRU Garbage collection
-   */
-  GarbageCollectionDelay
 };
 
 // A serial queue that executes given operations asynchronously, one at a time.
@@ -77,10 +73,10 @@ enum class TimerId {
 // and must *not* be used in regular code.
 class AsyncQueue {
  public:
-  using Operation = Executor::Operation;
-  using Milliseconds = Executor::Milliseconds;
+  using Operation = internal::Executor::Operation;
+  using Milliseconds = internal::Executor::Milliseconds;
 
-  explicit AsyncQueue(std::unique_ptr<Executor> executor);
+  explicit AsyncQueue(std::unique_ptr<internal::Executor> executor);
 
   // Asserts for the caller that it is being invoked as part of an operation on
   // the `AsyncQueue`.
@@ -131,11 +127,6 @@ class AsyncQueue {
   // queue.
   void ExecuteBlocking(const Operation& operation);
 
-  // Returns the underlying platform-dependent executor.
-  Executor* executor() {
-    return executor_.get();
-  }
-
   // Test-only interface follows
   // TODO(varconst): move the test-only interface into a helper object that is
   // a friend of AsyncQueue and delegates its public methods to private methods
@@ -163,7 +154,7 @@ class AsyncQueue {
   void VerifySequentialOrder() const;
 
   std::atomic<bool> is_operation_in_progress_;
-  std::unique_ptr<Executor> executor_;
+  std::unique_ptr<internal::Executor> executor_;
 };
 
 }  // namespace util

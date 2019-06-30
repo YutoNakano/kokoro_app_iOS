@@ -21,40 +21,45 @@
 
 #import "Firestore/Source/Core/FSTFirestoreClient.h"
 
-#include "Firestore/core/src/firebase/firestore/model/document_key.h"
+#include "Firestore/core/src/firebase/firestore/model/resource_path.h"
 #include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
 #include "Firestore/core/src/firebase/firestore/util/hashing.h"
 #include "Firestore/core/src/firebase/firestore/util/string_apple.h"
 
 namespace util = firebase::firestore::util;
 using firebase::firestore::model::ResourcePath;
-using firebase::firestore::model::DocumentKey;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FSTDocumentKey () {
-  // Forward most of the logic to the C++ implementation until FSTDocumentKey usages are completely
-  // migrated.
-  DocumentKey _delegate;
+  /** The path to the document. */
+  ResourcePath _path;
 }
 @end
 
 @implementation FSTDocumentKey
 
-+ (instancetype)keyWithDocumentKey:(firebase::firestore::model::DocumentKey)documentKey {
-  return [[FSTDocumentKey alloc] initWithDocumentKey:std::move(documentKey)];
++ (instancetype)keyWithPath:(ResourcePath)path {
+  return [[FSTDocumentKey alloc] initWithPath:std::move(path)];
+}
+
++ (instancetype)keyWithSegments:(std::initializer_list<std::string>)segments {
+  return [FSTDocumentKey keyWithPath:ResourcePath(segments)];
+}
+
++ (instancetype)keyWithPathString:(NSString *)resourcePath {
+  return [FSTDocumentKey keyWithPath:ResourcePath::FromString(util::MakeStringView(resourcePath))];
 }
 
 /** Designated initializer. */
-- (instancetype)initWithDocumentKey:(DocumentKey)key {
+- (instancetype)initWithPath:(ResourcePath)path {
+  HARD_ASSERT([FSTDocumentKey isDocumentKey:path], "invalid document key path: %s",
+              path.CanonicalString());
+
   if (self = [super init]) {
-    _delegate = std::move(key);
+    _path = path;
   }
   return self;
-}
-
-- (const DocumentKey &)key {
-  return _delegate;
 }
 
 - (BOOL)isEqual:(id)object {
@@ -64,15 +69,15 @@ NS_ASSUME_NONNULL_BEGIN
   if (![object isKindOfClass:[FSTDocumentKey class]]) {
     return NO;
   }
-  return _delegate == static_cast<FSTDocumentKey *>(object)->_delegate;
+  return [self isEqualToKey:(FSTDocumentKey *)object];
 }
 
 - (NSUInteger)hash {
-  return _delegate.Hash();
+  return util::Hash(_path);
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<FSTDocumentKey: %s>", _delegate.ToString().c_str()];
+  return [NSString stringWithFormat:@"<FSTDocumentKey: %s>", _path.CanonicalString().c_str()];
 }
 
 /** Implements NSCopying without actually copying because FSTDocumentKeys are immutable. */
@@ -80,7 +85,40 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
+- (BOOL)isEqualToKey:(FSTDocumentKey *)other {
+  return FSTDocumentKeyComparator(self, other) == NSOrderedSame;
+}
+
+- (NSComparisonResult)compare:(FSTDocumentKey *)other {
+  return FSTDocumentKeyComparator(self, other);
+}
+
++ (NSComparator)comparator {
+  return ^NSComparisonResult(id obj1, id obj2) {
+    return [obj1 compare:obj2];
+  };
+}
+
++ (BOOL)isDocumentKey:(const ResourcePath &)path {
+  return path.size() % 2 == 0;
+}
+
+- (const ResourcePath &)path {
+  return _path;
+}
+
 @end
+
+const NSComparator FSTDocumentKeyComparator =
+    ^NSComparisonResult(FSTDocumentKey *key1, FSTDocumentKey *key2) {
+      if (key1.path < key2.path) {
+        return NSOrderedAscending;
+      } else if (key1.path > key2.path) {
+        return NSOrderedDescending;
+      } else {
+        return NSOrderedSame;
+      }
+    };
 
 NSString *const kDocumentKeyPath = @"__name__";
 

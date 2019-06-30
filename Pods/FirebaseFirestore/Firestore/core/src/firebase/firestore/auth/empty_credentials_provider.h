@@ -28,8 +28,7 @@ class EmptyCredentialsProvider : public CredentialsProvider {
  public:
   void GetToken(TokenListener completion) override;
   void InvalidateToken() override;
-  void SetCredentialChangeListener(
-      CredentialChangeListener changeListener) override;
+  void SetUserChangeListener(UserChangeListener listener) override;
 };
 
 }  // namespace auth

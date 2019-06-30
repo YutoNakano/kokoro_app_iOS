@@ -9,6 +9,7 @@ target 'kokoroAppiOS' do
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
+pod 'FirebaseUI/Twitter','~>5.2.2'
 pod 'SnapKit'
 pod 'Kingfisher'
 pod 'LTMorphingLabel'

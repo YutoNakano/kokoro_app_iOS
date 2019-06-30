@@ -20,6 +20,7 @@
 #include <string>
 
 #include "Firestore/core/src/firebase/firestore/model/database_id.h"
+#include "absl/strings/string_view.h"
 
 namespace firebase {
 namespace firestore {
@@ -43,12 +44,12 @@ class DatabaseInfo {
    * @param host The hostname of the Firestore backend.
    * @param ssl_enabled Whether to use SSL when connecting.
    */
-  DatabaseInfo(model::DatabaseId database_id,
-               std::string persistence_key,
-               std::string host,
+  DatabaseInfo(const firebase::firestore::model::DatabaseId& database_id,
+               absl::string_view persistence_key,
+               absl::string_view host,
                bool ssl_enabled);
 
-  const model::DatabaseId& database_id() const {
+  const firebase::firestore::model::DatabaseId& database_id() const {
     return database_id_;
   }
 
@@ -65,7 +66,7 @@ class DatabaseInfo {
   }
 
  private:
-  model::DatabaseId database_id_;
+  firebase::firestore::model::DatabaseId database_id_;
   std::string persistence_key_;
   std::string host_;
   bool ssl_enabled_;

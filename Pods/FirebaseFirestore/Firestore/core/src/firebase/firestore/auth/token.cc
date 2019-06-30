@@ -16,18 +16,16 @@
 
 #include "Firestore/core/src/firebase/firestore/auth/token.h"
 
-#include <utility>
-
 namespace firebase {
 namespace firestore {
 namespace auth {
 
-Token::Token(std::string token, User user)
-    : token_{std::move(token)}, user_{std::move(user)} {
+Token::Token(const absl::string_view token, const User& user)
+    : token_(token), user_(user) {
 }
 
 const Token& Token::Unauthenticated() {
-  static const Token kUnauthenticatedToken(std::string{},
+  static const Token kUnauthenticatedToken(absl::string_view(),
                                            User::Unauthenticated());
   return kUnauthenticatedToken;
 }

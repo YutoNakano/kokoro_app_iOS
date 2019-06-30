@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
+        
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "h8PaoRQDk5YMQEdihAVm3eYRu", consumerSecret: "ElNrTwoWSU9JoIt6muy0EsHD6xcwoVObLfBrqsPascW0Wr0HKS")
         return true
     }
 

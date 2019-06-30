@@ -62,17 +62,17 @@ final class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if isTest == true {
-//        Auth.auth().currentUser?.delete { error in
-//        if let error = error {
-//            print(error)
-//        } else {
-//            print("テストのためカレントユーザーデータ削除")
-//                }
-//            }
-//        }
+        if isTest == true {
+        Auth.auth().currentUser?.delete { error in
+        if let error = error {
+            print(error)
+        } else {
+            print("テストのためカレントユーザーデータ削除")
+                }
+            }
+        }
         
-//        UserManager.shared.signOut()
+        UserManager.shared.signOut()
         
         UserManager.shared.register { [weak self] state in
             switch state {
