@@ -26,9 +26,9 @@ final class TopViewController: UIViewController {
     
     lazy var startButton: MaterialButton = {
         let v = MaterialButton()
-        v.setTitle("診断を始める", for: .normal)
+        v.setTitle("診断する", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.titleLabel?.font = UIFont(name: "GillSans-Bold", size: 24)
         v.titleLabel?.textColor = UIColor.white
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
@@ -39,9 +39,11 @@ final class TopViewController: UIViewController {
     
     lazy var watchHistoryButton: MaterialButton = {
         let v = MaterialButton()
-        v.setTitle("過去の診断結果", for: .normal)
+        v.setTitle("過去の\n診断結果", for: .normal)
+        v.titleLabel?.textAlignment = .center
+        v.titleLabel?.numberOfLines = 2
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.titleLabel?.font = UIFont(name: "GillSans-Bold", size: 24)
         v.backgroundColor = UIColor.appColor(.gray)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(watchHistoryButtonTapped), for: .touchUpInside)
@@ -106,16 +108,15 @@ final class TopViewController: UIViewController {
             make.top.equalTo(140)
         }
         startButton.snp.makeConstraints { make in
-            make.width.equalTo(220)
+            make.width.equalTo(140)
             make.height.equalTo(80)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(80)
+            make.bottom.equalToSuperview().offset(-160)
+            make.right.equalToSuperview().offset(-40)
         }
         watchHistoryButton.snp.makeConstraints { make in
-            make.width.equalTo(220)
-            make.height.equalTo(80)
-            make.centerX.equalToSuperview()
-            make.centerY.equalTo(startButton.snp.bottom).offset(60)
+            make.size.equalTo(startButton.snp.size)
+            make.centerY.equalTo(startButton.snp.centerY)
+            make.left.equalToSuperview().offset(40)
         }
         lineButton.snp.makeConstraints { make in
             make.size.equalTo(68)
