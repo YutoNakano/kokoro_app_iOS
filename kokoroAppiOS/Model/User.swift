@@ -14,7 +14,7 @@ struct User: FirestoreModelReadable, FirestoreModelWritable {
     enum Field: String {
         case user_id
         case name
-        case diagnosticTime
+        case timeStamp
     }
     
     static var collectionRef: CollectionReference {
@@ -23,25 +23,25 @@ struct User: FirestoreModelReadable, FirestoreModelWritable {
     
     var user_id: String = ""
     var name: String = ""
-    var diagnosticTime: Timestamp
+    var timeStamp: Timestamp
     
     init(snapshot: DocumentSnapshot) {
         user_id = snapshot.stringValue(forKey: Field.user_id, default: "")
         name = snapshot.stringValue(forKey: Field.name, default: "")
-        diagnosticTime = snapshot.getValue(forKey: Field.diagnosticTime) ?? Timestamp()
+        timeStamp = snapshot.getValue(forKey: Field.timeStamp) ?? Timestamp()
     }
     
-    init(user_id: String, name: String, diagnosticTime: Timestamp = .init()) {
+    init(user_id: String, name: String, timeStamp: Timestamp = .init()) {
         self.user_id = user_id
         self.name = name
-        self.diagnosticTime = diagnosticTime
+        self.timeStamp = timeStamp
     }
     
     var writeFields: [Field: Any] {
         return [
             .user_id: user_id,
             .name: name,
-            .diagnosticTime: diagnosticTime]
+            .timeStamp: timeStamp]
     }
     
 }

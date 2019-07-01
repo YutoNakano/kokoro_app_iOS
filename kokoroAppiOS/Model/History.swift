@@ -17,7 +17,7 @@ struct History: FirestoreModelReadable, FirestoreModelWritable {
         case questions
         case selectedAnswers
         case memo
-        case diagnosticTime
+        case timeStamp
     }
     
     static var collectionRef: CollectionReference {
@@ -29,23 +29,23 @@ struct History: FirestoreModelReadable, FirestoreModelWritable {
     var memo: String = ""
     var questions = [String]()
     var selectedAnswers = [String]()
-    var diagnosticTime: Timestamp
+    var timeStamp: Timestamp
     
     init(snapshot: DocumentSnapshot) {
         title = snapshot.stringValue(forKey: Field.title, default: "")
         memo = snapshot.stringValue(forKey: Field.memo, default: "")
         questions = snapshot.getValue(forKey: Field.questions) ?? [""]
         selectedAnswers = snapshot.getValue(forKey: Field.selectedAnswers) ?? [""]
-        diagnosticTime = snapshot.getValue(forKey: Field.diagnosticTime) ?? Timestamp()
+        timeStamp = snapshot.getValue(forKey: Field.timeStamp) ?? Timestamp()
     }
     
-    init(user_id: String, title: String, questions: [String], selectedAnswers: [String], memo: String, diagnosticTime: Timestamp = .init()) {
+    init(user_id: String, title: String, questions: [String], selectedAnswers: [String], memo: String, timeStamp: Timestamp = .init()) {
         self.user_id = user_id
         self.title = title
         self.questions = questions
         self.selectedAnswers = selectedAnswers
         self.memo = memo
-        self.diagnosticTime = diagnosticTime
+        self.timeStamp = timeStamp
     }
     
     var writeFields: [Field : Any] {
@@ -54,6 +54,6 @@ struct History: FirestoreModelReadable, FirestoreModelWritable {
                 .questions: questions,
                 .selectedAnswers: selectedAnswers,
                 .memo: memo,
-                .diagnosticTime: diagnosticTime]
+                .timeStamp: timeStamp]
     }
 }

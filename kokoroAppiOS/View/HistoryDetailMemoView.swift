@@ -30,7 +30,7 @@ final class HistoryDetailMemoView: UIView {
     
     lazy var memoLabel: UILabel = {
         let v = UILabel()
-        v.numberOfLines = 0
+        v.numberOfLines = 10
         v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans", size: 16)
         v.backgroundColor = UIColor.appColor(.navbar)
@@ -55,13 +55,13 @@ final class HistoryDetailMemoView: UIView {
     
     func makeConstraints() {
         contentView.snp.makeConstraints { make in
-            make.height.equalTo(150)
+            make.height.equalTo(135)
             make.width.equalToSuperview().offset(-20)
             make.center.equalToSuperview()
         }
         titleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
-            make.top.equalToSuperview().offset(-20)
+            make.top.equalToSuperview().offset(-25)
         }
         memoLabel.snp.makeConstraints { make in
             make.width.equalTo(contentView.snp.width).offset(-15)

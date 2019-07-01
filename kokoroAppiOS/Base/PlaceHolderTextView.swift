@@ -20,7 +20,7 @@ class PlaceHolderTextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-        
+        makeConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,16 +28,13 @@ class PlaceHolderTextView: UITextView {
     }
     
     private lazy var placeHolderLabel: UILabel = {
-        let v = UILabel(frame: CGRect(x: 6.0, y: 6.0, width: 0.0, height: 0.0))
+        let v = UILabel()
         v.lineBreakMode = .byWordWrapping
         v.numberOfLines = 0
         v.font = self.font
-        v.textColor = UIColor(red: 0.0,
-                                                  green: 0.0,
-                                                  blue: 0.0980392,
-                                                  alpha: 0.22)
+        v.textColor = UIColor(red: 0.0,green: 0.0,blue: 0.0980392,alpha: 0.22)
         v.backgroundColor = .clear
-        self.addSubview(v)
+        addSubview(v)
         return v
     }()
     
@@ -51,7 +48,8 @@ class PlaceHolderTextView: UITextView {
     
     func makeConstraints() {
         placeHolderLabel.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(2)
+            make.top.equalToSuperview().offset(5)
         }
     }
     @objc private func textChanged(notification: NSNotification?) {

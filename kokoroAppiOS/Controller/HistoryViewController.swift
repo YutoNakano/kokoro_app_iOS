@@ -68,7 +68,7 @@ extension HistoryViewController {
         let user_id = user.data.user_id
         Document<History>.get(queryBuilder: { q in
             q.whereField("user_id", isEqualTo: user_id)
-                .order(by: "diagnosticTime", descending: true)}) { result in
+                .order(by: "timeStamp", descending: true)}) { result in
                     switch result {
                     case let .success(histories):
                         print(histories)
@@ -82,6 +82,14 @@ extension HistoryViewController {
     
     func passResultData(histories: [Document<History>]) {
         self.histories = histories
+        let array = histories.map { $0.data.timeStamp.dateValue() }
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd HH:mm"
+        print(format.string(from: array[0]))
+        print(format.string(from: array[1]))
+        print(format.string(from: array[2]))
+        print(format.string(from: array[3]))
+        print(format.string(from: array[4]))
         historyCollectionView.histories = histories
     }
 }
