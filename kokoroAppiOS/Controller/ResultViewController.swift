@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import LTMorphingLabel
+import FirebaseFirestore
 
 final class ResultViewController: UIViewController {
     lazy var contentView: UIView = {
@@ -65,7 +66,6 @@ final class ResultViewController: UIViewController {
     
     var questions: [String]
     var selectedAnswers: [SelectedAnswers]
-    let resultDetailViewController = ResultDetailViewController()
     
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
@@ -86,6 +86,11 @@ final class ResultViewController: UIViewController {
         setupView()
         makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
     }
     
     func setupView() {
@@ -123,10 +128,35 @@ final class ResultViewController: UIViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
+        let resultDetailViewController = ResultDetailViewController(title: resultTitle, questions: questions, selectedAnswers: selectedAnswers)
         self.navigationController?.pushViewController(resultDetailViewController, animated: true)
     }
     @objc func backButtonTapped() {
         self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+extension ResultViewController {
+    func fetchResultData(completion: @escaping () -> Void) {
+        let db = Firestore.firestore()
+        db.collection("results")
+            .document("psychosomatic")
+            .getDocument { document, error in
+                if let err = error {
+                    print(err)
+                } else {
+                    guard let title = document?.data()?["title"] as? String else { return }
+                    guard let description = document?.data()?["description"] as? String else { return }
+                    print(document?.data()! ?? "質問なし")
+                    completion()
+                    self.passQuestionResult(title: title, description: description)
+                }
+        }
+    }
+    
+    func passQuestionResult(title: String, description: String) {
+        resultTitle = title
+        resultDescription = description
     }
 }
 

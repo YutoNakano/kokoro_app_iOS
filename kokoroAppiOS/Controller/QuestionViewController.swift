@@ -31,7 +31,6 @@ final class QuestionViewController: UIViewController {
         return v
     }()
     
-    private var presenter: QuestionPresenterInput?
     var resultViewController: ResultViewController?
     var questionNumber = 0
     var questionTitle = ""
@@ -40,16 +39,12 @@ final class QuestionViewController: UIViewController {
     var questionTitles = [String]()
     var selectedAnswers = [SelectedAnswers]()
     
-    func inject(presenter: QuestionPresenterInput) {
-        self.presenter = presenter
-    }
-    
     override func loadView() {
         super.loadView()
         self.navigationItem.leftBarButtonItem = backButton
         questionContentView.viewController = self
         selectAnserView.viewController = self
-        reload()
+        fetchQuestionData()
         setupView()
         makeConstraints()
     }
@@ -83,66 +78,66 @@ extension QuestionViewController {
         resetQuestionNumber()
         navigationController?.popViewController(animated: true)
     }
-    func reload() {
-        presenter?.fetchQuestionData()
-    }
     
     func resetQuestionNumber() {
         questionTitles = [String]()
         selectedAnswers = [SelectedAnswers]()
         questionNumber = 0
-        reload()
+        fetchQuestionData()
     }
     
     func selectedAnswer(selected: SelectedAnswers) {
         appendQuestionToArray(selected: selected)
         questionNumber += 1
-        reload()
+        fetchQuestionData()
     }
     
     func appendQuestionToArray(selected: SelectedAnswers) {
         questionTitles.append(questionTitle)
         selectedAnswers.append(selected)
     }
-    func fetchResult(completion: @escaping () -> Void) {
-        presenter?.fetchResultData(completion: completion)
-    }
+    
     func goResultVC() {
+        resultViewController = ResultViewController(questions: questionTitles, selectedAnswers: selectedAnswers)
+        
+        guard let resultViewController = resultViewController else { return }
         prepareReciveData = ({ () in
-            self.resultViewController = ResultViewController(questions: self.questionTitles, selectedAnswers: self.selectedAnswers)
-            guard let resultViewController = self.resultViewController else { return }
-            self.navigationController?.pushViewController(resultViewController, animated: true)
-            resultViewController.resultDetailViewController.questions = self.questionTitles
-            resultViewController.resultDetailViewController.selectedAnswers = self.selectedAnswers
-            resultViewController.resultDetailViewController.delegate = self
+           self.navigationController?.pushViewController(resultViewController, animated: true)
         })
-        guard let completion = prepareReciveData else { return }
-        fetchResult(completion: completion)
+        
+        guard let prepareReciveData = prepareReciveData else { return }
+        resultViewController.fetchResultData(completion: prepareReciveData)
+
     }
 }
 
-extension QuestionViewController: QuestionPresenterOutput {
+extension QuestionViewController {
     func passQuestionText(questionText: String) {
         questionContentView.questionTitle = questionText
         questionTitle = questionText
     }
-    
-    func passQuestionResult(title: String, description: String) {
-        guard let resultViewController = resultViewController else { return }
-        resultTitle = title
-        resultViewController.resultTitle = title
-        resultViewController.resultDescription = description
+}
+
+extension QuestionViewController {
+    func fetchQuestionData(){
+        let db = Firestore.firestore()
+        db.collection("Questions")
+            .document(generateNextIndex().description)
+            .getDocument { document, error in
+                if let err = error {
+                    print(err)
+                } else {
+                    guard let text = document?.data()?["title"] as? String else { return }
+                    print(document?.data()! ?? "結果なし")
+                    self.passQuestionText(questionText: text)
+                }
+        }
     }
     
-    func giveQuextionIndex() -> Int {
-        return questionNumber
+    func generateNextIndex() -> Int {
+        return questionNumber + 1
     }
 }
 
-extension QuestionViewController: ResultDetailViewControllerDelegate {
-    func saveQuestions(memoText: String) {
-        
-        presenter?.saveQuestions(title: resultTitle, questions: questionTitles, selectedAnswers: selectedAnswers, memoText: memoText)
-    }
 
-}
+

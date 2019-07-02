@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import FirebaseFirestore
 
 protocol ResultDetailViewControllerDelegate: class {
     func saveQuestions(memoText: String)
@@ -59,6 +60,7 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
+    var resultTitle: String?
     var questions: [String]?
     var selectedAnswers: [SelectedAnswers]?
     weak var delegate: ResultDetailViewControllerDelegate?
@@ -66,6 +68,17 @@ final class ResultDetailViewController: UIViewController {
     let screenHeight = UIScreen.main.bounds.height
     let screenWidth = UIScreen.main.bounds.width
     let memoText: String = ""
+    
+    init(title: String, questions: [String], selectedAnswers: [SelectedAnswers]) {
+        self.resultTitle = title
+        self.questions = questions
+        self.selectedAnswers = selectedAnswers
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -108,7 +121,8 @@ final class ResultDetailViewController: UIViewController {
 
 extension ResultDetailViewController {
     @objc func goTopButtonTapped() {
-        delegate?.saveQuestions(memoText: memoTextView.text)
+        
+        saveQuestions(title: resultTitle!, questions: questions!, selectedAnswers: selectedAnswers!, memoText: memoTextView.text)
         navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
@@ -126,8 +140,7 @@ extension ResultDetailViewController {
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
-        
-//        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         UIView.animate(withDuration: duration!, animations: { () in
             let transform = CGAffineTransform(translationX: 0, y: -200)
@@ -155,5 +168,21 @@ extension ResultDetailViewController: UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         memoTextView.resignFirstResponder()
+    }
+}
+
+extension ResultDetailViewController {
+    func saveQuestions(title: String, questions: [String], selectedAnswers: [SelectedAnswers], memoText: String) {
+        guard let user = UserManager.shared.currentUser else { return }
+        let user_id = user.data.user_id
+        let answersString = selectedAnswers.map { $0.rawValue }
+        print(title)
+        print(questions)
+        print(answersString)
+        print(memoText)
+        let history = History(user_id: user_id, title: title, questions: questions, selectedAnswers: answersString, memo: memoText)
+        Document<History>.create(model: history) { result in
+            print(result)
+        }
     }
 }

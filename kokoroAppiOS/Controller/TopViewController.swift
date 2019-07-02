@@ -77,8 +77,7 @@ final class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let presenter = QuestionPresenter(view: questionViewController)
-        questionViewController.inject(presenter: presenter)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
