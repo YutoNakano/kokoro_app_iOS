@@ -123,38 +123,6 @@ final class TopViewController: UIViewController {
         }
     }
     
-//    func oldTest() {
-//        let db = Firestore.firestore()
-//        db.collection("histories")
-//            .document("P44STCsXh5FBOWmyIqj7")
-//            .getDocument { document, error in
-//                if let err = error {
-//                    print(err)
-//                } else {
-//                    guard let text = document?.data()?["timeStamp"] else { return }
-//                    let format = DateFormatter()
-//                    format.dateFormat = "MM/dd HH:mm"
-//                    print(format.string(from: text as! Date))
-//
-//                }
-//        }
-//
-//        let db2 = Firestore.firestore()
-//        db2.collection("histories")
-//            .document("RFO171O96ZV1YJwagFmc")
-//            .getDocument { document, error in
-//                if let err = error {
-//                    print(err)
-//                } else {
-//                    guard let text = document?.data()?["timeStamp"] else { return }
-//                    let format = DateFormatter()
-//                    format.dateFormat = "MM/dd HH:mm"
-//                    print(format.string(from: text as! Date))
-//
-//                }
-//        }
-//    }
-    
     func testHistory() {
         Document<History>.get { result in
             switch result {

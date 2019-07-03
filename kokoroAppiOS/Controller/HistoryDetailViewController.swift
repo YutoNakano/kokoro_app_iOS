@@ -55,6 +55,11 @@ final class HistoryDetailViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        historyDetailCollectionView.collectionView.flashScrollIndicators()
+    }
+    
     func setupView() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)

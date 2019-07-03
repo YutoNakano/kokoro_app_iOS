@@ -38,6 +38,16 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
+    lazy var maxCharactorsAlartLabel: UILabel = {
+        let v = UILabel()
+        v.text = "300文字以上は入力できません"
+        v.font = UIFont(name: "GillSans", size: 20)
+        v.backgroundColor = UIColor.appColor(.alartRed)
+        v.isHidden = true
+        view.addSubview(v)
+        return v
+    }()
+    
     lazy var goTopButton: MaterialButton = {
         let v = MaterialButton()
         v.setTitle("TOPへ", for: .normal)
@@ -79,7 +89,10 @@ final class ResultDetailViewController: UIViewController {
         super.loadView()
         setupView()
         makeConstraints()
-        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         configureObserver()
         guard let questions = questions else { return }
         resultCollectionView.questions = questions
@@ -87,7 +100,13 @@ final class ResultDetailViewController: UIViewController {
         resultCollectionView.selectedAnswers = selectedAnswers
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        resultCollectionView.collectionView.flashScrollIndicators()
+    }
+    
     func setupView() {
+        self.navigationItem.leftBarButtonItem = backButton
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
@@ -104,6 +123,10 @@ final class ResultDetailViewController: UIViewController {
             make.top.equalTo(resultCollectionView.snp.bottom).offset(30)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
+        }
+        maxCharactorsAlartLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(memoTextView.snp.bottom).offset(5)
         }
         goTopButton.snp.makeConstraints { make in
             make.top.equalTo(memoTextView.snp.bottom).offset(40)
@@ -163,6 +186,17 @@ extension ResultDetailViewController: UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         memoTextView.resignFirstResponder()
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let text: String = textView.text
+        if textView.text.count > 300 {
+            let zero = text.startIndex
+            let start = text.index(zero, offsetBy: 0)
+            let end = text.index(zero, offsetBy: 300)
+            textView.text = String(text[start...end])
+            textView.isHidden = false
+        }
     }
 }
 

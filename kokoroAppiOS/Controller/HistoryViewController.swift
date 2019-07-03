@@ -42,6 +42,11 @@ final class HistoryViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+    }
+    
     func makeConstraints() {
         historyCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
