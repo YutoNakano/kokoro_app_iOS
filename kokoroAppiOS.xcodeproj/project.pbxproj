@@ -42,6 +42,7 @@
 		57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DD622BE5E5300142ADF /* FirestoreModel.swift */; };
 		57721DD922BE66EA00142ADF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DD822BE66EA00142ADF /* User.swift */; };
 		57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */; };
+		57787F8F22CC637A001C0ADB /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57787F8E22CC637A001C0ADB /* ResultContentView.swift */; };
 		577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */; };
 		5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
@@ -105,6 +106,7 @@
 		57721DD622BE5E5300142ADF /* FirestoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreModel.swift; sourceTree = "<group>"; };
 		57721DD822BE66EA00142ADF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSnapshot.swift; sourceTree = "<group>"; };
+		57787F8E22CC637A001C0ADB /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
 		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailMemoView.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +220,7 @@
 				577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */,
 				5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */,
 				5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */,
+				57787F8E22CC637A001C0ADB /* ResultContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				5757F41022BEF18A008783F6 /* History.swift in Sources */,
 				5769D4A922C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
+				57787F8F22CC637A001C0ADB /* ResultContentView.swift in Sources */,
 				5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
 				57721DD122BDFA6400142ADF /* NavigationController.swift in Sources */,

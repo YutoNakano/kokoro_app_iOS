@@ -21,6 +21,11 @@ class PlaceHolderTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         makeConstraints()
+        font = UIFont(name: "GillSans", size: 16)
+        textColor = UIColor.appColor(.character)
+        layer.cornerRadius = 5
+        contentInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
+        backgroundColor = UIColor.appColor(.navbar)
     }
     
     required init?(coder aDecoder: NSCoder) {

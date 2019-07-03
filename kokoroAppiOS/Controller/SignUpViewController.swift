@@ -33,7 +33,7 @@ final class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerUser()
+        authUser()
     }
     
     func setupView() {
@@ -53,7 +53,7 @@ final class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController {
-    func registerUser() {
+    func authUser() {
         let twitterButton = TWTRLogInButton { (session, error) in
             if let err = error {
                 print("Twitter login has failed with error:\(err)")
@@ -69,14 +69,15 @@ extension SignUpViewController {
                     print("認証失敗:\(err)")
                     return
                 }
-                self.registerUser(user: authDataResult)
+//                self.registerUser(completion: <#T##() -> Void#>)
+                self.registerUser()
             })
         }
         twitterButton.center = self.view.center
         self.view.addSubview(twitterButton)
     }
     
-    func registerUser(user: AuthDataResult?) {
+    func registerUser() {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
@@ -90,4 +91,20 @@ extension SignUpViewController {
         }
 
     }
+    
+//    func registerUser() {
+//        guard let user = Auth.auth().currentUser else { return }
+//
+//        let userModel = User(user_id: user.uid, name: user.displayName ?? "Error")
+//        Document<User>.create(model: userModel) { result in
+//            switch result {
+//            case let .success(success):
+//                print(success)
+////                completion()
+//                UserManager.shared.fetch()
+//            case let .failure(error):
+//                print(error)
+//            }
+//    }
+//    }
 }

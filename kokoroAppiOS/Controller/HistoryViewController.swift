@@ -85,11 +85,11 @@ extension HistoryViewController {
         let array = histories.map { $0.data.timeStamp.dateValue() }
         let format = DateFormatter()
         format.dateFormat = "MM/dd HH:mm"
-        print(format.string(from: array[0]))
-        print(format.string(from: array[1]))
-        print(format.string(from: array[2]))
-        print(format.string(from: array[3]))
-        print(format.string(from: array[4]))
+//        print(format.string(from: array[0]))
+//        print(format.string(from: array[1]))
+//        print(format.string(from: array[2]))
+//        print(format.string(from: array[3]))
+//        print(format.string(from: array[4]))
         historyCollectionView.histories = histories
     }
 }

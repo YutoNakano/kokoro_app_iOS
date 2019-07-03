@@ -25,9 +25,6 @@ final class ResultDetailViewController: UIViewController {
     
     lazy var memoTextView: PlaceHolderTextView = {
         let v = PlaceHolderTextView()
-        v.font = UIFont(name: "GillSans", size: 16)
-        v.textColor = UIColor.appColor(.character)
-        v.layer.cornerRadius = 5
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         toolBar.barStyle = UIBarStyle.default
         toolBar.sizeToFit()
@@ -36,13 +33,11 @@ final class ResultDetailViewController: UIViewController {
         toolBar.items = [spacer, closeButton]
         v.inputAccessoryView = toolBar
         v.placeHolder = "MEMO"
-        v.contentInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
-        v.backgroundColor = UIColor.appColor(.navbar)
-        
         v.delegate = self
         view.addSubview(v)
         return v
     }()
+    
     lazy var goTopButton: MaterialButton = {
         let v = MaterialButton()
         v.setTitle("TOPへ", for: .normal)

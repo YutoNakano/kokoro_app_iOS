@@ -134,6 +134,10 @@ extension QuestionViewController {
         }
     }
     
+//    func fetchQuestionData() {
+//
+//    }
+//
     func generateNextIndex() -> Int {
         return questionNumber + 1
     }
