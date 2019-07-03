@@ -107,6 +107,7 @@
 		57721DD822BE66EA00142ADF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSnapshot.swift; sourceTree = "<group>"; };
 		57787F8E22CC637A001C0ADB /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
+		57787F9022CC78C6001C0ADB /* kokoroAppiOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kokoroAppiOS.entitlements; sourceTree = "<group>"; };
 		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailMemoView.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +251,7 @@
 		57C9204522B6117700A8B45D /* kokoroAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				57787F9022CC78C6001C0ADB /* kokoroAppiOS.entitlements */,
 				57721DCB22BDD66200142ADF /* Model */,
 				574E046022B6565A008628C5 /* Base */,
 				576DD23022BBC83A00B83A8E /* AppDelegate.swift */,
@@ -377,6 +379,11 @@
 				TargetAttributes = {
 					57C9204222B6117700A8B45D = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					57C9205622B6117900A8B45D = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -745,6 +752,7 @@
 			baseConfigurationReference = 6BBBD5F9FCDE252ADA0FAAA0 /* Pods-kokoroAppiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kokoroAppiOS/kokoroAppiOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 372QHH966L;
 				INFOPLIST_FILE = kokoroAppiOS/Info.plist;
@@ -764,6 +772,7 @@
 			baseConfigurationReference = C1F762CBBAA04E8C2137D838 /* Pods-kokoroAppiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kokoroAppiOS/kokoroAppiOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 372QHH966L;
 				INFOPLIST_FILE = kokoroAppiOS/Info.plist;

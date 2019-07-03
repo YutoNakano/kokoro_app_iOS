@@ -16,6 +16,9 @@ PODS:
   - Firebase/Firestore (5.4.1):
     - Firebase/CoreOnly
     - FirebaseFirestore (= 0.12.6)
+  - Firebase/Messaging (5.4.1):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.0.3)
   - Firebase/Storage (5.4.1):
     - Firebase/CoreOnly
     - FirebaseStorage (= 3.0.0)
@@ -44,6 +47,11 @@ PODS:
     - Protobuf (~> 3.1)
   - FirebaseInstanceID (3.1.1):
     - FirebaseCore (~> 5.0)
+  - FirebaseMessaging (3.0.3):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
   - FirebaseStorage (3.0.0):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -53,6 +61,8 @@ PODS:
     - FirebaseUI/Auth
     - TwitterKit (~> 3.0)
   - GoogleToolboxForMac/Defines (2.2.1)
+  - GoogleToolboxForMac/Logger (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
   - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
     - GoogleToolboxForMac/Defines (= 2.2.1)
   - gRPC (1.21.0):
@@ -99,6 +109,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - Firebase/Messaging
   - Firebase/Storage
   - FirebaseUI/Twitter (~> 5.2.2)
   - Kingfisher
@@ -116,6 +127,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseFirestore
     - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebaseStorage
     - FirebaseUI
     - GoogleToolboxForMac
@@ -144,6 +156,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 4c28e3b9708ba48a765e76515f913a71596eb5dd
   FirebaseFirestore: d4a3a7787624e612298a320da95935b8dc036c1d
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
+  FirebaseMessaging: f43eb0c0e1da096e659de6f713038e74862a62cd
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
   FirebaseUI: 09519bf436a055cd696bf68687d624423150e4c0
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
@@ -164,6 +177,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 7569cd43175fd269fe0a94d4f5f13941a30e919d
+PODFILE CHECKSUM: 5d5d7e9b18207d18485c961aa0156706fc2f9aa4
 
 COCOAPODS: 1.7.2
