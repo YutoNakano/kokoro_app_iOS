@@ -102,12 +102,12 @@ extension QuestionViewController {
         
         guard let resultViewController = resultViewController else { return }
         prepareReciveData = ({ () in
-           self.navigationController?.pushViewController(resultViewController, animated: true)
+            self.navigationController?.pushViewController(resultViewController, animated: true)
         })
         
         guard let prepareReciveData = prepareReciveData else { return }
         resultViewController.fetchResultData(completion: prepareReciveData)
-
+        
     }
 }
 
@@ -134,10 +134,10 @@ extension QuestionViewController {
         }
     }
     
-//    func fetchQuestionData() {
-//
-//    }
-//
+    //    func fetchQuestionData() {
+    //
+    //    }
+    //
     func generateNextIndex() -> Int {
         return questionNumber + 1
     }

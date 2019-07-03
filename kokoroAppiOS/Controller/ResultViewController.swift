@@ -42,7 +42,7 @@ final class ResultViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
-
+    
     init(questions: [String], selectedAnswers: [SelectedAnswers]) {
         self.questions = questions
         self.selectedAnswers = selectedAnswers
@@ -62,7 +62,7 @@ final class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     func setupView() {
@@ -78,7 +78,7 @@ final class ResultViewController: UIViewController {
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
         }
-
+        
         goNextButton.snp.makeConstraints { make in
             make.top.equalTo(resultContentView.snp.bottom).offset(80)
             make.centerX.equalTo(resultContentView.snp.centerX)

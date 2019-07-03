@@ -34,6 +34,9 @@ final class HistoryCollectionView: UIView {
     weak var delegate: HistoryCollectionViewDelegate?
     
     var histories: [Document<History>] = []
+    
+    var resultTitles: [String] = []
+    var timeStamps: [String] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,13 +61,14 @@ final class HistoryCollectionView: UIView {
 
 extension HistoryCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return histories.count
+        return resultTitles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell: HistoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as?
             HistoryCollectionViewCell else { fatalError() }
-        cell.configure(histories: histories[indexPath.row])
+        cell.timeStampLabel.text = timeStamps[indexPath.row]
+        cell.resultLabel.text = "診断結果: \(resultTitles[indexPath.row])"
         return cell
     }
 }

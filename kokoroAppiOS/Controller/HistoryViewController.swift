@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseFirestore
 
 final class HistoryViewController: UIViewController {
     
@@ -26,6 +27,10 @@ final class HistoryViewController: UIViewController {
     var watchButtonTapHandler: (() -> Void)?
     var didSelectCellTapHandler: (() -> Void)?
     var histories: [Document<History>] = []
+    
+    var questions: [[String]] = []
+    var selectedAnswers: [[String]] = []
+    var memos: [String] = []
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -66,40 +71,58 @@ extension HistoryViewController {
     func fetchResultData(completion: @escaping () -> Void) {
         guard let user = UserManager.shared.currentUser else { return }
         let user_id = user.data.user_id
-        Document<History>.get(queryBuilder: { q in
-            q.whereField("user_id", isEqualTo: user_id)
-                .order(by: "timeStamp", descending: true)}) { result in
-                    switch result {
-                    case let .success(histories):
-                        print(histories)
-                        self.passResultData(histories: histories)
-                        completion()
-                    case let .failure(error):
-                        print(error)
-                    }
+//        Document<History>.get(queryBuilder: { q in
+//            q.whereField("user_id", isEqualTo: user_id)
+//                .order(by: "timeStamp", descending: true)}) { result in
+//                    switch result {
+//                    case let .success(histories):
+//                        print(histories)
+//                        self.passResultData(histories: histories)
+//                        completion()
+//                    case let .failure(error):
+//                        print(error)
+//                    }
+//        }
+        
+        let db = Firestore.firestore()
+        let query = db.collection("histories").whereField("user_id", isEqualTo: user_id)
+            .order(by: "timeStamp", descending: true)
+        
+        query.getDocuments { document, error in
+            if let err = error {
+                print(err)
+            } else {
+                let questions: [[String]] = document?.documents.map { $0.data()["questions"] } as! [[String]]
+                print(questions)
+                let selectAnswers: [[String]] = document?.documents.map { $0.data()["selectedAnswers"] } as! [[String]]
+                let resultTitle: [String] = document?.documents.map { $0.data()["title"] } as! [String]
+                let memo: [String] = document?.documents.map { $0.data()["memo"] } as! [String]
+                let timeStamp: [Date] = document?.documents.map { $0.data()["timeStamp"] } as! [Date]
+                self.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: timeStamp)
+                completion()
+            }
+            }
         }
-    }
     
-    func passResultData(histories: [Document<History>]) {
-        self.histories = histories
-        let array = histories.map { $0.data.timeStamp.dateValue() }
-        let format = DateFormatter()
-        format.dateFormat = "MM/dd HH:mm"
-//        print(format.string(from: array[0]))
-//        print(format.string(from: array[1]))
-//        print(format.string(from: array[2]))
-//        print(format.string(from: array[3]))
-//        print(format.string(from: array[4]))
-        historyCollectionView.histories = histories
-    }
+    func passResultData(questions:[[String]], selectedAnswers: [[String]], memos: [String], titles: [String], timeStamps: [Date]) {
+            historyCollectionView.resultTitles = titles
+            let format = DateFormatter()
+            format.dateFormat = "MM/dd HH:mm"
+            let dates = timeStamps.map { format.string(from: $0) }
+            historyCollectionView.timeStamps = dates
+        
+            self.questions = questions
+            self.selectedAnswers = selectedAnswers
+            self.memos = memos
+        }
 }
 
 extension HistoryViewController: HistoryCollectionViewDelegate {
     func didSelectRow(indexPath: IndexPath) {
-        let questions = histories[indexPath.row].data.questions
-       let selectedAnswersString = histories[indexPath.row].data.selectedAnswers
-        let memoText = histories[indexPath.row].data.memo
-        let historyDetailViewController = HistoryDetailViewController(questions: questions, selectedAnswersString: selectedAnswersString, memoText: memoText)
+        let questionsArray = questions[indexPath.row]
+        let selectedAnswersString = selectedAnswers[indexPath.row]
+        let memoText = memos[indexPath.row]
+        let historyDetailViewController = HistoryDetailViewController(questions: questionsArray, selectedAnswersString: selectedAnswersString, memoText: memoText)
         navigationController?.pushViewController(historyDetailViewController, animated: true)
     }
 }

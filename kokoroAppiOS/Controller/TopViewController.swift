@@ -77,7 +77,7 @@ final class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        testHistory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +120,52 @@ final class TopViewController: UIViewController {
         lineButton.snp.makeConstraints { make in
             make.size.equalTo(68)
             make.bottom.right.equalToSuperview().offset(-25)
+        }
+    }
+    
+//    func oldTest() {
+//        let db = Firestore.firestore()
+//        db.collection("histories")
+//            .document("P44STCsXh5FBOWmyIqj7")
+//            .getDocument { document, error in
+//                if let err = error {
+//                    print(err)
+//                } else {
+//                    guard let text = document?.data()?["timeStamp"] else { return }
+//                    let format = DateFormatter()
+//                    format.dateFormat = "MM/dd HH:mm"
+//                    print(format.string(from: text as! Date))
+//
+//                }
+//        }
+//
+//        let db2 = Firestore.firestore()
+//        db2.collection("histories")
+//            .document("RFO171O96ZV1YJwagFmc")
+//            .getDocument { document, error in
+//                if let err = error {
+//                    print(err)
+//                } else {
+//                    guard let text = document?.data()?["timeStamp"] else { return }
+//                    let format = DateFormatter()
+//                    format.dateFormat = "MM/dd HH:mm"
+//                    print(format.string(from: text as! Date))
+//
+//                }
+//        }
+//    }
+    
+    func testHistory() {
+        Document<History>.get { result in
+            switch result {
+            case let .success(success): print(success)
+            let format = DateFormatter()
+            format.dateFormat = "MM/dd HH:mm"
+            let timestamps = success.map { $0.data.timeStamp.dateValue() }.map { format.string(from: $0)}
+            print(timestamps)
+
+            case let .failure(failure): print(failure)
+            }
         }
     }
     
