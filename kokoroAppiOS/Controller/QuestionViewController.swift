@@ -32,9 +32,12 @@ final class QuestionViewController: UIViewController {
     }()
     
     var resultViewController: ResultViewController?
-    var questionNumber = 0
     var questionTitle = ""
     var resultTitle = ""
+    var isResult = false
+    var yesQuestionIndex = 0
+    var noQuestionIndex = 0
+    var nextIndex = 1
     var prepareReciveData: (() -> Void)?
     var questionTitles = [String]()
     var selectedAnswers = [SelectedAnswers]()
@@ -82,16 +85,18 @@ extension QuestionViewController {
     func resetQuestionNumber() {
         questionTitles = [String]()
         selectedAnswers = [SelectedAnswers]()
-        questionNumber = 0
+        yesQuestionIndex = 0
+        noQuestionIndex = 0
+        nextIndex = 1
         fetchQuestionData()
     }
     
     func selectedAnswer(selected: SelectedAnswers) {
         appendQuestionToArray(selected: selected)
-        questionNumber += 1
+        nextIndex = selected == .yes ? yesQuestionIndex : noQuestionIndex
         fetchQuestionData()
     }
-    
+    // ResultDetailVC表示用の配列を作成
     func appendQuestionToArray(selected: SelectedAnswers) {
         questionTitles.append(questionTitle)
         selectedAnswers.append(selected)
@@ -106,7 +111,7 @@ extension QuestionViewController {
         })
         
         guard let prepareReciveData = prepareReciveData else { return }
-        resultViewController.fetchResultData(completion: prepareReciveData)
+        resultViewController.fetchResultData(resultIndex: nextIndex, completion: prepareReciveData)
         
     }
 }
@@ -122,19 +127,23 @@ extension QuestionViewController {
     func fetchQuestionData(){
         let db = Firestore.firestore()
         db.collection("Questions")
-            .document(generateNextIndex().description)
+            .document(nextIndex.description)
             .getDocument { document, error in
                 if let err = error {
                     print(err)
                 } else {
+                    guard let isResult = document?.data()?["isResult"] as? Bool else { return }
+                    self.isResult = isResult
+                    guard let yesQuestionIndex = document?.data()?["yes"] as? Int else { return }
+                    self.yesQuestionIndex = yesQuestionIndex
+                    guard let noQuestionIndex = document?.data()?["no"] as? Int else { return }
+                    self.noQuestionIndex = noQuestionIndex
+                    
                     guard let text = document?.data()?["title"] as? String else { return }
-                    print(document?.data()! ?? "結果なし")
+                    print(document?.data()! ?? "質問なし")
                     self.passQuestionText(questionText: text)
                 }
         }
-    }
-    func generateNextIndex() -> Int {
-        return questionNumber + 1
     }
 }
 

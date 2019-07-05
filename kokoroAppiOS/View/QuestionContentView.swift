@@ -14,6 +14,7 @@ final class QuestionContentView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
     var viewController: QuestionViewController?
+    var questionNumber = 0
     var questionTitle: String? {
         didSet {
             self.setModel()
@@ -97,9 +98,8 @@ final class QuestionContentView: UIView {
     }
     
     func setModel() {
-        guard var number = viewController?.questionNumber else { return }
-        number += 1
-        questionNumberLabel.text = number.description
+//        questionNumber += 1
+        questionNumberLabel.text = "なし"
         guard let title = questionTitle else { return }
         questionTitleLabel.text = title
     }

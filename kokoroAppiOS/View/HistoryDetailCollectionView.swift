@@ -16,7 +16,7 @@ final class HistoryDetailCollectionView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
         layout.sectionInset = UIEdgeInsets(top: 15, left: 10, bottom: 35, right: 10)
-        layout.itemSize = CGSize(width: screenWidth - 24, height: 87)
+        layout.itemSize = CGSize(width: screenWidth - 24, height: 132)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = UIColor.appColor(.background)
         v.register(HistoryDetailCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")

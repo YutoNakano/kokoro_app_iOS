@@ -99,17 +99,17 @@ extension ResultViewController {
 }
 
 extension ResultViewController {
-    func fetchResultData(completion: @escaping () -> Void) {
+    func fetchResultData(resultIndex: Int, completion: @escaping () -> Void) {
         let db = Firestore.firestore()
-        db.collection("results")
-            .document("psychosomatic")
+        db.collection("Questions")
+            .document(resultIndex.description)
             .getDocument { document, error in
                 if let err = error {
                     print(err)
                 } else {
                     guard let title = document?.data()?["title"] as? String else { return }
                     guard let description = document?.data()?["description"] as? String else { return }
-                    print(document?.data()! ?? "質問なし")
+                    print(document?.data()! ?? "結果なし")
                     completion()
                     self.passQuestionResult(title: title, description: description)
                 }
