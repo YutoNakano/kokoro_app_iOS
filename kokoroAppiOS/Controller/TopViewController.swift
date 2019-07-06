@@ -94,7 +94,7 @@ final class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testHistory()
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,20 +143,6 @@ final class TopViewController: UIViewController {
             make.bottom.right.equalToSuperview().offset(-25)
         }
     }
-    
-    func testHistory() {
-        Document<History>.get { result in
-            switch result {
-            case let .success(success): print(success)
-            let format = DateFormatter()
-            format.dateFormat = "MM/dd HH:mm"
-            let timestamps = success.map { $0.data.timeStamp.dateValue() }.map { format.string(from: $0)}
-            print(timestamps)
-            case let .failure(failure): print(failure)
-            }
-        }
-    }
-    
 }
 
 
@@ -172,11 +158,9 @@ extension TopViewController {
     @objc func startButtonTapped() {
         questionViewController.resetQuestionNumber()
         navigationController?.pushViewController(questionViewController, animated: true)
-        setModel()
     }
     @objc func watchHistoryButtonTapped() {
-        self.navigationController?.pushViewController(self.historyViewController, animated: true)
-        setModel()
+        self.navigationController?.pushViewController(historyViewController, animated: true)
     }
     
     @objc func signOutButtonTapped() {

@@ -18,14 +18,3 @@ final class NavigationController: UINavigationController {
         return navigationController
     }
 }
-
-
-//static func build() -> NavigationController{
-//    let topViewController = TopViewController()
-//    var navigationController = NavigationController()
-//    let charactorCompletion = ({ () in
-//        navigationController = NavigationController(rootViewController: topViewController)
-//    })
-//    topViewController.fetchCharactorDescription(completion: charactorCompletion)
-//    return navigationController
-//}

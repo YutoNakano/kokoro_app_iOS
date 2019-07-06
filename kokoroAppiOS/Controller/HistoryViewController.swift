@@ -76,19 +76,6 @@ extension HistoryViewController {
     func fetchResultData(completion: @escaping () -> Void) {
         guard let user = UserManager.shared.currentUser else { return }
         let user_id = user.data.user_id
-//        Document<History>.get(queryBuilder: { q in
-//            q.whereField("user_id", isEqualTo: user_id)
-//                .order(by: "timeStamp", descending: true)}) { result in
-//                    switch result {
-//                    case let .success(histories):
-//                        print(histories)
-//                        self.passResultData(histories: histories)
-//                        completion()
-//                    case let .failure(error):
-//                        print(error)
-//                    }
-//        }
-        
         let db = Firestore.firestore()
         let query = db.collection("histories").whereField("user_id", isEqualTo: user_id)
             .order(by: "timeStamp", descending: true)
