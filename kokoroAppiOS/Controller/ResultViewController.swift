@@ -42,6 +42,7 @@ final class ResultViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
+    let userDefaults = UserDefaults.standard
     
     init(questions: [String], selectedAnswers: [SelectedAnswers]) {
         self.questions = questions
@@ -94,6 +95,7 @@ extension ResultViewController {
         self.navigationController?.pushViewController(resultDetailViewController, animated: true)
     }
     @objc func backButtonTapped() {
+        userDefaults.removeObject(forKey: "memoText")
         self.navigationController?.popToRootViewController(animated: true)
     }
 }

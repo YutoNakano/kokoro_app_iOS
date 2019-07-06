@@ -18,6 +18,17 @@ protocol TopViewControllerDelegate: class {
 
 final class TopViewController: UIViewController {
     
+    
+    lazy var charactorDescriptionLabel: UILabel = {
+        let v = UILabel()
+        v.numberOfLines = 4
+        v.adjustsFontSizeToFitWidth = true
+        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.textColor = UIColor.appColor(.character)
+        view.addSubview(v)
+        return v
+    }()
+    
     lazy var charactorImageView: UIImageView = {
         let v = UIImageView(image: UIImage(named: "charactor"))
         view.addSubview(v)
@@ -71,6 +82,12 @@ final class TopViewController: UIViewController {
     let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
     let signUpViewController = SignUpViewController()
+    let screenWidth = UIScreen.main.bounds.width
+    var charactorDescriptionArray: [String] = [] {
+        didSet {
+            setModel()
+        }
+    }
     
     var watchButtonTapHandler: (() -> Void)?
     
@@ -89,8 +106,7 @@ final class TopViewController: UIViewController {
         super.loadView()
         setupView()
         makeConstraints()
-        
-        
+        fetchCharactorDescription()
     }
     
     func setupView() {
@@ -102,9 +118,14 @@ final class TopViewController: UIViewController {
     }
     
     func makeConstraints() {
+        charactorDescriptionLabel.snp.makeConstraints { make in
+            make.width.equalTo(screenWidth - 80)
+            make.top.equalToSuperview().offset(60)
+            make.centerX.equalToSuperview()
+        }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(140)
+            make.bottom.equalTo(startButton.snp.top).offset(-80)
         }
         startButton.snp.makeConstraints { make in
             make.width.equalTo(140)
@@ -131,7 +152,6 @@ final class TopViewController: UIViewController {
             format.dateFormat = "MM/dd HH:mm"
             let timestamps = success.map { $0.data.timeStamp.dateValue() }.map { format.string(from: $0)}
             print(timestamps)
-
             case let .failure(failure): print(failure)
             }
         }
@@ -152,9 +172,11 @@ extension TopViewController {
     @objc func startButtonTapped() {
         questionViewController.resetQuestionNumber()
         navigationController?.pushViewController(questionViewController, animated: true)
+        setModel()
     }
     @objc func watchHistoryButtonTapped() {
         self.navigationController?.pushViewController(self.historyViewController, animated: true)
+        setModel()
     }
     
     @objc func signOutButtonTapped() {
@@ -188,5 +210,25 @@ extension TopViewController {
                 preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
         }
+    }
+    
+    func fetchCharactorDescription() {
+        let db = Firestore.firestore()
+        db.collection("charactor_description")
+        .document(1.description)
+            .getDocument { document, error in
+                if let err = error {
+                    print(err)
+                } else {
+                    guard let descriptionArray = document?.data()?["text"] as? [String] else { return }
+                    self.charactorDescriptionArray = descriptionArray
+                }
+        }
+    }
+    func setModel() {
+        charactorDescriptionLabel.text = charactorDescriptionArray[generateRandomNumber()]
+    }
+    func generateRandomNumber() -> Int {
+        return Int.random(in: 0 ... charactorDescriptionArray.count - 1)
     }
 }

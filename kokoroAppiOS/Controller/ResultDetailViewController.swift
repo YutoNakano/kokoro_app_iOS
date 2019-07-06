@@ -50,7 +50,7 @@ final class ResultDetailViewController: UIViewController {
     
     lazy var goTopButton: MaterialButton = {
         let v = MaterialButton()
-        v.setTitle("TOPへ", for: .normal)
+        v.setTitle("保存・TOPへ", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
         v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
         v.backgroundColor = UIColor.appColor(.yesPink)
@@ -72,7 +72,8 @@ final class ResultDetailViewController: UIViewController {
     
     let screenHeight = UIScreen.main.bounds.height
     let screenWidth = UIScreen.main.bounds.width
-    let memoText: String = ""
+    var memoText: String = ""
+    let userDefaults = UserDefaults.standard
     
     init(title: String, questions: [String], selectedAnswers: [SelectedAnswers]) {
         self.resultTitle = title
@@ -94,10 +95,12 @@ final class ResultDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureObserver()
+        readMemoText()
         guard let questions = questions else { return }
         resultCollectionView.questions = questions
         guard let selectedAnswers = selectedAnswers else { return }
         resultCollectionView.selectedAnswers = selectedAnswers
+        memoTextView.changeVisiblePlaceHolder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -139,11 +142,13 @@ final class ResultDetailViewController: UIViewController {
 
 extension ResultDetailViewController {
     @objc func goTopButtonTapped() {
-        
+        userDefaults.removeObject(forKey: "memoText")
         saveQuestions(title: resultTitle!, questions: questions!, selectedAnswers: selectedAnswers!, memoText: memoTextView.text)
         navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
+        userDefaults.set(memoText, forKey: "memoText")
+        userDefaults.synchronize()
         navigationController?.popViewController(animated: true)
     }
     @objc func closeButtonTapped() {
@@ -176,6 +181,10 @@ extension ResultDetailViewController {
         })
         memoTextView.changeVisiblePlaceHolder()
     }
+    
+    func readMemoText() {
+        memoTextView.text = userDefaults.string(forKey: "memoText")
+    }
 }
 
 extension ResultDetailViewController: UITextViewDelegate {
@@ -189,12 +198,12 @@ extension ResultDetailViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        let text: String = textView.text
+            memoText = textView.text
         if textView.text.count > 300 {
-            let zero = text.startIndex
-            let start = text.index(zero, offsetBy: 0)
-            let end = text.index(zero, offsetBy: 300)
-            textView.text = String(text[start...end])
+            let zero = memoText.startIndex
+            let start = memoText.index(zero, offsetBy: 0)
+            let end = memoText.index(zero, offsetBy: 300)
+            textView.text = String(memoText[start...end])
             textView.isHidden = false
         }
     }
