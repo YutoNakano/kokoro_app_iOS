@@ -39,7 +39,7 @@ final class TopViewController: UIViewController {
         let v = MaterialButton()
         v.setTitle("診断する", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-Bold", size: 24)
+        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 24)
         v.titleLabel?.textColor = UIColor.white
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
@@ -54,7 +54,7 @@ final class TopViewController: UIViewController {
         v.titleLabel?.textAlignment = .center
         v.titleLabel?.numberOfLines = 2
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-Bold", size: 24)
+        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 24)
         v.backgroundColor = UIColor.appColor(.gray)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(watchHistoryButtonTapped), for: .touchUpInside)
@@ -92,7 +92,7 @@ final class TopViewController: UIViewController {
     var watchButtonTapHandler: (() -> Void)?
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { 
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
     }

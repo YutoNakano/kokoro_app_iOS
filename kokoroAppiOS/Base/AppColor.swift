@@ -22,6 +22,7 @@ public enum AppColorType: String {
     case navbar = "FEFFFF"
     case lineGreen = "50B535"
     case alartRed = "FD5105"
+    case twitterBlue = "72B4E1"
 }
 
 extension UIColor {

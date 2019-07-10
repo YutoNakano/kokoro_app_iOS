@@ -20,6 +20,8 @@
 		574E045B22B6564A008628C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045A22B6564A008628C5 /* Extensions.swift */; };
 		574E045F22B6564E008628C5 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045E22B6564E008628C5 /* View.swift */; };
 		574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */; };
+		574E40E422D587E100099341 /* SecondIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E40E322D587E100099341 /* SecondIntroView.swift */; };
+		574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E40E522D587EE00099341 /* FirstIntroView.swift */; };
 		5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5754079422C0CD670097D07F /* PlaceHolderTextView.swift */; };
 		5757F40E22BEF0E3008783F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */; };
 		5757F41022BEF18A008783F6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F40F22BEF18A008783F6 /* History.swift */; };
@@ -46,6 +48,7 @@
 		57787F8F22CC637A001C0ADB /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57787F8E22CC637A001C0ADB /* ResultContentView.swift */; };
 		577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */; };
 		5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */; };
+		57AFBBDA22D57480006F8002 /* ThirdIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBBD922D57480006F8002 /* ThirdIntro.swift */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
 		57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */; };
 		57C9205C22B6117900A8B45D /* kokoroAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9205B22B6117900A8B45D /* kokoroAppiOSTests.swift */; };
@@ -85,6 +88,8 @@
 		574E045A22B6564A008628C5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		574E045E22B6564E008628C5 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+kingfisher.swift"; sourceTree = "<group>"; };
+		574E40E322D587E100099341 /* SecondIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondIntroView.swift; sourceTree = "<group>"; };
+		574E40E522D587EE00099341 /* FirstIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstIntroView.swift; sourceTree = "<group>"; };
 		5754079422C0CD670097D07F /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5757F40F22BEF18A008783F6 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 		57787F9022CC78C6001C0ADB /* kokoroAppiOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kokoroAppiOS.entitlements; sourceTree = "<group>"; };
 		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailMemoView.swift; sourceTree = "<group>"; };
+		57AFBBD922D57480006F8002 /* ThirdIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdIntro.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C9204D22B6117900A8B45D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C9205022B6117900A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -225,6 +231,9 @@
 				5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */,
 				57787F8E22CC637A001C0ADB /* ResultContentView.swift */,
 				575AFD2822D090A500607816 /* charactorDescriptionView.swift */,
+				57AFBBD922D57480006F8002 /* ThirdIntro.swift */,
+				574E40E322D587E100099341 /* SecondIntroView.swift */,
+				574E40E522D587EE00099341 /* FirstIntroView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -568,12 +577,14 @@
 				57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */,
 				5757F41022BEF18A008783F6 /* History.swift in Sources */,
 				5769D4A922C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift in Sources */,
+				57AFBBDA22D57480006F8002 /* ThirdIntro.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
 				57787F8F22CC637A001C0ADB /* ResultContentView.swift in Sources */,
 				5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
 				57721DD122BDFA6400142ADF /* NavigationController.swift in Sources */,
 				57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */,
+				574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */,
 				576DD23322BBC9BF00B83A8E /* UIViewAnimation.swift in Sources */,
 				574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */,
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,
@@ -589,6 +600,7 @@
 				574D36FC22BC62F90041D39E /* HistoryViewController.swift in Sources */,
 				57721DCD22BDD68200142ADF /* UserManager.swift in Sources */,
 				576DD22722BBC69500B83A8E /* ResultViewController.swift in Sources */,
+				574E40E422D587E100099341 /* SecondIntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

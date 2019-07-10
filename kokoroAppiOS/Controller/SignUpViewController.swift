@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import FirebaseAuth
 import FirebaseFirestore
-import FirebaseUI
 import FirebaseStorage
 import LTMorphingLabel
 import KRProgressHUD
@@ -18,22 +17,59 @@ import TwitterKit
 
 
 final class SignUpViewController: UIViewController {
-
-    lazy var titleImageView: UIImageView = {
-        let v = UIImageView(image: UIImage(named: "logo"))
+    
+    lazy var scrollView: UIScrollView = {
+        let v = UIScrollView()
+        v.isPagingEnabled = true
+        v.showsHorizontalScrollIndicator = false
+        v.delegate = self
+        v.contentSize = CGSize(width: self.view.frame.size.width * 3, height: 200)
         view.addSubview(v)
         return v
     }()
     
+    lazy var firstIntroView: FirstIntroView = {
+        let v = FirstIntroView(frame: CGRect(x: 0, y: 0, width:
+            view.frame.size.width, height: view.frame.size.height))
+        return v
+    }()
+    
+    lazy var secondIntroView: SecondIntroView = {
+        let v = SecondIntroView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: view.frame.size.height))
+        return v
+    }()
+    
+    lazy var thirdIntroView: ThirdIntroView = {
+        let v = ThirdIntroView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: view.frame.size.height))
+        v.delegate = self
+        return v
+    }()
+    
+    func addIntroviews() {
+        let introViews = [firstIntroView, secondIntroView, thirdIntroView]
+        introViews.forEach { scrollView.addSubview($0) }
+    }
+    
+    lazy var pageControll: UIPageControl = {
+        let v = UIPageControl()
+        v.numberOfPages = 3
+        v.pageIndicatorTintColor = UIColor.white
+        v.currentPageIndicatorTintColor = UIColor.appColor(.yesPink)
+        view.addSubview(v)
+        return v
+    }()
+    
+    let screenWidth = UIScreen.main.bounds.width
+    
     override func loadView() {
         super.loadView()
         setupView()
+        addIntroviews()
         makeConstraints()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authUser()
     }
     
     func setupView() {
@@ -44,17 +80,21 @@ final class SignUpViewController: UIViewController {
     }
     
     func makeConstraints() {
-        titleImageView.snp.makeConstraints { make in
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        pageControll.snp.makeConstraints { make in
+            make.height.equalTo(40)
             make.centerX.equalToSuperview()
-            make.top.equalTo(100)
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
     
 }
 
 extension SignUpViewController {
-    func authUser() {
-        let twitterButton = TWTRLogInButton { (session, error) in
+    func twitterAuth() {
+        TWTRTwitter.sharedInstance().logIn { (session, error) in
             if let err = error {
                 print("Twitter login has failed with error:\(err)")
                 return
@@ -69,12 +109,9 @@ extension SignUpViewController {
                     print("認証失敗:\(err)")
                     return
                 }
-//                self.registerUser(completion: <#T##() -> Void#>)
                 self.registerUser()
             })
         }
-        twitterButton.center = self.view.center
-        self.view.addSubview(twitterButton)
     }
     
     func registerUser() {
@@ -89,22 +126,17 @@ extension SignUpViewController {
                 ])
             print("認証成功: \(displayName)")
         }
-
     }
-    
-//    func registerUser() {
-//        guard let user = Auth.auth().currentUser else { return }
-//
-//        let userModel = User(user_id: user.uid, name: user.displayName ?? "Error")
-//        Document<User>.create(model: userModel) { result in
-//            switch result {
-//            case let .success(success):
-//                print(success)
-////                completion()
-//                UserManager.shared.fetch()
-//            case let .failure(error):
-//                print(error)
-//            }
-//    }
-//    }
+}
+
+extension SignUpViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControll.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+    }
+}
+
+extension SignUpViewController: ThirdIntroViewDelegate {
+    func twitterLoginButtonTapped() {
+        twitterAuth()
+    }
 }
