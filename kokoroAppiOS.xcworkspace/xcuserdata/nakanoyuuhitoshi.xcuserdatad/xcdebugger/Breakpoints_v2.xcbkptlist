@@ -19,53 +19,5 @@
             landmarkType = "13">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Model/FirestoreModel.swift"
-            timestampString = "583851138.102296"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "get(parentDocument:queryBuilder:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static (extension in kokoroAppiOS):kokoroAppiOS.Document&lt; where A: kokoroAppiOS.FirestoreModelReadable&gt;.get&lt;A where A1: kokoroAppiOS.FirestoreModel&gt;(parentDocument: kokoroAppiOS.Document&lt;A1&gt;, queryBuilder: (__C.FIRQuery) -&gt; __C.FIRQuery, completion: (Swift.Result&lt;Swift.Array&lt;kokoroAppiOS.Document&lt;A&gt;&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "kokoroAppiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/FirestoreModel.swift"
-                  timestampString = "584433537.860774"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "312">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; kokoroAppiOS.Document&lt;A&gt; in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static (extension in kokoroAppiOS):kokoroAppiOS.Document&lt; where A: kokoroAppiOS.FirestoreModelReadable&gt;.get&lt;A where A1: kokoroAppiOS.FirestoreModel&gt;(parentDocument: kokoroAppiOS.Document&lt;A1&gt;, queryBuilder: (__C.FIRQuery) -&gt; __C.FIRQuery, completion: (Swift.Result&lt;Swift.Array&lt;kokoroAppiOS.Document&lt;A&gt;&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "kokoroAppiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/FirestoreModel.swift"
-                  timestampString = "584433537.863256"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "88">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

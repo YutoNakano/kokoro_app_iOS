@@ -45,7 +45,7 @@ final class ThirdIntroView: UIView {
     }
     
     func setup() {
-        backgroundColor = UIColor.appColor(.background)
+        backgroundColor = UIColor.appColor(.yesPink)
     }
     
     func makeConstraints() {
