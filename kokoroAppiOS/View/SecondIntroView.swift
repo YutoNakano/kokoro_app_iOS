@@ -28,6 +28,12 @@ final class SecondIntroView: UIView {
         return v
     }()
     
+    lazy var clockImageView: UIImageView = {
+        let v = UIImageView(image: UIImage(named: "clock"))
+        contentView.addSubview(v)
+        return v
+    }()
+    
     lazy var desctiptionLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
@@ -39,9 +45,17 @@ final class SecondIntroView: UIView {
         return v
     }()
     
+    lazy var charactorWhiteView: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.appColor(.background)
+        v.layer.cornerRadius = 10
+        contentView.addSubview(v)
+        return v
+    }()
+    
     lazy var charactorImageView: UIImageView = {
         let v = UIImageView(image: UIImage(named: "charactor"))
-        contentView.addSubview(v)
+        charactorWhiteView.addSubview(v)
         return v
     }()
     
@@ -62,13 +76,23 @@ final class SecondIntroView: UIView {
     }
     
     func makeConstraints() {
+        charactorWhiteView.snp.makeConstraints { make in
+            make.height.equalTo(220)
+            make.width.equalTo(110)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(screenHeight / 6)
+        }
         contentView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(screenHeight / 2)
         }
-        charactorImageView.snp.makeConstraints { make in
-            make.top.equalTo(screenHeight / 6)
+        clockImageView.snp.makeConstraints { make in
+            make.bottom.equalTo(charactorWhiteView.snp.top).offset(-10)
             make.centerX.equalToSuperview()
+        }
+        charactorImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview().offset(-8)
         }
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

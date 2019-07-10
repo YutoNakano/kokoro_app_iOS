@@ -41,6 +41,16 @@ final class QuestionViewController: UIViewController {
     var prepareReciveData: (() -> Void)?
     var questionTitles = [String]()
     var selectedAnswers = [SelectedAnswers]()
+    var topViewController: TopViewController?
+    
+    init(topVC: TopViewController) {
+        topViewController = topVC
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -103,11 +113,12 @@ extension QuestionViewController {
     }
     
     func goResultVC() {
-        resultViewController = ResultViewController(questions: questionTitles, selectedAnswers: selectedAnswers)
+        resultViewController = ResultViewController(topVC: topViewController!, questions: questionTitles, selectedAnswers: selectedAnswers)
         
         guard let resultViewController = resultViewController else { return }
         prepareReciveData = ({ () in
-            self.navigationController?.pushViewController(resultViewController, animated: true)
+            let navi = NavigationController(rootViewController: resultViewController)
+           self.present(navi, animated: true, completion: nil)
         })
         
         guard let prepareReciveData = prepareReciveData else { return }

@@ -31,20 +31,17 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
-    lazy var backButton: UIBarButtonItem = {
-        let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
-        return v
-    }()
-    
     var questions: [String]
     var selectedAnswers: [SelectedAnswers]
+    var topViewController: TopViewController?
     
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
     let userDefaults = UserDefaults.standard
     
-    init(questions: [String], selectedAnswers: [SelectedAnswers]) {
+    init(topVC: TopViewController, questions: [String], selectedAnswers: [SelectedAnswers]) {
+        topViewController = topVC
         self.questions = questions
         self.selectedAnswers = selectedAnswers
         super.init(nibName: nil, bundle: nil)
@@ -58,7 +55,6 @@ final class ResultViewController: UIViewController {
         super.loadView()
         setupView()
         makeConstraints()
-        self.navigationItem.leftBarButtonItem = backButton
     }
     
     override func viewDidLoad() {
@@ -70,11 +66,13 @@ final class ResultViewController: UIViewController {
         view.backgroundColor = UIColor.appColor(.background)
         resultContentView.titleLabel.text = "診断結果: \(resultTitle)"
         resultContentView.descriptionLabel.text = resultDescription
+        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        
     }
     
     func makeConstraints() {
         resultContentView.snp.makeConstraints { make in
-            make.top.equalTo(30)
+            make.top.equalTo(120)
             make.height.equalTo(300)
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
@@ -91,12 +89,8 @@ final class ResultViewController: UIViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
-        let resultDetailViewController = ResultDetailViewController(title: resultTitle, questions: questions, selectedAnswers: selectedAnswers)
+        let resultDetailViewController = ResultDetailViewController(topVC: topViewController!, title: resultTitle, questions: questions, selectedAnswers: selectedAnswers)
         self.navigationController?.pushViewController(resultDetailViewController, animated: true)
-    }
-    @objc func backButtonTapped() {
-        userDefaults.removeObject(forKey: "memoText")
-        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 

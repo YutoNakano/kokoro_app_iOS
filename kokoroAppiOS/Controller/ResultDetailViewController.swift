@@ -74,9 +74,10 @@ final class ResultDetailViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     var memoText: String = ""
     let userDefaults = UserDefaults.standard
-    let topViewController = TopViewController()
+    let topViewController: TopViewController?
     
-    init(title: String, questions: [String], selectedAnswers: [SelectedAnswers]) {
+    init(topVC: TopViewController,title: String, questions: [String], selectedAnswers: [SelectedAnswers]) {
+        topViewController = topVC
         self.resultTitle = title
         self.questions = questions
         self.selectedAnswers = selectedAnswers
@@ -145,7 +146,8 @@ extension ResultDetailViewController {
     @objc func goTopButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
         saveQuestions(title: resultTitle!, questions: questions!, selectedAnswers: selectedAnswers!, memoText: memoTextView.text)
-        navigationController?.pushViewController(topViewController, animated: true)
+        topViewController?.setModel()
+        navigationController?.pushViewController(topViewController!, animated: true)
     }
     @objc func backButtonTapped() {
         userDefaults.set(memoText, forKey: "memoText")

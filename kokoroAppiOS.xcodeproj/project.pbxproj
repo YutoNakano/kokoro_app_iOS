@@ -27,6 +27,7 @@
 		5757F41022BEF18A008783F6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F40F22BEF18A008783F6 /* History.swift */; };
 		5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */; };
 		575AFD2922D090A500607816 /* charactorDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575AFD2822D090A500607816 /* charactorDescriptionView.swift */; };
+		5768D72922D619BC00E084B4 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768D72822D619BC00E084B4 /* SignInViewController.swift */; };
 		5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */; };
 		5769D4A722C70972006E15CB /* HistoryDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */; };
 		5769D4A922C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A822C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift */; };
@@ -95,6 +96,7 @@
 		5757F40F22BEF18A008783F6 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionView.swift; sourceTree = "<group>"; };
 		575AFD2822D090A500607816 /* charactorDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = charactorDescriptionView.swift; sourceTree = "<group>"; };
+		5768D72822D619BC00E084B4 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
 		5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailCollectionView.swift; sourceTree = "<group>"; };
 		5769D4A822C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				57721DD022BDFA6400142ADF /* NavigationController.swift */,
 				574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */,
 				5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */,
+				5768D72822D619BC00E084B4 /* SignInViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,
 				5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */,
 				574E045722B65622008628C5 /* AppColor.swift in Sources */,
+				5768D72922D619BC00E084B4 /* SignInViewController.swift in Sources */,
 				574B128222C8816A00B4F304 /* Alart.swift in Sources */,
 				576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */,
 				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,
