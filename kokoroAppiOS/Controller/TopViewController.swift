@@ -23,7 +23,8 @@ final class TopViewController: UIViewController {
         let v = UILabel()
         v.numberOfLines = 4
         v.adjustsFontSizeToFitWidth = true
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.textAlignment = .center
+        v.font = UIFont(name: "GillSans-Bold", size: 24)
         v.textColor = UIColor.appColor(.character)
         view.addSubview(v)
         return v
@@ -74,8 +75,10 @@ final class TopViewController: UIViewController {
         return v
     }()
     
-    lazy var signOutButton: UIBarButtonItem = {
-        let v = UIBarButtonItem(image: UIImage(named: "user"), style: .plain, target: self, action: #selector(signOutButtonTapped))
+    lazy var signOutButton: UIButton = {
+        let v = UIButton(target: self, action: #selector(signOutButtonTapped))
+        v.layer.masksToBounds = true
+        v.layer.cornerRadius = 20
         return v
     }()
     
@@ -107,6 +110,7 @@ final class TopViewController: UIViewController {
         setupView()
         makeConstraints()
         fetchCharactorDescription()
+        fetchUserData()
     }
     
     func setupView() {
@@ -114,10 +118,14 @@ final class TopViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
-        navigationItem.rightBarButtonItem = signOutButton
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signOutImageView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signOutButton)
     }
     
     func makeConstraints() {
+        signOutButton.snp.makeConstraints { make in
+            make.size.equalTo(36)
+        }
         charactorDescriptionLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 80)
             make.top.equalToSuperview().offset(60)
@@ -209,6 +217,29 @@ extension TopViewController {
                 }
         }
     }
+    
+    func fetchUserData() {
+        if let user = Auth.auth().currentUser {
+            let userRef = Firestore.firestore().collection("users").document(user.uid)
+            userRef.getDocument(completion: { (document, error) in
+                if let document = document, document.exists {
+                    let profileImageUrl = document["profileImageUrl"]
+                    let name = document["name"]
+                    let url = URL(string: profileImageUrl as! String)
+                    do {
+                        let data = try Data(contentsOf: url!)
+                        let image = UIImage(data: data)
+                        self.signOutButton.setImage(image, for: .normal)
+//                        self.signOutImageView.image = image?.withRenderingMode(.alwaysOriginal)
+                        self.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
+                    }catch let err {
+                        print(err)
+                    }
+                }
+            })
+        }
+    }
+    
     func setModel() {
         charactorDescriptionLabel.text = charactorDescriptionArray[generateRandomNumber()]
     }
