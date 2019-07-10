@@ -8,12 +8,12 @@
 
 import UIKit
 import SnapKit
-
+import FirebaseFirestore
 
 final class HistoryCollectionViewCell: UICollectionViewCell {
     
     
-    lazy var diagnosticTime: UILabel = {
+    lazy var timeStampLabel: UILabel = {
         let v = UILabel()
         v.font = UIFont(name: "GillSans-UltraBold", size: 16)
         v.text = "3/24 3:24"
@@ -58,7 +58,7 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     }
     
     func makeConstraints() {
-        diagnosticTime.snp.makeConstraints { make in
+        timeStampLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(5)
             make.left.equalToSuperview().offset(10)
         }
@@ -76,11 +76,11 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
 
 extension HistoryCollectionViewCell {
     
-    func configure(histories: Document<History>) {
-        let date = histories.data.timeStamp.dateValue()
-        let format = DateFormatter()
-        format.dateFormat = "MM/dd HH:mm"
-        diagnosticTime.text = format.string(from: date)
-        resultLabel.text = "診断結果: \(histories.data.title)"
-    }
+//    func configure(resultTitles: [String], timeStamps: [TimeStamp]) {
+//        let date = .data.timeStamp.dateValue()
+//        let format = DateFormatter()
+//        format.dateFormat = "MM/dd HH:mm"
+//        timeStamp.text = format.string(from: date)
+//        resultLabel.text = "診断結果: \(histories.data.title)"
+//    }
 }

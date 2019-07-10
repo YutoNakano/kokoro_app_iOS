@@ -37,6 +37,10 @@ struct History: FirestoreModelReadable, FirestoreModelWritable {
         questions = snapshot.getValue(forKey: Field.questions) ?? [""]
         selectedAnswers = snapshot.getValue(forKey: Field.selectedAnswers) ?? [""]
         timeStamp = snapshot.getValue(forKey: Field.timeStamp) ?? Timestamp()
+        let time = timeStamp.dateValue()
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd HH:mm"
+        print(format.string(from: time))
     }
     
     init(user_id: String, title: String, questions: [String], selectedAnswers: [String], memo: String, timeStamp: Timestamp = .init()) {

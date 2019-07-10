@@ -14,6 +14,7 @@ final class QuestionContentView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
     var viewController: QuestionViewController?
+    var questionNumber = 0
     var questionTitle: String? {
         didSet {
             self.setModel()
@@ -45,30 +46,20 @@ final class QuestionContentView: UIView {
         let v = LTMorphingLabel()
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
-        v.adjustsFontSizeToFitWidth = true
         v.font = UIFont(name: "GillSans-UltraBold", size: 24)
         v.morphingEffect = .scale
         contentView.addSubview(v)
         return v
     }()
     
-    lazy var maxNunberLabel: UILabel = {
-        let v = UILabel()
-        v.textColor = UIColor.appColor(.character)
-        v.text = " /10"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
-        contentView.addSubview(v)
-        return v
-    }()
-    
     lazy var questionTitleLabel: UILabel = {
         let v = UILabel()
-        v.numberOfLines = 0
+        v.numberOfLines = 6
         v.text = ""
+        v.preferredMaxLayoutWidth = 0
+        v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans-UltraBold", size: 24)
-        v.lineBreakMode = .byWordWrapping
-        v.sizeToFit()
         contentView.addSubview(v)
         return v
     }()
@@ -97,9 +88,7 @@ final class QuestionContentView: UIView {
     }
     
     func setModel() {
-        guard var number = viewController?.questionNumber else { return }
-        number += 1
-        questionNumberLabel.text = number.description
+        questionNumberLabel.text = "なし"
         guard let title = questionTitle else { return }
         questionTitleLabel.text = title
     }
@@ -117,15 +106,9 @@ final class QuestionContentView: UIView {
             make.top.equalTo(20)
         }
         questionNumberLabel.snp.makeConstraints { make in
-//            make.width.equalTo(38)
             make.height.equalTo(30)
             make.top.equalTo(questionLabel.snp.top).offset(-5)
             make.left.equalTo(questionLabel.snp.right).offset(7)
-        }
-        maxNunberLabel.snp.makeConstraints { make in
-            make.width.equalTo(100)
-            make.left.equalTo(questionNumberLabel.snp.right).offset(3)
-            make.top.equalTo(questionLabel.snp.top)
         }
         underLineView.snp.makeConstraints { make in
             make.height.equalTo(2)
@@ -136,7 +119,7 @@ final class QuestionContentView: UIView {
         questionTitleLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 70)
             make.centerX.equalToSuperview()
-            make.top.equalTo(questionNumberLabel.snp.bottom).offset(40)
+            make.top.equalTo(questionNumberLabel.snp.bottom).offset(20)
         }
     }
 }

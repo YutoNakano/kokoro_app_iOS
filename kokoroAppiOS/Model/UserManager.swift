@@ -37,13 +37,13 @@ final class UserManager {
     }
     
     private init() {
-        // ログインしているユーザーをリッスンする
+        // ユーザーの登録状態が変化したら呼ばれる
         hundle = Auth.auth().addStateDidChangeListener { [unowned self] _, user in
             self.fetch(authUser: user)
         }
     }
     
-    private func fetch(authUser: Firebase.User? = Auth.auth().currentUser) {
+    func fetch(authUser: Firebase.User? = Auth.auth().currentUser) {
         guard let authUser =  authUser else {
             currentState = .notAuthenticated
             return
@@ -65,33 +65,9 @@ final class UserManager {
     }
     
     func register(listener: @escaping (State) -> Void) {
+        // listenersにSwitch文クロージャが入ってる
         listeners.append(listener)
         listener(currentState)
-    }
-    
-    func signUp(user_id: String, withName name: String, completion:@escaping (Result<String, Error>) -> Void) {
-        // 認証済み
-        if Auth.auth().currentUser != nil {
-            return 
-        }
-        //　新規登録の処理
-        Auth.auth().signInAnonymously { authDataResult, error in
-            switch Result(authDataResult, error) {
-            case let .success(authDataResult):
-                let db = Firestore.firestore()
-                let settings = db.settings
-                settings.areTimestampsInSnapshotsEnabled = true
-                db.settings = settings
-                db.collection("users").document(authDataResult.user.uid).setData([
-                    "user_id": user_id,
-                    "name": name
-                    ])
-                completion(.success(self.practice(name: "登録成功")))
-            case let .failure(error):
-                print(error)
-                completion(.failure(error))
-            }
-        }
     }
     
     func practice(name: String) -> String {

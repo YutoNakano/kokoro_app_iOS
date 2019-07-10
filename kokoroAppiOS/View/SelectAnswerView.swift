@@ -25,7 +25,7 @@ final class SelectAnserView: UIView {
         let v = MaterialButton()
         v.setTitle("YES", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 26)
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.addTarget(self, action: #selector(yesButtonTapped), for: .touchUpInside)
         v.layer.cornerRadius = 20
@@ -37,7 +37,7 @@ final class SelectAnserView: UIView {
         let v = MaterialButton()
         v.setTitle("NO", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 17)
+        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 26)
         v.backgroundColor = UIColor.appColor(.noBlue)
         v.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
         v.layer.cornerRadius = 20
@@ -70,12 +70,12 @@ final class SelectAnserView: UIView {
         }
         yesButton.snp.makeConstraints { make in
             make.width.equalTo(140)
-            make.height.equalTo(50)
+            make.height.equalTo(87)
             make.right.bottom.equalToSuperview().offset(-40)
         }
         noButton.snp.makeConstraints { make in
             make.width.equalTo(140)
-            make.height.equalTo(50)
+            make.height.equalTo(87)
             make.left.equalToSuperview().offset(40)
             make.bottom.equalToSuperview().offset(-40)
         }
@@ -85,16 +85,16 @@ final class SelectAnserView: UIView {
 extension SelectAnserView {
     @objc func yesButtonTapped() {
         viewController?.selectedAnswer(selected: .yes)
-        validateLimitCount()
+        validateIsResult()
     }
     @objc func noButtonTapped() {
         viewController?.selectedAnswer(selected: .no)
-        validateLimitCount()
+        validateIsResult()
     }
     
-    func validateLimitCount() {
-        if let number = viewController?.questionNumber {
-            guard number < limitNumber else {
+    func validateIsResult() {
+        if let isResult = viewController?.isResult {
+            guard isResult else {
                 viewController?.goResultVC()
                 return
             }

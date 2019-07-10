@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import FirebaseFirestore
 
 protocol ResultDetailViewControllerDelegate: class {
     func saveQuestions(memoText: String)
@@ -24,9 +25,6 @@ final class ResultDetailViewController: UIViewController {
     
     lazy var memoTextView: PlaceHolderTextView = {
         let v = PlaceHolderTextView()
-        v.font = UIFont(name: "GillSans", size: 16)
-        v.textColor = UIColor.appColor(.character)
-        v.layer.cornerRadius = 5
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         toolBar.barStyle = UIBarStyle.default
         toolBar.sizeToFit()
@@ -35,16 +33,24 @@ final class ResultDetailViewController: UIViewController {
         toolBar.items = [spacer, closeButton]
         v.inputAccessoryView = toolBar
         v.placeHolder = "MEMO"
-        v.contentInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
-        v.backgroundColor = UIColor.appColor(.navbar)
-        
         v.delegate = self
         view.addSubview(v)
         return v
     }()
+    
+    lazy var maxCharactorsAlartLabel: UILabel = {
+        let v = UILabel()
+        v.text = "300文字以上は入力できません"
+        v.font = UIFont(name: "GillSans", size: 20)
+        v.backgroundColor = UIColor.appColor(.alartRed)
+        v.isHidden = true
+        view.addSubview(v)
+        return v
+    }()
+    
     lazy var goTopButton: MaterialButton = {
         let v = MaterialButton()
-        v.setTitle("TOPへ", for: .normal)
+        v.setTitle("保存・TOPへ", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
         v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
         v.backgroundColor = UIColor.appColor(.yesPink)
@@ -59,27 +65,52 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
+    var resultTitle: String?
     var questions: [String]?
     var selectedAnswers: [SelectedAnswers]?
     weak var delegate: ResultDetailViewControllerDelegate?
     
     let screenHeight = UIScreen.main.bounds.height
     let screenWidth = UIScreen.main.bounds.width
-    let memoText: String = ""
+    var memoText: String = ""
+    let userDefaults = UserDefaults.standard
+    let topViewController = TopViewController()
+    
+    init(title: String, questions: [String], selectedAnswers: [SelectedAnswers]) {
+        self.resultTitle = title
+        self.questions = questions
+        self.selectedAnswers = selectedAnswers
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
         setupView()
         makeConstraints()
-        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         configureObserver()
+        readMemoText()
         guard let questions = questions else { return }
         resultCollectionView.questions = questions
         guard let selectedAnswers = selectedAnswers else { return }
         resultCollectionView.selectedAnswers = selectedAnswers
+        memoTextView.changeVisiblePlaceHolder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        resultCollectionView.collectionView.flashScrollIndicators()
     }
     
     func setupView() {
+        self.navigationItem.leftBarButtonItem = backButton
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
@@ -97,6 +128,10 @@ final class ResultDetailViewController: UIViewController {
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }
+        maxCharactorsAlartLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(memoTextView.snp.bottom).offset(5)
+        }
         goTopButton.snp.makeConstraints { make in
             make.top.equalTo(memoTextView.snp.bottom).offset(40)
             make.centerX.equalTo(memoTextView.snp.centerX)
@@ -108,10 +143,13 @@ final class ResultDetailViewController: UIViewController {
 
 extension ResultDetailViewController {
     @objc func goTopButtonTapped() {
-        delegate?.saveQuestions(memoText: memoTextView.text)
-        navigationController?.popToRootViewController(animated: true)
+        userDefaults.removeObject(forKey: "memoText")
+        saveQuestions(title: resultTitle!, questions: questions!, selectedAnswers: selectedAnswers!, memoText: memoTextView.text)
+        navigationController?.pushViewController(topViewController, animated: true)
     }
     @objc func backButtonTapped() {
+        userDefaults.set(memoText, forKey: "memoText")
+        userDefaults.synchronize()
         navigationController?.popViewController(animated: true)
     }
     @objc func closeButtonTapped() {
@@ -126,8 +164,7 @@ extension ResultDetailViewController {
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
-        
-//        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         UIView.animate(withDuration: duration!, animations: { () in
             let transform = CGAffineTransform(translationX: 0, y: -200)
@@ -145,6 +182,10 @@ extension ResultDetailViewController {
         })
         memoTextView.changeVisiblePlaceHolder()
     }
+    
+    func readMemoText() {
+        memoTextView.text = userDefaults.string(forKey: "memoText")
+    }
 }
 
 extension ResultDetailViewController: UITextViewDelegate {
@@ -155,5 +196,32 @@ extension ResultDetailViewController: UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         memoTextView.resignFirstResponder()
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+            memoText = textView.text
+        if textView.text.count > 300 {
+            let zero = memoText.startIndex
+            let start = memoText.index(zero, offsetBy: 0)
+            let end = memoText.index(zero, offsetBy: 300)
+            textView.text = String(memoText[start...end])
+            textView.isHidden = false
+        }
+    }
+}
+
+extension ResultDetailViewController {
+    func saveQuestions(title: String, questions: [String], selectedAnswers: [SelectedAnswers], memoText: String) {
+        guard let user = UserManager.shared.currentUser else { return }
+        let user_id = user.data.user_id
+        let answersString = selectedAnswers.map { $0.rawValue }
+        print(title)
+        print(questions)
+        print(answersString)
+        print(memoText)
+        let history = History(user_id: user_id, title: title, questions: questions, selectedAnswers: answersString, memo: memoText)
+        Document<History>.create(model: history) { result in
+            print(result)
+        }
     }
 }

@@ -30,13 +30,23 @@ final class HistoryDetailMemoView: UIView {
     
     lazy var memoLabel: UILabel = {
         let v = UILabel()
-        v.numberOfLines = 10
+        v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
         v.font = UIFont(name: "GillSans", size: 16)
         v.backgroundColor = UIColor.appColor(.navbar)
+        v.sizeToFit()
+        scrollView.addSubview(v)
+        return v
+    }()
+    
+    lazy var scrollView: UIScrollView = {
+        let v = UIScrollView()
+        v.contentSize = CGSize(width: 300, height: 300)
         contentView.addSubview(v)
         return v
     }()
+    
+    let screenWidth = UIScreen.main.bounds.width
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,9 +73,14 @@ final class HistoryDetailMemoView: UIView {
             make.left.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(-25)
         }
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         memoLabel.snp.makeConstraints { make in
-            make.width.equalTo(contentView.snp.width).offset(-15)
-            make.center.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview()
+            make.width.equalTo(contentView.snp.width).offset(-20)
         }
     }
     
