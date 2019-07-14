@@ -82,35 +82,29 @@ final class TopViewController: UIViewController {
         return v
     }()
     
-    let questionViewController = QuestionViewController()
     let historyViewController = HistoryViewController()
-    let signUpViewController = SignUpViewController()
+    let signInViewController = SignInViewController()
     let screenWidth = UIScreen.main.bounds.width
-    var charactorDescriptionArray: [String] = [] {
-        didSet {
-            setModel()
-        }
-    }
+    var charactorDescriptionArray: [String] = []
     
     var watchButtonTapHandler: (() -> Void)?
-    
-    
-    override func viewDidLoad() { 
-        super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        charactorAnimation()
-    }
     
     override func loadView() {
         super.loadView()
         setupView()
         makeConstraints()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
         fetchCharactorDescription()
         fetchUserData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        charactorAnimation()
     }
     
     func setupView() {
@@ -164,6 +158,7 @@ extension TopViewController {
     }
     
     @objc func startButtonTapped() {
+        let questionViewController = QuestionViewController(topVC: self)
         questionViewController.resetQuestionNumber()
         navigationController?.pushViewController(questionViewController, animated: true)
     }
@@ -177,7 +172,7 @@ extension TopViewController {
             message: "サインアウトしますか?",
             button: ("サインアウト", .destructive, {
                 UserManager.shared.signOut()
-                self.navigationController?.pushViewController(self.signUpViewController, animated: true)
+                self.navigationController?.pushViewController(self.signInViewController, animated: true)
             }),
             on: self
         )
@@ -225,16 +220,18 @@ extension TopViewController {
                 if let document = document, document.exists {
                     let profileImageUrl = document["profileImageUrl"]
                     let name = document["name"]
-                    let url = URL(string: profileImageUrl as! String)
+                    guard let urlString = profileImageUrl as? String else { return }
+                    if let url = URL(string: urlString) {
                     do {
-                        let data = try Data(contentsOf: url!)
+                        let data = try Data(contentsOf: url)
                         let image = UIImage(data: data)
                         self.signOutButton.setImage(image, for: .normal)
-//                        self.signOutImageView.image = image?.withRenderingMode(.alwaysOriginal)
+
                         self.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
                     }catch let err {
                         print(err)
                     }
+                }
                 }
             })
         }

@@ -1,8 +1,8 @@
 //
-//  SignUpViewController.swift
+//  SignInViewController.swift
 //  kokoroAppiOS
 //
-//  Created by 中野湧仁 on 2019/06/22.
+//  Created by 中野湧仁 on 2019/07/10.
 //  Copyright © 2019 中野湧仁. All rights reserved.
 //
 
@@ -11,65 +11,27 @@ import SnapKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
-import LTMorphingLabel
 import TwitterKit
 
 
-final class SignUpViewController: UIViewController {
+
+
+final class SignInViewController: UIViewController {
     
-    lazy var scrollView: UIScrollView = {
-        let v = UIScrollView()
-        v.isPagingEnabled = true
-        v.showsHorizontalScrollIndicator = false
-        v.delegate = self
-        v.contentSize = CGSize(width: self.view.frame.size.width * 3, height: 200)
-        view.addSubview(v)
-        return v
-    }()
-    
-    lazy var firstIntroView: FirstIntroView = {
-        let v = FirstIntroView(frame: CGRect(x: 0, y: 0, width:
-            view.frame.size.width, height: view.frame.size.height))
-        return v
-    }()
-    
-    lazy var secondIntroView: SecondIntroView = {
-        let v = SecondIntroView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-        return v
-    }()
-    
-    lazy var thirdIntroView: ThirdIntroView = {
-        let v = ThirdIntroView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-        v.delegate = self
-        return v
-    }()
-    
-    func addIntroviews() {
-        let introViews = [firstIntroView, secondIntroView, thirdIntroView]
-        introViews.forEach { scrollView.addSubview($0) }
-    }
-    
-    lazy var pageControll: UIPageControl = {
-        let v = UIPageControl()
-        v.numberOfPages = 3
-        v.pageIndicatorTintColor = UIColor.white
-        v.currentPageIndicatorTintColor = UIColor.appColor(.yesPink)
+    lazy var signInView: ThirdIntroView = {
+        let v = ThirdIntroView()
         view.addSubview(v)
         return v
     }()
     
     let screenWidth = UIScreen.main.bounds.width
-    
     var name: String?
     var profileImage: UIImage?
     var twitterSession: TWTRSession?
-    var authCompletion: (() -> Void)?
-    
     
     override func loadView() {
         super.loadView()
         setupView()
-        addIntroviews()
         makeConstraints()
     }
     
@@ -86,20 +48,13 @@ final class SignUpViewController: UIViewController {
     }
     
     func makeConstraints() {
-        scrollView.snp.makeConstraints { make in
+        signInView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        pageControll.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
-        }
     }
-    
 }
 
-
-extension SignUpViewController {
+extension SignInViewController {
     func twitterAuth() {
         TWTRTwitter.sharedInstance().logIn { (session, error) in
             if let err = error {
@@ -111,6 +66,7 @@ extension SignUpViewController {
             self.twitterSession = session
             
             let credentials = TwitterAuthProvider.credential(withToken: token, secret: secret)
+            
             Auth.auth().signInAndRetrieveData(with: credentials, completion: { (authDataResult, error) in
                 if let err = error {
                     print("認証失敗:\(err)")
@@ -167,13 +123,8 @@ extension SignUpViewController {
     }
 }
 
-extension SignUpViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageControll.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-    }
-}
 
-extension SignUpViewController: ThirdIntroViewDelegate {
+extension SignInViewController: ThirdIntroViewDelegate {
     func twitterLoginButtonTapped() {
         twitterAuth()
     }
