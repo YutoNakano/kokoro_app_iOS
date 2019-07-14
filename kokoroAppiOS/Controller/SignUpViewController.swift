@@ -111,37 +111,17 @@ extension SignUpViewController {
             self.twitterSession = session
             
             let credentials = TwitterAuthProvider.credential(withToken: token, secret: secret)
-            self.authCompletion = ({ () in
-                Auth.auth().signInAndRetrieveData(with: credentials, completion: { (authDataResult, error) in
-                    if let err = error {
-                        print("認証失敗:\(err)")
-                        return
-                    }
-                    self.registerUser()
-                })
-                self.fetchTwitterUser(completion: self.authCompletion)
+            Auth.auth().signInAndRetrieveData(with: credentials, completion: { (authDataResult, error) in
+                if let err = error {
+                    print("認証失敗:\(err)")
+                    return
+                }
+                self.fetchTwitterUser()
             })
         }
     }
     
-    func registerUser() {
-        let user = Auth.auth().currentUser
-        if let user = user {
-            let uid = user.uid
-            let displayName = user.displayName
-            let db = Firestore.firestore()
-            db.collection("users").document(uid).setData([
-                "user_id": uid,
-                "name": displayName!
-                ])
-//            print("認証成功: \(displayName)")
-//            authCompletion = ({ () in
-//                self.saveUserInfoFirebaseDatabase()
-//            })
-        }
-    }
-    
-    func fetchTwitterUser(completion: (() -> Void)?) {
+    func fetchTwitterUser() {
         guard let twitterSession = twitterSession else { return }
         let client = TWTRAPIClient()
         client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
@@ -152,7 +132,6 @@ extension SignUpViewController {
             let profileImageLargeURL = user.profileImageLargeURL
             
             guard let url = URL(string: profileImageLargeURL) else { return }
-            
             
             URLSession.shared.dataTask(with: url) { (data, response, err) in
                 if let err = err { return }
@@ -175,9 +154,11 @@ extension SignUpViewController {
                 guard let metadata = metadata else { return }
                 profileImageRef.downloadURL { (url, err) in
                     guard let url = url else { return }
-                    let dictionaryValues = ["profileImageUrl": url.absoluteString] as [String : Any]
+                    let dictionaryValues = ["user_id": uid,
+                                            "name": name,
+                                            "profileImageUrl": url.absoluteString] as [String : Any]
                     let db = Firestore.firestore()
-                    db.collection("users").document(uid).updateData(dictionaryValues) { err in
+                    db.collection("users").document(uid).setData(dictionaryValues) { err in
                         if let err = err { return }
                     }
                 }

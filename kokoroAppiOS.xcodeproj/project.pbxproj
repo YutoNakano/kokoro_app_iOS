@@ -50,6 +50,7 @@
 		577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */; };
 		5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */; };
 		57AFBBDA22D57480006F8002 /* ThirdIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBBD922D57480006F8002 /* ThirdIntro.swift */; };
+		57BC6F8F22DB66640088465B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC6F8E22DB66640088465B /* Config.swift */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
 		57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */; };
 		57C9205C22B6117900A8B45D /* kokoroAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9205B22B6117900A8B45D /* kokoroAppiOSTests.swift */; };
@@ -120,6 +121,7 @@
 		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailMemoView.swift; sourceTree = "<group>"; };
 		57AFBBD922D57480006F8002 /* ThirdIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdIntro.swift; sourceTree = "<group>"; };
+		57BC6F8E22DB66640088465B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C9204D22B6117900A8B45D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C9205022B6117900A8B45D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				5754079422C0CD670097D07F /* PlaceHolderTextView.swift */,
 				574C60A822C3539C002A5366 /* PresenterInterface.swift */,
 				574B128122C8816A00B4F304 /* Alart.swift */,
+				57BC6F8E22DB66640088465B /* Config.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				574E045F22B6564E008628C5 /* View.swift in Sources */,
 				5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */,
 				57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */,
+				57BC6F8F22DB66640088465B /* Config.swift in Sources */,
 				576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */,
 				5769D4A722C70972006E15CB /* HistoryDetailCollectionView.swift in Sources */,
 				576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */,

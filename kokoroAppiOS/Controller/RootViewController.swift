@@ -61,6 +61,8 @@ final class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        UserManager.shared.signOut()
     
         UserManager.shared.register { [weak self] state in
             switch state {
