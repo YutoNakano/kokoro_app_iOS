@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let rootViewController = RootViewController()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after
         FirebaseApp.configure()
         TWTRTwitter.sharedInstance().start(withConsumerKey: Config.consumerKey, consumerSecret: Config.secretKey)
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -27,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Push通知設定
         if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
