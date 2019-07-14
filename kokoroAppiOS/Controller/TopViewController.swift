@@ -220,16 +220,18 @@ extension TopViewController {
                 if let document = document, document.exists {
                     let profileImageUrl = document["profileImageUrl"]
                     let name = document["name"]
-                    let url = URL(string: profileImageUrl as! String)
+                    guard let urlString = profileImageUrl as? String else { return }
+                    if let url = URL(string: urlString) {
                     do {
-                        let data = try Data(contentsOf: url!)
+                        let data = try Data(contentsOf: url)
                         let image = UIImage(data: data)
                         self.signOutButton.setImage(image, for: .normal)
-//                        self.signOutImageView.image = image?.withRenderingMode(.alwaysOriginal)
+
                         self.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
                     }catch let err {
                         print(err)
                     }
+                }
                 }
             })
         }

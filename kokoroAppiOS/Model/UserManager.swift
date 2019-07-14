@@ -16,15 +16,13 @@ final class UserManager {
         case notAuthenticated
         case authenticated(Document<User>)
     }
-    // テスト
-    private let isTest = true
     
     static let shared = UserManager()
     private var hundle: AuthStateDidChangeListenerHandle?
     private var listeners: [(State) -> Void] = []
     private(set) var currentState: State = .initial {
         didSet {
-            listeners.forEach{ $0(currentState)}
+            listeners.forEach{ $0(currentState) }
         }
     }
     
@@ -44,13 +42,17 @@ final class UserManager {
     }
     
     func fetch(authUser: Firebase.User? = Auth.auth().currentUser) {
+        // Authされてるユーザーを取得してなかったらログイン画面へ
         guard let authUser =  authUser else {
             currentState = .notAuthenticated
             return
         }
         
+        // UserのAuthでログインしてるアカウントのuidを取得
         Document<User>.get(documentID: authUser.uid) { result in
+            // ここでAuthの方に戻る
             switch result {
+            // 目標: uidがあったらauthticatedになる
             case let .success(user):
                 if let user = user {
                     self.currentState = .authenticated(user)

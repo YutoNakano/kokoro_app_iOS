@@ -92,7 +92,7 @@ final class SecondIntroView: UIView {
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview().offset(-8)
+            make.centerX.equalToSuperview().offset(-7)
         }
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

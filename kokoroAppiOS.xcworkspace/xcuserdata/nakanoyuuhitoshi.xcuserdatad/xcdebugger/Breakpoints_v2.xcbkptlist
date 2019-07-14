@@ -19,5 +19,212 @@
             landmarkType = "13">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Model/UserManager.swift"
+            timestampString = "584707091.9777761"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "fetch(authUser:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Optional&lt;kokoroAppiOS.Document&lt;kokoroAppiOS.User&gt;&gt;, Swift.Error&gt;) -&gt; () in kokoroAppiOS.UserManager.fetch(authUser: Swift.Optional&lt;__C.FIRUser&gt;) -&gt; ()"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/UserManager.swift"
+                  timestampString = "584707092.758176"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Optional&lt;kokoroAppiOS.Document&lt;kokoroAppiOS.User&gt;&gt;, Swift.Error&gt;) -&gt; () in kokoroAppiOS.UserManager.fetch(authUser: Swift.Optional&lt;__C.FIRUser&gt;) -&gt; ()"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/UserManager.swift"
+                  timestampString = "584707092.760476"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Optional&lt;kokoroAppiOS.Document&lt;kokoroAppiOS.User&gt;&gt;, Swift.Error&gt;) -&gt; () in kokoroAppiOS.UserManager.fetch(authUser: Swift.Optional&lt;__C.FIRUser&gt;) -&gt; ()"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/UserManager.swift"
+                  timestampString = "584707092.7625901"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "528">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Model/UserManager.swift"
+            timestampString = "584707091.9778661"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "fetch(authUser:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Model/UserManager.swift"
+            timestampString = "584707091.977927"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "fetch(authUser:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
+            timestampString = "584707091.978386"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "saveUserInfoFirebaseDatabase()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
+            timestampString = "584707091.978446"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "saveUserInfoFirebaseDatabase()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in kokoroAppiOS.SignUpViewController.saveUserInfoFirebaseDatabase() -&gt; ()"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Controller/SignUpViewController.swift"
+                  timestampString = "584707092.7933331"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRStorageMetadata&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in kokoroAppiOS.SignUpViewController.saveUserInfoFirebaseDatabase() -&gt; ()"
+                  moduleName = "kokoroAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Controller/SignUpViewController.swift"
+                  timestampString = "584707092.7961299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
+            timestampString = "584707091.9784991"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "fetchTwitterUser(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
+            timestampString = "584707091.978549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "twitterAuth()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
+            timestampString = "584707091.978596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "twitterAuth()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
