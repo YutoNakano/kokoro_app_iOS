@@ -48,7 +48,7 @@
 		57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */; };
 		57787F8F22CC637A001C0ADB /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57787F8E22CC637A001C0ADB /* ResultContentView.swift */; };
 		577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */; };
-		5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */; };
+		5783A04D22C7336400A3EE18 /* ScrollTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783A04C22C7336400A3EE18 /* ScrollTextView.swift */; };
 		57AFBBDA22D57480006F8002 /* ThirdIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBBD922D57480006F8002 /* ThirdIntro.swift */; };
 		57BC6F8F22DB66640088465B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC6F8E22DB66640088465B /* Config.swift */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
@@ -119,7 +119,7 @@
 		57787F8E22CC637A001C0ADB /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
 		57787F9022CC78C6001C0ADB /* kokoroAppiOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kokoroAppiOS.entitlements; sourceTree = "<group>"; };
 		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
-		5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailMemoView.swift; sourceTree = "<group>"; };
+		5783A04C22C7336400A3EE18 /* ScrollTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTextView.swift; sourceTree = "<group>"; };
 		57AFBBD922D57480006F8002 /* ThirdIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdIntro.swift; sourceTree = "<group>"; };
 		57BC6F8E22DB66640088465B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,7 +234,7 @@
 				5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */,
 				577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */,
 				5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */,
-				5783A04C22C7336400A3EE18 /* HistoryDetailMemoView.swift */,
+				5783A04C22C7336400A3EE18 /* ScrollTextView.swift */,
 				57787F8E22CC637A001C0ADB /* ResultContentView.swift */,
 				575AFD2822D090A500607816 /* charactorDescriptionView.swift */,
 				57AFBBD922D57480006F8002 /* ThirdIntro.swift */,
@@ -571,7 +571,7 @@
 				5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */,
 				576DD22622BBC69500B83A8E /* QuestionContentView.swift in Sources */,
 				574E045F22B6564E008628C5 /* View.swift in Sources */,
-				5783A04D22C7336400A3EE18 /* HistoryDetailMemoView.swift in Sources */,
+				5783A04D22C7336400A3EE18 /* ScrollTextView.swift in Sources */,
 				57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */,
 				57BC6F8F22DB66640088465B /* Config.swift in Sources */,
 				576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */,

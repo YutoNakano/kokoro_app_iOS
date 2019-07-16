@@ -67,7 +67,6 @@ final class UserManager {
     }
     
     func register(listener: @escaping (State) -> Void) {
-        // listenersにSwitch文クロージャが入ってる
         listeners.append(listener)
         listener(currentState)
     }

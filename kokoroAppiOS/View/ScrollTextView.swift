@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-final class HistoryDetailMemoView: UIView {
+final class ScrollTextView: UIView {
     
     lazy var contentView: UIView = {
         let v = UIView()
