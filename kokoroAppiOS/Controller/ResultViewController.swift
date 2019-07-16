@@ -31,6 +31,27 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
+    lazy var supportDescriptionView: ScrollTextView = {
+        let v = ScrollTextView()
+        v.titleLabel.text = ""
+        v.memoLabel.text =
+        """
+        もし、行ってみたが相談した相手にわかってもらえなかった、対応が悪かった、など、せっかく前に一歩踏み出したのに良い結果が出なかった場合、それはあなたのせいでは決してありませんし、そこで絶望する必要は全くありません。人と人の関わりにもなるので、合う合わないの相性もあります｡ﾟ(>_<)ﾟ｡\n同じ「精神科/心療内科/カウンセラー/保健所」というジャンルの人でも、与えてくれる言葉や診断は異なることも充分あり得ます。しかし、今の辛い状況を我慢する、放置することは、あなた自身にとって一番苦しいことです。1人で解決できる問題ではないからです。
+        あなたを救うための機関や専門家が沢山います。\n
+        このアプリを作った目的は、苦しんでいたり悩んでいる貴方が、なるべく苦労せず自分に合った窓口を選ぶためです。必ず悩みが解決するとは言えませんが、一方踏み出しやすくなって頂けたら幸いです。\n
+        
+        心の状態は変わります。その時の貴方がどこに行くのがいいのか、それも変わるかもしれません。思いついた時に、診断してみて、気が向いたらでもいいので、足を運んでみてください。
+        貴方の心が少しでも、楽になりますように。
+        """
+        view.addSubview(v)
+        return v
+    }()
+    
+    lazy var backButton: UIBarButtonItem = {
+        let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
+        return v
+    }()
+    
     var questions: [String]
     var selectedAnswers: [SelectedAnswers]
     var topViewController: TopViewController?
@@ -55,6 +76,7 @@ final class ResultViewController: UIViewController {
         super.loadView()
         setupView()
         makeConstraints()
+        self.navigationItem.leftBarButtonItem = backButton
     }
     
     override func viewDidLoad() {
@@ -72,14 +94,17 @@ final class ResultViewController: UIViewController {
     
     func makeConstraints() {
         resultContentView.snp.makeConstraints { make in
-            make.top.equalTo(120)
+            make.top.equalTo(100)
             make.height.equalTo(300)
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
         }
-        
-        goNextButton.snp.makeConstraints { make in
+        supportDescriptionView.snp.makeConstraints { make in
             make.top.equalTo(resultContentView.snp.bottom).offset(80)
+            make.left.right.equalToSuperview()
+        }
+        goNextButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-80)
             make.centerX.equalTo(resultContentView.snp.centerX)
             make.height.equalTo(80)
             make.width.equalTo(220)
@@ -89,8 +114,14 @@ final class ResultViewController: UIViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
-        let resultDetailViewController = ResultDetailViewController(topVC: topViewController!, title: resultTitle, questions: questions, selectedAnswers: selectedAnswers)
+        guard let topViewController = topViewController else { return }
+        let resultDetailViewController = ResultDetailViewController(topVC: topViewController, title: resultTitle, questions: questions, selectedAnswers: selectedAnswers)
         self.navigationController?.pushViewController(resultDetailViewController, animated: true)
+    }
+    @objc func backButtonTapped() {
+        userDefaults.removeObject(forKey: "memoText")
+        guard let topViewController = topViewController else { return }
+        navigationController?.pushViewController(topViewController, animated: true)
     }
 }
 

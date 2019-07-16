@@ -18,8 +18,8 @@ final class HistoryDetailViewController: UIViewController {
         return v
     }()
     
-    lazy var historyDetailMemoView: HistoryDetailMemoView = {
-        let v = HistoryDetailMemoView()
+    lazy var historyDetailMemoView: ScrollTextView = {
+        let v = ScrollTextView()
         view.addSubview(v)
         return v
     }()
