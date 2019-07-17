@@ -171,7 +171,7 @@ extension SignUpViewController {
                     guard let url = url else { return }
                     let dictionaryValues = ["profileImageUrl": url.absoluteString] as [String : Any]
                     let db = Firestore.firestore()
-                    db.collection("users").document(uid).setData(dictionaryValues) { err in
+                    db.collection("users").document(uid).updateData(dictionaryValues) { err in
                         if let err = err { return }
                     }
                 }

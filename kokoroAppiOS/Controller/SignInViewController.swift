@@ -13,11 +13,13 @@ import FirebaseFirestore
 import FirebaseStorage
 import TwitterKit
 
+
+
+
 final class SignInViewController: UIViewController {
     
     lazy var signInView: ThirdIntroView = {
         let v = ThirdIntroView()
-        v.delegate = self
         view.addSubview(v)
         return v
     }()
@@ -64,28 +66,14 @@ extension SignInViewController {
             self.twitterSession = session
             
             let credentials = TwitterAuthProvider.credential(withToken: token, secret: secret)
+            
             Auth.auth().signInAndRetrieveData(with: credentials, completion: { (authDataResult, error) in
                 if let err = error {
                     print("認証失敗:\(err)")
                     return
                 }
-                self.registerUser()
+                self.fetchTwitterUser()
             })
-        }
-    }
-    
-    func registerUser() {
-        let user = Auth.auth().currentUser
-        if let user = user {
-            let uid = user.uid
-            let displayName = user.displayName
-            let db = Firestore.firestore()
-            db.collection("users").document(uid).setData([
-                "user_id": uid,
-                "name": displayName!
-                ])
-            print("認証成功: \(displayName)")
-            fetchTwitterUser()
         }
     }
     
@@ -105,24 +93,26 @@ extension SignInViewController {
                 if let err = err { return }
                 guard let data = data else { return }
                 self.profileImage = UIImage(data: data)
-                self.saveUserInfoToFirebaseDatabase()
+                self.saveUserInfoFirebaseDatabase()
                 }.resume()
         })
     }
     
-    func saveUserInfoToFirebaseDatabase() {
+    func saveUserInfoFirebaseDatabase() {
         guard let uid = Auth.auth().currentUser?.uid,
             let name = self.name, let profileImage = profileImage,
             let profileImageUploadData = profileImage.jpegData(compressionQuality: 0.3) else { return }
         
         let profileImageRef = Storage.storage().reference().child("profileImages").child(uid)
-        saveUserInfoToUserDefaults(id: uid, name: name, profileImageData: profileImage.pngData())
+        
         DispatchQueue.main.async {
             let uploadTask = profileImageRef.putData(profileImageUploadData, metadata: nil) { (metadata, err) in
                 guard let metadata = metadata else { return }
                 profileImageRef.downloadURL { (url, err) in
                     guard let url = url else { return }
-                    let dictionaryValues = ["profileImageUrl": url.absoluteString] as [String : Any]
+                    let dictionaryValues = ["user_id": uid,
+                                            "name": name,
+                                            "profileImageUrl": url.absoluteString] as [String : Any]
                     let db = Firestore.firestore()
                     db.collection("users").document(uid).setData(dictionaryValues) { err in
                         if let err = err { return }
@@ -131,16 +121,8 @@ extension SignInViewController {
             }
         }
     }
-    // ユーザーのid・name・profileImageを保存
-    func saveUserInfoToUserDefaults(id: String, name: String, profileImageData: Data?) {
-        let userDefalts = UserDefaults.standard
-        userDefalts.set(id, forKey: "userID")
-        userDefalts.set(name, forKey: "userName")
-        userDefalts.set(profileImageData, forKey: "profileImageData")
-        userDefalts.synchronize()
-    }
-    
 }
+
 
 extension SignInViewController: ThirdIntroViewDelegate {
     func twitterLoginButtonTapped() {

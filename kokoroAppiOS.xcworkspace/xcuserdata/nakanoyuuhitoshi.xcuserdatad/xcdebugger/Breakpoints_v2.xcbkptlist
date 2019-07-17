@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
-            timestampString = "585023779.975228"
+            filePath = "kokoroAppiOS/Controller/TopViewController.swift"
+            timestampString = "585025422.814326"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "saveUserInfoToUserDefaults(id:name:profileImageData:)"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "loadUserInfoFromUserDefaults()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,45 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
-            timestampString = "585023779.97534"
+            filePath = "kokoroAppiOS/Controller/TopViewController.swift"
+            timestampString = "585025619.2104371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "saveUserInfoToFirebaseDatabase()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
-            timestampString = "585023779.975396"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "fetchTwitterUser()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Controller/SignInViewController.swift"
-            timestampString = "585023779.975448"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "twitterLoginButtonTapped()"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "signOutButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

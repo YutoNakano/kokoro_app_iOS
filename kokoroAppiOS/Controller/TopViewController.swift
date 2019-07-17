@@ -248,12 +248,14 @@ extension TopViewController {
     
     func loadUserInfoFromUserDefaults() {
         let userDefaults = UserDefaults.standard
-//        let userID: String? = userDefaults.object(forKey: "userID") as? String
-        let userName: String? = userDefaults.object(forKey: "userName") as? String
-        let profileImageData: Data? = userDefaults.data(forKey: "profileImageData")
-        
-        self.charactorDescriptionLabel.text = "\(userName ?? "名無し")さんお帰りなさい!"
-        guard let imageData = profileImageData else { return }
-        self.signOutButton.setImage(UIImage(data: imageData), for: .normal)
+    
+        if userDefaults.object(forKey: "userName") != nil {
+            let userName: String? = userDefaults.object(forKey: "userName") as? String
+            let profileImageData: Data? = userDefaults.data(forKey: "profileImageData")
+            
+            self.charactorDescriptionLabel.text = "\(userName ?? "名無し")さんお帰りなさい!"
+            guard let imageData = profileImageData else { return }
+            self.signOutButton.setImage(UIImage(data: imageData), for: .normal)
+        }
     }
 }
