@@ -83,7 +83,6 @@ final class TopViewController: UIViewController {
     }()
     
     let historyViewController = HistoryViewController()
-    let signInViewController = SignInViewController()
     let screenWidth = UIScreen.main.bounds.width
     var charactorDescriptionArray: [String] = []
     
@@ -172,8 +171,10 @@ extension TopViewController {
             title: "確認",
             message: "サインアウトしますか?",
             button: ("サインアウト", .destructive, {
+                let domain = Bundle.main.bundleIdentifier!
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
                 UserManager.shared.signOut()
-                self.navigationController?.pushViewController(self.signInViewController, animated: true)
             }),
             on: self
         )
