@@ -11,6 +11,8 @@
 		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
 		574B128222C8816A00B4F304 /* Alart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B128122C8816A00B4F304 /* Alart.swift */; };
 		574C0A5F22C0576B004CA340 /* ResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */; };
+		574C59C822DF3ED1005BA220 /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C59C722DF3ED1005BA220 /* PopupController.swift */; };
+		574C59CA22DF4B4B005BA220 /* SupportDescriptionPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C59C922DF4B4B005BA220 /* SupportDescriptionPopupViewController.swift */; };
 		574C60A922C3539C002A5366 /* PresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C60A822C3539C002A5366 /* PresenterInterface.swift */; };
 		574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36F922BC5CC60041D39E /* MaterialButton.swift */; };
 		574D36FC22BC62F90041D39E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D36FB22BC62F90041D39E /* HistoryViewController.swift */; };
@@ -81,6 +83,8 @@
 		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		574B128122C8816A00B4F304 /* Alart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alart.swift; sourceTree = "<group>"; };
 		574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailViewController.swift; sourceTree = "<group>"; };
+		574C59C722DF3ED1005BA220 /* PopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
+		574C59C922DF4B4B005BA220 /* SupportDescriptionPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportDescriptionPopupViewController.swift; sourceTree = "<group>"; };
 		574C60A822C3539C002A5366 /* PresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterInterface.swift; sourceTree = "<group>"; };
 		574D36F922BC5CC60041D39E /* MaterialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
 		574D36FB22BC62F90041D39E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 				574C60A822C3539C002A5366 /* PresenterInterface.swift */,
 				574B128122C8816A00B4F304 /* Alart.swift */,
 				57BC6F8E22DB66640088465B /* Config.swift */,
+				574C59C722DF3ED1005BA220 /* PopupController.swift */,
+				574C59C922DF4B4B005BA220 /* SupportDescriptionPopupViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -584,6 +590,7 @@
 				57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */,
 				5757F41022BEF18A008783F6 /* History.swift in Sources */,
 				5769D4A922C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift in Sources */,
+				574C59C822DF3ED1005BA220 /* PopupController.swift in Sources */,
 				57AFBBDA22D57480006F8002 /* ThirdIntro.swift in Sources */,
 				574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */,
 				57787F8F22CC637A001C0ADB /* ResultContentView.swift in Sources */,
@@ -608,6 +615,7 @@
 				574D36FC22BC62F90041D39E /* HistoryViewController.swift in Sources */,
 				57721DCD22BDD68200142ADF /* UserManager.swift in Sources */,
 				576DD22722BBC69500B83A8E /* ResultViewController.swift in Sources */,
+				574C59CA22DF4B4B005BA220 /* SupportDescriptionPopupViewController.swift in Sources */,
 				574E40E422D587E100099341 /* SecondIntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

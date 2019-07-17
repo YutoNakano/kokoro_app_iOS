@@ -59,7 +59,7 @@ final class ScrollTextView: UIView {
     }
     
     func setupView() {
-        backgroundColor = UIColor.appColor(.background)
+        backgroundColor = UIColor.clear
     }
     
     

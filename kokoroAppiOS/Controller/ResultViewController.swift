@@ -31,22 +31,6 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
-    lazy var supportDescriptionView: ScrollTextView = {
-        let v = ScrollTextView()
-        v.titleLabel.text = ""
-        v.memoLabel.text =
-        """
-        もし、行ってみたが相談した相手にわかってもらえなかった、対応が悪かった、など、せっかく前に一歩踏み出したのに良い結果が出なかった場合、それはあなたのせいでは決してありませんし、そこで絶望する必要は全くありません。人と人の関わりにもなるので、合う合わないの相性もあります｡ﾟ(>_<)ﾟ｡\n同じ「精神科/心療内科/カウンセラー/保健所」というジャンルの人でも、与えてくれる言葉や診断は異なることも充分あり得ます。しかし、今の辛い状況を我慢する、放置することは、あなた自身にとって一番苦しいことです。1人で解決できる問題ではないからです。
-        あなたを救うための機関や専門家が沢山います。\n
-        このアプリを作った目的は、苦しんでいたり悩んでいる貴方が、なるべく苦労せず自分に合った窓口を選ぶためです。必ず悩みが解決するとは言えませんが、一方踏み出しやすくなって頂けたら幸いです。\n
-        
-        心の状態は変わります。その時の貴方がどこに行くのがいいのか、それも変わるかもしれません。思いついた時に、診断してみて、気が向いたらでもいいので、足を運んでみてください。
-        貴方の心が少しでも、楽になりますように。
-        """
-        view.addSubview(v)
-        return v
-    }()
-    
     lazy var backButton: UIBarButtonItem = {
         let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
         return v
@@ -81,7 +65,10 @@ final class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let vc = SupportDescriptionPopupViewController()
+        let popup = PopupController(viewController: vc)
+        popup.modalTransitionStyle = .crossDissolve
+        present(popup, animated: true, completion: nil)
     }
     
     func setupView() {
@@ -89,7 +76,6 @@ final class ResultViewController: UIViewController {
         resultContentView.titleLabel.text = "診断結果: \(resultTitle)"
         resultContentView.descriptionLabel.text = resultDescription
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
-        
     }
     
     func makeConstraints() {
@@ -99,12 +85,8 @@ final class ResultViewController: UIViewController {
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
         }
-        supportDescriptionView.snp.makeConstraints { make in
-            make.top.equalTo(resultContentView.snp.bottom).offset(80)
-            make.left.right.equalToSuperview()
-        }
         goNextButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-80)
+            make.top.equalTo(resultContentView.snp.bottom).offset(80)
             make.centerX.equalTo(resultContentView.snp.centerX)
             make.height.equalTo(80)
             make.width.equalTo(220)
@@ -121,7 +103,8 @@ extension ResultViewController {
     @objc func backButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
         guard let topViewController = topViewController else { return }
-        navigationController?.pushViewController(topViewController, animated: true)
+        topViewController.modalTransitionStyle = .crossDissolve
+        present(topViewController, animated: true, completion: nil)
     }
 }
 
