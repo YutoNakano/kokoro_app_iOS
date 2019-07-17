@@ -15,6 +15,9 @@ final class HistoryViewController: UIViewController {
     lazy var historyCollectionView: HistoryCollectionView = {
         let v = HistoryCollectionView()
         v.delegate = self
+        let refleshControl = UIRefreshControl()
+        refleshControl.addTarget(self, action: #selector(refleshScrolled(sender:)), for: .valueChanged)
+        v.collectionView.refreshControl = refleshControl
         view.addSubview(v)
         return v
     }()
@@ -64,11 +67,15 @@ final class HistoryViewController: UIViewController {
         })
         guard let completion = watchButtonTapHandler else { return }
         fetchResultData(completion: completion)
+        historyCollectionView.collectionView.refreshControl?.endRefreshing()
     }
     
 }
 
 extension HistoryViewController {
+    @objc func refleshScrolled(sender: UIRefreshControl) {
+        fetch()
+    }
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
