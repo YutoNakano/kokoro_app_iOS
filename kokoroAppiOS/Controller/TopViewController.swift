@@ -31,7 +31,13 @@ final class TopViewController: UIViewController {
     }()
     
     lazy var charactorImageView: UIImageView = {
-        let v = UIImageView(image: UIImage(named: "charactor"))
+        let v = UIImageView(image: UIImage(named: CharactorImageState.normal.rawValue))
+        view.addSubview(v)
+        return v
+    }()
+    
+    lazy var backgroundImage: UIImageView = {
+        let v = UIImageView(image: UIImage(named: "background"))
         view.addSubview(v)
         return v
     }()
@@ -85,6 +91,10 @@ final class TopViewController: UIViewController {
     let historyViewController = HistoryViewController()
     let screenWidth = UIScreen.main.bounds.width
     var charactorDescriptionArray: [String] = []
+    var nomalToCloseEyeImageTimer: Timer?
+    var closeEyeToNormalImageTimer: Timer?
+    var timerCount = 0
+    var charactorState = true
     
     var watchButtonTapHandler: (() -> Void)?
     
@@ -100,11 +110,20 @@ final class TopViewController: UIViewController {
         loadUserInfoFromUserDefaults()
         fetchCharactorDescription()
         fetchUserData()
+        setUpTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         charactorAnimation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let toColseEyeTimer = nomalToCloseEyeImageTimer, let toNomalTimer = closeEyeToNormalImageTimer {
+            toColseEyeTimer.invalidate()
+            toNomalTimer.invalidate()
+        }
     }
     
     func setupView() {
@@ -117,6 +136,9 @@ final class TopViewController: UIViewController {
     }
     
     func makeConstraints() {
+        backgroundImage.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         signOutButton.snp.makeConstraints { make in
             make.size.equalTo(36)
         }
@@ -147,13 +169,39 @@ final class TopViewController: UIViewController {
     }
 }
 
+enum CharactorImageState: String {
+    case normal = "charactor"
+    case closeEye = "charactor_eye_close"
+}
+
 
 extension TopViewController {
     func charactorAnimation() {
-        UIView.animate(withDuration: 2.0, delay: 0.5, options: [.repeat,.autoreverse], animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.3, options: [.repeat,.autoreverse], animations: {
             self.charactorImageView.center.y += 30
         }) { _ in
             self.charactorImageView.center.y -= 30
+        }
+    }
+    
+    func setUpTimer() {
+        nomalToCloseEyeImageTimer = Timer.scheduledTimer(timeInterval: setTimeInterval(), target: self, selector: #selector(normalToCloseEyeTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    func setTimeInterval() -> TimeInterval {
+        return TimeInterval(Float.random(in: 4...6))
+    }
+    
+    @objc func normalToCloseEyeTimerAction() {
+        charactorImageView.image = UIImage(named: CharactorImageState.closeEye.rawValue)
+        // 画像をnomalに戻すTimer
+        closeEyeToNormalImageTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(closeEyeToNormalTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func closeEyeToNormalTimerAction() {
+        charactorImageView.image = UIImage(named: CharactorImageState.normal.rawValue)
+        if let toNomalTimer = closeEyeToNormalImageTimer {
+            toNomalTimer.invalidate()
         }
     }
     

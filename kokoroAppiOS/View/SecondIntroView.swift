@@ -39,7 +39,7 @@ final class SecondIntroView: UIView {
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.yesPink)
         v.textAlignment = .center
-        v.text = "過去の診断結果や、その時に記したメモを振り返り、\n自分の心理状態を客観的に把握しましょう。"
+        v.text = "過去の診断結果や、その時に記したメモを振り返り、\n自分の心理状態を客観的に把握できます。"
         v.font = UIFont(name: "GillSans-Bold", size: 14)
         addSubview(v)
         return v

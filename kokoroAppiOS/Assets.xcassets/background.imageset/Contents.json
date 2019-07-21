@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "スクリーンショット 2019-07-21 18.50.08.png",
       "scale" : "1x"
     },
     {
@@ -10,7 +11,6 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "charactor@3x.png",
       "scale" : "3x"
     }
   ],

@@ -9,14 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Model/History.swift"
-            timestampString = "583853387.7483571"
+            filePath = "kokoroAppiOS/Controller/SignUpViewController.swift"
+            timestampString = "585395755.661847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "Field"
-            landmarkType = "13">
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "saveUserInfoToFirebaseDatabase()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
