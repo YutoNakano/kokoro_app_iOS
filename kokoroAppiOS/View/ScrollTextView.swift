@@ -21,7 +21,7 @@ final class ScrollTextView: UIView {
     
     lazy var titleLabel: UILabel = {
         let v = UILabel()
-        v.text = "MEMO"
+        v.text = "メモ"
         v.font = UIFont(name: "GillSans-Bold", size: 20)
         v.textColor = UIColor.appColor(.subPink)
         contentView.addSubview(v)
@@ -65,7 +65,7 @@ final class ScrollTextView: UIView {
     
     func makeConstraints() {
         contentView.snp.makeConstraints { make in
-            make.height.equalTo(135)
+            make.height.equalTo(138)
             make.width.equalToSuperview().offset(-20)
             make.center.equalToSuperview()
         }
