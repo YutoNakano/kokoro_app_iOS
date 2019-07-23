@@ -72,12 +72,13 @@ final class ResultViewController: UIViewController {
         view.backgroundColor = UIColor.appColor(.background)
         resultContentView.titleLabel.text = "診断結果: \(resultTitle)"
         resultContentView.descriptionLabel.text = resultDescription
-        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
+        navigationController?.navigationBar.isTranslucent = false
+        edgesForExtendedLayout = []
     }
     
     func makeConstraints() {
         resultContentView.snp.makeConstraints { make in
-            make.top.equalTo(110)
+            make.top.equalToSuperview().offset(20)
             make.height.equalTo(550)
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
@@ -106,7 +107,9 @@ extension ResultViewController {
     @objc func backButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
         guard let topViewController = topViewController else { return }
-        navigationController?.pushViewController(topViewController, animated: true)
+        let navi = NavigationController(rootViewController: topViewController)
+        navi.modalTransitionStyle = .crossDissolve
+        present(navi, animated: true, completion: nil)
     }
 }
 

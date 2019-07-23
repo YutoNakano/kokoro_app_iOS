@@ -50,6 +50,10 @@ final class ResultContentView: UIView {
     
     lazy var charactorImageView: UIImageView = {
         let v = UIImageView(image: UIImage(named: CharactorImageState.normal.rawValue))
+        v.layer.shadowColor = UIColor.black.cgColor
+        v.layer.shadowOffset = .zero
+        v.layer.shadowOpacity = 0.3
+        v.layer.shadowRadius = 4
         addSubview(v)
         return v
     }()

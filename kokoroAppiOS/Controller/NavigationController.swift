@@ -18,10 +18,6 @@ final class NavigationController: UINavigationController {
         return navigationController
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
-    }
 //    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 //        //もともとのアニメーションを削除
 //        self.view.layer.removeAllAnimations()

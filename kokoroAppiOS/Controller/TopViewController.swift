@@ -18,13 +18,6 @@ protocol TopViewControllerDelegate: class {
 
 final class TopViewController: UIViewController {
     
-    
-    lazy var charactorDescriptionImageView: UIImageView = {
-        let v = UIImageView(image: UIImage(named: "comment"))
-        view.addSubview(v)
-        return v
-    }()
-    
     lazy var charactorDescriptionLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 4
@@ -32,12 +25,16 @@ final class TopViewController: UIViewController {
         v.textAlignment = .center
         v.font = UIFont(name: "GillSans-Bold", size: 22)
         v.textColor = UIColor.appColor(.character)
-        charactorDescriptionImageView.addSubview(v)
+        view.addSubview(v)
         return v
     }()
     
     lazy var charactorImageView: UIImageView = {
         let v = UIImageView(image: UIImage(named: CharactorImageState.normal.rawValue))
+        v.layer.shadowColor = UIColor.black.cgColor
+        v.layer.shadowOffset = .zero
+        v.layer.shadowOpacity = 0.3
+        v.layer.shadowRadius = 4
         view.addSubview(v)
         return v
     }()
@@ -115,7 +112,6 @@ final class TopViewController: UIViewController {
         loadUserInfoFromUserDefaults()
         fetchCharactorDescription()
         fetchUserData()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,21 +130,12 @@ final class TopViewController: UIViewController {
     
     func setupView() {
         view.backgroundColor = UIColor.appColor(.background)
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
-        navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signOutImageView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signOutButton)
-        navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.isTranslucent = false
+        edgesForExtendedLayout = []
     }
     
     func makeConstraints() {
-        charactorDescriptionImageView.snp.makeConstraints { make in
-            make.width.equalTo(screenWidth - 65)
-            make.height.equalTo(80)
-            make.top.equalToSuperview().offset(60)
-            make.centerX.equalToSuperview()
-        }
         backgroundImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -157,7 +144,8 @@ final class TopViewController: UIViewController {
         }
         charactorDescriptionLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 80)
-            make.center.equalToSuperview()
+            make.top.equalToSuperview().offset(60)
+            make.centerX.equalToSuperview()
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -178,8 +166,6 @@ final class TopViewController: UIViewController {
             make.size.equalTo(68)
             make.bottom.right.equalToSuperview().offset(-25)
         }
-        
-        view.bringSubviewToFront(charactorDescriptionImageView)
     }
 }
 
