@@ -141,6 +141,7 @@ extension SignUpViewController {
         let client = TWTRAPIClient()
         client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
             if let err = err { return }
+            print(err)
             guard let user = user else { return }
 
             self.name = user.name

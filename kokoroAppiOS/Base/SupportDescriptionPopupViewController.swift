@@ -79,6 +79,11 @@ final class SupportDescriptionPopupViewController: UIViewController {
         scrollView.flashScrollIndicators()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.flashScrollIndicators()
+    }
+    
     func setupView() {
         view.backgroundColor = UIColor.appColor(.white)
     }
@@ -108,5 +113,11 @@ final class SupportDescriptionPopupViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-5)
             make.width.equalToSuperview().offset(-20)
         }
+    }
+}
+
+extension SupportDescriptionPopupViewController {
+    func seupScrollIndicator() {
+    
     }
 }

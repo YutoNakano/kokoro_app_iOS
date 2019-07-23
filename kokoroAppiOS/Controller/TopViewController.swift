@@ -106,15 +106,15 @@ final class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
         loadUserInfoFromUserDefaults()
         fetchCharactorDescription()
         fetchUserData()
-        setUpTimer()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setUpTimer()
         charactorAnimation()
     }
     
@@ -133,6 +133,7 @@ final class TopViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.appColor(.navbar)
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signOutImageView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signOutButton)
+        navigationItem.hidesBackButton = true
     }
     
     func makeConstraints() {
@@ -178,9 +179,9 @@ enum CharactorImageState: String {
 extension TopViewController {
     func charactorAnimation() {
         UIView.animate(withDuration: 2.0, delay: 0.3, options: [.repeat,.autoreverse], animations: {
-            self.charactorImageView.center.y += 30
+            self.charactorImageView.center.y += 25
         }) { _ in
-            self.charactorImageView.center.y -= 30
+            self.charactorImageView.center.y -= 25
         }
     }
     

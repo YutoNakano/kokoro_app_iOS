@@ -65,10 +65,7 @@ final class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let vc = SupportDescriptionPopupViewController()
-        let popup = PopupController(viewController: vc)
-        popup.modalTransitionStyle = .crossDissolve
-        present(popup, animated: true, completion: nil)
+        
     }
     
     func setupView() {
@@ -80,13 +77,13 @@ final class ResultViewController: UIViewController {
     
     func makeConstraints() {
         resultContentView.snp.makeConstraints { make in
-            make.top.equalTo(100)
-            make.height.equalTo(300)
+            make.top.equalTo(110)
+            make.height.equalTo(550)
             make.width.equalTo(screenWidth - 30)
             make.centerX.equalToSuperview()
         }
         goNextButton.snp.makeConstraints { make in
-            make.top.equalTo(resultContentView.snp.bottom).offset(80)
+            make.bottom.equalToSuperview().offset(-80)
             make.centerX.equalTo(resultContentView.snp.centerX)
             make.height.equalTo(80)
             make.width.equalTo(220)
@@ -96,15 +93,20 @@ final class ResultViewController: UIViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
-        guard let topViewController = topViewController else { return }
-        let resultDetailViewController = ResultDetailViewController(topVC: topViewController, title: resultTitle, questions: questions, selectedAnswers: selectedAnswers)
-        self.navigationController?.pushViewController(resultDetailViewController, animated: true)
+        let popupHundler = { () in
+            guard let topViewController = self.topViewController else { return }
+            let resultDetailViewController = ResultDetailViewController(topVC: topViewController, title: self.resultTitle, questions: self.questions, selectedAnswers: self.selectedAnswers)
+            self.navigationController?.pushViewController(resultDetailViewController, animated: true)
+        }
+        let vc = SupportDescriptionPopupViewController()
+        let popup = PopupController(viewController: vc, hundler: popupHundler)
+        popup.modalTransitionStyle = .crossDissolve
+        present(popup, animated: true)
     }
     @objc func backButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
         guard let topViewController = topViewController else { return }
-        topViewController.modalTransitionStyle = .crossDissolve
-        present(topViewController, animated: true, completion: nil)
+        navigationController?.pushViewController(topViewController, animated: true)
     }
 }
 

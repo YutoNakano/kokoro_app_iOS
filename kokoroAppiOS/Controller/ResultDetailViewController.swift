@@ -23,6 +23,15 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
+    lazy var memoExplainLabel: UILabel = {
+        let v = UILabel()
+        v.text = "メモに現在の心身の状況を記録しましょう"
+        v.textColor = UIColor.appColor(.character)
+        v.font = UIFont(name: "GillSans", size: 15)
+        view.addSubview(v)
+        return v
+    }()
+    
     lazy var memoTextView: PlaceHolderTextView = {
         let v = PlaceHolderTextView()
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
@@ -32,7 +41,7 @@ final class ResultDetailViewController: UIViewController {
         let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(closeButtonTapped))
         toolBar.items = [spacer, closeButton]
         v.inputAccessoryView = toolBar
-        v.placeHolder = "MEMO"
+        v.placeHolder = "ここに入力ください"
         v.delegate = self
         view.addSubview(v)
         return v
@@ -123,9 +132,13 @@ final class ResultDetailViewController: UIViewController {
             make.height.equalTo(350)
             make.top.left.right.equalToSuperview()
         }
+        memoExplainLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(memoTextView.snp.top).offset(-2)
+            make.left.equalTo(memoTextView.snp.left)
+        }
         memoTextView.snp.makeConstraints { make in
             make.height.equalTo(150)
-            make.top.equalTo(resultCollectionView.snp.bottom).offset(30)
+            make.top.equalTo(resultCollectionView.snp.bottom).offset(35)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }

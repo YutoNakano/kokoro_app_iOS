@@ -48,7 +48,18 @@ final class ResultContentView: UIView {
         return v
     }()
     
+    lazy var charactorImageView: UIImageView = {
+        let v = UIImageView(image: UIImage(named: CharactorImageState.normal.rawValue))
+        addSubview(v)
+        return v
+    }()
+    
     let screenWidth = UIScreen.main.bounds.width
+    
+    var nomalToCloseEyeImageTimer: Timer?
+    var closeEyeToNormalImageTimer: Timer?
+    var timerCount = 0
+    var charactorState = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +68,8 @@ final class ResultContentView: UIView {
     }
     
     func setup() {
-//        questionTitleLabel.fadeIn(type: .Normal)
+        charactorAnimation()
+        setUpTimer()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,17 +78,51 @@ final class ResultContentView: UIView {
     
     func makeConstraints() {
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(60)
         }
         titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(20)
+            make.center.equalToSuperview()
         }
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalTo(titleLabel.snp.centerX)
+            make.centerY.equalToSuperview().offset(120)
             make.width.equalTo(contentView.snp.width).offset(-30)
-            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+        }
+        charactorImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(30)
         }
     }
     
+}
+
+extension ResultContentView {
+    func charactorAnimation() {
+        UIView.animate(withDuration: 2.0, delay: 0.3, options: [.repeat,.autoreverse], animations: {
+            self.charactorImageView.center.y += 10
+        }) { _ in
+            self.charactorImageView.center.y -= 10
+        }
+    }
+    func setUpTimer() {
+        nomalToCloseEyeImageTimer = Timer.scheduledTimer(timeInterval: setTimeInterval(), target: self, selector: #selector(normalToCloseEyeTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    func setTimeInterval() -> TimeInterval {
+        return TimeInterval(Float.random(in: 4...6))
+    }
+    
+    @objc func normalToCloseEyeTimerAction() {
+        charactorImageView.image = UIImage(named: CharactorImageState.closeEye.rawValue)
+        // 画像をnomalに戻すTimer
+        closeEyeToNormalImageTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(closeEyeToNormalTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func closeEyeToNormalTimerAction() {
+        charactorImageView.image = UIImage(named: CharactorImageState.normal.rawValue)
+        if let toNomalTimer = closeEyeToNormalImageTimer {
+            toNomalTimer.invalidate()
+        }
+    }
 }

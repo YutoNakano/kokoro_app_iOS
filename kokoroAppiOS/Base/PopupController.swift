@@ -27,9 +27,11 @@ final class PopupController: UIViewController {
     
     let viewController: UIViewController
     let overlayColor: UIColor
+    let hundler: (() -> Void)?
     
-    init(viewController: UIViewController, overlayColor: UIColor? = nil) {
+    init(viewController: UIViewController, hundler: (() -> Void)?, overlayColor: UIColor? = nil) {
         self.viewController = viewController
+        self.hundler = hundler
         self.overlayColor = UIColor(white: 0.2, alpha: 0.2)
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .overCurrentContext
@@ -76,6 +78,8 @@ extension PopupController: UIViewControllerTransitioningDelegate {
 
 extension PopupController {
     @objc func overlayTapped() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.hundler!()
+        }
     }
 }
