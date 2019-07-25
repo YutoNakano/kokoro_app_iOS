@@ -21,7 +21,7 @@ class PlaceHolderTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         makeConstraints()
-        font = UIFont(name: "GillSans", size: 16)
+        font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
         textColor = UIColor.appColor(.character)
         layer.cornerRadius = 5
         contentInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
@@ -34,6 +34,7 @@ class PlaceHolderTextView: UITextView {
     
     private lazy var placeHolderLabel: UILabel = {
         let v = UILabel()
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
         v.lineBreakMode = .byWordWrapping
         v.numberOfLines = 0
         v.font = self.font

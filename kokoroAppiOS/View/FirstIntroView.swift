@@ -23,7 +23,7 @@ final class FirstIntroView: UIView {
         v.textColor = UIColor.appColor(.yesPink)
         v.textAlignment = .center
         v.text = "心の案内所は、あなたの心理状況を\n紐解いていくアプリです"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 22)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 22)
         addSubview(v)
         return v
     }()
@@ -34,7 +34,7 @@ final class FirstIntroView: UIView {
         v.textColor = UIColor.appColor(.yesPink)
         v.textAlignment = .center
         v.text = "数個の質問で「心療内科、保健所、精神科、\nカウンセリングどこに行けばよいかわからない」を\n解決することができます。"
-        v.font = UIFont(name: "GillSans-Bold", size: 14)
+        v.font = UIFont(name: "RoundedMplus1c-Regular", size: 14)
         addSubview(v)
         return v
     }()

@@ -20,10 +20,11 @@
 		574E045722B65622008628C5 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045622B65622008628C5 /* AppColor.swift */; };
 		574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045822B65649008628C5 /* EnhancedCircle.swift */; };
 		574E045B22B6564A008628C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045A22B6564A008628C5 /* Extensions.swift */; };
-		574E045F22B6564E008628C5 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E045E22B6564E008628C5 /* View.swift */; };
 		574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */; };
 		574E40E422D587E100099341 /* SecondIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E40E322D587E100099341 /* SecondIntroView.swift */; };
 		574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E40E522D587EE00099341 /* FirstIntroView.swift */; };
+		574FD3AA22E962D000F15461 /* MPLUSRounded1c-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */; };
+		574FD3AB22E962D800F15461 /* MPLUSRounded1c-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */; };
 		5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5754079422C0CD670097D07F /* PlaceHolderTextView.swift */; };
 		5757F40E22BEF0E3008783F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */; };
 		5757F41022BEF18A008783F6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F40F22BEF18A008783F6 /* History.swift */; };
@@ -40,7 +41,6 @@
 		576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD22222BBC69500B83A8E /* QuestionViewController.swift */; };
 		576DD22D22BBC6BB00B83A8E /* ResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD22C22BBC6BB00B83A8E /* ResultCollectionViewCell.swift */; };
 		576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD23022BBC83A00B83A8E /* AppDelegate.swift */; };
-		576DD23322BBC9BF00B83A8E /* UIViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD23222BBC9BF00B83A8E /* UIViewAnimation.swift */; };
 		57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DC922BDD0CC00142ADF /* SignUpViewController.swift */; };
 		57721DCD22BDD68200142ADF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DCC22BDD68200142ADF /* UserManager.swift */; };
 		57721DCF22BDF37100142ADF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DCE22BDF37100142ADF /* RootViewController.swift */; };
@@ -92,10 +92,11 @@
 		574E045622B65622008628C5 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		574E045822B65649008628C5 /* EnhancedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedCircle.swift; sourceTree = "<group>"; };
 		574E045A22B6564A008628C5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		574E045E22B6564E008628C5 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+kingfisher.swift"; sourceTree = "<group>"; };
 		574E40E322D587E100099341 /* SecondIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondIntroView.swift; sourceTree = "<group>"; };
 		574E40E522D587EE00099341 /* FirstIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstIntroView.swift; sourceTree = "<group>"; };
+		574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Regular.ttf"; sourceTree = "<group>"; };
+		574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Medium.ttf"; sourceTree = "<group>"; };
 		5754079422C0CD670097D07F /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5757F40F22BEF18A008783F6 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		576DD22222BBC69500B83A8E /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		576DD22C22BBC6BB00B83A8E /* ResultCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		576DD23022BBC83A00B83A8E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		576DD23222BBC9BF00B83A8E /* UIViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAnimation.swift; sourceTree = "<group>"; };
 		57721DC922BDD0CC00142ADF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		57721DCC22BDD68200142ADF /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		57721DCE22BDF37100142ADF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -188,9 +188,7 @@
 				574E045622B65622008628C5 /* AppColor.swift */,
 				574E045822B65649008628C5 /* EnhancedCircle.swift */,
 				574E045A22B6564A008628C5 /* Extensions.swift */,
-				574E045E22B6564E008628C5 /* View.swift */,
 				574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */,
-				576DD23222BBC9BF00B83A8E /* UIViewAnimation.swift */,
 				574D36F922BC5CC60041D39E /* MaterialButton.swift */,
 				5754079422C0CD670097D07F /* PlaceHolderTextView.swift */,
 				574C60A822C3539C002A5366 /* PresenterInterface.swift */,
@@ -285,6 +283,8 @@
 				57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */,
 				57C9205222B6117900A8B45D /* Info.plist */,
 				5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */,
+				574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */,
+				574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */,
 			);
 			path = kokoroAppiOS;
 			sourceTree = "<group>";
@@ -444,6 +444,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				574FD3AB22E962D800F15461 /* MPLUSRounded1c-Regular.ttf in Resources */,
+				574FD3AA22E962D000F15461 /* MPLUSRounded1c-Medium.ttf in Resources */,
 				57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */,
 				57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */,
 				5757F40E22BEF0E3008783F6 /* GoogleService-Info.plist in Resources */,
@@ -576,7 +578,6 @@
 			files = (
 				5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */,
 				576DD22622BBC69500B83A8E /* QuestionContentView.swift in Sources */,
-				574E045F22B6564E008628C5 /* View.swift in Sources */,
 				5783A04D22C7336400A3EE18 /* ScrollTextView.swift in Sources */,
 				57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */,
 				57BC6F8F22DB66640088465B /* Config.swift in Sources */,
@@ -599,7 +600,6 @@
 				57721DD122BDFA6400142ADF /* NavigationController.swift in Sources */,
 				57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */,
 				574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */,
-				576DD23322BBC9BF00B83A8E /* UIViewAnimation.swift in Sources */,
 				574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */,
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,
 				5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */,

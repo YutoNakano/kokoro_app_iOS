@@ -23,7 +23,7 @@ final class ResultViewController: UIViewController {
         let v = MaterialButton()
         v.setTitle("次へ", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 28)
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(goNextButtonTapped), for: .touchUpInside)

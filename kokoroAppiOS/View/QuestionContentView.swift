@@ -13,7 +13,6 @@ import LTMorphingLabel
 final class QuestionContentView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
-    var viewController: QuestionViewController?
     var questionNumber = 0
     var questionTitle: String? {
         didSet {
@@ -37,7 +36,7 @@ final class QuestionContentView: UIView {
         let v = UILabel()
         v.textColor = UIColor.appColor(.character)
         v.text = "質問"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         contentView.addSubview(v)
         return v
     }()
@@ -46,7 +45,7 @@ final class QuestionContentView: UIView {
         let v = LTMorphingLabel()
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         v.morphingEffect = .scale
         contentView.addSubview(v)
         return v
@@ -59,7 +58,7 @@ final class QuestionContentView: UIView {
         v.preferredMaxLayoutWidth = 0
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         contentView.addSubview(v)
         return v
     }()
@@ -83,14 +82,14 @@ final class QuestionContentView: UIView {
     }
     
     func setup() {
-        setModel()
         questionTitleLabel.fadeIn(type: .Normal)
     }
     
     func setModel() {
-        questionNumberLabel.text = "なし"
         guard let title = questionTitle else { return }
         questionTitleLabel.text = title
+        questionNumber += 1
+        questionNumberLabel.text = "\(questionNumber)"
     }
     
     func makeConstraints() {

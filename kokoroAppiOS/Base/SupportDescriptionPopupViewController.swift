@@ -21,7 +21,7 @@ final class SupportDescriptionPopupViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         let v = UILabel()
         v.text = "お伝えしたいこと"
-        v.font = UIFont(name: "GillSans-Bold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.textColor = UIColor.appColor(.character)
         view.addSubview(v)
         return v
@@ -56,6 +56,7 @@ final class SupportDescriptionPopupViewController: UIViewController {
         心の状態は変わります。その時の貴方がどこに行くのがいいのか、それも変わるかもしれません。思いついた時に、診断してみて、気が向いたらでもいいので、足を運んでみてください。
         貴方の心が少しでも、楽になりますように。
         """
+        v.font = UIFont(name: "RoundedMplus1c-Regular", size: 16)
         v.numberOfLines = 0
         v.textAlignment = .center
         v.sizeToFit()

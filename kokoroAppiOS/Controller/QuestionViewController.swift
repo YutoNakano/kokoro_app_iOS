@@ -55,9 +55,8 @@ final class QuestionViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.navigationItem.leftBarButtonItem = backButton
-        questionContentView.viewController = self
+//        questionContentView.viewController = self
         selectAnserView.viewController = self
-        fetchQuestionData()
         setupView()
         makeConstraints()
     }

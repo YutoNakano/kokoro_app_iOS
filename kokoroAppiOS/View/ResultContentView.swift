@@ -32,7 +32,7 @@ final class ResultContentView: UIView {
         v.adjustsFontSizeToFitWidth = true
         v.text = "診断結果: 心療内科"
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         contentView.addSubview(v)
         return v
     }()
@@ -42,7 +42,8 @@ final class ResultContentView: UIView {
         v.numberOfLines = 0
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.textAlignment = .center
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         contentView.addSubview(v)
         return v

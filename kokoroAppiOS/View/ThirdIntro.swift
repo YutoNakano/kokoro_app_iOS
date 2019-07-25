@@ -23,7 +23,7 @@ final class ThirdIntroView: UIView {
     lazy var twitterLoginButton: UIButton = {
         let v = UIButton()
         v.setTitle("Twitter登録/ログイン", for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-Bold", size: 16)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Regular", size: 16)
         v.tintColor = UIColor.appColor(.white)
         v.layer.cornerRadius = 12
         v.backgroundColor = UIColor.appColor(.twitterBlue)

@@ -27,7 +27,7 @@ final class ResultDetailViewController: UIViewController {
         let v = UILabel()
         v.text = "メモに現在の心身の状況を記録しましょう"
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans", size: 15)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 14)
         view.addSubview(v)
         return v
     }()
@@ -50,7 +50,7 @@ final class ResultDetailViewController: UIViewController {
     lazy var maxCharactorsAlartLabel: UILabel = {
         let v = UILabel()
         v.text = "300文字以上は入力できません"
-        v.font = UIFont(name: "GillSans", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.backgroundColor = UIColor.appColor(.alartRed)
         v.isHidden = true
         view.addSubview(v)
@@ -61,7 +61,7 @@ final class ResultDetailViewController: UIViewController {
         let v = MaterialButton()
         v.setTitle("保存・TOPへ", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 28)
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(goTopButtonTapped), for: .touchUpInside)

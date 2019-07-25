@@ -23,7 +23,7 @@ final class TopViewController: UIViewController {
         v.numberOfLines = 4
         v.adjustsFontSizeToFitWidth = true
         v.textAlignment = .center
-        v.font = UIFont(name: "GillSans-Bold", size: 22)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 22)
         v.textColor = UIColor.appColor(.character)
         view.addSubview(v)
         return v
@@ -49,7 +49,7 @@ final class TopViewController: UIViewController {
         let v = MaterialButton()
         v.setTitle("診断する", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         v.titleLabel?.textColor = UIColor.white
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
@@ -64,7 +64,7 @@ final class TopViewController: UIViewController {
         v.titleLabel?.textAlignment = .center
         v.titleLabel?.numberOfLines = 2
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         v.backgroundColor = UIColor.appColor(.gray)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(watchHistoryButtonTapped), for: .touchUpInside)
@@ -76,7 +76,7 @@ final class TopViewController: UIViewController {
         let v = MaterialButton()
         v.setTitle("LINE@", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-Bold", size: 14)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
         v.backgroundColor = UIColor.appColor(.lineGreen)
         v.layer.cornerRadius = 30
         v.addTarget(self, action: #selector(lineButtonTapped), for: .touchUpInside)
@@ -133,6 +133,7 @@ final class TopViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signOutButton)
         navigationController?.navigationBar.isTranslucent = false
         edgesForExtendedLayout = []
+        navigationItem.hidesBackButton = true
     }
     
     func makeConstraints() {
@@ -144,7 +145,7 @@ final class TopViewController: UIViewController {
         }
         charactorDescriptionLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 80)
-            make.top.equalToSuperview().offset(60)
+            make.top.equalToSuperview().offset(50)
             make.centerX.equalToSuperview()
         }
         charactorImageView.snp.makeConstraints { make in

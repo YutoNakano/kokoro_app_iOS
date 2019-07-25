@@ -22,7 +22,7 @@ final class ScrollTextView: UIView {
     lazy var titleLabel: UILabel = {
         let v = UILabel()
         v.text = "メモ"
-        v.font = UIFont(name: "GillSans-Bold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Regular", size: 20)
         v.textColor = UIColor.appColor(.subPink)
         contentView.addSubview(v)
         return v
@@ -32,7 +32,7 @@ final class ScrollTextView: UIView {
         let v = UILabel()
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans", size: 16)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
         v.backgroundColor = UIColor.appColor(.navbar)
         v.sizeToFit()
         scrollView.addSubview(v)
@@ -71,7 +71,7 @@ final class ScrollTextView: UIView {
         }
         titleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
-            make.top.equalToSuperview().offset(-25)
+            make.top.equalToSuperview().offset(-27)
         }
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

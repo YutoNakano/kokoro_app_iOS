@@ -14,7 +14,7 @@ final class HistoryDetailCollectionViewCell: UICollectionViewCell {
     
     lazy var questionIndexLabel: UILabel = {
         let v = UILabel()
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.textColor = UIColor.appColor(.character)
         v.adjustsFontSizeToFitWidth = true
         v.text = "2,"
@@ -27,7 +27,7 @@ final class HistoryDetailCollectionViewCell: UICollectionViewCell {
         v.text = "今現在体にも不調が出ていますか?"
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         contentView.addSubview(v)
         return v
     }()
@@ -36,7 +36,7 @@ final class HistoryDetailCollectionViewCell: UICollectionViewCell {
         let v = UILabel()
         v.text = "A: YES"
         v.textColor = UIColor.appColor(.yesPink)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.adjustsFontSizeToFitWidth = true
         contentView.addSubview(v)
         return v
