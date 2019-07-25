@@ -116,8 +116,9 @@ extension SignUpViewController {
                     print("認証失敗:\(err)")
                     return
                 }
-                self.fetchTwitterUser()
+                self.registerUser()
             })
+            self.fetchTwitterUser()
         }
     }
     
@@ -151,7 +152,6 @@ extension SignUpViewController {
                 let name = self.name else { return }
             
             self.saveUserInfoToUserDefaults(id: uid, name: name, profileImageData: url)
-            self.registerUser()
         })
     }
     // ユーザーのid・name・profileImageを保存
