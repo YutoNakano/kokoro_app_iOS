@@ -71,7 +71,7 @@ final class HistoryDetailCollectionViewCell: UICollectionViewCell {
             make.width.equalTo(240)
             make.height.equalTo(110)
             make.centerY.equalTo(questionIndexLabel.snp.centerY)
-            make.left.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(70)
         }
         answerLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-10)

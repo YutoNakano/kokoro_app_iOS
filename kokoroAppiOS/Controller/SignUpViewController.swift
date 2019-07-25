@@ -61,7 +61,7 @@ final class SignUpViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     
     var name: String?
-    var profileImage: UIImage?
+    var profileImageURL: URL?
     var twitterSession: TWTRSession?
     var authCompletion: (() -> Void)?
     
@@ -116,7 +116,7 @@ extension SignUpViewController {
                     print("認証失敗:\(err)")
                     return
                 }
-                self.registerUser()
+                self.fetchTwitterUser()
             })
         }
     }
@@ -132,7 +132,6 @@ extension SignUpViewController {
                 "name": displayName!
                 ])
             print("認証成功: \(displayName)")
-            fetchTwitterUser()
         }
     }
     
@@ -148,39 +147,15 @@ extension SignUpViewController {
             let profileImageLargeURL = user.profileImageLargeURL
             
             guard let url = URL(string: profileImageLargeURL) else { return }
+            guard let uid = Auth.auth().currentUser?.uid,
+                let name = self.name else { return }
             
-            URLSession.shared.dataTask(with: url) { (data, response, err) in
-                if let err = err { return }
-                guard let data = data else { return }
-                self.profileImage = UIImage(data: data)
-                self.saveUserInfoToFirebaseDatabase()
-                }.resume()
+            self.saveUserInfoToUserDefaults(id: uid, name: name, profileImageData: url)
+            self.registerUser()
         })
     }
-    
-    func saveUserInfoToFirebaseDatabase() {
-        guard let uid = Auth.auth().currentUser?.uid,
-            let name = self.name, let profileImage = profileImage,
-            let profileImageUploadData = profileImage.jpegData(compressionQuality: 0.3) else { return }
-        
-        let profileImageRef = Storage.storage().reference().child("profileImages").child(uid)
-        saveUserInfoToUserDefaults(id: uid, name: name, profileImageData: profileImage.pngData())
-        DispatchQueue.main.async {
-            let uploadTask = profileImageRef.putData(profileImageUploadData, metadata: nil) { (metadata, err) in
-                guard let metadata = metadata else { return }
-                profileImageRef.downloadURL { (url, err) in
-                    guard let url = url else { return }
-                    let dictionaryValues = ["profileImageUrl": url.absoluteString] as [String : Any]
-                    let db = Firestore.firestore()
-                    db.collection("users").document(uid).updateData(dictionaryValues) { err in
-                        if let err = err { return }
-                    }
-                }
-            }
-        }
-    }
     // ユーザーのid・name・profileImageを保存
-    func saveUserInfoToUserDefaults(id: String, name: String, profileImageData: Data?) {
+    func saveUserInfoToUserDefaults(id: String, name: String, profileImageData: URL?) {
         let userDefalts = UserDefaults.standard
         userDefalts.set(id, forKey: "userID")
         userDefalts.set(name, forKey: "userName")

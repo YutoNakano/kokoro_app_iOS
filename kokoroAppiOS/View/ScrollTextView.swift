@@ -22,7 +22,7 @@ final class ScrollTextView: UIView {
     lazy var titleLabel: UILabel = {
         let v = UILabel()
         v.text = "メモ"
-        v.font = UIFont(name: "RoundedMplus1c-Regular", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.textColor = UIColor.appColor(.subPink)
         contentView.addSubview(v)
         return v

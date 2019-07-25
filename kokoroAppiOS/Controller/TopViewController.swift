@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 import FirebaseAuth
 import LTMorphingLabel
 import FirebaseFirestore
@@ -98,6 +99,7 @@ final class TopViewController: UIViewController {
     var closeEyeToNormalImageTimer: Timer?
     var timerCount = 0
     var charactorState = true
+    var profileImage: UIImage?
     
     var watchButtonTapHandler: (() -> Void)?
     
@@ -265,27 +267,27 @@ extension TopViewController {
     }
     
     func fetchUserData() {
-        if let user = Auth.auth().currentUser {
-            let userRef = Firestore.firestore().collection("users").document(user.uid)
-            userRef.getDocument(completion: { (document, error) in
-                if let document = document, document.exists {
-                    let profileImageUrl = document["profileImageUrl"]
-                    let name = document["name"]
-                    guard let urlString = profileImageUrl as? String else { return }
-                    if let url = URL(string: urlString) {
-                    do {
-                        let data = try Data(contentsOf: url)
-                        let image = UIImage(data: data)
-                        self.signOutButton.setImage(image, for: .normal)
-
-                        self.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
-                    }catch let err {
-                        print(err)
-                    }
-                }
-                }
-            })
-        }
+//        if let user = Auth.auth().currentUser {
+//            let userRef = Firestore.firestore().collection("users").document(user.uid)
+//            userRef.getDocument(completion: { (document, error) in
+//                if let document = document, document.exists {
+//                    let profileImageUrl = document["profileImageUrl"]
+//                    let name = document["name"]
+//                    guard let urlString = profileImageUrl as? String else { return }
+//                    if let url = URL(string: urlString) {
+//                    do {
+//                        let data = try Data(contentsOf: url)
+//                        let image = UIImage(data: data)
+//                        self.signOutButton.setImage(image, for: .normal)
+//
+//                        self.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
+//                    }catch let err {
+//                        print(err)
+//                    }
+//                }
+//                }
+//            })
+//        }
     }
     
     func setModel() {
@@ -300,11 +302,10 @@ extension TopViewController {
     
         if userDefaults.object(forKey: "userName") != nil {
             let userName: String? = userDefaults.object(forKey: "userName") as? String
-            let profileImageData: Data? = userDefaults.data(forKey: "profileImageData")
-            
+            let profileImageURL: URL? = userDefaults.url(forKey: "profileImageData")
+        
             self.charactorDescriptionLabel.text = "\(userName ?? "名無し")さんお帰りなさい!"
-            guard let imageData = profileImageData else { return }
-            self.signOutButton.setImage(UIImage(data: imageData), for: .normal)
+            signOutButton.kf.setImage(with: profileImageURL, for: .normal)
         }
     }
 }

@@ -106,7 +106,7 @@ final class QuestionContentView: UIView {
         }
         questionNumberLabel.snp.makeConstraints { make in
             make.height.equalTo(30)
-            make.top.equalTo(questionLabel.snp.top).offset(-5)
+            make.top.equalTo(questionLabel.snp.top).offset(-3)
             make.left.equalTo(questionLabel.snp.right).offset(7)
         }
         underLineView.snp.makeConstraints { make in

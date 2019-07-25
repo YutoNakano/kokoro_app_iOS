@@ -29,7 +29,7 @@ final class ResultCollectionView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
         layout.sectionInset = UIEdgeInsets(top: 15, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: screenWidth - 24, height: 134)
+        layout.itemSize = CGSize(width: screenWidth - 24, height: 132)
         let v = UICollectionView(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = UIColor.appColor(.background)
         v.register(ResultCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
