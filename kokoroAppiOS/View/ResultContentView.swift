@@ -11,6 +11,10 @@ import UIKit
 import SnapKit
 import LTMorphingLabel
 
+protocol ResultContentViewDelegate: class {
+    func linkButtonTapped()
+}
+
 final class ResultContentView: UIView {
     
     lazy var contentView: UIView = {
@@ -43,9 +47,20 @@ final class ResultContentView: UIView {
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
         v.textAlignment = .center
-        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         contentView.addSubview(v)
+        return v
+    }()
+    
+    lazy var linkButton: UIButton = {
+        let v = UIButton()
+        v.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
+        v.setTitle("こちら", for: .normal)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
+        v.setTitleColor(UIColor.blue, for: .normal)
+        v.backgroundColor = UIColor.clear
+        addSubview(v)
         return v
     }()
     
@@ -65,6 +80,7 @@ final class ResultContentView: UIView {
     var closeEyeToNormalImageTimer: Timer?
     var timerCount = 0
     var charactorState = true
+    weak var delegate: ResultContentViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,7 +99,7 @@ final class ResultContentView: UIView {
     func makeConstraints() {
         contentView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalTo(90)
         }
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -92,6 +108,10 @@ final class ResultContentView: UIView {
             make.centerX.equalTo(titleLabel.snp.centerX)
             make.centerY.equalToSuperview().offset(120)
             make.width.equalTo(contentView.snp.width).offset(-30)
+        }
+        linkButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(descriptionLabel.snp.bottom)
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -128,5 +148,9 @@ extension ResultContentView {
         if let toNomalTimer = closeEyeToNormalImageTimer {
             toNomalTimer.invalidate()
         }
+    }
+    @objc func linkButtonTapped() {
+        print(#function)
+        delegate?.linkButtonTapped()
     }
 }

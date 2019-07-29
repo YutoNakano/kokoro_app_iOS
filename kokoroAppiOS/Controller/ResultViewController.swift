@@ -10,11 +10,13 @@ import UIKit
 import SnapKit
 import LTMorphingLabel
 import FirebaseFirestore
+import SafariServices
 
 final class ResultViewController: UIViewController {
     
     lazy var resultContentView: ResultContentView = {
         let v = ResultContentView()
+        v.delegate = self
         view.addSubview(v)
         return v
     }()
@@ -48,6 +50,7 @@ final class ResultViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
+    var webURL: URL?
     let userDefaults = UserDefaults.standard
     
     init(topVC: TopViewController, questions: [String], selectedAnswers: [SelectedAnswers]) {
@@ -150,15 +153,24 @@ extension ResultViewController {
                     guard let title = document?.data()?["title"] as? String else { return }
                     guard let description = document?.data()?["description"] as? String else { return }
                     print(document?.data()! ?? "結果なし")
+                    guard let urlString = document?.data()?["url"] as? String else { return }
                     completion()
-                    self.passQuestionResult(title: title, description: description)
+                    self.passQuestionResult(title: title, description: description, urlString: urlString)
                 }
         }
     }
     
-    func passQuestionResult(title: String, description: String) {
+    func passQuestionResult(title: String, description: String, urlString: String) {
         resultTitle = title
         resultDescription = description
+        webURL = URL(string: urlString)
     }
 }
 
+extension ResultViewController: ResultContentViewDelegate {
+    func linkButtonTapped() {
+        guard let url = webURL else{ return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
+    }
+}
