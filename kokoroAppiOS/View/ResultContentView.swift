@@ -73,7 +73,6 @@ final class ResultContentView: UIView {
     }
     
     func setup() {
-        charactorAnimation()
         setUpTimer()
     }
     

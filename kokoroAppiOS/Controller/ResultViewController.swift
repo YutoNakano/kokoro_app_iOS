@@ -36,6 +36,11 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
+    lazy var shareButton: UIBarButtonItem = {
+        let v = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(shareButtonTapped))
+        return v
+    }()
+    
     var questions: [String]
     var selectedAnswers: [SelectedAnswers]
     var topViewController: TopViewController?
@@ -61,11 +66,21 @@ final class ResultViewController: UIViewController {
         setupView()
         makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.rightBarButtonItem = shareButton
+        
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.appColor(.noBlue)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.appColor(.noBlue)
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        resultContentView.charactorAnimation()
     }
     
     func setupView() {
@@ -74,6 +89,7 @@ final class ResultViewController: UIViewController {
         resultContentView.descriptionLabel.text = resultDescription
         navigationController?.navigationBar.isTranslucent = false
         edgesForExtendedLayout = []
+
     }
     
     func makeConstraints() {
@@ -110,6 +126,15 @@ extension ResultViewController {
         let navi = NavigationController(rootViewController: topViewController)
         navi.modalTransitionStyle = .crossDissolve
         present(navi, animated: true, completion: nil)
+    }
+    @objc func shareButtonTapped() {
+        let shareText = "私は\(resultTitle)に行ってみた方が良いみたい.."
+        
+        let activityItems = [shareText]
+        
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 

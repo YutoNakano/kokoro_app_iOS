@@ -13,6 +13,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import LTMorphingLabel
 import TwitterKit
+import Kingfisher
 
 
 final class SignUpViewController: UIViewController {
@@ -61,7 +62,7 @@ final class SignUpViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     
     var name: String?
-    var profileImageURL: URL?
+    var profileImage: UIImage?
     var twitterSession: TWTRSession?
     var authCompletion: (() -> Void)?
     
@@ -145,22 +146,55 @@ extension SignUpViewController {
             guard let user = user else { return }
 
             self.name = user.name
-            let profileImageLargeURL = user.profileImageLargeURL
+            let profileImageURLString = user.profileImageLargeURL
             
-            guard let url = URL(string: profileImageLargeURL) else { return }
+            guard let url = URL(string: profileImageURLString) else { return }
+            
             guard let uid = Auth.auth().currentUser?.uid,
                 let name = self.name else { return }
             
-            self.saveUserInfoToUserDefaults(id: uid, name: name, profileImageData: url)
+            self.saveUserInfoToUserDefaults(id: uid, name: name, profileImageURL: url)
         })
     }
+    
     // ユーザーのid・name・profileImageを保存
-    func saveUserInfoToUserDefaults(id: String, name: String, profileImageData: URL?) {
+    func saveUserInfoToUserDefaults(id: String, name: String, profileImageURL: URL?) {
         let userDefalts = UserDefaults.standard
         userDefalts.set(id, forKey: "userID")
         userDefalts.set(name, forKey: "userName")
-        userDefalts.set(profileImageData, forKey: "profileImageData")
+        userDefalts.set(profileImageURL, forKey: "profileImageData")
         userDefalts.synchronize()
+        guard let url = profileImageURL else { return }
+        do {
+            let data = try Data(contentsOf: profileImageURL!)
+            saveUserInfoToFirebaseDatabase(imageData: data)
+        }catch let err {
+            print("Error : \(err.localizedDescription)")
+        }
+    }
+    
+    func saveUserInfoToFirebaseDatabase(imageData: Data) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let profileImageRef = Storage.storage().reference().child("profileImages").child(uid)
+        guard let jpegData = UIImage(data: imageData)?.jpegData(compressionQuality: 0.3) else { return }
+        DispatchQueue.main.async {
+            let uploadTask = profileImageRef.putData(jpegData, metadata: nil) { (metadata, err) in
+                guard let metadata = metadata else { return }
+                profileImageRef.downloadURL { (url, err) in
+                    guard let url = url else { return }
+                    let dictionaryValues = ["profileImageUrl": url.absoluteString] as [String : Any]
+                    let db = Firestore.firestore()
+                    db.collection("users").document(uid).updateData(dictionaryValues) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Successfully update")
+                        }
+                    }
+                    print("何も帰ってこない")
+                }
+            }
+        }
     }
     
 }

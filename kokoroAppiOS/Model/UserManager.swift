@@ -48,11 +48,8 @@ final class UserManager {
             return
         }
         
-        // UserのAuthでログインしてるアカウントのuidを取得
         Document<User>.get(documentID: authUser.uid) { result in
-            // ここでAuthの方に戻る
             switch result {
-            // 目標: uidがあったらauthticatedになる
             case let .success(user):
                 if let user = user {
                     self.currentState = .authenticated(user)

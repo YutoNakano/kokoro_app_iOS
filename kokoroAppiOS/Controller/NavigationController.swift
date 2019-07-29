@@ -17,18 +17,4 @@ final class NavigationController: UINavigationController {
         navigationController = NavigationController(rootViewController: topViewController)
         return navigationController
     }
-    
-//    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-//        //もともとのアニメーションを削除
-//        self.view.layer.removeAllAnimations()
-//        if(animated){
-//            //新しいアニメーションをつける
-//            let transition:CATransition = CATransition()
-//            transition.duration = 0.25
-//            transition.type = CATransitionType.moveIn
-//            transition.subtype = CATransitionSubtype.fromTop
-//            self.view.layer.add(transition,forKey:kCATransition)
-//        }
-//        return super.pushViewController(viewController, animated: false)
-//    }
 }

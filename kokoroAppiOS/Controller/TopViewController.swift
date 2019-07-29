@@ -107,19 +107,19 @@ final class TopViewController: UIViewController {
         super.loadView()
         setupView()
         makeConstraints()
+        fetchUserData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadUserInfoFromUserDefaults()
         fetchCharactorDescription()
-        fetchUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setUpTimer()
         charactorAnimation()
+        loadUserInfoFromUserDefaults()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -267,27 +267,27 @@ extension TopViewController {
     }
     
     func fetchUserData() {
-//        if let user = Auth.auth().currentUser {
-//            let userRef = Firestore.firestore().collection("users").document(user.uid)
-//            userRef.getDocument(completion: { (document, error) in
-//                if let document = document, document.exists {
-//                    let profileImageUrl = document["profileImageUrl"]
-//                    let name = document["name"]
-//                    guard let urlString = profileImageUrl as? String else { return }
-//                    if let url = URL(string: urlString) {
-//                    do {
-//                        let data = try Data(contentsOf: url)
-//                        let image = UIImage(data: data)
-//                        self.signOutButton.setImage(image, for: .normal)
-//
-//                        self.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
-//                    }catch let err {
-//                        print(err)
-//                    }
-//                }
-//                }
-//            })
-//        }
+        if let user = Auth.auth().currentUser {
+            let userRef = Firestore.firestore().collection("users").document(user.uid)
+            userRef.getDocument(completion: { (document, error) in
+                if let document = document, document.exists {
+                    let profileImageUrl = document["profileImageUrl"]
+                    let name = document["name"]
+                    guard let urlString = profileImageUrl as? String else { return }
+                    if let url = URL(string: urlString) {
+                    do {
+                        let data = try Data(contentsOf: url)
+                        let image = UIImage(data: data)
+                        self.signOutButton.setImage(image, for: .normal)
+
+                        self.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
+                    }catch let err {
+                        print(err)
+                    }
+                }
+                }
+            })
+        }
     }
     
     func setModel() {
