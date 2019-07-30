@@ -33,8 +33,6 @@ final class HistoryCollectionView: UIView {
     let screenWidth = UIScreen.main.bounds.width
     weak var delegate: HistoryCollectionViewDelegate?
     
-    var histories: [Document<History>] = []
-    
     var resultTitles: [String] = []
     var timeStamps: [String] = []
 

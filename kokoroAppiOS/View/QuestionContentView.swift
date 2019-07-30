@@ -13,12 +13,6 @@ import LTMorphingLabel
 final class QuestionContentView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
-    var questionNumber = 0
-    var questionTitle: String? {
-        didSet {
-            self.setModel()
-        }
-    }
     
     lazy var contentView: UIView = {
         let v = UIView()
@@ -73,23 +67,11 @@ final class QuestionContentView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
         makeConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setup() {
-        questionTitleLabel.fadeIn(type: .Normal)
-    }
-    
-    func setModel() {
-        guard let title = questionTitle else { return }
-        questionTitleLabel.text = title
-        questionNumber += 1
-        questionNumberLabel.text = "\(questionNumber)"
     }
     
     func makeConstraints() {

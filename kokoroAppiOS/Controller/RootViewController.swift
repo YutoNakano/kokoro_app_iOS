@@ -8,7 +8,6 @@
 
 import FirebaseAuth
 import UIKit
-import KRProgressHUD
 
 final class RootViewController: UIViewController {
     

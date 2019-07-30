@@ -17,6 +17,14 @@ protocol ResultContentViewDelegate: class {
 
 final class ResultContentView: UIView {
     
+    let screenWidth = UIScreen.main.bounds.width
+    
+    var nomalToCloseEyeImageTimer: Timer?
+    var closeEyeToNormalImageTimer: Timer?
+    var timerCount = 0
+    var charactorState = true
+    
+    
     lazy var contentView: UIView = {
         let v = UIView()
         v.backgroundColor = UIColor.appColor(.navbar)
@@ -49,7 +57,7 @@ final class ResultContentView: UIView {
         v.textAlignment = .center
         v.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
-        contentView.addSubview(v)
+        addSubview(v)
         return v
     }()
     
@@ -74,12 +82,6 @@ final class ResultContentView: UIView {
         return v
     }()
     
-    let screenWidth = UIScreen.main.bounds.width
-    
-    var nomalToCloseEyeImageTimer: Timer?
-    var closeEyeToNormalImageTimer: Timer?
-    var timerCount = 0
-    var charactorState = true
     weak var delegate: ResultContentViewDelegate?
     
     override init(frame: CGRect) {
@@ -115,7 +117,7 @@ final class ResultContentView: UIView {
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(30)
+            make.top.equalTo(linkButton.snp.bottom).offset(30)
         }
     }
     
@@ -150,7 +152,6 @@ extension ResultContentView {
         }
     }
     @objc func linkButtonTapped() {
-        print(#function)
         delegate?.linkButtonTapped()
     }
 }

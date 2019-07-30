@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Kingfisher
 import FirebaseAuth
-import LTMorphingLabel
 import FirebaseFirestore
 
 protocol TopViewControllerDelegate: class {
@@ -289,7 +288,7 @@ extension TopViewController {
             })
         }
     }
-    
+    // キャラクターの文言をランダムに表示
     func setModel() {
         charactorDescriptionLabel.text = charactorDescriptionArray[generateRandomNumber()]
     }

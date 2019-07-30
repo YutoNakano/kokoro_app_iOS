@@ -9,6 +9,10 @@
 import SnapKit
 import UIKit
 
+protocol SelectAnserViewDelegate: class {
+    func yesButtonTapped()
+    func noButtonTapped()
+}
 
 final class SelectAnserView: UIView {
     
@@ -46,6 +50,7 @@ final class SelectAnserView: UIView {
     }()
 
     var viewController: QuestionViewController?
+    weak var delegate: SelectAnserViewDelegate?
     
     private var limitNumber: Int = 10
     
@@ -84,20 +89,9 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func yesButtonTapped() {
-        viewController?.selectedAnswer(selected: .yes)
-        validateIsResult()
+        delegate?.yesButtonTapped()
     }
     @objc func noButtonTapped() {
-        viewController?.selectedAnswer(selected: .no)
-        validateIsResult()
-    }
-    
-    func validateIsResult() {
-        if let isResult = viewController?.isResult {
-            guard isResult else {
-                viewController?.goResultVC()
-                return
-            }
-        }
+        delegate?.noButtonTapped()
     }
 }

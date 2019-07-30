@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import LTMorphingLabel
 import FirebaseFirestore
 import SafariServices
 
