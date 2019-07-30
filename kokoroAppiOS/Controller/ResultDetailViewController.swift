@@ -158,9 +158,10 @@ final class ResultDetailViewController: UIViewController {
 extension ResultDetailViewController {
     @objc func goTopButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
-        saveQuestions(title: resultTitle!, questions: questions!, selectedAnswers: selectedAnswers!, memoText: memoTextView.text)
+        guard let resultTitle = resultTitle, let questions = questions, let selectedAnswers = selectedAnswers else { return }
+        saveQuestions(title: resultTitle, questions: questions, selectedAnswers: selectedAnswers, memoText: memoTextView.text)
         topViewController?.setModel()
-        navigationController?.pushViewController(topViewController!, animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
         userDefaults.set(memoText, forKey: "memoText")

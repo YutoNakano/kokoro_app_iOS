@@ -108,7 +108,7 @@ final class ResultContentView: UIView {
         }
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalTo(titleLabel.snp.centerX)
-            make.centerY.equalToSuperview().offset(120)
+            make.top.equalTo(contentView.snp.bottom).offset(10)
             make.width.equalTo(contentView.snp.width).offset(-30)
         }
         linkButton.snp.makeConstraints { make in

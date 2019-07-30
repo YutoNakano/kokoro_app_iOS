@@ -226,8 +226,7 @@ extension TopViewController {
                 UserDefaults.standard.synchronize()
                 UserManager.shared.signOut()
             }),
-            on: self
-        )
+            on: self        )
     }
     
     @objc func lineButtonTapped() {

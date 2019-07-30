@@ -61,7 +61,7 @@ final class SignUpViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     
     var name: String?
-    var profileImage: UIImage?
+    var profileImageURL: URL?
     var twitterSession: TWTRSession?
     var authCompletion: (() -> Void)?
     
@@ -134,6 +134,7 @@ extension SignUpViewController {
                 ])
             print("認証成功: \(displayName)")
         }
+        self.saveUserInfoToUserDefaults()
     }
     
     func fetchTwitterUser() {
@@ -148,18 +149,15 @@ extension SignUpViewController {
             let profileImageURLString = user.profileImageLargeURL
             
             guard let url = URL(string: profileImageURLString) else { return }
-            
-            guard let uid = Auth.auth().currentUser?.uid,
-                let name = self.name else { return }
-            
-            self.saveUserInfoToUserDefaults(id: uid, name: name, profileImageURL: url)
+            self.profileImageURL = url
         })
     }
     
     // ユーザーのid・name・profileImageを保存
-    func saveUserInfoToUserDefaults(id: String, name: String, profileImageURL: URL?) {
+    func saveUserInfoToUserDefaults() {
         let userDefalts = UserDefaults.standard
-        userDefalts.set(id, forKey: "userID")
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        userDefalts.set(uid, forKey: "userID")
         userDefalts.set(name, forKey: "userName")
         userDefalts.set(profileImageURL, forKey: "profileImageData")
         userDefalts.synchronize()
@@ -190,7 +188,6 @@ extension SignUpViewController {
                             print("Successfully update")
                         }
                     }
-                    print("何も帰ってこない")
                 }
             }
         }

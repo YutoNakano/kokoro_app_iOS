@@ -125,9 +125,10 @@ extension ResultViewController {
     @objc func backButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
         guard let topViewController = topViewController else { return }
-        let navi = NavigationController(rootViewController: topViewController)
-        navi.modalTransitionStyle = .crossDissolve
-        present(navi, animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
+//        let navi = NavigationController(rootViewController: topViewController)
+//        navi.modalTransitionStyle = .crossDissolve
+//        present(navi, animated: true, completion: nil)
     }
     @objc func shareButtonTapped() {
         let shareText = "私は\(resultTitle)に行ってみた方が良いみたい.."

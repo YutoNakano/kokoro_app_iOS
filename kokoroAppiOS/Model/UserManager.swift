@@ -49,6 +49,7 @@ final class UserManager {
         }
         
         Document<User>.get(documentID: authUser.uid) { result in
+            print(authUser.uid)
             switch result {
             case let .success(user):
                 if let user = user {

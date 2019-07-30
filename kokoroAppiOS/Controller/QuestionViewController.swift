@@ -122,8 +122,9 @@ extension QuestionViewController {
         
         guard let resultViewController = resultViewController else { return }
         prepareReciveData = ({ () in
-            let navi = NavigationController(rootViewController: resultViewController)
-           self.present(navi, animated: true, completion: nil)
+//            let navi = NavigationController(rootViewController: resultViewController)
+//           self.present(navi, animated: true, completion: nil)
+            self.navigationController?.pushViewController(resultViewController, animated: true)
         })
         
         guard let prepareReciveData = prepareReciveData else { return }
