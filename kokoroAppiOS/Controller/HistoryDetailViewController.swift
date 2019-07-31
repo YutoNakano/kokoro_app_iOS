@@ -69,7 +69,7 @@ final class HistoryDetailViewController: UIViewController {
     
     func makeConstraints() {
         historyDetailCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(520)
+            make.height.equalTo(500)
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(historyDetailMemoView.snp.top).offset(30)
         }
