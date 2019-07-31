@@ -55,12 +55,12 @@ extension UIButton {
     convenience init(normal: String? = nil, selected: String? = nil, target: Any?, action: Selector) {
         self.init(frame: .zero)
         if let named = normal {
-            let image = UIImage(named: named, in: Bundle(for: View.self), compatibleWith: nil)
+            let image = UIImage(named: named, in: Bundle(for: UIView.self), compatibleWith: nil)
             self.setImage(image, for: .normal)
             self.setImage(image, for: [.normal, .highlighted])
         }
         if let named = selected {
-            let image = UIImage(named: named, in: Bundle(for: View.self), compatibleWith: nil)
+            let image = UIImage(named: named, in: Bundle(for: UIView.self), compatibleWith: nil)
             self.setImage(image, for: .selected)
             self.setImage(image, for: [.selected, .highlighted])
         }
@@ -75,4 +75,42 @@ extension UIButton {
         self.addTarget(target, action: action, for: .touchUpInside)
     }
     
+}
+
+
+enum FadeType: TimeInterval {
+    case
+    Normal = 0.2,
+    Slow = 1.0
+}
+
+extension UILabel {
+    
+    func fadeIn(type: FadeType = .Normal, completed: (() -> ())? = nil) {
+        fadeIn(duration: type.rawValue, completed: completed)
+    }
+    
+    func fadeIn(duration: TimeInterval = FadeType.Slow.rawValue, completed: (() -> ())? = nil) {
+        alpha = 0
+        isHidden = false
+        UIView.animate(withDuration: duration,
+                                   animations: {
+                                    self.alpha = 1
+        }) { finished in
+            completed?()
+        }
+    }
+    func fadeOut(type: FadeType = .Normal, completed: (() -> ())? = nil) {
+        fadeOut(duration: type.rawValue, completed: completed)
+    }
+    func fadeOut(duration: TimeInterval = FadeType.Slow.rawValue, completed: (() -> ())? = nil) {
+        UIView.animate(withDuration: duration
+            , animations: {
+                self.alpha = 0
+        }) { [weak self] finished in
+            self?.isHidden = true
+            self?.alpha = 1
+            completed?()
+        }
+    }
 }

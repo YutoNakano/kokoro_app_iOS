@@ -23,6 +23,15 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
+    lazy var memoExplainLabel: UILabel = {
+        let v = UILabel()
+        v.text = "メモに現在の心身の状況を記録しましょう"
+        v.textColor = UIColor.appColor(.character)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 14)
+        view.addSubview(v)
+        return v
+    }()
+    
     lazy var memoTextView: PlaceHolderTextView = {
         let v = PlaceHolderTextView()
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
@@ -32,7 +41,7 @@ final class ResultDetailViewController: UIViewController {
         let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(closeButtonTapped))
         toolBar.items = [spacer, closeButton]
         v.inputAccessoryView = toolBar
-        v.placeHolder = "MEMO"
+        v.placeHolder = "ここに入力ください"
         v.delegate = self
         view.addSubview(v)
         return v
@@ -41,7 +50,7 @@ final class ResultDetailViewController: UIViewController {
     lazy var maxCharactorsAlartLabel: UILabel = {
         let v = UILabel()
         v.text = "300文字以上は入力できません"
-        v.font = UIFont(name: "GillSans", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.backgroundColor = UIColor.appColor(.alartRed)
         v.isHidden = true
         view.addSubview(v)
@@ -52,7 +61,7 @@ final class ResultDetailViewController: UIViewController {
         let v = MaterialButton()
         v.setTitle("保存・TOPへ", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 28)
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(goTopButtonTapped), for: .touchUpInside)
@@ -123,9 +132,13 @@ final class ResultDetailViewController: UIViewController {
             make.height.equalTo(350)
             make.top.left.right.equalToSuperview()
         }
+        memoExplainLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(memoTextView.snp.top).offset(-2)
+            make.left.equalTo(memoTextView.snp.left)
+        }
         memoTextView.snp.makeConstraints { make in
             make.height.equalTo(150)
-            make.top.equalTo(resultCollectionView.snp.bottom).offset(30)
+            make.top.equalTo(resultCollectionView.snp.bottom).offset(35)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }
@@ -145,9 +158,10 @@ final class ResultDetailViewController: UIViewController {
 extension ResultDetailViewController {
     @objc func goTopButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
-        saveQuestions(title: resultTitle!, questions: questions!, selectedAnswers: selectedAnswers!, memoText: memoTextView.text)
-        topViewController?.setModel()
-        navigationController?.pushViewController(topViewController!, animated: true)
+        guard let resultTitle = resultTitle, let questions = questions, let selectedAnswers = selectedAnswers else { return }
+        saveQuestions(title: resultTitle, questions: questions, selectedAnswers: selectedAnswers, memoText: memoTextView.text)
+        topViewController?.setCharactorDescription()
+        navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
         userDefaults.set(memoText, forKey: "memoText")
@@ -168,7 +182,8 @@ extension ResultDetailViewController {
     @objc func keyboardWillShow(notification: Notification?) {
 
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
+        guard let showDuration = duration else { return }
+        UIView.animate(withDuration: showDuration, animations: { () in
             let transform = CGAffineTransform(translationX: 0, y: -200)
             self.view.transform = transform
             
@@ -178,7 +193,8 @@ extension ResultDetailViewController {
     @objc func keyboardWillHide(notification: Notification?) {
         
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
+        guard let hideDuration = duration else { return }
+        UIView.animate(withDuration: hideDuration, animations: { () in
             
             self.view.transform = CGAffineTransform.identity
         })

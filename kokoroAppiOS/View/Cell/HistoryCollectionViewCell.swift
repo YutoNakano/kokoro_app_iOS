@@ -15,7 +15,7 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
     
     lazy var timeStampLabel: UILabel = {
         let v = UILabel()
-        v.font = UIFont(name: "GillSans-UltraBold", size: 16)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
         v.text = "3/24 3:24"
         v.textColor = UIColor.appColor(.character)
         contentView.addSubview(v)
@@ -26,7 +26,7 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
         v.numberOfLines = 0
         v.text = "診断結果:　保健所"
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         contentView.addSubview(v)
         return v
     }()
@@ -63,24 +63,12 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
             make.left.equalToSuperview().offset(10)
         }
         resultLabel.snp.makeConstraints { make in
-            make.width.equalTo(240)
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(55)
         }
         goNextImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-10)
         }
     }
-}
-
-extension HistoryCollectionViewCell {
-    
-//    func configure(resultTitles: [String], timeStamps: [TimeStamp]) {
-//        let date = .data.timeStamp.dateValue()
-//        let format = DateFormatter()
-//        format.dateFormat = "MM/dd HH:mm"
-//        timeStamp.text = format.string(from: date)
-//        resultLabel.text = "診断結果: \(histories.data.title)"
-//    }
 }

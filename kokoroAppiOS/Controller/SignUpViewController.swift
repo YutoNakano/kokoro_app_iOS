@@ -11,8 +11,8 @@ import SnapKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
-import LTMorphingLabel
 import TwitterKit
+import Kingfisher
 
 
 final class SignUpViewController: UIViewController {
@@ -61,7 +61,7 @@ final class SignUpViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     
     var name: String?
-    var profileImage: UIImage?
+    var profileImageURL: URL?
     var twitterSession: TWTRSession?
     var authCompletion: (() -> Void)?
     
@@ -76,6 +76,11 @@ final class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        view.layer.removeAllAnimations()
     }
     
     func setupView() {
@@ -116,55 +121,80 @@ extension SignUpViewController {
                     print("認証失敗:\(err)")
                     return
                 }
-                self.fetchTwitterUser()
+                self.registerUser()
             })
+            self.fetchTwitterUser()
         }
+    }
+    
+    func registerUser() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            guard let displayName = user.displayName else { return }
+            let db = Firestore.firestore()
+            db.collection("users").document(uid).setData([
+                "user_id": uid,
+                "name": displayName
+                ])
+        }
+        self.saveUserInfoToUserDefaults()
     }
     
     func fetchTwitterUser() {
         guard let twitterSession = twitterSession else { return }
         let client = TWTRAPIClient()
         client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
-            if let err = err { return }
+            if let _ = err { return }
             guard let user = user else { return }
-            
+
             self.name = user.name
-            let profileImageLargeURL = user.profileImageLargeURL
+            let profileImageURLString = user.profileImageLargeURL
             
-            guard let url = URL(string: profileImageLargeURL) else { return }
-            
-            URLSession.shared.dataTask(with: url) { (data, response, err) in
-                if let err = err { return }
-                guard let data = data else { return }
-                self.profileImage = UIImage(data: data)
-                self.saveUserInfoFirebaseDatabase()
-                }.resume()
+            guard let url = URL(string: profileImageURLString) else { return }
+            self.profileImageURL = url
         })
     }
     
-    func saveUserInfoFirebaseDatabase() {
-        guard let uid = Auth.auth().currentUser?.uid,
-            let name = self.name, let profileImage = profileImage,
-            let profileImageUploadData = profileImage.jpegData(compressionQuality: 0.3) else { return }
-        
+    func saveUserInfoToUserDefaults() {
+        let userDefalts = UserDefaults.standard
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        userDefalts.set(uid, forKey: "userID")
+        userDefalts.set(name, forKey: "userName")
+        userDefalts.set(profileImageURL, forKey: "profileImageData")
+        userDefalts.synchronize()
+        guard let url = profileImageURL else { return }
+        do {
+            let data = try Data(contentsOf: url)
+            saveUserInfoToFirebaseDatabase(imageData: data)
+        }catch let err {
+            print("Error : \(err.localizedDescription)")
+        }
+    }
+    
+    func saveUserInfoToFirebaseDatabase(imageData: Data) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         let profileImageRef = Storage.storage().reference().child("profileImages").child(uid)
-        
+        guard let jpegData = UIImage(data: imageData)?.jpegData(compressionQuality: 0.3) else { return }
         DispatchQueue.main.async {
-            let uploadTask = profileImageRef.putData(profileImageUploadData, metadata: nil) { (metadata, err) in
-                guard let metadata = metadata else { return }
+            let _ = profileImageRef.putData(jpegData, metadata: nil) { (metadata, err) in
+                guard let _ = metadata else { return }
                 profileImageRef.downloadURL { (url, err) in
                     guard let url = url else { return }
-                    let dictionaryValues = ["user_id": uid,
-                                            "name": name,
-                                            "profileImageUrl": url.absoluteString] as [String : Any]
+                    let dictionaryValues = ["profileImageUrl": url.absoluteString] as [String : Any]
                     let db = Firestore.firestore()
-                    db.collection("users").document(uid).setData(dictionaryValues) { err in
-                        if let err = err { return }
+                    db.collection("users").document(uid).updateData(dictionaryValues) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Successfully update")
+                        }
                     }
                 }
             }
         }
     }
+    
 }
 
 extension SignUpViewController: UIScrollViewDelegate {

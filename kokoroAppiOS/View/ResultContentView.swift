@@ -11,7 +11,19 @@ import UIKit
 import SnapKit
 import LTMorphingLabel
 
+protocol ResultContentViewDelegate: class {
+    func linkButtonTapped()
+}
+
 final class ResultContentView: UIView {
+    
+    let screenWidth = UIScreen.main.bounds.width
+    
+    var nomalToCloseEyeImageTimer: Timer?
+    var closeEyeToNormalImageTimer: Timer?
+    var timerCount = 0
+    var charactorState = true
+    
     
     lazy var contentView: UIView = {
         let v = UIView()
@@ -32,7 +44,7 @@ final class ResultContentView: UIView {
         v.adjustsFontSizeToFitWidth = true
         v.text = "診断結果: 心療内科"
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         contentView.addSubview(v)
         return v
     }()
@@ -42,13 +54,35 @@ final class ResultContentView: UIView {
         v.numberOfLines = 0
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.textAlignment = .center
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
-        contentView.addSubview(v)
+        addSubview(v)
         return v
     }()
     
-    let screenWidth = UIScreen.main.bounds.width
+    lazy var linkButton: UIButton = {
+        let v = UIButton()
+        v.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
+        v.setTitle("こちら", for: .normal)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
+        v.setTitleColor(UIColor.blue, for: .normal)
+        v.backgroundColor = UIColor.clear
+        addSubview(v)
+        return v
+    }()
+    
+    lazy var charactorImageView: UIImageView = {
+        let v = UIImageView(image: UIImage(named: CharactorImageState.normal.rawValue))
+        v.layer.shadowColor = UIColor.black.cgColor
+        v.layer.shadowOffset = .zero
+        v.layer.shadowOpacity = 0.3
+        v.layer.shadowRadius = 4
+        addSubview(v)
+        return v
+    }()
+    
+    weak var delegate: ResultContentViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +91,7 @@ final class ResultContentView: UIView {
     }
     
     func setup() {
-//        questionTitleLabel.fadeIn(type: .Normal)
+        setUpTimer()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,17 +100,58 @@ final class ResultContentView: UIView {
     
     func makeConstraints() {
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(90)
         }
         titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(20)
+            make.center.equalToSuperview()
         }
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalTo(titleLabel.snp.centerX)
+            make.top.equalTo(contentView.snp.bottom).offset(10)
             make.width.equalTo(contentView.snp.width).offset(-30)
-            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+        }
+        linkButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(descriptionLabel.snp.bottom)
+        }
+        charactorImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(linkButton.snp.bottom).offset(30)
         }
     }
     
+}
+
+extension ResultContentView {
+    func charactorAnimation() {
+        UIView.animate(withDuration: 2.0, delay: 0.3, options: [.repeat,.autoreverse], animations: {
+            self.charactorImageView.center.y += 10
+        }) { _ in
+            self.charactorImageView.center.y -= 10
+        }
+    }
+    func setUpTimer() {
+        nomalToCloseEyeImageTimer = Timer.scheduledTimer(timeInterval: setTimeInterval(), target: self, selector: #selector(normalToCloseEyeTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    func setTimeInterval() -> TimeInterval {
+        return TimeInterval(Float.random(in: 4...6))
+    }
+    
+    @objc func normalToCloseEyeTimerAction() {
+        charactorImageView.image = UIImage(named: CharactorImageState.closeEye.rawValue)
+        // 画像をnomalに戻すTimer
+        closeEyeToNormalImageTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(closeEyeToNormalTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc func closeEyeToNormalTimerAction() {
+        charactorImageView.image = UIImage(named: CharactorImageState.normal.rawValue)
+        if let toNomalTimer = closeEyeToNormalImageTimer {
+            toNomalTimer.invalidate()
+        }
+    }
+    @objc func linkButtonTapped() {
+        delegate?.linkButtonTapped()
+    }
 }

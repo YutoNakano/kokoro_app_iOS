@@ -8,13 +8,14 @@
 
 import UIKit
 import SnapKit
-import LTMorphingLabel
 import FirebaseFirestore
+import SafariServices
 
 final class ResultViewController: UIViewController {
     
     lazy var resultContentView: ResultContentView = {
         let v = ResultContentView()
+        v.delegate = self
         view.addSubview(v)
         return v
     }()
@@ -23,7 +24,7 @@ final class ResultViewController: UIViewController {
         let v = MaterialButton()
         v.setTitle("次へ", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 28)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 28)
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.layer.cornerRadius = 20
         v.addTarget(self, action: #selector(goNextButtonTapped), for: .touchUpInside)
@@ -31,24 +32,13 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
-    lazy var supportDescriptionView: ScrollTextView = {
-        let v = ScrollTextView()
-        v.titleLabel.text = ""
-        v.memoLabel.text =
-        """
-        もし、行ってみたが相談した相手にわかってもらえなかった、対応が悪かった、など、せっかく前に一歩踏み出したのに良い結果が出なかった場合、それはあなたのせいでは決してありませんし、そこで絶望する必要は全くありません。人と人の関わりにもなるので、合う合わないの相性もあります｡ﾟ(>_<)ﾟ｡\n同じ「精神科/心療内科/カウンセラー/保健所」というジャンルの人でも、与えてくれる言葉や診断は異なることも充分あり得ます。しかし、今の辛い状況を我慢する、放置することは、あなた自身にとって一番苦しいことです。1人で解決できる問題ではないからです。
-        あなたを救うための機関や専門家が沢山います。\n
-        このアプリを作った目的は、苦しんでいたり悩んでいる貴方が、なるべく苦労せず自分に合った窓口を選ぶためです。必ず悩みが解決するとは言えませんが、一方踏み出しやすくなって頂けたら幸いです。\n
-        
-        心の状態は変わります。その時の貴方がどこに行くのがいいのか、それも変わるかもしれません。思いついた時に、診断してみて、気が向いたらでもいいので、足を運んでみてください。
-        貴方の心が少しでも、楽になりますように。
-        """
-        view.addSubview(v)
+    lazy var backButton: UIBarButtonItem = {
+        let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
         return v
     }()
     
-    lazy var backButton: UIBarButtonItem = {
-        let v = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(backButtonTapped))
+    lazy var shareButton: UIBarButtonItem = {
+        let v = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(shareButtonTapped))
         return v
     }()
     
@@ -59,6 +49,7 @@ final class ResultViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
+    var webURL: URL?
     let userDefaults = UserDefaults.standard
     
     init(topVC: TopViewController, questions: [String], selectedAnswers: [SelectedAnswers]) {
@@ -77,31 +68,37 @@ final class ResultViewController: UIViewController {
         setupView()
         makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.rightBarButtonItem = shareButton
+        
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.appColor(.noBlue)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.appColor(.noBlue)
+
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        resultContentView.charactorAnimation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.layer.removeAllAnimations()
     }
     
     func setupView() {
         view.backgroundColor = UIColor.appColor(.background)
         resultContentView.titleLabel.text = "診断結果: \(resultTitle)"
         resultContentView.descriptionLabel.text = resultDescription
-        navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
-        
+        navigationController?.navigationBar.isTranslucent = false
+
     }
     
     func makeConstraints() {
         resultContentView.snp.makeConstraints { make in
-            make.top.equalTo(100)
-            make.height.equalTo(300)
-            make.width.equalTo(screenWidth - 30)
+            make.top.equalToSuperview().offset(20)
+            make.height.equalTo(550)
+            make.width.equalTo(screenWidth - 32)
             make.centerX.equalToSuperview()
-        }
-        supportDescriptionView.snp.makeConstraints { make in
-            make.top.equalTo(resultContentView.snp.bottom).offset(80)
-            make.left.right.equalToSuperview()
         }
         goNextButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-80)
@@ -114,14 +111,30 @@ final class ResultViewController: UIViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
-        guard let topViewController = topViewController else { return }
-        let resultDetailViewController = ResultDetailViewController(topVC: topViewController, title: resultTitle, questions: questions, selectedAnswers: selectedAnswers)
-        self.navigationController?.pushViewController(resultDetailViewController, animated: true)
+        let popupHundler = { () in
+            guard let topViewController = self.topViewController else { return }
+            let resultDetailViewController = ResultDetailViewController(topVC: topViewController, title: self.resultTitle, questions: self.questions, selectedAnswers: self.selectedAnswers)
+            self.navigationController?.pushViewController(resultDetailViewController, animated: true)
+        }
+        let vc = SupportDescriptionPopupViewController()
+        let popup = PopupController(viewController: vc, hundler: popupHundler)
+        popup.modalTransitionStyle = .crossDissolve
+        present(popup, animated: true)
     }
+    
     @objc func backButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
-        guard let topViewController = topViewController else { return }
-        navigationController?.pushViewController(topViewController, animated: true)
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc func shareButtonTapped() {
+        let shareText = "私は\(resultTitle)に行ってみた方が良いみたい.."
+        
+        let activityItems = [shareText]
+        
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
@@ -136,16 +149,24 @@ extension ResultViewController {
                 } else {
                     guard let title = document?.data()?["title"] as? String else { return }
                     guard let description = document?.data()?["description"] as? String else { return }
-                    print(document?.data()! ?? "結果なし")
+                    guard let urlString = document?.data()?["url"] as? String else { return }
                     completion()
-                    self.passQuestionResult(title: title, description: description)
+                    self.passQuestionResult(title: title, description: description, urlString: urlString)
                 }
         }
     }
     
-    func passQuestionResult(title: String, description: String) {
+    func passQuestionResult(title: String, description: String, urlString: String) {
         resultTitle = title
         resultDescription = description
+        webURL = URL(string: urlString)
     }
 }
 
+extension ResultViewController: ResultContentViewDelegate {
+    func linkButtonTapped() {
+        guard let url = webURL else{ return }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
+    }
+}

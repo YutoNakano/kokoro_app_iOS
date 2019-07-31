@@ -13,16 +13,17 @@ public enum AppColorType: String {
     case white = "FFFFFF"
     case black = "000000"
     case character = "5B5355"
-    case yesPink = "DE8892"
-    case subPink = "FAC5D4"
-    case noBlue = "4996E9"
-    case gray = "A0A2A2"
-    case background = "F4F4F5"
+    case yesPink = "DD78A4"
+    case subPink = "DE8892"
+    case noBlue = "ABBEE9"
+    case gray = "ABBEE8"
+    case background = "E7F1FD"
     case lightGray = "DEDADA"
     case navbar = "FEFFFF"
     case lineGreen = "50B535"
     case alartRed = "FD5105"
     case twitterBlue = "72B4E1"
+    case pinkBackground = "A0FAEC"
 }
 
 extension UIColor {

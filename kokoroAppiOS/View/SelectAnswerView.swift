@@ -9,6 +9,10 @@
 import SnapKit
 import UIKit
 
+protocol SelectAnserViewDelegate: class {
+    func yesButtonTapped()
+    func noButtonTapped()
+}
 
 final class SelectAnserView: UIView {
     
@@ -16,7 +20,7 @@ final class SelectAnserView: UIView {
         let v = UILabel()
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 30)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 30)
         addSubview(v)
         return v
     }()
@@ -25,7 +29,7 @@ final class SelectAnserView: UIView {
         let v = MaterialButton()
         v.setTitle("YES", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 26)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 28)
         v.backgroundColor = UIColor.appColor(.yesPink)
         v.addTarget(self, action: #selector(yesButtonTapped), for: .touchUpInside)
         v.layer.cornerRadius = 20
@@ -37,7 +41,7 @@ final class SelectAnserView: UIView {
         let v = MaterialButton()
         v.setTitle("NO", for: .normal)
         v.setTitleColor(UIColor.white, for: .normal)
-        v.titleLabel?.font = UIFont(name: "GillSans-UltraBold", size: 26)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 28)
         v.backgroundColor = UIColor.appColor(.noBlue)
         v.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
         v.layer.cornerRadius = 20
@@ -46,6 +50,7 @@ final class SelectAnserView: UIView {
     }()
 
     var viewController: QuestionViewController?
+    weak var delegate: SelectAnserViewDelegate?
     
     private var limitNumber: Int = 10
     
@@ -84,20 +89,9 @@ final class SelectAnserView: UIView {
 
 extension SelectAnserView {
     @objc func yesButtonTapped() {
-        viewController?.selectedAnswer(selected: .yes)
-        validateIsResult()
+        delegate?.yesButtonTapped()
     }
     @objc func noButtonTapped() {
-        viewController?.selectedAnswer(selected: .no)
-        validateIsResult()
-    }
-    
-    func validateIsResult() {
-        if let isResult = viewController?.isResult {
-            guard isResult else {
-                viewController?.goResultVC()
-                return
-            }
-        }
+        delegate?.noButtonTapped()
     }
 }

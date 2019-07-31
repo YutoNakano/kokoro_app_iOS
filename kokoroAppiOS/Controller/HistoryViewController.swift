@@ -15,6 +15,9 @@ final class HistoryViewController: UIViewController {
     lazy var historyCollectionView: HistoryCollectionView = {
         let v = HistoryCollectionView()
         v.delegate = self
+        let refleshControl = UIRefreshControl()
+        refleshControl.addTarget(self, action: #selector(refleshScrolled(sender:)), for: .valueChanged)
+        v.collectionView.refreshControl = refleshControl
         view.addSubview(v)
         return v
     }()
@@ -26,8 +29,7 @@ final class HistoryViewController: UIViewController {
     
     var watchButtonTapHandler: (() -> Void)?
     var didSelectCellTapHandler: (() -> Void)?
-    var histories: [Document<History>] = []
-    
+
     var questions: [[String]] = []
     var selectedAnswers: [[String]] = []
     var memos: [String] = []
@@ -64,11 +66,15 @@ final class HistoryViewController: UIViewController {
         })
         guard let completion = watchButtonTapHandler else { return }
         fetchResultData(completion: completion)
+        historyCollectionView.collectionView.refreshControl?.endRefreshing()
     }
     
 }
 
 extension HistoryViewController {
+    @objc func refleshScrolled(sender: UIRefreshControl) {
+        fetch()
+    }
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -84,12 +90,11 @@ extension HistoryViewController {
             if let err = error {
                 print(err)
             } else {
-                let questions: [[String]] = document?.documents.map { $0.data()["questions"] } as! [[String]]
-                print(questions)
-                let selectAnswers: [[String]] = document?.documents.map { $0.data()["selectedAnswers"] } as! [[String]]
-                let resultTitle: [String] = document?.documents.map { $0.data()["title"] } as! [String]
-                let memo: [String] = document?.documents.map { $0.data()["memo"] } as! [String]
-                let timeStamp: [Date] = document?.documents.map { $0.data()["timeStamp"] } as! [Date]
+                guard let questions: [[String]] = (document?.documents.map { $0.data()["questions"] } as? [[String]]),
+                    let selectAnswers: [[String]] = (document?.documents.map { $0.data()["selectedAnswers"] } as? [[String]]),
+                    let resultTitle: [String] = (document?.documents.map { $0.data()["title"] }) as? [String],
+                    let memo: [String] = (document?.documents.map { $0.data()["memo"] }) as? [String],
+                    let timeStamp: [Date] = (document?.documents.map { $0.data()["timeStamp"] }) as? [Date] else { return }
                 self.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: timeStamp)
                 completion()
             }
@@ -98,15 +103,18 @@ extension HistoryViewController {
     
     func passResultData(questions:[[String]], selectedAnswers: [[String]], memos: [String], titles: [String], timeStamps: [Date]) {
             historyCollectionView.resultTitles = titles
-            let format = DateFormatter()
-            format.dateFormat = "MM/dd HH:mm"
-            let dates = timeStamps.map { format.string(from: $0) }
-            historyCollectionView.timeStamps = dates
-        
+            historyCollectionView.timeStamps = dateFormat(timeStamps: timeStamps)
             self.questions = questions
             self.selectedAnswers = selectedAnswers
             self.memos = memos
         }
+    
+    func dateFormat(timeStamps: [Date]) -> [String] {
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd HH:mm"
+        let dates = timeStamps.map { format.string(from: $0) }
+        return dates
+    }
 }
 
 extension HistoryViewController: HistoryCollectionViewDelegate {

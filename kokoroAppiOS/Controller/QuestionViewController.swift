@@ -22,6 +22,7 @@ final class QuestionViewController: UIViewController {
     lazy var selectAnserView: SelectAnserView = {
         let v = SelectAnserView()
         v.backgroundColor = UIColor.appColor(.background)
+        v.delegate = self
         view.addSubview(v)
         return v
     }()
@@ -32,9 +33,9 @@ final class QuestionViewController: UIViewController {
     }()
     
     var resultViewController: ResultViewController?
-    var questionTitle = ""
     var resultTitle = ""
     var isResult = false
+    var questionNumber = 0
     var yesQuestionIndex = 0
     var noQuestionIndex = 0
     var nextIndex = 1
@@ -42,6 +43,12 @@ final class QuestionViewController: UIViewController {
     var questionTitles = [String]()
     var selectedAnswers = [SelectedAnswers]()
     var topViewController: TopViewController?
+    
+    var questionTitle: String? {
+        didSet {
+            self.setModel()
+        }
+    }
     
     init(topVC: TopViewController) {
         topViewController = topVC
@@ -55,9 +62,6 @@ final class QuestionViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.navigationItem.leftBarButtonItem = backButton
-        questionContentView.viewController = self
-        selectAnserView.viewController = self
-        fetchQuestionData()
         setupView()
         makeConstraints()
     }
@@ -103,22 +107,27 @@ extension QuestionViewController {
     
     func selectedAnswer(selected: SelectedAnswers) {
         appendQuestionToArray(selected: selected)
+        /*
+         ユーザーがYesを選択 -> Firestoreに持たせているyesQuestionIndexをnextIndexへ
+         ユーザーがNoを選択 -> Firestoreに持たせているnoQuestionIndexをnextIndexへ
+        */
         nextIndex = selected == .yes ? yesQuestionIndex : noQuestionIndex
         fetchQuestionData()
     }
-    // ResultDetailVC表示用の配列を作成
+    // ResultDetailVC(結果詳細画面)表示用の配列を作成
     func appendQuestionToArray(selected: SelectedAnswers) {
-        questionTitles.append(questionTitle)
+        guard let questions = questionTitle else { return }
+        questionTitles.append(questions)
         selectedAnswers.append(selected)
     }
     
     func goResultVC() {
-        resultViewController = ResultViewController(topVC: topViewController!, questions: questionTitles, selectedAnswers: selectedAnswers)
+        guard let topViewController = topViewController else { return }
+        resultViewController = ResultViewController(topVC: topViewController, questions: questionTitles, selectedAnswers: selectedAnswers)
         
         guard let resultViewController = resultViewController else { return }
         prepareReciveData = ({ () in
-            let navi = NavigationController(rootViewController: resultViewController)
-           self.present(navi, animated: true, completion: nil)
+            self.navigationController?.pushViewController(resultViewController, animated: true)
         })
         
         guard let prepareReciveData = prepareReciveData else { return }
@@ -129,8 +138,13 @@ extension QuestionViewController {
 
 extension QuestionViewController {
     func passQuestionText(questionText: String) {
-        questionContentView.questionTitle = questionText
         questionTitle = questionText
+    }
+    func setModel() {
+        questionContentView.questionTitleLabel.text = questionTitle
+        // 質問番号表示を+1する
+        questionNumber += 1
+        questionContentView.questionNumberLabel.text = "\(questionNumber)"
     }
 }
 
@@ -151,12 +165,27 @@ extension QuestionViewController {
                     self.noQuestionIndex = noQuestionIndex
                     
                     guard let text = document?.data()?["title"] as? String else { return }
-                    print(document?.data()! ?? "質問なし")
                     self.passQuestionText(questionText: text)
                 }
         }
     }
 }
 
-
+extension QuestionViewController: SelectAnserViewDelegate {
+    func yesButtonTapped() {
+        selectedAnswer(selected: .yes)
+        validateIsResult()
+    }
+    func noButtonTapped() {
+        selectedAnswer(selected: .no)
+        validateIsResult()
+    }
+    // Firestoreに持たせているisResultプロパティがtrueだったら結果画面に画面遷移する
+    func validateIsResult() {
+        guard isResult else {
+            goResultVC()
+            return
+        }
+    }
+}
 

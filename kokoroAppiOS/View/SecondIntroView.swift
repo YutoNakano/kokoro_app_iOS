@@ -23,7 +23,7 @@ final class SecondIntroView: UIView {
         v.textColor = UIColor.appColor(.yesPink)
         v.textAlignment = .center
         v.text = "過去の診断結果を\n振り返ることもできます。"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 22)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 22)
         addSubview(v)
         return v
     }()
@@ -39,8 +39,8 @@ final class SecondIntroView: UIView {
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.yesPink)
         v.textAlignment = .center
-        v.text = "過去の診断結果や、その時に記したメモを振り返り、\n自分の心理状態を客観的に把握しましょう。"
-        v.font = UIFont(name: "GillSans-Bold", size: 14)
+        v.text = "過去の診断結果や、その時に記したメモを振り返り、\n自分の心理状態を客観的に把握できます。"
+        v.font = UIFont(name: "RoundedMplus1c-Regular", size: 14)
         addSubview(v)
         return v
     }()

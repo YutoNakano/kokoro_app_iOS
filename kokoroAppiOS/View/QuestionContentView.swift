@@ -13,13 +13,6 @@ import LTMorphingLabel
 final class QuestionContentView: UIView {
     
     let screenWidth = UIScreen.main.bounds.width
-    var viewController: QuestionViewController?
-    var questionNumber = 0
-    var questionTitle: String? {
-        didSet {
-            self.setModel()
-        }
-    }
     
     lazy var contentView: UIView = {
         let v = UIView()
@@ -37,7 +30,7 @@ final class QuestionContentView: UIView {
         let v = UILabel()
         v.textColor = UIColor.appColor(.character)
         v.text = "質問"
-        v.font = UIFont(name: "GillSans-UltraBold", size: 20)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         contentView.addSubview(v)
         return v
     }()
@@ -46,7 +39,7 @@ final class QuestionContentView: UIView {
         let v = LTMorphingLabel()
         v.numberOfLines = 0
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         v.morphingEffect = .scale
         contentView.addSubview(v)
         return v
@@ -59,7 +52,7 @@ final class QuestionContentView: UIView {
         v.preferredMaxLayoutWidth = 0
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
-        v.font = UIFont(name: "GillSans-UltraBold", size: 24)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
         contentView.addSubview(v)
         return v
     }()
@@ -74,23 +67,11 @@ final class QuestionContentView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
         makeConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setup() {
-        setModel()
-        questionTitleLabel.fadeIn(type: .Normal)
-    }
-    
-    func setModel() {
-        questionNumberLabel.text = "なし"
-        guard let title = questionTitle else { return }
-        questionTitleLabel.text = title
     }
     
     func makeConstraints() {
@@ -107,7 +88,7 @@ final class QuestionContentView: UIView {
         }
         questionNumberLabel.snp.makeConstraints { make in
             make.height.equalTo(30)
-            make.top.equalTo(questionLabel.snp.top).offset(-5)
+            make.top.equalTo(questionLabel.snp.top).offset(-3)
             make.left.equalTo(questionLabel.snp.right).offset(7)
         }
         underLineView.snp.makeConstraints { make in

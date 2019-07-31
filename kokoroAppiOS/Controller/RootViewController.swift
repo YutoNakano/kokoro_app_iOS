@@ -8,16 +8,13 @@
 
 import FirebaseAuth
 import UIKit
-import KRProgressHUD
 
 final class RootViewController: UIViewController {
+    
     enum ViewType {
-        // signUpではなくcase intro を追加する
         case signUp
         case main
     }
-    
-    private var isTest = true
     
     private var viewType: ViewType? {
         didSet {
@@ -61,8 +58,6 @@ final class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        UserManager.shared.signOut()
     
         UserManager.shared.register { [weak self] state in
             switch state {
