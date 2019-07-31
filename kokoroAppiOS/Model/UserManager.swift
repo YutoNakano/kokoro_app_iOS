@@ -42,7 +42,6 @@ final class UserManager {
     }
     
     func fetch(authUser: Firebase.User? = Auth.auth().currentUser) {
-        // Authされてるユーザーを取得してなかったらログイン画面へ
         guard let authUser =  authUser else {
             currentState = .notAuthenticated
             return

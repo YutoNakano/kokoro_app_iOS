@@ -16,8 +16,6 @@ final class RootViewController: UIViewController {
         case main
     }
     
-    private var isTest = true
-    
     private var viewType: ViewType? {
         didSet {
             guard let type = viewType, oldValue != type else {
@@ -60,8 +58,6 @@ final class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        UserManager.shared.signOut()
     
         UserManager.shared.register { [weak self] state in
             switch state {

@@ -116,9 +116,3 @@ final class SupportDescriptionPopupViewController: UIViewController {
         }
     }
 }
-
-extension SupportDescriptionPopupViewController {
-    func seupScrollIndicator() {
-    
-    }
-}

@@ -78,6 +78,11 @@ final class SignUpViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        view.layer.removeAllAnimations()
+    }
+    
     func setupView() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = UIColor.appColor(.gray)
@@ -126,13 +131,12 @@ extension SignUpViewController {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
-            let displayName = user.displayName
+            guard let displayName = user.displayName else { return }
             let db = Firestore.firestore()
             db.collection("users").document(uid).setData([
                 "user_id": uid,
-                "name": displayName!
+                "name": displayName
                 ])
-            print("認証成功: \(displayName)")
         }
         self.saveUserInfoToUserDefaults()
     }
@@ -141,8 +145,7 @@ extension SignUpViewController {
         guard let twitterSession = twitterSession else { return }
         let client = TWTRAPIClient()
         client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
-            if let err = err { return }
-            print(err)
+            if let _ = err { return }
             guard let user = user else { return }
 
             self.name = user.name
@@ -153,7 +156,6 @@ extension SignUpViewController {
         })
     }
     
-    // ユーザーのid・name・profileImageを保存
     func saveUserInfoToUserDefaults() {
         let userDefalts = UserDefaults.standard
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -163,7 +165,7 @@ extension SignUpViewController {
         userDefalts.synchronize()
         guard let url = profileImageURL else { return }
         do {
-            let data = try Data(contentsOf: profileImageURL!)
+            let data = try Data(contentsOf: url)
             saveUserInfoToFirebaseDatabase(imageData: data)
         }catch let err {
             print("Error : \(err.localizedDescription)")
@@ -175,8 +177,8 @@ extension SignUpViewController {
         let profileImageRef = Storage.storage().reference().child("profileImages").child(uid)
         guard let jpegData = UIImage(data: imageData)?.jpegData(compressionQuality: 0.3) else { return }
         DispatchQueue.main.async {
-            let uploadTask = profileImageRef.putData(jpegData, metadata: nil) { (metadata, err) in
-                guard let metadata = metadata else { return }
+            let _ = profileImageRef.putData(jpegData, metadata: nil) { (metadata, err) in
+                guard let _ = metadata else { return }
                 profileImageRef.downloadURL { (url, err) in
                     guard let url = url else { return }
                     let dictionaryValues = ["profileImageUrl": url.absoluteString] as [String : Any]

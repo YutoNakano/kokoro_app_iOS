@@ -160,7 +160,7 @@ extension ResultDetailViewController {
         userDefaults.removeObject(forKey: "memoText")
         guard let resultTitle = resultTitle, let questions = questions, let selectedAnswers = selectedAnswers else { return }
         saveQuestions(title: resultTitle, questions: questions, selectedAnswers: selectedAnswers, memoText: memoTextView.text)
-        topViewController?.setModel()
+        topViewController?.setCharactorDescription()
         navigationController?.popToRootViewController(animated: true)
     }
     @objc func backButtonTapped() {
@@ -182,7 +182,8 @@ extension ResultDetailViewController {
     @objc func keyboardWillShow(notification: Notification?) {
 
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
+        guard let showDuration = duration else { return }
+        UIView.animate(withDuration: showDuration, animations: { () in
             let transform = CGAffineTransform(translationX: 0, y: -200)
             self.view.transform = transform
             
@@ -192,7 +193,8 @@ extension ResultDetailViewController {
     @objc func keyboardWillHide(notification: Notification?) {
         
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
-        UIView.animate(withDuration: duration!, animations: { () in
+        guard let hideDuration = duration else { return }
+        UIView.animate(withDuration: hideDuration, animations: { () in
             
             self.view.transform = CGAffineTransform.identity
         })

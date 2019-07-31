@@ -63,24 +63,12 @@ final class HistoryCollectionViewCell: UICollectionViewCell {
             make.left.equalToSuperview().offset(10)
         }
         resultLabel.snp.makeConstraints { make in
-            make.width.equalTo(240)
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(55)
         }
         goNextImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-10)
         }
     }
-}
-
-extension HistoryCollectionViewCell {
-    
-//    func configure(resultTitles: [String], timeStamps: [TimeStamp]) {
-//        let date = .data.timeStamp.dateValue()
-//        let format = DateFormatter()
-//        format.dateFormat = "MM/dd HH:mm"
-//        timeStamp.text = format.string(from: date)
-//        resultLabel.text = "診断結果: \(histories.data.title)"
-//    }
 }

@@ -107,6 +107,10 @@ extension QuestionViewController {
     
     func selectedAnswer(selected: SelectedAnswers) {
         appendQuestionToArray(selected: selected)
+        /*
+         ユーザーがYesを選択 -> Firestoreに持たせているyesQuestionIndexをnextIndexへ
+         ユーザーがNoを選択 -> Firestoreに持たせているnoQuestionIndexをnextIndexへ
+        */
         nextIndex = selected == .yes ? yesQuestionIndex : noQuestionIndex
         fetchQuestionData()
     }
@@ -118,12 +122,11 @@ extension QuestionViewController {
     }
     
     func goResultVC() {
-        resultViewController = ResultViewController(topVC: topViewController!, questions: questionTitles, selectedAnswers: selectedAnswers)
+        guard let topViewController = topViewController else { return }
+        resultViewController = ResultViewController(topVC: topViewController, questions: questionTitles, selectedAnswers: selectedAnswers)
         
         guard let resultViewController = resultViewController else { return }
         prepareReciveData = ({ () in
-//            let navi = NavigationController(rootViewController: resultViewController)
-//           self.present(navi, animated: true, completion: nil)
             self.navigationController?.pushViewController(resultViewController, animated: true)
         })
         
@@ -162,7 +165,6 @@ extension QuestionViewController {
                     self.noQuestionIndex = noQuestionIndex
                     
                     guard let text = document?.data()?["title"] as? String else { return }
-                    print(document?.data()! ?? "質問なし")
                     self.passQuestionText(questionText: text)
                 }
         }
@@ -178,7 +180,7 @@ extension QuestionViewController: SelectAnserViewDelegate {
         selectedAnswer(selected: .no)
         validateIsResult()
     }
-    
+    // Firestoreに持たせているisResultプロパティがtrueだったら結果画面に画面遷移する
     func validateIsResult() {
         guard isResult else {
             goResultVC()

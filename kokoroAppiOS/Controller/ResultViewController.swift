@@ -75,14 +75,14 @@ final class ResultViewController: UIViewController {
 
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         resultContentView.charactorAnimation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.layer.removeAllAnimations()
     }
     
     func setupView() {
@@ -90,7 +90,6 @@ final class ResultViewController: UIViewController {
         resultContentView.titleLabel.text = "診断結果: \(resultTitle)"
         resultContentView.descriptionLabel.text = resultDescription
         navigationController?.navigationBar.isTranslucent = false
-        edgesForExtendedLayout = []
 
     }
     
@@ -98,7 +97,7 @@ final class ResultViewController: UIViewController {
         resultContentView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.height.equalTo(550)
-            make.width.equalTo(screenWidth - 30)
+            make.width.equalTo(screenWidth - 32)
             make.centerX.equalToSuperview()
         }
         goNextButton.snp.makeConstraints { make in
@@ -122,14 +121,12 @@ extension ResultViewController {
         popup.modalTransitionStyle = .crossDissolve
         present(popup, animated: true)
     }
+    
     @objc func backButtonTapped() {
         userDefaults.removeObject(forKey: "memoText")
-        guard let topViewController = topViewController else { return }
         navigationController?.popToRootViewController(animated: true)
-//        let navi = NavigationController(rootViewController: topViewController)
-//        navi.modalTransitionStyle = .crossDissolve
-//        present(navi, animated: true, completion: nil)
     }
+    
     @objc func shareButtonTapped() {
         let shareText = "私は\(resultTitle)に行ってみた方が良いみたい.."
         
@@ -152,7 +149,6 @@ extension ResultViewController {
                 } else {
                     guard let title = document?.data()?["title"] as? String else { return }
                     guard let description = document?.data()?["description"] as? String else { return }
-                    print(document?.data()! ?? "結果なし")
                     guard let urlString = document?.data()?["url"] as? String else { return }
                     completion()
                     self.passQuestionResult(title: title, description: description, urlString: urlString)

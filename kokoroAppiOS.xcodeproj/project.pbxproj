@@ -34,6 +34,8 @@
 		5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */; };
 		5769D4A722C70972006E15CB /* HistoryDetailCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */; };
 		5769D4A922C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5769D4A822C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift */; };
+		576A3BE122F1202400F2FA61 /* TopCharactorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A3BE022F1202400F2FA61 /* TopCharactorView.swift */; };
+		576A3BE322F126E600F2FA61 /* TopMenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A3BE222F126E600F2FA61 /* TopMenuButtonView.swift */; };
 		576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21C22BBC69500B83A8E /* TopViewController.swift */; };
 		576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */; };
 		576DD22622BBC69500B83A8E /* QuestionContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD21E22BBC69500B83A8E /* QuestionContentView.swift */; };
@@ -106,6 +108,8 @@
 		5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
 		5769D4A622C70972006E15CB /* HistoryDetailCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailCollectionView.swift; sourceTree = "<group>"; };
 		5769D4A822C70F2E006E15CB /* HistoryDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		576A3BE022F1202400F2FA61 /* TopCharactorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCharactorView.swift; sourceTree = "<group>"; };
+		576A3BE222F126E600F2FA61 /* TopMenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuButtonView.swift; sourceTree = "<group>"; };
 		576DD21C22BBC69500B83A8E /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		576DD21D22BBC69500B83A8E /* SelectAnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAnswerView.swift; sourceTree = "<group>"; };
 		576DD21E22BBC69500B83A8E /* QuestionContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionContentView.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 				57AFBBD922D57480006F8002 /* ThirdIntro.swift */,
 				574E40E322D587E100099341 /* SecondIntroView.swift */,
 				574E40E522D587EE00099341 /* FirstIntroView.swift */,
+				576A3BE022F1202400F2FA61 /* TopCharactorView.swift */,
+				576A3BE222F126E600F2FA61 /* TopMenuButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				5769D4A522C6FE7E006E15CB /* HistoryDetailViewController.swift in Sources */,
 				576DD22622BBC69500B83A8E /* QuestionContentView.swift in Sources */,
 				5783A04D22C7336400A3EE18 /* ScrollTextView.swift in Sources */,
+				576A3BE322F126E600F2FA61 /* TopMenuButtonView.swift in Sources */,
 				57721DDB22BE68B600142ADF /* DocumentSnapshot.swift in Sources */,
 				57BC6F8F22DB66640088465B /* Config.swift in Sources */,
 				576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */,
@@ -616,6 +623,7 @@
 				57721DCD22BDD68200142ADF /* UserManager.swift in Sources */,
 				576DD22722BBC69500B83A8E /* ResultViewController.swift in Sources */,
 				574C59CA22DF4B4B005BA220 /* SupportDescriptionPopupViewController.swift in Sources */,
+				576A3BE122F1202400F2FA61 /* TopCharactorView.swift in Sources */,
 				574E40E422D587E100099341 /* SecondIntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
