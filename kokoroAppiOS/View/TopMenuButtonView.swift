@@ -75,7 +75,7 @@ final class TopMenuButtonView: UIView {
         startButton.snp.makeConstraints { make in
             make.width.equalTo(140)
             make.height.equalTo(80)
-            make.bottom.equalToSuperview().offset(-160)
+            make.bottom.equalToSuperview().offset(-120)
             make.right.equalToSuperview().offset(-40)
         }
         watchHistoryButton.snp.makeConstraints { make in

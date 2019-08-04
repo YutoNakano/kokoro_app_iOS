@@ -129,8 +129,8 @@ final class ResultDetailViewController: UIViewController {
     
     func makeConstraints() {
         resultCollectionView.snp.makeConstraints { make in
-            make.height.equalTo(350)
             make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(memoExplainLabel.snp.top).offset(-10)
         }
         memoExplainLabel.snp.makeConstraints { make in
             make.bottom.equalTo(memoTextView.snp.top).offset(-2)
@@ -138,18 +138,18 @@ final class ResultDetailViewController: UIViewController {
         }
         memoTextView.snp.makeConstraints { make in
             make.height.equalTo(150)
-            make.top.equalTo(resultCollectionView.snp.bottom).offset(35)
+            make.bottom.equalTo(goTopButton.snp.top).offset(-10)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }
         maxCharactorsAlartLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(memoTextView.snp.bottom).offset(5)
+            make.bottom.equalTo(goTopButton.snp.top).offset(-7)
         }
         goTopButton.snp.makeConstraints { make in
-            make.top.equalTo(memoTextView.snp.bottom).offset(40)
+            make.bottom.equalToSuperview().offset(-25)
             make.centerX.equalTo(memoTextView.snp.centerX)
-            make.height.equalTo(80)
+            make.height.equalTo(70)
             make.width.equalTo(220)
         }
     }

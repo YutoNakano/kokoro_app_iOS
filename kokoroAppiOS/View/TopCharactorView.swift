@@ -12,6 +12,8 @@ import SnapKit
 enum CharactorImageState: String {
     case normal = "charactor"
     case closeEye = "charactor_eye_close"
+    case smallNormal = "charactor_small"
+    case smallCloseEye = "charactor_eye_close_small"
 }
 
 final class TopCharactorView: UIView {
@@ -59,7 +61,7 @@ final class TopCharactorView: UIView {
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-30)
+            make.bottom.equalToSuperview()
         }
     }
 }

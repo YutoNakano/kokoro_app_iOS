@@ -101,7 +101,7 @@ final class ResultViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         goNextButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-80)
+            make.bottom.equalToSuperview().offset(-65)
             make.centerX.equalTo(resultContentView.snp.centerX)
             make.height.equalTo(80)
             make.width.equalTo(220)

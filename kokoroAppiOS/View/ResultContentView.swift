@@ -55,7 +55,7 @@ final class ResultContentView: UIView {
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
         v.textAlignment = .center
-        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         addSubview(v)
         return v
@@ -73,7 +73,7 @@ final class ResultContentView: UIView {
     }()
     
     lazy var charactorImageView: UIImageView = {
-        let v = UIImageView(image: UIImage(named: CharactorImageState.normal.rawValue))
+        let v = UIImageView(image: UIImage(named: CharactorImageState.smallNormal.rawValue))
         v.layer.shadowColor = UIColor.black.cgColor
         v.layer.shadowOffset = .zero
         v.layer.shadowOpacity = 0.3
@@ -140,13 +140,13 @@ extension ResultContentView {
     }
     
     @objc func normalToCloseEyeTimerAction() {
-        charactorImageView.image = UIImage(named: CharactorImageState.closeEye.rawValue)
+        charactorImageView.image = UIImage(named: CharactorImageState.smallCloseEye.rawValue)
         // 画像をnomalに戻すTimer
         closeEyeToNormalImageTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(closeEyeToNormalTimerAction), userInfo: nil, repeats: true)
     }
     
     @objc func closeEyeToNormalTimerAction() {
-        charactorImageView.image = UIImage(named: CharactorImageState.normal.rawValue)
+        charactorImageView.image = UIImage(named: CharactorImageState.smallNormal.rawValue)
         if let toNomalTimer = closeEyeToNormalImageTimer {
             toNomalTimer.invalidate()
         }

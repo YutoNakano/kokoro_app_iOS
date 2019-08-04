@@ -203,6 +203,10 @@ extension TopViewController: TopMenuButtonViewDelegate{
         let questionViewController = QuestionViewController(topVC: self)
         questionViewController.resetQuestionNumber()
         navigationController?.pushViewController(questionViewController, animated: true)
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier else { return }
+        let domain = bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
     }
     
     func didTapWatchHistoryButton() {
