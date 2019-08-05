@@ -69,7 +69,7 @@ final class FirstIntroView: UIView {
             make.height.equalTo(screenHeight / 2)
         }
         charactorImageView.snp.makeConstraints { make in
-            make.top.equalTo(68)
+            make.centerY.equalToSuperview().dividedBy(1)
             make.centerX.equalToSuperview()
         }
         titleLabel.snp.makeConstraints { make in

@@ -65,7 +65,7 @@ final class ResultContentView: UIView {
         let v = UIButton()
         v.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
         v.setTitle("こちら", for: .normal)
-        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.setTitleColor(UIColor.blue, for: .normal)
         v.backgroundColor = UIColor.clear
         addSubview(v)
@@ -109,7 +109,7 @@ final class ResultContentView: UIView {
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalTo(titleLabel.snp.centerX)
             make.top.equalTo(contentView.snp.bottom).offset(10)
-            make.width.equalTo(contentView.snp.width).offset(-30)
+            make.width.equalTo(contentView.snp.width).offset(-20)
         }
         linkButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

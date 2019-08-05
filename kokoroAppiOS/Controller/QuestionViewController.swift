@@ -126,8 +126,8 @@ extension QuestionViewController {
         resultViewController = ResultViewController(topVC: topViewController, questions: questionTitles, selectedAnswers: selectedAnswers)
         
         guard let resultViewController = resultViewController else { return }
-        prepareReciveData = ({ () in
-            self.navigationController?.pushViewController(resultViewController, animated: true)
+        prepareReciveData = ({ [weak self]() in
+            self?.navigationController?.pushViewController(resultViewController, animated: true)
         })
         
         guard let prepareReciveData = prepareReciveData else { return }
@@ -153,19 +153,19 @@ extension QuestionViewController {
         let db = Firestore.firestore()
         db.collection("Questions")
             .document(nextIndex.description)
-            .getDocument { document, error in
+            .getDocument { [weak self]document, error in
                 if let err = error {
                     print(err)
                 } else {
                     guard let isResult = document?.data()?["isResult"] as? Bool else { return }
-                    self.isResult = isResult
+                    self?.isResult = isResult
                     guard let yesQuestionIndex = document?.data()?["yes"] as? Int else { return }
-                    self.yesQuestionIndex = yesQuestionIndex
+                    self?.yesQuestionIndex = yesQuestionIndex
                     guard let noQuestionIndex = document?.data()?["no"] as? Int else { return }
-                    self.noQuestionIndex = noQuestionIndex
+                    self?.noQuestionIndex = noQuestionIndex
                     
                     guard let text = document?.data()?["title"] as? String else { return }
-                    self.passQuestionText(questionText: text)
+                    self?.passQuestionText(questionText: text)
                 }
         }
     }

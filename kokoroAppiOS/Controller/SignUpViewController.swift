@@ -106,24 +106,24 @@ final class SignUpViewController: UIViewController {
 
 extension SignUpViewController {
     func twitterAuth() {
-        TWTRTwitter.sharedInstance().logIn { (session, error) in
+        TWTRTwitter.sharedInstance().logIn { [weak self] (session, error) in
             if let err = error {
                 print("Twitter login has failed with error:\(err)")
                 return
             }
             guard let token  = session?.authToken else { return }
             guard let secret = session?.authTokenSecret else { return }
-            self.twitterSession = session
+            self?.twitterSession = session
             
             let credentials = TwitterAuthProvider.credential(withToken: token, secret: secret)
-            Auth.auth().signInAndRetrieveData(with: credentials, completion: { (authDataResult, error) in
+            Auth.auth().signInAndRetrieveData(with: credentials, completion: { [weak self] (authDataResult, error) in
                 if let err = error {
                     print("認証失敗:\(err)")
                     return
                 }
-                self.registerUser()
+                self?.registerUser()
             })
-            self.fetchTwitterUser()
+            self?.fetchTwitterUser()
         }
     }
     
@@ -144,15 +144,15 @@ extension SignUpViewController {
     func fetchTwitterUser() {
         guard let twitterSession = twitterSession else { return }
         let client = TWTRAPIClient()
-        client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
+        client.loadUser(withID: twitterSession.userID, completion: { [weak self](user, err) in
             if let _ = err { return }
             guard let user = user else { return }
 
-            self.name = user.name
+            self?.name = user.name
             let profileImageURLString = user.profileImageLargeURL
             
             guard let url = URL(string: profileImageURLString) else { return }
-            self.profileImageURL = url
+            self?.profileImageURL = url
         })
     }
     

@@ -147,7 +147,7 @@ final class ResultDetailViewController: UIViewController {
             make.bottom.equalTo(goTopButton.snp.top).offset(-7)
         }
         goTopButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-25)
+            make.bottom.equalToSuperview().offset(-40)
             make.centerX.equalTo(memoTextView.snp.centerX)
             make.height.equalTo(70)
             make.width.equalTo(220)

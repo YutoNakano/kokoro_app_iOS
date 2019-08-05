@@ -56,7 +56,7 @@ final class TopCharactorView: UIView {
     func makeConstraints() {
         charactorDescriptionLabel.snp.makeConstraints { make in
             make.width.equalTo(screenWidth - 80)
-            make.top.equalToSuperview().offset(50)
+            make.top.equalToSuperview().offset(42)
             make.centerX.equalToSuperview()
         }
         charactorImageView.snp.makeConstraints { make in
@@ -75,10 +75,10 @@ extension TopCharactorView {
         return TimeInterval(Float.random(in: 4...6))
     }
     func charactorAnimation() {
-        UIView.animate(withDuration: 2.0, delay: 0.3, options: [.repeat,.autoreverse], animations: {
-            self.charactorImageView.center.y += 25
-        }) { _ in
-            self.charactorImageView.center.y -= 25
+        UIView.animate(withDuration: 2.0, delay: 0.3, options: [.repeat,.autoreverse], animations: { [weak self] in
+            self?.charactorImageView.center.y += 25
+        }) { [weak self] _ in
+            self?.charactorImageView.center.y -= 25
         }
     }
     

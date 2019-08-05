@@ -62,11 +62,11 @@ final class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCharactorDescription()
+        loadUserInfoFromUserDefaults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        loadUserInfoFromUserDefaults()
         topCharactorView.charactorAnimation()
         topCharactorView.setUpTimer()
     }
@@ -87,7 +87,7 @@ final class TopViewController: UIViewController {
     func makeConstraints() {
         topCharactorView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(screenHeight / 1.8)
+            make.height.equalTo(screenHeight / 1.7)
         }
         topMenuButtonView.snp.makeConstraints { make in
             make.top.equalTo(topCharactorView.snp.bottom)
@@ -123,12 +123,12 @@ extension TopViewController {
         let db = Firestore.firestore()
         db.collection("charactor_description")
         .document(1.description)
-            .getDocument { document, error in
+            .getDocument { [weak self] document, error in
                 if let err = error {
                     print(err)
                 } else {
                     guard let descriptionArray = document?.data()?["text"] as? [String] else { return }
-                    self.charactorDescriptionArray = descriptionArray
+                    self?.charactorDescriptionArray = descriptionArray
                 }
         }
     }
@@ -136,7 +136,7 @@ extension TopViewController {
     func fetchUserData() {
         if let user = Auth.auth().currentUser {
             let userRef = Firestore.firestore().collection("users").document(user.uid)
-            userRef.getDocument(completion: { (document, error) in
+            userRef.getDocument(completion: { [weak self](document, error) in
                 if let document = document, document.exists {
                     let profileImageUrl = document["profileImageUrl"]
                     let name = document["name"]
@@ -145,9 +145,9 @@ extension TopViewController {
                     do {
                         let data = try Data(contentsOf: url)
                         let image = UIImage(data: data)
-                        self.signOutButton.setImage(image, for: .normal)
+                        self?.signOutButton.setImage(image, for: .normal)
 
-                        self.topCharactorView.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
+                        self?.topCharactorView.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
                     }catch let err {
                         print(err)
                     }
@@ -203,10 +203,6 @@ extension TopViewController: TopMenuButtonViewDelegate{
         let questionViewController = QuestionViewController(topVC: self)
         questionViewController.resetQuestionNumber()
         navigationController?.pushViewController(questionViewController, animated: true)
-        guard let bundleIdentifier = Bundle.main.bundleIdentifier else { return }
-        let domain = bundleIdentifier
-        UserDefaults.standard.removePersistentDomain(forName: domain)
-        UserDefaults.standard.synchronize()
     }
     
     func didTapWatchHistoryButton() {
