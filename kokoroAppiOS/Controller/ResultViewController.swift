@@ -111,7 +111,8 @@ final class ResultViewController: UIViewController {
 
 extension ResultViewController {
     @objc func goNextButtonTapped() {
-        let popupHundler = { () in
+        let popupHundler = { [weak self] () in
+            guard let self = self else { return }
             guard let topViewController = self.topViewController else { return }
             let resultDetailViewController = ResultDetailViewController(topVC: topViewController, title: self.resultTitle, questions: self.questions, selectedAnswers: self.selectedAnswers)
             self.navigationController?.pushViewController(resultDetailViewController, animated: true)
@@ -143,7 +144,7 @@ extension ResultViewController {
         let db = Firestore.firestore()
         db.collection("Questions")
             .document(resultIndex.description)
-            .getDocument { document, error in
+            .getDocument { [weak self] document, error in
                 if let err = error {
                     print(err)
                 } else {
@@ -151,7 +152,7 @@ extension ResultViewController {
                     guard let description = document?.data()?["description"] as? String else { return }
                     guard let urlString = document?.data()?["url"] as? String else { return }
                     completion()
-                    self.passQuestionResult(title: title, description: description, urlString: urlString)
+                    self?.passQuestionResult(title: title, description: description, urlString: urlString)
                 }
         }
     }

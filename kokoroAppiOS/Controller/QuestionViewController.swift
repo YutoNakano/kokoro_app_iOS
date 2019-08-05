@@ -126,7 +126,7 @@ extension QuestionViewController {
         resultViewController = ResultViewController(topVC: topViewController, questions: questionTitles, selectedAnswers: selectedAnswers)
         
         guard let resultViewController = resultViewController else { return }
-        prepareReciveData = ({ [weak self]() in
+        prepareReciveData = ({ [weak self] () in
             self?.navigationController?.pushViewController(resultViewController, animated: true)
         })
         
@@ -153,7 +153,7 @@ extension QuestionViewController {
         let db = Firestore.firestore()
         db.collection("Questions")
             .document(nextIndex.description)
-            .getDocument { [weak self]document, error in
+            .getDocument { [weak self] document, error in
                 if let err = error {
                     print(err)
                 } else {

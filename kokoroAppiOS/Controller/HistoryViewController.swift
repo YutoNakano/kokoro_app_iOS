@@ -86,7 +86,7 @@ extension HistoryViewController {
         let query = db.collection("histories").whereField("user_id", isEqualTo: user_id)
             .order(by: "timeStamp", descending: true)
         
-        query.getDocuments { document, error in
+        query.getDocuments { [weak self] document, error in
             if let err = error {
                 print(err)
             } else {
@@ -95,7 +95,7 @@ extension HistoryViewController {
                     let resultTitle: [String] = (document?.documents.map { $0.data()["title"] }) as? [String],
                     let memo: [String] = (document?.documents.map { $0.data()["memo"] }) as? [String],
                     let timeStamp: [Date] = (document?.documents.map { $0.data()["timeStamp"] }) as? [Date] else { return }
-                self.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: timeStamp)
+                self?.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: timeStamp)
                 completion()
             }
             }

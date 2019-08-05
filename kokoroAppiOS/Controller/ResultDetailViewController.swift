@@ -183,9 +183,9 @@ extension ResultDetailViewController {
 
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
         guard let showDuration = duration else { return }
-        UIView.animate(withDuration: showDuration, animations: { () in
+        UIView.animate(withDuration: showDuration, animations: { [weak self] () in
             let transform = CGAffineTransform(translationX: 0, y: -200)
-            self.view.transform = transform
+            self?.view.transform = transform
             
         })
         memoTextView.changeVisiblePlaceHolder()
@@ -194,9 +194,9 @@ extension ResultDetailViewController {
         
         let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
         guard let hideDuration = duration else { return }
-        UIView.animate(withDuration: hideDuration, animations: { () in
+        UIView.animate(withDuration: hideDuration, animations: { [weak self] () in
             
-            self.view.transform = CGAffineTransform.identity
+            self?.view.transform = CGAffineTransform.identity
         })
         memoTextView.changeVisiblePlaceHolder()
     }
