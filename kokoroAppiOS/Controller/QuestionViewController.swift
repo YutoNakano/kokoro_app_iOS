@@ -131,6 +131,8 @@ extension QuestionViewController {
         })
         
         guard let prepareReciveData = prepareReciveData else { return }
+        guard let resultState = ResultViewType(rawValue: nextIndex) else { return }
+        resultViewController.turnDescriptionStateView(resultState: resultState)
         resultViewController.fetchResultData(resultIndex: nextIndex, completion: prepareReciveData)
         
     }
@@ -182,10 +184,8 @@ extension QuestionViewController: SelectAnserViewDelegate {
     }
     // Firestoreに持たせているisResultプロパティがtrueだったら結果画面に画面遷移する
     func validateIsResult() {
-        guard isResult else {
-            goResultVC()
-            return
-        }
+        guard isResult else { return }
+        goResultVC()
     }
 }
 

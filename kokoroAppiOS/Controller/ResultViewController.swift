@@ -11,7 +11,29 @@ import SnapKit
 import FirebaseFirestore
 import SafariServices
 
+enum ResultViewType: Int {
+    // 施設が提案された場合
+    case psychosomatic = 100
+    case psychiatry = 101
+    case counseling = 102
+    case healthCenter = 103
+    // 現在は提案する施設がない場合
+    case rest = 7
+}
+
 final class ResultViewController: UIViewController {
+    
+    
+//    private var resultViewType: ResultViewType {
+//        didSet {
+//            switch resultViewType {
+//            case .normal:
+//                
+//            case .rest:
+//            }
+//        }
+//    }
+    
     
     lazy var resultContentView: ResultContentView = {
         let v = ResultContentView()
@@ -49,7 +71,7 @@ final class ResultViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
-    var webURL: URL?
+    var webStrings: [String]?
     let userDefaults = UserDefaults.standard
     
     init(topVC: TopViewController, questions: [String], selectedAnswers: [SelectedAnswers]) {
@@ -150,23 +172,55 @@ extension ResultViewController {
                 } else {
                     guard let title = document?.data()?["title"] as? String else { return }
                     guard let description = document?.data()?["description"] as? String else { return }
-                    guard let urlString = document?.data()?["url"] as? String else { return }
+                    guard let urlStrings = document?.data()?["url"] as? [String] else { return }
                     completion()
-                    self?.passQuestionResult(title: title, description: description, urlString: urlString)
+                    self?.passQuestionResult(title: title, description: description, urlStrings: urlStrings)
                 }
         }
     }
     
-    func passQuestionResult(title: String, description: String, urlString: String) {
+    func passQuestionResult(title: String, description: String, urlStrings: [String]) {
         resultTitle = title
         resultDescription = description
-        webURL = URL(string: urlString)
+        resultContentView.descriptionStrings = urlStrings
+        self.webStrings = urlStrings
+    }
+    
+    func turnDescriptionStateView(resultState: ResultViewType) {
+        switch resultState {
+        case .psychiatry: return
+        case .psychosomatic: return
+        case .counseling: return
+        case .healthCenter: return
+        case .rest:
+            print(#function)
+//            resultContentView.descriptionLabel.isHidden = true
+//            resultContentView.linkButton.isHidden = true
+//            resultContentView.collectionView.isHidden = false
+        }
     }
 }
 
 extension ResultViewController: ResultContentViewDelegate {
-    func linkButtonTapped() {
-        guard let url = webURL else{ return }
+    enum URLState: Int {
+        case medical = 0
+        case healthCenter = 1
+        case counseling = 2
+    }
+    func linkButtonTapped(buttonTag: Int) {
+        var urlString = ""
+        guard let strings = webStrings else { return }
+        switch buttonTag {
+        case 0:
+            urlString = strings[buttonTag]
+        case 1:
+            urlString = strings[buttonTag]
+        case 2:
+            urlString = strings[buttonTag]
+        default:
+            urlString = strings[0]
+        }
+        guard let url = URL(string: urlString) else { return }
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true, completion: nil)
     }

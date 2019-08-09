@@ -12,7 +12,7 @@ import SnapKit
 import LTMorphingLabel
 
 protocol ResultContentViewDelegate: class {
-    func linkButtonTapped()
+    func linkButtonTapped(buttonTag: Int)
 }
 
 final class ResultContentView: UIView {
@@ -23,6 +23,14 @@ final class ResultContentView: UIView {
     var closeEyeToNormalImageTimer: Timer?
     var timerCount = 0
     var charactorState = true
+    let descriptionStrings = [String]()
+    
+    let cellTitles = [
+        "医療機関について",
+        "心療内科について",
+        "保健所について",
+        "カウンセリングについて"
+    ]
     
     
     lazy var contentView: UIView = {
@@ -49,6 +57,14 @@ final class ResultContentView: UIView {
         return v
     }()
     
+    lazy var collectionView: UITableView = {
+        let v = UITableView()
+        v.register(ResultDescriptionCell.self, forCellReuseIdentifier: "Cell")
+        v.rowHeight = 24
+        contentView.addSubview(v)
+        return v
+    }()
+    
     lazy var descriptionLabel: UILabel = {
         let v = UILabel()
         v.numberOfLines = 0
@@ -66,6 +82,7 @@ final class ResultContentView: UIView {
         v.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
         v.setTitle("こちら", for: .normal)
         v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
+        v.isHidden = true
         v.setTitleColor(UIColor.blue, for: .normal)
         v.backgroundColor = UIColor.clear
         addSubview(v)
@@ -106,11 +123,16 @@ final class ResultContentView: UIView {
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-        descriptionLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(titleLabel.snp.centerX)
+        collectionView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(contentView.snp.bottom).offset(10)
             make.width.equalTo(contentView.snp.width).offset(-20)
         }
+//        descriptionLabel.snp.makeConstraints { make in
+//            make.centerX.equalTo(titleLabel.snp.centerX)
+//            make.top.equalTo(contentView.snp.bottom).offset(10)
+//            make.width.equalTo(contentView.snp.width).offset(-20)
+//        }
         linkButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(descriptionLabel.snp.bottom)
@@ -151,7 +173,27 @@ extension ResultContentView {
             toNomalTimer.invalidate()
         }
     }
-    @objc func linkButtonTapped() {
-        delegate?.linkButtonTapped()
+    @objc func linkButtonTapped(_ sender: UIButton) {
+        let buttonTag = sender.tag
+        delegate?.linkButtonTapped(buttonTag: buttonTag)
     }
+}
+
+extension ResultContentView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellTitles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ResultDescriptionCell else { fatalError() }
+        cell.linkButton.addTarget(self, action: #selector(linkButtonTapped(_:))
+            , for: .touchUpInside)
+        cell.linkButton.tag = indexPath.row
+        return cell
+    }
+}
+
+
+extension ResultContentView: UITableViewDelegate {
+    
 }

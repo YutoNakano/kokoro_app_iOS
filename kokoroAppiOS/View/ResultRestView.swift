@@ -1,0 +1,143 @@
+//
+//  ResultRestView.swift
+//  kokoroAppiOS
+//
+//  Created by 中野湧仁 on 2019/08/09.
+//  Copyright © 2019 中野湧仁. All rights reserved.
+//
+//
+//import UIKit
+//import SnapKit
+//import LTMorphingLabel
+//
+//final class ResultRestView: UIView {
+//
+//    let screenWidth = UIScreen.main.bounds.width
+//
+//    var nomalToCloseEyeImageTimer: Timer?
+//    var closeEyeToNormalImageTimer: Timer?
+//    var timerCount = 0
+//    var charactorState = true
+//
+//
+//    lazy var contentView: UIView = {
+//        let v = UIView()
+//        v.backgroundColor = UIColor.appColor(.navbar)
+//        v.layer.cornerRadius = 10
+//        v.layer.shadowOpacity = 0.1
+//        v.layer.shadowColor = UIColor.black.cgColor
+//        v.layer.shadowOffset = CGSize(width: 0.2, height: 0.2)
+//        v.layer.shadowRadius = 10
+//        addSubview(v)
+//        return v
+//    }()
+//
+//    lazy var titleLabel: LTMorphingLabel = {
+//        let v = LTMorphingLabel()
+//        v.numberOfLines = 0
+//        v.morphingEffect = .scale
+//        v.adjustsFontSizeToFitWidth = true
+//        v.text = "診断結果: 心療内科"
+//        v.textColor = UIColor.appColor(.character)
+//        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 24)
+//        contentView.addSubview(v)
+//        return v
+//    }()
+//
+//
+//    lazy var medicalLabel: UILabel = {
+//        let v = UILabel()
+//        v.numberOfLines = 0
+//        v.adjustsFontSizeToFitWidth = true
+//        v.textColor = UIColor.appColor(.character)
+//        v.textAlignment = .center
+//        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
+//        addSubview(v)
+//        return v
+//    }()
+//
+//    lazy var charactorImageView: UIImageView = {
+//        let v = UIImageView(image: UIImage(named: CharactorImageState.smallNormal.rawValue))
+//        v.layer.shadowColor = UIColor.black.cgColor
+//        v.layer.shadowOffset = .zero
+//        v.layer.shadowOpacity = 0.3
+//        v.layer.shadowRadius = 4
+//        addSubview(v)
+//        return v
+//    }()
+//
+//    weak var delegate: ResultContentViewDelegate?
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        setup()
+//        makeConstraints()
+//    }
+//
+//    func setup() {
+//        setUpTimer()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    func makeConstraints() {
+//        contentView.snp.makeConstraints { make in
+//            make.top.left.right.equalToSuperview()
+//            make.height.equalTo(90)
+//        }
+//        titleLabel.snp.makeConstraints { make in
+//            make.center.equalToSuperview()
+//        }
+//        descriptionLabel.snp.makeConstraints { make in
+//            make.centerX.equalTo(titleLabel.snp.centerX)
+//            make.top.equalTo(contentView.snp.bottom).offset(10)
+//            make.width.equalTo(contentView.snp.width).offset(-20)
+//        }
+//        linkButton.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(descriptionLabel.snp.bottom)
+//        }
+//        charactorImageView.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(linkButton.snp.bottom).offset(30)
+//        }
+//    }
+//
+//}
+//
+//extension ResultRestView {
+//    func charactorAnimation() {
+//        UIView.animate(withDuration: 2.0, delay: 0.3, options: [.repeat,.autoreverse], animations: {
+//            self.charactorImageView.center.y += 10
+//        }) { _ in
+//            self.charactorImageView.center.y -= 10
+//        }
+//    }
+//    func setUpTimer() {
+//        nomalToCloseEyeImageTimer = Timer.scheduledTimer(timeInterval: setTimeInterval(), target: self, selector: #selector(normalToCloseEyeTimerAction), userInfo: nil, repeats: true)
+//    }
+//
+//    func setTimeInterval() -> TimeInterval {
+//        return TimeInterval(Float.random(in: 4...6))
+//    }
+//
+//    @objc func normalToCloseEyeTimerAction() {
+//        charactorImageView.image = UIImage(named: CharactorImageState.smallCloseEye.rawValue)
+//        // 画像をnomalに戻すTimer
+//        closeEyeToNormalImageTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(closeEyeToNormalTimerAction), userInfo: nil, repeats: true)
+//    }
+//
+//    @objc func closeEyeToNormalTimerAction() {
+//        charactorImageView.image = UIImage(named: CharactorImageState.smallNormal.rawValue)
+//        if let toNomalTimer = closeEyeToNormalImageTimer {
+//            toNomalTimer.invalidate()
+//        }
+//    }
+//    @objc func linkButtonTapped() {
+//        delegate?.linkButtonTapped()
+//    }
+//}
+
+

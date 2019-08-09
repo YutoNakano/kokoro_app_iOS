@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F1853C39B492FC485B4DEC0 /* Pods_kokoroAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */; };
 		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
+		57499FBF22FD381F0046FA76 /* ResultRestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57499FBE22FD381F0046FA76 /* ResultRestView.swift */; };
+		57499FC122FD3CDB0046FA76 /* resultDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57499FC022FD3CDB0046FA76 /* resultDescriptionCell.swift */; };
 		574B128222C8816A00B4F304 /* Alart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B128122C8816A00B4F304 /* Alart.swift */; };
 		574C0A5F22C0576B004CA340 /* ResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */; };
 		574C59C822DF3ED1005BA220 /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C59C722DF3ED1005BA220 /* PopupController.swift */; };
@@ -83,6 +85,8 @@
 		1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		57499FBE22FD381F0046FA76 /* ResultRestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRestView.swift; sourceTree = "<group>"; };
+		57499FC022FD3CDB0046FA76 /* resultDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultDescriptionCell.swift; sourceTree = "<group>"; };
 		574B128122C8816A00B4F304 /* Alart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alart.swift; sourceTree = "<group>"; };
 		574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailViewController.swift; sourceTree = "<group>"; };
 		574C59C722DF3ED1005BA220 /* PopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 				574E40E522D587EE00099341 /* FirstIntroView.swift */,
 				576A3BE022F1202400F2FA61 /* TopCharactorView.swift */,
 				576A3BE222F126E600F2FA61 /* TopMenuButtonView.swift */,
+				57499FBE22FD381F0046FA76 /* ResultRestView.swift */,
+				57499FC022FD3CDB0046FA76 /* resultDescriptionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -605,6 +611,7 @@
 				5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */,
 				574E045B22B6564A008628C5 /* Extensions.swift in Sources */,
 				57721DD122BDFA6400142ADF /* NavigationController.swift in Sources */,
+				57499FBF22FD381F0046FA76 /* ResultRestView.swift in Sources */,
 				57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */,
 				574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */,
 				574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */,
@@ -615,6 +622,7 @@
 				574B128222C8816A00B4F304 /* Alart.swift in Sources */,
 				576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */,
 				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,
+				57499FC122FD3CDB0046FA76 /* resultDescriptionCell.swift in Sources */,
 				574C0A5F22C0576B004CA340 /* ResultDetailViewController.swift in Sources */,
 				57721DCF22BDF37100142ADF /* RootViewController.swift in Sources */,
 				575AFD2922D090A500607816 /* charactorDescriptionView.swift in Sources */,
