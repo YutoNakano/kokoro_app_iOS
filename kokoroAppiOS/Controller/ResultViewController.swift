@@ -23,18 +23,6 @@ enum ResultViewType: Int {
 
 final class ResultViewController: UIViewController {
     
-    
-//    private var resultViewType: ResultViewType {
-//        didSet {
-//            switch resultViewType {
-//            case .normal:
-//                
-//            case .rest:
-//            }
-//        }
-//    }
-    
-    
     lazy var resultContentView: ResultContentView = {
         let v = ResultContentView()
         v.delegate = self
@@ -216,23 +204,19 @@ extension ResultViewController: ResultContentViewDelegate {
     enum URLState: Int {
         case medical = 0
         case healthCenter = 1
-        case psychaiatry = 2
-        case counseling = 3
+        case counseling = 2
     }
-    func linkButtonTapped(buttonTag: Int) {
-        guard buttonTag != 0 else { return normalViewButtonTapped() }
-        guard let urlState = URLState(rawValue: buttonTag) else { return }
+    func linkButtonTapped(indexPath: Int) {
+        guard indexPath != 100 else { return normalViewButtonTapped() }
+        guard let urlState = URLState(rawValue: indexPath) else { return }
         var resultUrlString = ""
         guard let dict = urlDict else { return }
         switch urlState {
         case .medical:
-            guard let urlString = dict["psychosomatic"] else { return }
+            guard let urlString = dict["medical"] else { return }
             resultUrlString = urlString
         case .healthCenter:
-            guard let urlString = dict["psychaiatry"] else { return }
-            resultUrlString = urlString
-        case .psychaiatry:
-            guard let urlString = dict["healthCenter"] else { return }
+            guard let urlString = dict["helthCenter"] else { return }
             resultUrlString = urlString
         case .counseling:
             guard let urlString = dict["counseling"] else { return }
@@ -244,7 +228,6 @@ extension ResultViewController: ResultContentViewDelegate {
     func normalViewButtonTapped() {
         guard let resultUrlString = webString else { return }
         goSafariVC(urlString: resultUrlString)
-        
     }
     
     func goSafariVC(urlString: String) {

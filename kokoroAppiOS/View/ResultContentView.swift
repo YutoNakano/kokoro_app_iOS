@@ -12,7 +12,7 @@ import SnapKit
 import LTMorphingLabel
 
 protocol ResultContentViewDelegate: class {
-    func linkButtonTapped(buttonTag: Int)
+    func linkButtonTapped(indexPath: Int)
 }
 
 final class ResultContentView: UIView {
@@ -26,10 +26,9 @@ final class ResultContentView: UIView {
     var descriptionStrings = [String]()
     
     let cellTitles = [
-        "医療機関について",
-        "心療内科について",
-        "保健所について",
-        "カウンセリングについて"
+        "医療機関についてはこちら",
+        "保健所についてはこちら",
+        "カウンセリングについてはこちら"
     ]
     
     
@@ -60,12 +59,11 @@ final class ResultContentView: UIView {
     lazy var tableView: UITableView = {
         let v = UITableView()
         v.register(ResultDescriptionCell.self, forCellReuseIdentifier: "Cell")
-        v.isHidden = false
+        v.rowHeight = 42
         v.dataSource = self
         v.delegate = self
-        v.rowHeight = 42
         v.backgroundColor = UIColor.appColor(.background)
-        descriptionLabel.addSubview(v)
+        addSubview(v)
         return v
     }()
     
@@ -127,7 +125,8 @@ final class ResultContentView: UIView {
             make.center.equalToSuperview()
         }
         tableView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalTo(contentView.snp.bottom).offset(10)
+            make.left.right.equalToSuperview()
             make.height.equalTo(200)
         }
         descriptionLabel.snp.makeConstraints { make in
@@ -141,7 +140,6 @@ final class ResultContentView: UIView {
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-//            make.top.equalTo(linkButton.snp.bottom).offset(30)
             make.bottom.equalToSuperview().offset(-30)
         }
         
@@ -178,8 +176,8 @@ extension ResultContentView {
         }
     }
     @objc func linkButtonTapped(_ sender: UIButton) {
-        let buttonTag = sender.tag
-        delegate?.linkButtonTapped(buttonTag: buttonTag)
+        // 施設が提案された場合
+        delegate?.linkButtonTapped(indexPath: 100)
     }
 }
 
@@ -198,6 +196,8 @@ extension ResultContentView: UITableViewDataSource {
 
 extension ResultContentView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.linkButtonTapped(buttonTag: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(#function)
+        delegate?.linkButtonTapped(indexPath: indexPath.row)
     }
 }
