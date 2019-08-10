@@ -202,34 +202,30 @@ extension ResultViewController {
 
 extension ResultViewController: ResultContentViewDelegate {
     enum URLState: Int {
-        case medical = 0
-        case healthCenter = 1
-        case counseling = 2
+        case normal = 0
+        case medical = 1
+        case healthCenter = 2
+        case counseling = 3
     }
-    func linkButtonTapped(indexPath: Int) {
-        guard indexPath != 100 else { return normalViewButtonTapped() }
-        guard let urlState = URLState(rawValue: indexPath) else { return }
+    func linkButtonTapped(buttonTag: Int) {
+        guard let urlState = URLState(rawValue: buttonTag) else { return }
         var resultUrlString = ""
-        guard let dict = urlDict else { return }
         switch urlState {
+        case .normal:
+            guard let urlString = webString else { return }
+            resultUrlString = urlString
         case .medical:
-            guard let urlString = dict["medical"] else { return }
+            guard let urlString = urlDict?["medical"] else { return }
             resultUrlString = urlString
         case .healthCenter:
-            guard let urlString = dict["helthCenter"] else { return }
+            guard let urlString = urlDict?["helthCenter"] else { return }
             resultUrlString = urlString
         case .counseling:
-            guard let urlString = dict["counseling"] else { return }
+            guard let urlString = urlDict?["counseling"] else { return }
             resultUrlString = urlString
         }
         goSafariVC(urlString: resultUrlString)
     }
-    
-    func normalViewButtonTapped() {
-        guard let resultUrlString = webString else { return }
-        goSafariVC(urlString: resultUrlString)
-    }
-    
     func goSafariVC(urlString: String) {
         guard let url = URL(string: urlString) else { return }
         let safariViewController = SFSafariViewController(url: url)

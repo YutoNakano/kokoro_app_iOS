@@ -12,7 +12,7 @@ import SnapKit
 import LTMorphingLabel
 
 protocol ResultContentViewDelegate: class {
-    func linkButtonTapped(indexPath: Int)
+    func linkButtonTapped(buttonTag: Int)
 }
 
 final class ResultContentView: UIView {
@@ -26,9 +26,9 @@ final class ResultContentView: UIView {
     var descriptionStrings = [String]()
     
     let cellTitles = [
-        "医療機関についてはこちら",
-        "保健所についてはこちら",
-        "カウンセリングについてはこちら"
+        "医療機関については",
+        "保健所については",
+        "カウンセリングについては"
     ]
     
     
@@ -60,6 +60,8 @@ final class ResultContentView: UIView {
         let v = UITableView()
         v.register(ResultDescriptionCell.self, forCellReuseIdentifier: "Cell")
         v.rowHeight = 42
+        v.separatorStyle = .none
+        v.allowsSelection = false
         v.dataSource = self
         v.delegate = self
         v.backgroundColor = UIColor.appColor(.background)
@@ -81,7 +83,7 @@ final class ResultContentView: UIView {
     
     lazy var linkButton: UIButton = {
         let v = UIButton()
-        v.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
+        v.addTarget(self, action: #selector(linkButtonTapped(_:)), for: .touchUpInside)
         v.setTitle("こちら", for: .normal)
         v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.setTitleColor(UIColor.blue, for: .normal)
@@ -125,7 +127,7 @@ final class ResultContentView: UIView {
             make.center.equalToSuperview()
         }
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.bottom).offset(10)
+            make.top.equalTo(contentView.snp.bottom).offset(15)
             make.left.right.equalToSuperview()
             make.height.equalTo(200)
         }
@@ -136,13 +138,13 @@ final class ResultContentView: UIView {
         }
         linkButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-30)
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-30)
+            make.bottom.equalToSuperview().offset(-110)
         }
-        
+        sendSubviewToBack(descriptionLabel)
     }
     
 }
@@ -176,8 +178,7 @@ extension ResultContentView {
         }
     }
     @objc func linkButtonTapped(_ sender: UIButton) {
-        // 施設が提案された場合
-        delegate?.linkButtonTapped(indexPath: 100)
+        delegate?.linkButtonTapped(buttonTag: sender.tag)
     }
 }
 
@@ -189,15 +190,13 @@ extension ResultContentView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ResultDescriptionCell else { fatalError() }
         cell.descriptionLabel.text = cellTitles[indexPath.row]
+        cell.linkButton.addTarget(self, action: #selector(linkButtonTapped(_:)), for: .touchUpInside)
+        cell.linkButton.tag = indexPath.row + 1
         return cell
     }
 }
 
 
 extension ResultContentView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        print(#function)
-        delegate?.linkButtonTapped(indexPath: indexPath.row)
-    }
+
 }

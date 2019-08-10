@@ -22,9 +22,10 @@ final class ResultDescriptionCell: UITableViewCell {
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
         v.backgroundColor = UIColor.appColor(.background)
-//        v.textAlignment = .center
+        v.textAlignment = .center
         v.numberOfLines = 0
-        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 12)
+        v.sizeToFit()
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         addSubview(v)
         return v
@@ -33,14 +34,11 @@ final class ResultDescriptionCell: UITableViewCell {
     lazy var linkButton: UIButton = {
         let v = UIButton()
         v.setTitle("こちら", for: .normal)
-        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 12)
+        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
         v.setTitleColor(UIColor.blue, for: .normal)
-        v.backgroundColor = UIColor.clear
         addSubview(v)
         return v
     }()
-    
-//    weak var delegate: ResultDescriptionDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,13 +57,11 @@ final class ResultDescriptionCell: UITableViewCell {
     func makeConstraints() {
         descriptionLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(20)
-            make.right.equalToSuperview().offset(-20)
+            make.centerX.equalToSuperview().offset(-12)
         }
         
         linkButton.snp.makeConstraints { make in
-            make.width.equalTo(80)
-            make.left.equalTo(descriptionLabel.snp.right).offset(20)
+            make.left.equalTo(descriptionLabel.snp.right).offset(2)
             make.centerY.equalToSuperview()
         }
     }
