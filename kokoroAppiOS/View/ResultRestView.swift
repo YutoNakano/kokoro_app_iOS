@@ -10,6 +10,10 @@
 //import SnapKit
 //import LTMorphingLabel
 //
+//protocol ResultRestViewDelegate: class {
+//    func linkButtonTapped(buttonTag: Int)
+//}
+//
 //final class ResultRestView: UIView {
 //
 //    let screenWidth = UIScreen.main.bounds.width
@@ -18,6 +22,14 @@
 //    var closeEyeToNormalImageTimer: Timer?
 //    var timerCount = 0
 //    var charactorState = true
+//    let descriptionStrings = [String]()
+//
+//    let cellTitles = [
+//        "医療機関について",
+//        "心療内科について",
+//        "保健所について",
+//        "カウンセリングについて"
+//    ]
 //
 //
 //    lazy var contentView: UIView = {
@@ -44,14 +56,26 @@
 //        return v
 //    }()
 //
+//    lazy var tableView: UITableView = {
+//        let v = UITableView()
+//        v.register(ResultDescriptionCell.self, forCellReuseIdentifier: "Cell")
+//        v.isHidden = false
+//        v.dataSource = self
+//        v.delegate = self
+//        v.rowHeight = 24
+//        v.backgroundColor = UIColor.appColor(.background)
+//        descriptionLabel.addSubview(v)
+//        return v
+//    }()
 //
-//    lazy var medicalLabel: UILabel = {
+//    lazy var descriptionLabel: UILabel = {
 //        let v = UILabel()
 //        v.numberOfLines = 0
 //        v.adjustsFontSizeToFitWidth = true
 //        v.textColor = UIColor.appColor(.character)
 //        v.textAlignment = .center
 //        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
+//        v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
 //        addSubview(v)
 //        return v
 //    }()
@@ -66,7 +90,7 @@
 //        return v
 //    }()
 //
-//    weak var delegate: ResultContentViewDelegate?
+//    weak var delegate: ResultRestViewDelegate?
 //
 //    override init(frame: CGRect) {
 //        super.init(frame: frame)
@@ -90,19 +114,16 @@
 //        titleLabel.snp.makeConstraints { make in
 //            make.center.equalToSuperview()
 //        }
-//        descriptionLabel.snp.makeConstraints { make in
+//        tableView.snp.makeConstraints { make in
 //            make.centerX.equalTo(titleLabel.snp.centerX)
 //            make.top.equalTo(contentView.snp.bottom).offset(10)
 //            make.width.equalTo(contentView.snp.width).offset(-20)
 //        }
-//        linkButton.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(descriptionLabel.snp.bottom)
-//        }
 //        charactorImageView.snp.makeConstraints { make in
 //            make.centerX.equalToSuperview()
-//            make.top.equalTo(linkButton.snp.bottom).offset(30)
+//            make.top.equalTo(tableView.snp.bottom).offset(30)
 //        }
+//
 //    }
 //
 //}
@@ -135,9 +156,27 @@
 //            toNomalTimer.invalidate()
 //        }
 //    }
-//    @objc func linkButtonTapped() {
-//        delegate?.linkButtonTapped()
+//    @objc func linkButtonTapped(_ sender: UIButton) {
+//        let buttonTag = sender.tag
+//        delegate?.linkButtonTapped(buttonTag: buttonTag)
 //    }
 //}
-
-
+//
+//extension ResultRestView: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return cellTitles.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ResultDescriptionCell else { fatalError() }
+//        cell.linkButton.addTarget(self, action: #selector(linkButtonTapped(_:))
+//            , for: .touchUpInside)
+//        cell.linkButton.tag = indexPath.row
+//        return cell
+//    }
+//}
+//
+//
+//extension ResultRestView: UITableViewDelegate {
+//
+//}

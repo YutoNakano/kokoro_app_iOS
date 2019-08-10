@@ -21,8 +21,10 @@ final class ResultDescriptionCell: UITableViewCell {
         v.numberOfLines = 0
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
+        v.backgroundColor = UIColor.appColor(.background)
         v.textAlignment = .center
-        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
+        v.numberOfLines = 0
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 12)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         addSubview(v)
         return v

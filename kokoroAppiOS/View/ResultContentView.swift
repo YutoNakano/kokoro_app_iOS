@@ -23,7 +23,7 @@ final class ResultContentView: UIView {
     var closeEyeToNormalImageTimer: Timer?
     var timerCount = 0
     var charactorState = true
-    let descriptionStrings = [String]()
+    var descriptionStrings = [String]()
     
     let cellTitles = [
         "医療機関について",
@@ -57,11 +57,15 @@ final class ResultContentView: UIView {
         return v
     }()
     
-    lazy var collectionView: UITableView = {
+    lazy var tableView: UITableView = {
         let v = UITableView()
         v.register(ResultDescriptionCell.self, forCellReuseIdentifier: "Cell")
-        v.rowHeight = 24
-        contentView.addSubview(v)
+        v.isHidden = false
+        v.dataSource = self
+        v.delegate = self
+        v.rowHeight = 42
+        v.backgroundColor = UIColor.appColor(.background)
+        descriptionLabel.addSubview(v)
         return v
     }()
     
@@ -82,7 +86,6 @@ final class ResultContentView: UIView {
         v.addTarget(self, action: #selector(linkButtonTapped), for: .touchUpInside)
         v.setTitle("こちら", for: .normal)
         v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
-        v.isHidden = true
         v.setTitleColor(UIColor.blue, for: .normal)
         v.backgroundColor = UIColor.clear
         addSubview(v)
@@ -123,24 +126,25 @@ final class ResultContentView: UIView {
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-        collectionView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+        tableView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(200)
+        }
+        descriptionLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(titleLabel.snp.centerX)
             make.top.equalTo(contentView.snp.bottom).offset(10)
             make.width.equalTo(contentView.snp.width).offset(-20)
         }
-//        descriptionLabel.snp.makeConstraints { make in
-//            make.centerX.equalTo(titleLabel.snp.centerX)
-//            make.top.equalTo(contentView.snp.bottom).offset(10)
-//            make.width.equalTo(contentView.snp.width).offset(-20)
-//        }
         linkButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(descriptionLabel.snp.bottom)
+            make.centerY.equalToSuperview()
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(linkButton.snp.bottom).offset(30)
+//            make.top.equalTo(linkButton.snp.bottom).offset(30)
+            make.bottom.equalToSuperview().offset(-30)
         }
+        
     }
     
 }
@@ -186,14 +190,14 @@ extension ResultContentView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ResultDescriptionCell else { fatalError() }
-        cell.linkButton.addTarget(self, action: #selector(linkButtonTapped(_:))
-            , for: .touchUpInside)
-        cell.linkButton.tag = indexPath.row
+        cell.descriptionLabel.text = cellTitles[indexPath.row]
         return cell
     }
 }
 
 
 extension ResultContentView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.linkButtonTapped(buttonTag: indexPath.row)
+    }
 }

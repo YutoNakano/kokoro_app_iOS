@@ -38,7 +38,7 @@ final class ResultViewController: UIViewController {
     lazy var resultContentView: ResultContentView = {
         let v = ResultContentView()
         v.delegate = self
-        view.addSubview(v)
+//        view.addSubview(v)
         return v
     }()
     
@@ -64,15 +64,19 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
-    var questions: [String]
-    var selectedAnswers: [SelectedAnswers]
     var topViewController: TopViewController?
     
     let screenWidth = UIScreen.main.bounds.width
     var resultTitle: String = ""
     var resultDescription: String = ""
-    var webStrings: [String]?
     let userDefaults = UserDefaults.standard
+    
+    // モデルからのデータを格納する
+    var questions: [String]
+    var selectedAnswers: [SelectedAnswers]
+    var webString: String?
+    var descriptionArray: [String]?
+    var urlDict: [String: String]?
     
     init(topVC: TopViewController, questions: [String], selectedAnswers: [SelectedAnswers]) {
         topViewController = topVC
@@ -87,6 +91,7 @@ final class ResultViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        view.addSubview(resultContentView)
         setupView()
         makeConstraints()
         self.navigationItem.leftBarButtonItem = backButton
@@ -172,31 +177,37 @@ extension ResultViewController {
                 } else {
                     guard let title = document?.data()?["title"] as? String else { return }
                     guard let description = document?.data()?["description"] as? String else { return }
-                    guard let urlStrings = document?.data()?["url"] as? [String] else { return }
+                    guard let urlString = document?.data()?["url"] as? String? else { return }
+                    guard let descriptionArray = document?.data()?["descriptionArray"] as? [String]? else { return }
+                    guard let urlDict = document?.data()?["urlDict"] as? [String: String]? else { return }
                     completion()
-                    self?.passQuestionResult(title: title, description: description, urlStrings: urlStrings)
+                    self?.passQuestionResult(title: title, description: description, urlString: urlString, urlDict: urlDict, descriptionArray: descriptionArray)
                 }
         }
     }
     
-    func passQuestionResult(title: String, description: String, urlStrings: [String]) {
-        resultTitle = title
-        resultDescription = description
-        resultContentView.descriptionStrings = urlStrings
-        self.webStrings = urlStrings
+    func passQuestionResult(title: String, description: String, urlString: String?, urlDict: [String: String]?,descriptionArray: [String]?) {
+        self.resultTitle = title
+        self.resultDescription = description
+        self.urlDict = urlDict
+        self.webString = urlString
+        guard let array = descriptionArray else { return }
+        self.resultContentView.descriptionStrings = array
     }
     
     func turnDescriptionStateView(resultState: ResultViewType) {
         switch resultState {
-        case .psychiatry: return
-        case .psychosomatic: return
-        case .counseling: return
-        case .healthCenter: return
+        case .psychiatry:
+            resultContentView.tableView.isHidden = true
+        case .psychosomatic:
+            resultContentView.tableView.isHidden = true
+        case .counseling:
+            resultContentView.tableView.isHidden = true
+        case .healthCenter:
+            resultContentView.tableView.isHidden = true
         case .rest:
-            print(#function)
-//            resultContentView.descriptionLabel.isHidden = true
-//            resultContentView.linkButton.isHidden = true
-//            resultContentView.collectionView.isHidden = false
+            resultContentView.descriptionLabel.textColor = UIColor.clear
+            resultContentView.linkButton.isHidden = true
         }
     }
 }
@@ -205,21 +216,38 @@ extension ResultViewController: ResultContentViewDelegate {
     enum URLState: Int {
         case medical = 0
         case healthCenter = 1
-        case counseling = 2
+        case psychaiatry = 2
+        case counseling = 3
     }
     func linkButtonTapped(buttonTag: Int) {
-        var urlString = ""
-        guard let strings = webStrings else { return }
-        switch buttonTag {
-        case 0:
-            urlString = strings[buttonTag]
-        case 1:
-            urlString = strings[buttonTag]
-        case 2:
-            urlString = strings[buttonTag]
-        default:
-            urlString = strings[0]
+        guard buttonTag != 0 else { return normalViewButtonTapped() }
+        guard let urlState = URLState(rawValue: buttonTag) else { return }
+        var resultUrlString = ""
+        guard let dict = urlDict else { return }
+        switch urlState {
+        case .medical:
+            guard let urlString = dict["psychosomatic"] else { return }
+            resultUrlString = urlString
+        case .healthCenter:
+            guard let urlString = dict["psychaiatry"] else { return }
+            resultUrlString = urlString
+        case .psychaiatry:
+            guard let urlString = dict["healthCenter"] else { return }
+            resultUrlString = urlString
+        case .counseling:
+            guard let urlString = dict["counseling"] else { return }
+            resultUrlString = urlString
         }
+        goSafariVC(urlString: resultUrlString)
+    }
+    
+    func normalViewButtonTapped() {
+        guard let resultUrlString = webString else { return }
+        goSafariVC(urlString: resultUrlString)
+        
+    }
+    
+    func goSafariVC(urlString: String) {
         guard let url = URL(string: urlString) else { return }
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true, completion: nil)
