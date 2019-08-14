@@ -34,7 +34,11 @@ final class QuestionViewController: UIViewController {
     
     var resultViewController: ResultViewController?
     var resultTitle = ""
-    var isResult = false
+    var isResult = false {
+        didSet {
+            self.validateIsResult()
+        }
+    }
     var questionNumber = 0
     var yesQuestionIndex = 0
     var noQuestionIndex = 0

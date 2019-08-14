@@ -57,7 +57,7 @@ final class ResultDescriptionCell: UITableViewCell {
     func makeConstraints() {
         descriptionLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview().offset(-12)
+            make.centerX.equalToSuperview().offset(-15)
         }
         
         linkButton.snp.makeConstraints { make in

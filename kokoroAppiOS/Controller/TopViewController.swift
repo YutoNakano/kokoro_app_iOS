@@ -34,7 +34,7 @@ final class TopViewController: UIViewController {
     lazy var signOutButton: UIButton = {
         let v = UIButton(target: self, action: #selector(signOutButtonTapped))
         v.layer.masksToBounds = true
-        v.layer.cornerRadius = 20
+        v.layer.cornerRadius = 19
         return v
     }()
     
@@ -166,13 +166,16 @@ extension TopViewController {
     
     func loadUserInfoFromUserDefaults() {
         let userDefaults = UserDefaults.standard
-    
+
         if userDefaults.object(forKey: "userName") != nil {
             let userName: String? = userDefaults.object(forKey: "userName") as? String
             let profileImageURL: URL? = userDefaults.url(forKey: "profileImageData")
-        
+
             self.topCharactorView.charactorDescriptionLabel.text = "\(userName ?? "名無し")さんお帰りなさい!"
             signOutButton.kf.setImage(with: profileImageURL, for: .normal)
+        } else {
+            topCharactorView.charactorDescriptionLabel.text = "早速診断してみよう!"
+            signOutButton.setImage(UIImage(named: "user"), for: .normal)
         }
     }
 }

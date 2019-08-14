@@ -138,11 +138,11 @@ final class ResultContentView: UIView {
         }
         linkButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-30)
+            make.centerY.equalToSuperview().offset(-45)
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-110)
+            make.bottom.equalToSuperview().offset(-125)
         }
         sendSubviewToBack(descriptionLabel)
     }
