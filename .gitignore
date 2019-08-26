@@ -3,3 +3,6 @@
 kokoroAppiOS/GoogleService-Info.plist
 kokoroAppiOS/Info.plist
 kokoroAppiOS/Base/Config.swift
+fastlane/
+vendor/
+build/

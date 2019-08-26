@@ -182,22 +182,6 @@ extension ResultViewController {
         guard let array = descriptionArray else { return }
         self.resultContentView.descriptionStrings = array
     }
-    
-    func turnDescriptionStateView(resultState: ResultViewType) {
-        switch resultState {
-        case .psychiatry:
-            resultContentView.tableView.isHidden = true
-        case .psychosomatic:
-            resultContentView.tableView.isHidden = true
-        case .counseling:
-            resultContentView.tableView.isHidden = true
-        case .healthCenter:
-            resultContentView.tableView.isHidden = true
-        case .rest:
-            resultContentView.descriptionLabel.textColor = UIColor.clear
-            resultContentView.linkButton.isHidden = true
-        }
-    }
 }
 
 extension ResultViewController: ResultContentViewDelegate {

@@ -135,8 +135,6 @@ extension QuestionViewController {
         })
         
         guard let prepareReciveData = prepareReciveData else { return }
-        guard let resultState = ResultViewType(rawValue: nextIndex) else { return }
-        resultViewController.turnDescriptionStateView(resultState: resultState)
         resultViewController.fetchResultData(resultIndex: nextIndex, completion: prepareReciveData)
         
     }

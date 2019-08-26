@@ -10,10 +10,6 @@ import UIKit
 import SnapKit
 import LTMorphingLabel
 
-//protocol ResultDescriptionDelegate: class {
-////    func tapLinkButton()
-//}
-
 final class ResultDescriptionCell: UITableViewCell {
     
     lazy var descriptionLabel: UILabel = {

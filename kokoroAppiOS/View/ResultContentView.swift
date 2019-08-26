@@ -56,18 +56,18 @@ final class ResultContentView: UIView {
         return v
     }()
     
-    lazy var tableView: UITableView = {
-        let v = UITableView()
-        v.register(ResultDescriptionCell.self, forCellReuseIdentifier: "Cell")
-        v.rowHeight = 42
-        v.separatorStyle = .none
-        v.allowsSelection = false
-        v.dataSource = self
-        v.delegate = self
-        v.backgroundColor = UIColor.appColor(.background)
-        addSubview(v)
-        return v
-    }()
+//    lazy var tableView: UITableView = {
+//        let v = UITableView()
+//        v.register(ResultDescriptionCell.self, forCellReuseIdentifier: "Cell")
+//        v.rowHeight = 42
+//        v.separatorStyle = .none
+//        v.allowsSelection = false
+//        v.dataSource = self
+//        v.delegate = self
+//        v.backgroundColor = UIColor.appColor(.background)
+//        addSubview(v)
+//        return v
+//    }()
     
     lazy var descriptionLabel: UILabel = {
         let v = UILabel()
@@ -75,22 +75,22 @@ final class ResultContentView: UIView {
         v.adjustsFontSizeToFitWidth = true
         v.textColor = UIColor.appColor(.character)
         v.textAlignment = .center
-        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
+        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 18)
         v.text = "あなたは心だけでなく体にも不調がでています。心療内科で治療を受けましょう"
         addSubview(v)
         return v
     }()
-    
-    lazy var linkButton: UIButton = {
-        let v = UIButton()
-        v.addTarget(self, action: #selector(linkButtonTapped(_:)), for: .touchUpInside)
-        v.setTitle("こちら", for: .normal)
-        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
-        v.setTitleColor(UIColor.blue, for: .normal)
-        v.backgroundColor = UIColor.clear
-        addSubview(v)
-        return v
-    }()
+//
+//    lazy var linkButton: UIButton = {
+//        let v = UIButton()
+//        v.addTarget(self, action: #selector(linkButtonTapped(_:)), for: .touchUpInside)
+//        v.setTitle("こちら", for: .normal)
+//        v.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
+//        v.setTitleColor(UIColor.blue, for: .normal)
+//        v.backgroundColor = UIColor.clear
+//        addSubview(v)
+//        return v
+//    }()
     
     lazy var charactorImageView: UIImageView = {
         let v = UIImageView(image: UIImage(named: CharactorImageState.smallNormal.rawValue))
@@ -126,25 +126,15 @@ final class ResultContentView: UIView {
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.bottom).offset(15)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(200)
-        }
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalTo(titleLabel.snp.centerX)
-            make.top.equalTo(contentView.snp.bottom).offset(10)
+            make.top.equalTo(contentView.snp.bottom).offset(30)
             make.width.equalTo(contentView.snp.width).offset(-20)
-        }
-        linkButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-45)
         }
         charactorImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-125)
         }
-        sendSubviewToBack(descriptionLabel)
     }
     
 }
@@ -180,23 +170,4 @@ extension ResultContentView {
     @objc func linkButtonTapped(_ sender: UIButton) {
         delegate?.linkButtonTapped(buttonTag: sender.tag)
     }
-}
-
-extension ResultContentView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellTitles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ResultDescriptionCell else { fatalError() }
-        cell.descriptionLabel.text = cellTitles[indexPath.row]
-        cell.linkButton.addTarget(self, action: #selector(linkButtonTapped(_:)), for: .touchUpInside)
-        cell.linkButton.tag = indexPath.row + 1
-        return cell
-    }
-}
-
-
-extension ResultContentView: UITableViewDelegate {
-
 }
