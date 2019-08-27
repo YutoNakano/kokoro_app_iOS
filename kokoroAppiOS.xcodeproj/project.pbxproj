@@ -47,6 +47,7 @@
 		576DD22922BBC69500B83A8E /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD22222BBC69500B83A8E /* QuestionViewController.swift */; };
 		576DD22D22BBC6BB00B83A8E /* ResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD22C22BBC6BB00B83A8E /* ResultCollectionViewCell.swift */; };
 		576DD23122BBC83A00B83A8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576DD23022BBC83A00B83A8E /* AppDelegate.swift */; };
+		577188C92315EB0100FB01C6 /* TopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577188C82315EB0100FB01C6 /* TopViewModel.swift */; };
 		57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DC922BDD0CC00142ADF /* SignUpViewController.swift */; };
 		57721DCD22BDD68200142ADF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DCC22BDD68200142ADF /* UserManager.swift */; };
 		57721DCF22BDF37100142ADF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57721DCE22BDF37100142ADF /* RootViewController.swift */; };
@@ -142,6 +143,7 @@
 		576DD22222BBC69500B83A8E /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		576DD22C22BBC6BB00B83A8E /* ResultCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		576DD23022BBC83A00B83A8E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		577188C82315EB0100FB01C6 /* TopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewModel.swift; sourceTree = "<group>"; };
 		57721DC922BDD0CC00142ADF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		57721DCC22BDD68200142ADF /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		57721DCE22BDF37100142ADF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				5756F9912314F118009DE50E /* SignUpViewModel.swift */,
+				577188C82315EB0100FB01C6 /* TopViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */,
 				574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */,
 				5756F9922314F118009DE50E /* SignUpViewModel.swift in Sources */,
+				577188C92315EB0100FB01C6 /* TopViewModel.swift in Sources */,
 				574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */,
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,
 				5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */,

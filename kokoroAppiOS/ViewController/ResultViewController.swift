@@ -52,19 +52,19 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
-    var topViewController: TopViewController?
+    private var topViewController: TopViewController?
     
-    let screenWidth = UIScreen.main.bounds.width
-    var resultTitle: String = ""
-    var resultDescription: String = ""
-    let userDefaults = UserDefaults.standard
+    private let screenWidth = UIScreen.main.bounds.width
+    private var resultTitle: String = ""
+    private var resultDescription: String = ""
+    private let userDefaults = UserDefaults.standard
     
     // モデルからのデータを格納する
-    var questions: [String]
-    var selectedAnswers: [SelectedAnswers]
-    var webString: String?
-    var descriptionArray: [String]?
-    var urlDict: [String: String]?
+    private var questions: [String]
+    private var selectedAnswers: [SelectedAnswers]
+    private var webString: String?
+    private var descriptionArray: [String]?
+    private var urlDict: [String: String]?
     
     init(topVC: TopViewController, questions: [String], selectedAnswers: [SelectedAnswers]) {
         topViewController = topVC

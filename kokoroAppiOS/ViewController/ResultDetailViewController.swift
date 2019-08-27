@@ -74,16 +74,16 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
-    var resultTitle: String?
-    var questions: [String]?
-    var selectedAnswers: [SelectedAnswers]?
+    private var resultTitle: String?
+    private var questions: [String]?
+    private var selectedAnswers: [SelectedAnswers]?
     weak var delegate: ResultDetailViewControllerDelegate?
     
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
-    var memoText: String = ""
-    let userDefaults = UserDefaults.standard
-    let topViewController: TopViewController?
+    private let screenHeight = UIScreen.main.bounds.height
+    private let screenWidth = UIScreen.main.bounds.width
+    private var memoText: String = ""
+    private let userDefaults = UserDefaults.standard
+    private let topViewController: TopViewController?
     
     init(topVC: TopViewController,title: String, questions: [String], selectedAnswers: [SelectedAnswers]) {
         topViewController = topVC

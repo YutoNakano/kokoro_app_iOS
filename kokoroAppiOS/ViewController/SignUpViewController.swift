@@ -57,7 +57,7 @@ final class SignUpViewController: UIViewController {
         return v
     }()
     
-    let screenWidth = UIScreen.main.bounds.width
+    private let screenWidth = UIScreen.main.bounds.width
     
     private let viewModel = SignUpViewModel()
     

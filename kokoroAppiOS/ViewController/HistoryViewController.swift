@@ -27,14 +27,14 @@ final class HistoryViewController: UIViewController {
         return v
     }()
     
-    var watchButtonTapHandler: (() -> Void)?
-    var didSelectCellTapHandler: (() -> Void)?
+    private var watchButtonTapHandler: (() -> Void)?
+    private var didSelectCellTapHandler: (() -> Void)?
 
-    var questions: [[String]] = []
-    var selectedAnswers: [[String]] = []
-    var memos: [String] = []
+    private var questions: [[String]] = []
+    private var selectedAnswers: [[String]] = []
+    private var memos: [String] = []
     
-    let screenWidth = UIScreen.main.bounds.width
+    private let screenWidth = UIScreen.main.bounds.width
     
     override func loadView() {
         super.loadView()

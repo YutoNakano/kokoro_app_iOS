@@ -29,12 +29,12 @@ final class HistoryDetailViewController: UIViewController {
         return v
     }()
     
-    var questions: [String]
-    var selectedAnswersString: [String]
-    var memoText: String
+    private var questions: [String]
+    private var selectedAnswersString: [String]
+    private var memoText: String
     
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
+    private let screenHeight = UIScreen.main.bounds.height
+    private let screenWidth = UIScreen.main.bounds.width
     
     init(questions: [String], selectedAnswersString: [String], memoText: String) {
         self.questions = questions

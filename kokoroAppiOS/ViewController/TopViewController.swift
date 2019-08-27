@@ -44,13 +44,13 @@ final class TopViewController: UIViewController {
         return v
     }()
     
-    let historyViewController = HistoryViewController()
-    let screenHeight = UIScreen.main.bounds.height
-    var charactorDescriptionArray: [String] = []
-    var charactorState = true
-    var profileImage: UIImage?
+    private let historyViewController = HistoryViewController()
+    private let screenHeight = UIScreen.main.bounds.height
+    private var charactorDescriptionArray: [String] = []
+    private var charactorState = true
+    private var profileImage: UIImage?
     
-    var watchButtonTapHandler: (() -> Void)?
+    private var watchButtonTapHandler: (() -> Void)?
     
     override func loadView() {
         super.loadView()

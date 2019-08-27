@@ -22,10 +22,10 @@ final class SignInViewController: UIViewController {
         return v
     }()
     
-    let screenWidth = UIScreen.main.bounds.width
-    var name: String?
-    var profileImage: UIImage?
-    var twitterSession: TWTRSession?
+    private let screenWidth = UIScreen.main.bounds.width
+    private var name: String?
+    private var profileImage: UIImage?
+    private var twitterSession: TWTRSession?
     
     override func loadView() {
         super.loadView()

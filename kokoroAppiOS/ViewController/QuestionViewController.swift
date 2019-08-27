@@ -32,23 +32,23 @@ final class QuestionViewController: UIViewController {
         return v
     }()
     
-    var resultViewController: ResultViewController?
-    var resultTitle = ""
-    var isResult = false {
+    private var resultViewController: ResultViewController?
+    private var resultTitle = ""
+    private var isResult = false {
         didSet {
             self.validateIsResult()
         }
     }
-    var questionNumber = 0
-    var yesQuestionIndex = 0
-    var noQuestionIndex = 0
-    var nextIndex = 1
-    var prepareReciveData: (() -> Void)?
-    var questionTitles = [String]()
-    var selectedAnswers = [SelectedAnswers]()
-    var topViewController: TopViewController?
+    private var questionNumber = 0
+    private var yesQuestionIndex = 0
+    private var noQuestionIndex = 0
+    private var nextIndex = 1
+    private var prepareReciveData: (() -> Void)?
+    private var questionTitles = [String]()
+    private var selectedAnswers = [SelectedAnswers]()
+    private var topViewController: TopViewController?
     
-    var questionTitle: String? {
+    private var questionTitle: String? {
         didSet {
             self.setModel()
         }

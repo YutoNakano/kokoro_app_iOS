@@ -35,22 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Model/UserManager.swift"
-            timestampString = "588609803.331434"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "registerUser()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "kokoroAppiOS/Model/TwitterClient.swift"
             timestampString = "588609857.959747"
             startingColumnNumber = "9223372036854775807"
@@ -68,7 +52,7 @@
                   moduleName = "kokoroAppiOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/TwitterClient.swift"
-                  timestampString = "588609857.9667031"
+                  timestampString = "588639235.2435679"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -83,7 +67,7 @@
                   moduleName = "kokoroAppiOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/TwitterClient.swift"
-                  timestampString = "588609857.96912"
+                  timestampString = "588639235.245804"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
