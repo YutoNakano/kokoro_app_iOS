@@ -28,6 +28,8 @@
 		574FD3AA22E962D000F15461 /* MPLUSRounded1c-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */; };
 		574FD3AB22E962D800F15461 /* MPLUSRounded1c-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */; };
 		5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5754079422C0CD670097D07F /* PlaceHolderTextView.swift */; };
+		5756F9922314F118009DE50E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756F9912314F118009DE50E /* SignUpViewModel.swift */; };
+		5756F9942314F3A9009DE50E /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5756F9932314F3A9009DE50E /* TwitterClient.swift */; };
 		5757F40E22BEF0E3008783F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */; };
 		5757F41022BEF18A008783F6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F40F22BEF18A008783F6 /* History.swift */; };
 		5757F41222BF0BEA008783F6 /* HistoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */; };
@@ -56,6 +58,8 @@
 		577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */; };
 		5783A04D22C7336400A3EE18 /* ScrollTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783A04C22C7336400A3EE18 /* ScrollTextView.swift */; };
 		57AFBBDA22D57480006F8002 /* ThirdIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBBD922D57480006F8002 /* ThirdIntro.swift */; };
+		57B04FE523156DA300848820 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 579B2B012315262000DFC9FE /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		57B04FE723156DA300848820 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 579B2AFF2315261400DFC9FE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57BC6F8F22DB66640088465B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC6F8E22DB66640088465B /* Config.swift */; };
 		57C9204E22B6117900A8B45D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204D22B6117900A8B45D /* Assets.xcassets */; };
 		57C9205122B6117900A8B45D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */; };
@@ -81,6 +85,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		57B04FE823156DA300848820 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				57B04FE723156DA300848820 /* RxSwift.framework in Embed Frameworks */,
+				57B04FE523156DA300848820 /* RxCocoa.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kokoroAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF6ABAE75256D41F5F72C5A /* Pods-kokoroAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSTests/Pods-kokoroAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,6 +123,8 @@
 		574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Regular.ttf"; sourceTree = "<group>"; };
 		574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Medium.ttf"; sourceTree = "<group>"; };
 		5754079422C0CD670097D07F /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
+		5756F9912314F118009DE50E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		5756F9932314F3A9009DE50E /* TwitterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5757F40F22BEF18A008783F6 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		5757F41122BF0BEA008783F6 /* HistoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionView.swift; sourceTree = "<group>"; };
@@ -132,6 +153,9 @@
 		57787F9022CC78C6001C0ADB /* kokoroAppiOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = kokoroAppiOS.entitlements; sourceTree = "<group>"; };
 		577A5FFF22C0E4C0003522E7 /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		5783A04C22C7336400A3EE18 /* ScrollTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTextView.swift; sourceTree = "<group>"; };
+		579B2AFF2315261400DFC9FE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		579B2B012315262000DFC9FE /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		579B2B04231526C000DFC9FE /* input.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = input.xcfilelist; sourceTree = "<group>"; };
 		57AFBBD922D57480006F8002 /* ThirdIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdIntro.swift; sourceTree = "<group>"; };
 		57BC6F8E22DB66640088465B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		57C9204322B6117700A8B45D /* kokoroAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kokoroAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +232,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		5756F9902314F100009DE50E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5756F9912314F118009DE50E /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		57721DCB22BDD66200142ADF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,11 +248,12 @@
 				57721DD822BE66EA00142ADF /* User.swift */,
 				57721DDA22BE68B600142ADF /* DocumentSnapshot.swift */,
 				5757F40F22BEF18A008783F6 /* History.swift */,
+				5756F9932314F3A9009DE50E /* TwitterClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5783A04B22C7325300A3EE18 /* Controller */ = {
+		5783A04B22C7325300A3EE18 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				576DD21C22BBC69500B83A8E /* TopViewController.swift */,
@@ -234,7 +267,7 @@
 				5769D4A422C6FE7E006E15CB /* HistoryDetailViewController.swift */,
 				5768D72822D619BC00E084B4 /* SignInViewController.swift */,
 			);
-			path = Controller;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		57B6AECB22B64AB000007724 /* View */ = {
@@ -286,10 +319,11 @@
 			isa = PBXGroup;
 			children = (
 				57787F9022CC78C6001C0ADB /* kokoroAppiOS.entitlements */,
+				5756F9902314F100009DE50E /* ViewModel */,
 				57721DCB22BDD66200142ADF /* Model */,
 				574E046022B6565A008628C5 /* Base */,
 				576DD23022BBC83A00B83A8E /* AppDelegate.swift */,
-				5783A04B22C7325300A3EE18 /* Controller */,
+				5783A04B22C7325300A3EE18 /* ViewController */,
 				57B6AECB22B64AB000007724 /* View */,
 				57C9204D22B6117900A8B45D /* Assets.xcassets */,
 				57C9204F22B6117900A8B45D /* LaunchScreen.storyboard */,
@@ -297,6 +331,7 @@
 				5757F40D22BEF0E2008783F6 /* GoogleService-Info.plist */,
 				574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */,
 				574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */,
+				579B2B04231526C000DFC9FE /* input.xcfilelist */,
 			);
 			path = kokoroAppiOS;
 			sourceTree = "<group>";
@@ -322,6 +357,8 @@
 		A9D7CFF88C2FE999C1303A7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				579B2B012315262000DFC9FE /* RxCocoa.framework */,
+				579B2AFF2315261400DFC9FE /* RxSwift.framework */,
 				7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */,
 				1A65EE785E61FF45826CAC2E /* Pods_kokoroAppiOSTests.framework */,
 				64980F4C3DFDE7A392F2DD7C /* Pods_kokoroAppiOSUITests.framework */,
@@ -355,6 +392,8 @@
 				57C9204122B6117700A8B45D /* Resources */,
 				7F0D01DFB81250FA6516A9A4 /* [CP] Embed Pods Frameworks */,
 				FCC7C9058E3D99FAAFE45364 /* [CP] Copy Pods Resources */,
+				579B2B032315263700DFC9FE /* ShellScript */,
+				57B04FE823156DA300848820 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -481,6 +520,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		579B2B032315263700DFC9FE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/kokoroAppiOS/input.xcfilelist",
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		7F0D01DFB81250FA6516A9A4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -600,6 +657,7 @@
 				574D36FF22BC6C170041D39E /* HistoryCollectionViewCell.swift in Sources */,
 				577A600022C0E4C0003522E7 /* ResultCollectionView.swift in Sources */,
 				574C60A922C3539C002A5366 /* PresenterInterface.swift in Sources */,
+				5756F9942314F3A9009DE50E /* TwitterClient.swift in Sources */,
 				576DD22D22BBC6BB00B83A8E /* ResultCollectionViewCell.swift in Sources */,
 				57721DCA22BDD0CC00142ADF /* SignUpViewController.swift in Sources */,
 				5757F41022BEF18A008783F6 /* History.swift in Sources */,
@@ -614,6 +672,7 @@
 				57499FBF22FD381F0046FA76 /* ResultRestView.swift in Sources */,
 				57721DD722BE5E5300142ADF /* FirestoreModel.swift in Sources */,
 				574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */,
+				5756F9922314F118009DE50E /* SignUpViewModel.swift in Sources */,
 				574D36FA22BC5CC60041D39E /* MaterialButton.swift in Sources */,
 				576DD22422BBC69500B83A8E /* TopViewController.swift in Sources */,
 				5754079522C0CD670097D07F /* PlaceHolderTextView.swift in Sources */,
@@ -804,11 +863,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 372QHH966L;
-				INFOPLIST_FILE = kokoroAppiOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				INFOPLIST_FILE = kokoroAppiOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -826,11 +886,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 372QHH966L;
-				INFOPLIST_FILE = kokoroAppiOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				INFOPLIST_FILE = kokoroAppiOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nakano.kokoroAppiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
