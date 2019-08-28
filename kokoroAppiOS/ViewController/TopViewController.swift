@@ -11,6 +11,8 @@ import SnapKit
 import Kingfisher
 import FirebaseAuth
 import FirebaseFirestore
+import RxSwift
+import RxCocoa
 
 protocol TopViewControllerDelegate: class {
     func resetQuestionCount()
@@ -51,18 +53,27 @@ final class TopViewController: UIViewController {
     private var profileImage: UIImage?
     
     private var watchButtonTapHandler: (() -> Void)?
+    private let viewModel = TopViewModel()
+    
+    let disposeBag = DisposeBag()
+    
     
     override func loadView() {
         super.loadView()
         setupView()
         makeConstraints()
-        fetchUserData()
+        fetchCharactorDescription()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchCharactorDescription()
-        loadUserInfoFromUserDefaults()
+        
+        
+        self.viewModel.nameBehaviorSubject.subscribe({ [weak self] event in
+            guard case let .next(value) = event else { return }
+            self?.topCharactorView.charactorDescriptionLabel.text = value
+        })
+        .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,51 +143,12 @@ extension TopViewController {
                 }
         }
     }
-    
-    func fetchUserData() {
-        if let user = Auth.auth().currentUser {
-            let userRef = Firestore.firestore().collection("users").document(user.uid)
-            userRef.getDocument(completion: { [weak self](document, error) in
-                if let document = document, document.exists {
-                    let profileImageUrl = document["profileImageUrl"]
-                    let name = document["name"]
-                    guard let urlString = profileImageUrl as? String else { return }
-                    if let url = URL(string: urlString) {
-                    do {
-                        let data = try Data(contentsOf: url)
-                        let image = UIImage(data: data)
-                        self?.signOutButton.setImage(image, for: .normal)
-
-                        self?.topCharactorView.charactorDescriptionLabel.text = "\(name ?? "名無し")さんお帰りなさい!"
-                    }catch let err {
-                        print(err)
-                    }
-                }
-                }
-            })
-        }
-    }
     // キャラクターの文言をランダムに表示
     func setCharactorDescription() {
         topCharactorView.charactorDescriptionLabel.text = charactorDescriptionArray[generateRandomNumber()]
     }
     func generateRandomNumber() -> Int {
         return Int.random(in: 0 ... charactorDescriptionArray.count - 1)
-    }
-    
-    func loadUserInfoFromUserDefaults() {
-        let userDefaults = UserDefaults.standard
-
-        if userDefaults.object(forKey: "userName") != nil {
-            let userName: String? = userDefaults.object(forKey: "userName") as? String
-            let profileImageURL: URL? = userDefaults.url(forKey: "profileImageData")
-
-            self.topCharactorView.charactorDescriptionLabel.text = "\(userName ?? "名無し")さんお帰りなさい!"
-            signOutButton.kf.setImage(with: profileImageURL, for: .normal)
-        } else {
-            topCharactorView.charactorDescriptionLabel.text = "早速診断してみよう!"
-            signOutButton.setImage(UIImage(named: "user"), for: .normal)
-        }
     }
 }
 

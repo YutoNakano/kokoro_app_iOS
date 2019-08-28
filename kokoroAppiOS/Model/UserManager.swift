@@ -10,6 +10,8 @@ import Foundation
 import FirebaseFirestore
 import Firebase
 import TwitterKit
+import RxSwift
+import RxCocoa
 
 
 final class UserManager {
@@ -27,6 +29,8 @@ final class UserManager {
             listeners.forEach{ $0(currentState) }
         }
     }
+    
+    var saveUserInfoResult = PublishSubject<()>()
     
     private var session: TWTRSession?
     
@@ -103,8 +107,10 @@ final class UserManager {
         do {
             let data = try Data(contentsOf: url)
             saveUserInfoToFirebaseDatabase(imageData: data)
+            saveUserInfoResult.on(.next(()))
         } catch let err {
             print("Error : \(err.localizedDescription)")
+            saveUserInfoResult.on(.error(err))
         }
     }
     

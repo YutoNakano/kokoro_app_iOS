@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Model/TwitterClient.swift"
-            timestampString = "588609803.331369"
+            filePath = "kokoroAppiOS/ViewModel/TopViewModel.swift"
+            timestampString = "588675036.664606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "fetchTwitterUser(twitterSession:completion:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kokoroAppiOS/ViewModel/TopViewModel.swift"
+            timestampString = "588675036.664691"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,45 +52,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "kokoroAppiOS/Model/TwitterClient.swift"
-            timestampString = "588609857.959747"
+            timestampString = "588672231.510595"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "fetchTwitterUser(twitterSession:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "kokoroAppiOS.TwitterClient.fetchTwitterUser(twitterSession: __C.TWTRSession, completion: (Swift.String, Foundation.URL) -&gt; ()) -&gt; ()"
-                  moduleName = "kokoroAppiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/TwitterClient.swift"
-                  timestampString = "588639235.2435679"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "92">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.TWTRUser&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in kokoroAppiOS.TwitterClient.fetchTwitterUser(twitterSession: __C.TWTRSession, completion: (Swift.String, Foundation.URL) -&gt; ()) -&gt; ()"
-                  moduleName = "kokoroAppiOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakanoyuuhitoshi/Local/local-iOS/kokoro_app_iOS/kokoroAppiOS/Model/TwitterClient.swift"
-                  timestampString = "588639235.245804"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "215">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -18,6 +18,10 @@ struct SignUpViewModel {
     var authCompletion: (() -> Void)? = nil
     
     func loginTwitter() {
+//        userManager.saveUserInfoResult
+//            .subscribe(){ event in
+//
+//        }
         userManager.login { session in
             self.twitterClient.fetchTwitterUser(twitterSession: session, completion: { (name, url) in
                 self.userManager.saveUserInfoToUserDefaults(name: name, url: url)
