@@ -71,10 +71,10 @@ final class TopViewController: UIViewController {
         
         
         self.viewModel.nameBehaviorSubject.subscribe({ [weak self] event in
-            print(event.element)
             guard case let .next(value) = event else { return }
             print("Viewの\(value)")
-            self?.topCharactorView.charactorDescriptionLabel.text = value
+            self?.topCharactorView.charactorDescriptionLabel.text = "\(value.name)さんお帰りなさい！"
+            self?.signOutButton.kf.setImage(with: value.imageURL, for: .normal)
         })
         .disposed(by: disposeBag)
     }

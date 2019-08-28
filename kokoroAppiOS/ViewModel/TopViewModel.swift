@@ -13,29 +13,20 @@ import RxCocoa
 struct TopViewModel {
 
     let disposeBag = DisposeBag()
-    let nameBehaviorSubject = BehaviorSubject<String>(value: "中野")
+    let nameBehaviorSubject = BehaviorSubject<Profile>(value: Profile(name: "名無し", imageURL: URL(string: LocalizeString.sampleImageURLString)!))
     
-    var name: String? = nil
-    var imageURL: URL? = nil
 //    private let storageClient: StorageClient = StorageClient()
     
     private let loadUserDefaults = LoadUserDefaults()
     
     
     init() {
-//        storageClient.fetchUserData { (profile) in
-//            nameBehaviorSubject.subscribe ({ (event) in
-//                print("あああああ")
-//            }).addDisposableTo(disposeBag)
-//            nameBehaviorSubject.on(.next(profile.name))
-//            nameBehaviorSubject.on(.completed)
-//        }
         loadUserDefaults.loadUserInfoUserDefaults { (profile) in
             nameBehaviorSubject.subscribe({ (event) in
                 print(profile.name)
                 
             }).disposed(by: disposeBag)
-            nameBehaviorSubject.on(.next(profile.name))
+            nameBehaviorSubject.on(.next(profile))
         }
     }
     
