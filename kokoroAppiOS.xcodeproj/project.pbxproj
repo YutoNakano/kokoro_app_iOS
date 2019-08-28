@@ -11,6 +11,7 @@
 		2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E53D608AFA8637B9BCEB7F7 /* Pods_kokoroAppiOS.framework */; };
 		57499FBF22FD381F0046FA76 /* ResultRestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57499FBE22FD381F0046FA76 /* ResultRestView.swift */; };
 		57499FC122FD3CDB0046FA76 /* resultDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57499FC022FD3CDB0046FA76 /* resultDescriptionCell.swift */; };
+		574A9ABD2316AF1700655E18 /* LocalizeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A9ABC2316AF1700655E18 /* LocalizeString.swift */; };
 		574B128222C8816A00B4F304 /* Alart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B128122C8816A00B4F304 /* Alart.swift */; };
 		574C0A5F22C0576B004CA340 /* ResultDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */; };
 		574C59C822DF3ED1005BA220 /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574C59C722DF3ED1005BA220 /* PopupController.swift */; };
@@ -110,6 +111,7 @@
 		542C011F2C7E460AFC578EAC /* Pods-kokoroAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kokoroAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-kokoroAppiOSUITests/Pods-kokoroAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		57499FBE22FD381F0046FA76 /* ResultRestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRestView.swift; sourceTree = "<group>"; };
 		57499FC022FD3CDB0046FA76 /* resultDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultDescriptionCell.swift; sourceTree = "<group>"; };
+		574A9ABC2316AF1700655E18 /* LocalizeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeString.swift; sourceTree = "<group>"; };
 		574B128122C8816A00B4F304 /* Alart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alart.swift; sourceTree = "<group>"; };
 		574C0A5E22C0576B004CA340 /* ResultDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailViewController.swift; sourceTree = "<group>"; };
 		574C59C722DF3ED1005BA220 /* PopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		574A9ABB2316AED400655E18 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				574A9ABC2316AF1700655E18 /* LocalizeString.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
 		574D36FD22BC6BFF0041D39E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				57787F9022CC78C6001C0ADB /* kokoroAppiOS.entitlements */,
+				574A9ABB2316AED400655E18 /* Local */,
 				5756F9902314F100009DE50E /* ViewModel */,
 				57721DCB22BDD66200142ADF /* Model */,
 				574E046022B6565A008628C5 /* Base */,
@@ -694,6 +705,7 @@
 				5764AA542316266A00E01534 /* Profile.swift in Sources */,
 				574E045722B65622008628C5 /* AppColor.swift in Sources */,
 				5768D72922D619BC00E084B4 /* SignInViewController.swift in Sources */,
+				574A9ABD2316AF1700655E18 /* LocalizeString.swift in Sources */,
 				574B128222C8816A00B4F304 /* Alart.swift in Sources */,
 				576DD22522BBC69500B83A8E /* SelectAnswerView.swift in Sources */,
 				574E045922B65649008628C5 /* EnhancedCircle.swift in Sources */,

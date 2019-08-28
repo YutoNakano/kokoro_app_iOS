@@ -34,7 +34,9 @@ final class RootViewController: UIViewController {
         }
     }
     
-    private let authenticated: BehaviorSubject<Bool> = BehaviorSubject(value: false)
+//    private let authenticated: BehaviorSubject<Bool> = BehaviorSubject(value: false)
+    
+    let disposeBag = DisposeBag()
     
     private(set) var currentViewController: UIViewController? {
         didSet {
@@ -62,19 +64,29 @@ final class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Auth.auth().currentUser != nil {
+            self.viewType = .main
+        }
     
-//        if Auth.auth().currentUser != nil {
-//            let _ = view.subviews.map { $0.removeFromSuperview() }
-//            buildMainVC()
-//        } else {
-//            return
-//        }
-//    }
-//        Observable.merge(UserManager.shared.saveUserInfoResult.asObservable(),authenticated.asObservable())
-//            .filter { e in e. }
-//            .subscribe { [weak self] event in
-//                guard case .onNext = event else { return }
-//                self?.viewType = .main
-//        }
+        UserManager.shared.register { [weak self] state in
+            switch state {
+            case .initial: break
+            case .notAuthenticated: self?.viewType = .signUp
+            case .authenticated: // self?.viewType = .main
+//                self?.authenticated.on(.next(true))
+                print("authしたよ")
+            }
+        }
+        
+        
+        
+            
+            UserManager.shared.saveUserInfoResult
+                .subscribe { [weak self] event in
+                guard case .next = event else { return }
+                self?.viewType = .main
+        }
+        .disposed(by: disposeBag)
     }
 }

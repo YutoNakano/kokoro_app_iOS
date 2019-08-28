@@ -52,6 +52,7 @@ final class TopViewController: UIViewController {
     private var charactorState = true
     private var profileImage: UIImage?
     
+    
     private var watchButtonTapHandler: (() -> Void)?
     private let viewModel = TopViewModel()
     
@@ -70,7 +71,9 @@ final class TopViewController: UIViewController {
         
         
         self.viewModel.nameBehaviorSubject.subscribe({ [weak self] event in
+            print(event.element)
             guard case let .next(value) = event else { return }
+            print("Viewの\(value)")
             self?.topCharactorView.charactorDescriptionLabel.text = value
         })
         .disposed(by: disposeBag)

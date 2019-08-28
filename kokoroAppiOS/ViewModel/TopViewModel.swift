@@ -32,12 +32,10 @@ struct TopViewModel {
 //        }
         loadUserDefaults.loadUserInfoUserDefaults { (profile) in
             nameBehaviorSubject.subscribe({ (event) in
-                print("ああああ")
-                print(event.element)
+                print(profile.name)
+                
             }).disposed(by: disposeBag)
-            
             nameBehaviorSubject.on(.next(profile.name))
-            nameBehaviorSubject.on(.completed)
         }
     }
     
