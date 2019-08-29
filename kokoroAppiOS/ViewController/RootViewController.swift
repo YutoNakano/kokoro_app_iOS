@@ -78,10 +78,7 @@ final class RootViewController: UIViewController {
                 print("authしたよ")
             }
         }
-        
-        
-        
-            
+
             UserManager.shared.saveUserInfoResult
                 .subscribe { [weak self] event in
                 guard case .next = event else { return }

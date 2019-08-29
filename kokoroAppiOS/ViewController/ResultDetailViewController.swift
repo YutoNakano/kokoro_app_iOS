@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import SnapKit
 import FirebaseFirestore
+import RxSwift
+import RxCocoa
 
 protocol ResultDetailViewControllerDelegate: class {
     func saveQuestions(memoText: String)
@@ -32,6 +34,14 @@ final class ResultDetailViewController: UIViewController {
         return v
     }()
     
+    lazy var limitTextCountLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.appColor(.character)
+        label.font = UIFont(name: "RoundedMplus1c-Medium", size: 14)
+        view.addSubview(label)
+        return label
+    }()
+    
     lazy var memoTextView: PlaceHolderTextView = {
         let v = PlaceHolderTextView()
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
@@ -41,18 +51,7 @@ final class ResultDetailViewController: UIViewController {
         let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(closeButtonTapped))
         toolBar.items = [spacer, closeButton]
         v.inputAccessoryView = toolBar
-        v.placeHolder = "ここに入力ください"
         v.delegate = self
-        view.addSubview(v)
-        return v
-    }()
-    
-    lazy var maxCharactorsAlartLabel: UILabel = {
-        let v = UILabel()
-        v.text = "300文字以上は入力できません"
-        v.font = UIFont(name: "RoundedMplus1c-Medium", size: 20)
-        v.backgroundColor = UIColor.appColor(.alartRed)
-        v.isHidden = true
         view.addSubview(v)
         return v
     }()
@@ -85,6 +84,9 @@ final class ResultDetailViewController: UIViewController {
     private let userDefaults = UserDefaults.standard
     private let topViewController: TopViewController?
     
+    private let inputText = BehaviorRelay<String>(value: "")
+    private let disposeBag = DisposeBag()
+
     init(topVC: TopViewController,title: String, questions: [String], selectedAnswers: [SelectedAnswers]) {
         topViewController = topVC
         self.resultTitle = title
@@ -112,6 +114,19 @@ final class ResultDetailViewController: UIViewController {
         guard let selectedAnswers = selectedAnswers else { return }
         resultCollectionView.selectedAnswers = selectedAnswers
         memoTextView.changeVisiblePlaceHolder()
+        
+        
+        
+        self.memoTextView.rx.text.orEmpty.bind(to: self.inputText).disposed(by: disposeBag)
+
+        self.inputText.asObservable().subscribe(onNext: { [weak self] string in
+            let calculateLimitCount = 200 - string.count
+            if calculateLimitCount == 0 {
+                self?.memoTextView.isEditable = false
+                self?.limitTextCountLabel.textColor = UIColor.appColor(.alartRed)
+            }
+            self?.limitTextCountLabel.text = "残り\(calculateLimitCount)文字"
+        }).disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -133,23 +148,23 @@ final class ResultDetailViewController: UIViewController {
             make.bottom.equalTo(memoExplainLabel.snp.top).offset(-10)
         }
         memoExplainLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(memoTextView.snp.top).offset(-2)
+            make.bottom.equalTo(memoTextView.snp.top).offset(-8)
             make.left.equalTo(memoTextView.snp.left)
         }
         memoTextView.snp.makeConstraints { make in
             make.height.equalTo(150)
-            make.bottom.equalTo(goTopButton.snp.top).offset(-10)
+            make.bottom.equalTo(goTopButton.snp.top).offset(-20)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
         }
-        maxCharactorsAlartLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(goTopButton.snp.top).offset(-7)
+        limitTextCountLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalTo(memoTextView.snp.bottom).offset(18)
         }
         goTopButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-40)
+            make.bottom.equalToSuperview().offset(-30)
             make.centerX.equalTo(memoTextView.snp.centerX)
-            make.height.equalTo(70)
+            make.height.equalTo(65)
             make.width.equalTo(220)
         }
     }
@@ -214,17 +229,6 @@ extension ResultDetailViewController: UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         memoTextView.resignFirstResponder()
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-            memoText = textView.text
-        if textView.text.count > 300 {
-            let zero = memoText.startIndex
-            let start = memoText.index(zero, offsetBy: 0)
-            let end = memoText.index(zero, offsetBy: 300)
-            textView.text = String(memoText[start...end])
-            textView.isHidden = false
-        }
     }
 }
 

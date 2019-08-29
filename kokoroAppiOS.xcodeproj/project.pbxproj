@@ -26,6 +26,8 @@
 		574E046622B6876D008628C5 /* UIImageView+kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */; };
 		574E40E422D587E100099341 /* SecondIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E40E322D587E100099341 /* SecondIntroView.swift */; };
 		574E40E622D587EE00099341 /* FirstIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E40E522D587EE00099341 /* FirstIntroView.swift */; };
+		574E9B1D23175D5B00B9AD7C /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574E9B1C23175D5B00B9AD7C /* RxRelay.framework */; };
+		574E9B1E23175D5B00B9AD7C /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 574E9B1C23175D5B00B9AD7C /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		574FD3AA22E962D000F15461 /* MPLUSRounded1c-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */; };
 		574FD3AB22E962D800F15461 /* MPLUSRounded1c-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */; };
 		575281D323161858002D21E9 /* LoadUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575281D223161858002D21E9 /* LoadUserDefaults.swift */; };
@@ -99,6 +101,7 @@
 			files = (
 				57B04FE723156DA300848820 /* RxSwift.framework in Embed Frameworks */,
 				57B04FE523156DA300848820 /* RxCocoa.framework in Embed Frameworks */,
+				574E9B1E23175D5B00B9AD7C /* RxRelay.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +129,7 @@
 		574E046522B6876D008628C5 /* UIImageView+kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+kingfisher.swift"; sourceTree = "<group>"; };
 		574E40E322D587E100099341 /* SecondIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondIntroView.swift; sourceTree = "<group>"; };
 		574E40E522D587EE00099341 /* FirstIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstIntroView.swift; sourceTree = "<group>"; };
+		574E9B1C23175D5B00B9AD7C /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		574FD3A822E9601700F15461 /* MPLUSRounded1c-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Regular.ttf"; sourceTree = "<group>"; };
 		574FD3A922E9614700F15461 /* MPLUSRounded1c-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Medium.ttf"; sourceTree = "<group>"; };
 		575281D223161858002D21E9 /* LoadUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserDefaults.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				574E9B1D23175D5B00B9AD7C /* RxRelay.framework in Frameworks */,
 				2635588E68BFAD8EDCA2D9E4 /* Pods_kokoroAppiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +323,7 @@
 		57C9203A22B6117700A8B45D = {
 			isa = PBXGroup;
 			children = (
+				574E9B1C23175D5B00B9AD7C /* RxRelay.framework */,
 				57C9204522B6117700A8B45D /* kokoroAppiOS */,
 				57C9205A22B6117900A8B45D /* kokoroAppiOSTests */,
 				57C9206522B6117900A8B45D /* kokoroAppiOSUITests */,
