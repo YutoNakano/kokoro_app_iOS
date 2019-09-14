@@ -17,6 +17,8 @@ pod 'Kingfisher'
 pod 'LTMorphingLabel'
 pod 'lottie-ios'
 pod 'KRProgressHUD'
+pod 'RxSwift'
+pod 'RxCocoa'
   target 'kokoroAppiOSTests' do
     inherit! :search_paths
     # Pods for testing

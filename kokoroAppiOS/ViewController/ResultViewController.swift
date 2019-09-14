@@ -52,6 +52,17 @@ final class ResultViewController: UIViewController {
         return v
     }()
     
+    lazy var openMapButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(openMapButtonTapped), for: .touchUpInside)
+        button.setTitle("近くの施設を探す", for: .normal)
+        button.backgroundColor = .appColor(.gray)
+        button.titleLabel?.font = UIFont(name: "RoundedMplus1c-Medium", size: 16)
+        button.layer.cornerRadius = 10
+        resultContentView.addSubview(button)
+        return button
+    }()
+    
     private var topViewController: TopViewController?
     
     private let screenWidth = UIScreen.main.bounds.width
@@ -121,6 +132,13 @@ final class ResultViewController: UIViewController {
             make.height.equalTo(80)
             make.width.equalTo(220)
         }
+        openMapButton.snp.makeConstraints { make in
+            make.height.equalTo(30)
+            make.width.equalTo(180)
+            make.top.equalTo(goNextButton.snp.top).offset(-55)
+            make.centerX.equalToSuperview()
+        }
+        view.bringSubviewToFront(openMapButton)
     }
 }
 
@@ -151,6 +169,12 @@ extension ResultViewController {
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         
         present(activityViewController, animated: true, completion: nil)
+    }
+    
+    @objc func openMapButtonTapped() {
+        let mapViewController = MapViewController()
+        mapViewController.query = resultTitle
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
 }
 
