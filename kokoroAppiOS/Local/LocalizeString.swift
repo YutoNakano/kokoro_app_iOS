@@ -10,5 +10,5 @@ import Foundation
 
 
 struct LocalizeString {
-    static let sampleImageURLString = "https://camo.qiitausercontent.com/d56e40010b0f495b8248be39742e500244892fe0/68747470733a2f2f61766174617273312e67697468756275736572636f6e74656e742e636f6d2f752f363430373034313f763d3426733d343030"
+    static let sampleImageURLString = "https://drive.google.com/open?id=1dfW-I9KGcTS0st4DSkeImWFq9RbFUy9G"
 }

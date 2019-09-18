@@ -64,6 +64,7 @@ final class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        UserManager.shared.signOut()
         
         if Auth.auth().currentUser != nil {
             self.viewType = .main
@@ -74,7 +75,7 @@ final class RootViewController: UIViewController {
             case .initial: break
             case .notAuthenticated: self?.viewType = .signUp
             case .authenticated: // self?.viewType = .main
-//                self?.authenticated.on(.next(true))
+                
                 print("authしたよ")
             }
         }
