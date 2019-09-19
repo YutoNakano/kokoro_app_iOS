@@ -7,21 +7,20 @@
 //
 
 import Foundation
-import TwitterKit
 import Firebase
 
 class TwitterClient {
-    var twitterSession: TWTRSession?
-
-    func fetchTwitterUser(twitterSession: TWTRSession, completion: @escaping (String, URL) -> Void) {
-        let client = TWTRAPIClient()
-        client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
-            if let _ = err { return }
-            guard let user = user else { return }
-            let profileImageURLString = user.profileImageLargeURL
-            guard let url = URL(string: profileImageURLString) else { return }
-            completion(user.name, url)
-        })
-    }
+//    var twitterSession: TWTRSession?
+//
+//    func fetchTwitterUser(twitterSession: TWTRSession, completion: @escaping (String, URL) -> Void) {
+//        let client = TWTRAPIClient()
+//        client.loadUser(withID: twitterSession.userID, completion: { (user, err) in
+//            if let _ = err { return }
+//            guard let user = user else { return }
+//            let profileImageURLString = user.profileImageLargeURL
+//            guard let url = URL(string: profileImageURLString) else { return }
+//            completion(user.name, url)
+//        })
+//    }
 }
 

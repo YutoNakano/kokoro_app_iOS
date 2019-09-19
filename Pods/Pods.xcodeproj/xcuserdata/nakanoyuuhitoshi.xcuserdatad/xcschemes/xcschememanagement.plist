@@ -207,19 +207,26 @@
 			<key>orderHint</key>
 			<integer>34</integer>
 		</dict>
-		<key>TwitterCore.xcscheme</key>
+		<key>Swifter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>35</integer>
 		</dict>
-		<key>TwitterKit.xcscheme</key>
+		<key>TwitterCore.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>36</integer>
+		</dict>
+		<key>TwitterKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>37</integer>
 		</dict>
 		<key>gRPC-C++-gRPCCertificates.xcscheme</key>
 		<dict>

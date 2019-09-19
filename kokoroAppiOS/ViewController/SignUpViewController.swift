@@ -12,7 +12,8 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import Kingfisher
-
+import SafariServices
+import Swifter
 
 final class SignUpViewController: UIViewController {
     
@@ -108,8 +109,26 @@ extension SignUpViewController: UIScrollViewDelegate {
     }
 }
 
-extension SignUpViewController: ThirdIntroViewDelegate {
+extension SignUpViewController: ThirdIntroViewDelegate, SFSafariViewControllerDelegate {
     func twitterLoginButtonTapped() {
         viewModel.loginTwitter()
+        
+        
+        let swifter = Swifter(consumerKey: Config.consumerKey, consumerSecret: Config.secretKey)
+        
+        swifter.authorize(
+            withCallback: URL(string: "swifter-vYMAjoO5ulHsRph24zbuEtAwY://")!,
+            presentingFrom: self,
+            success: { accessToken, response in
+                // このあとaccessToken使うよ
+                let credential = TwitterAuthProvider.credential(withToken: accessToken!.key, secret: accessToken!.secret)
+                Auth.auth().signIn(with: credential, completion: { (authResult, error) in
+                    print(accessToken?.screenName)
+                    //TODO: icon一旦なしでログイン機能だけ実装する
+                })
+        }, failure: { error in
+            print(error)
+        })
+        
     }
 }

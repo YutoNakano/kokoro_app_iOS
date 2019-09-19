@@ -9,7 +9,6 @@
 import Foundation
 import FirebaseFirestore
 import Firebase
-import TwitterKit
 import RxSwift
 import RxCocoa
 
@@ -32,7 +31,7 @@ final class UserManager {
     
     var saveUserInfoResult = PublishSubject<()>()
     
-    private var session: TWTRSession?
+//    private var session: TWTRSession?
     
     var currentUser: Document<User>? {
         switch currentState {
@@ -137,33 +136,33 @@ final class UserManager {
         }
     }
     
-    func login(completion: @escaping ((TWTRSession) -> Void)) {
-        twitterAuth { (result) in
-            switch result {
-            case let .success(credentials):
-                self.signin(with: credentials, completion: { (result) in
-                    guard let session = self.session else { return }
-                    completion(session)
-                })
-            case let .failure(error):
-                print(error)
-            }
-        }
-    }
+//    func login(completion: @escaping ((TWTRSession) -> Void)) {
+//        twitterAuth { (result) in
+//            switch result {
+//            case let .success(credentials):
+//                self.signin(with: credentials, completion: { (result) in
+//                    guard let session = self.session else { return }
+//                    completion(session)
+//                })
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
+//    }
     
-    private func twitterAuth(completion: @escaping (Result<AuthCredential, Error>) -> Void) {
-        TWTRTwitter.sharedInstance().logIn { [weak self] (session, error) in
-            if let err = error {
-                print("Twitter login has failed with error:\(err)")
-                return
-            }
-            guard let token  = session?.authToken else { return }
-            guard let secret = session?.authTokenSecret else { return }
-            self?.session = session
-            let credentials = TwitterAuthProvider.credential(withToken: token, secret: secret)
-            completion(.success(credentials))
-        }
-    }
+//    private func twitterAuth(completion: @escaping (Result<AuthCredential, Error>) -> Void) {
+//        TWTRTwitter.sharedInstance().logIn { [weak self] (session, error) in
+//            if let err = error {
+//                print("Twitter login has failed with error:\(err)")
+//                return
+//            }
+//            guard let token  = session?.authToken else { return }
+//            guard let secret = session?.authTokenSecret else { return }
+//            self?.session = session
+//            let credentials = TwitterAuthProvider.credential(withToken: token, secret: secret)
+//            completion(.success(credentials))
+//        }
+//    }
     
     private func signin(with credentials: AuthCredential, completion: @escaping (Result<(), Error>) -> Void) {
         Auth.auth().signInAndRetrieveData(with: credentials) { [weak self] (authDataResult, error) in

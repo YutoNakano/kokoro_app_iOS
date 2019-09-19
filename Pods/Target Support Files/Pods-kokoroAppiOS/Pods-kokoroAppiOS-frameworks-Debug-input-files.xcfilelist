@@ -11,6 +11,7 @@ ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
 ${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
 ${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework
 ${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework
 ${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework

@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import TwitterKit
+import FirebaseAuth
+import Swifter
 
 struct SignUpViewModel {
     private let twitterClient: TwitterClient = TwitterClient()
@@ -17,15 +18,25 @@ struct SignUpViewModel {
     var profileImageURL: URL? = nil
     var authCompletion: (() -> Void)? = nil
     
+    let swifter = Swifter(consumerKey: Config.consumerKey, consumerSecret: Config.secretKey)
+    
     func loginTwitter() {
-//        userManager.saveUserInfoResult
-//            .subscribe(){ event in
-//
-//        }
-        userManager.login { session in
-            self.twitterClient.fetchTwitterUser(twitterSession: session, completion: { (name, url) in
-                self.userManager.saveUserInfoToUserDefaults(name: name, url: url)
-            })
-        }
+        
+        //        swifter.authorize(
+        //            withCallback: URL(string: "swifter-vYMAjoO5ulHsRph24zbuEtAwY://")!,
+        //            presentingFrom: self,
+        //            success: { accessToken, response in
+        //                // このあとaccessToken使うよ
+        //        }, failure: { error in
+        //            print(error)
+        //        })
+        
+        
+        //        userManager.login { session in
+        //            self.twitterClient.fetchTwitterUser(twitterSession: session, completion: { (name, url) in
+        //                self.userManager.saveUserInfoToUserDefaults(name: name, url: url)
+        //            })
     }
+    //    }
 }
+
