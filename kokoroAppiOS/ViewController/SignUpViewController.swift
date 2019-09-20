@@ -125,6 +125,17 @@ extension SignUpViewController: ThirdIntroViewDelegate, SFSafariViewControllerDe
                 Auth.auth().signIn(with: credential, completion: { (authResult, error) in
                     print(accessToken?.screenName)
                     //TODO: icon一旦なしでログイン機能だけ実装する
+                    
+                    let user = Auth.auth().currentUser
+                    if let user = user {
+                        let uid = user.uid
+                        guard let displayName = user.displayName else { return }
+                        let db = Firestore.firestore()
+                        db.collection("users").document(uid).setData([
+                            "user_id": uid,
+                            "name": displayName
+                            ])
+                    }
                 })
         }, failure: { error in
             print(error)
