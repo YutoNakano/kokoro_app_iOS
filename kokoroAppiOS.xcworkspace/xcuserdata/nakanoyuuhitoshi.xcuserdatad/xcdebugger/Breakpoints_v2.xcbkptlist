@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "A8BBABDA-09F0-4369-8338-8ECA748F1F96"
+   uuid = "7093EC06-759C-4DE7-BD95-72C0E7D33C7D"
    type = "0"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C16E6EF0-3F0B-45C9-A1E6-D3F732CB8F6B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kokoroAppiOS/Model/UserManager.swift"
-            timestampString = "590595016.5282871"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "saveUserInfoToUserDefaults(name:url:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>

@@ -7,23 +7,14 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class LoadUserDefaults {
     var userName: String?
     var userImageUrl: URL?
     func loadUserInfoUserDefaults(completion: (Profile) -> Void) {
-        let userDefaults = UserDefaults.standard
-        
-        if userDefaults.object(forKey: "userName") != nil {
-            let userName: String? = userDefaults.object(forKey: "userName") as? String
-            let profileImageURL: URL? = userDefaults.url(forKey: "profileImageData")
-            
-            self.userName = userName
-            self.userImageUrl = profileImageURL
-        }
-        print(userName)
-        print(userImageUrl)
-        guard let name = userName, let url = userImageUrl else { return }
-        completion(Profile(name: name, imageURL: url))
+        guard let currentUser = Auth.auth().currentUser else { return }
+
+        completion(Profile(name: currentUser.displayName, imageURL: currentUser.photoURL))
     }
 }

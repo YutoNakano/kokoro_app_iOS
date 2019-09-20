@@ -93,9 +93,9 @@ extension HistoryViewController {
                 guard let questions: [[String]] = (document?.documents.map { $0.data()["questions"] } as? [[String]]),
                     let selectAnswers: [[String]] = (document?.documents.map { $0.data()["selectedAnswers"] } as? [[String]]),
                     let resultTitle: [String] = (document?.documents.map { $0.data()["title"] }) as? [String],
-                    let memo: [String] = (document?.documents.map { $0.data()["memo"] }) as? [String],
-                    let timeStamp: [Date] = (document?.documents.map { $0.data()["timeStamp"] }) as? [Date] else { return }
-                self?.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: timeStamp)
+                    let memo: [String] = (document?.documents.map { $0.data()["memo"] }) as? [String] else { return }
+//                    let timeStamp: [Date] = (document?.documents.map { $0.data()["timeStamp"] }) as? [Date] else { return }
+                self?.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: [Date()])
                 completion()
             }
             }

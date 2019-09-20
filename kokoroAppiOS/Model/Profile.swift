@@ -9,6 +9,6 @@
 import Foundation
 
 struct Profile {
-    let name: String
-    let imageURL: URL
+    let name: String?
+    let imageURL: URL?
 }

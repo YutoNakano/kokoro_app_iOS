@@ -49,14 +49,14 @@ final class SignUpViewController: UIViewController {
         introViews.forEach { scrollView.addSubview($0) }
     }
     
-    lazy var pageControll: UIPageControl = {
-        let v = UIPageControl()
-        v.numberOfPages = 3
-        v.pageIndicatorTintColor = UIColor.white
-        v.currentPageIndicatorTintColor = UIColor.appColor(.yesPink)
-        view.addSubview(v)
-        return v
-    }()
+//    lazy var pageControll: UIPageControl = {
+//        let v = UIPageControl()
+//        v.numberOfPages = 3
+//        v.pageIndicatorTintColor = UIColor.white
+//        v.currentPageIndicatorTintColor = UIColor.appColor(.yesPink)
+//        view.addSubview(v)
+//        return v
+//    }()
     
     private let screenWidth = UIScreen.main.bounds.width
     
@@ -90,11 +90,11 @@ final class SignUpViewController: UIViewController {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        pageControll.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
-        }
+//        pageControll.snp.makeConstraints { make in
+//            make.height.equalTo(40)
+//            make.centerX.equalToSuperview()
+//            make.bottom.equalToSuperview().offset(-20)
+//        }
     }
     
 }
@@ -105,7 +105,7 @@ extension SignUpViewController {
 
 extension SignUpViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageControll.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+//        pageControll.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }
 
@@ -120,12 +120,8 @@ extension SignUpViewController: ThirdIntroViewDelegate, SFSafariViewControllerDe
             withCallback: URL(string: "swifter-vYMAjoO5ulHsRph24zbuEtAwY://")!,
             presentingFrom: self,
             success: { accessToken, response in
-                // このあとaccessToken使うよ
                 let credential = TwitterAuthProvider.credential(withToken: accessToken!.key, secret: accessToken!.secret)
                 Auth.auth().signIn(with: credential, completion: { (authResult, error) in
-                    print(accessToken?.screenName)
-                    //TODO: icon一旦なしでログイン機能だけ実装する
-                    
                     let user = Auth.auth().currentUser
                     if let user = user {
                         let uid = user.uid
@@ -133,12 +129,14 @@ extension SignUpViewController: ThirdIntroViewDelegate, SFSafariViewControllerDe
                         let db = Firestore.firestore()
                         db.collection("users").document(uid).setData([
                             "user_id": uid,
-                            "name": displayName
+                            "name": displayName,
+                            "icon_image": user.photoURL?.absoluteString
                             ])
                     }
+                    UserManager.shared.saveUserInfoResult.on(.next(()))
                 })
         }, failure: { error in
-            print(error)
+            UserManager.shared.saveUserInfoResult.on(.error(error))
         })
         
     }

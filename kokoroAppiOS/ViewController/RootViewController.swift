@@ -68,17 +68,19 @@ final class RootViewController: UIViewController {
         
         if Auth.auth().currentUser != nil {
             self.viewType = .main
+        } else {
+            self.viewType = .signUp
         }
     
-        UserManager.shared.register { [weak self] state in
-            switch state {
-            case .initial: break
-            case .notAuthenticated: self?.viewType = .signUp
-            case .authenticated: // self?.viewType = .main
-                
-                print("authしたよ")
-            }
-        }
+//        UserManager.shared.register { [weak self] state in
+//            switch state {
+//            case .initial: break
+//            case .notAuthenticated: self?.viewType = .signUp
+//            case .authenticated: // self?.viewType = .main
+//
+//                print("authしたよ")
+//            }
+//        }
 
             UserManager.shared.saveUserInfoResult
                 .subscribe { [weak self] event in

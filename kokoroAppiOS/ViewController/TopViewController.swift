@@ -52,6 +52,7 @@ final class TopViewController: UIViewController {
     private var charactorState = true
     private var profileImage: UIImage?
     
+    private var noNameText: String = "ななし"
     
     private var watchButtonTapHandler: (() -> Void)?
     private let viewModel = TopViewModel()
@@ -72,8 +73,13 @@ final class TopViewController: UIViewController {
         
         self.viewModel.nameBehaviorSubject.subscribe({ [weak self] event in
             guard case let .next(value) = event else { return }
-            print("Viewの\(value)")
-            self?.topCharactorView.charactorDescriptionLabel.text = "\(value.name)さんお帰りなさい！"
+            if let name = value.name {
+                self?.topCharactorView.charactorDescriptionLabel.text = "\(value.name!)さんお帰りなさい！"
+            } else {
+                self?.topCharactorView.charactorDescriptionLabel.text = "お帰りなさい!!"
+            }
+
+
             self?.signOutButton.kf.setImage(with: value.imageURL, for: .normal)
         })
         .disposed(by: disposeBag)
@@ -124,11 +130,9 @@ extension TopViewController {
             title: "確認",
             message: "サインアウトしますか?",
             button: ("サインアウト", .destructive, {
-                guard let bundleIdentifier = Bundle.main.bundleIdentifier else { return }
-                let domain = bundleIdentifier
-                UserDefaults.standard.removePersistentDomain(forName: domain)
-                UserDefaults.standard.synchronize()
                 UserManager.shared.signOut()
+                let rootViewController = RootViewController()
+                self.navigationController?.pushViewController(rootViewController, animated: true)
             }),
             on: self        )
     }
