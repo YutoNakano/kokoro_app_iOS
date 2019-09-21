@@ -29,7 +29,7 @@ final class HistoryViewController: UIViewController {
     
     private var watchButtonTapHandler: (() -> Void)?
     private var didSelectCellTapHandler: (() -> Void)?
-
+    
     private var questions: [[String]] = []
     private var selectedAnswers: [[String]] = []
     private var memos: [String] = []
@@ -46,7 +46,7 @@ final class HistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
+        
     }
     
     func makeConstraints() {
@@ -93,21 +93,22 @@ extension HistoryViewController {
                 guard let questions: [[String]] = (document?.documents.map { $0.data()["questions"] } as? [[String]]),
                     let selectAnswers: [[String]] = (document?.documents.map { $0.data()["selectedAnswers"] } as? [[String]]),
                     let resultTitle: [String] = (document?.documents.map { $0.data()["title"] }) as? [String],
-                    let memo: [String] = (document?.documents.map { $0.data()["memo"] }) as? [String] else { return }
-//                    let timeStamp: [Date] = (document?.documents.map { $0.data()["timeStamp"] }) as? [Date] else { return }
-                self?.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: [Date()])
+                    let memo: [String] = (document?.documents.map { $0.data()["memo"] }) as? [String],
+                    let timeStamp: [Timestamp] = (document?.documents.map { $0.data()["timeStamp"] }) as? [Timestamp] else { return }
+                self?.passResultData(questions: questions, selectedAnswers: selectAnswers, memos: memo, titles: resultTitle, timeStamps: timeStamp)
                 completion()
             }
-            }
         }
+    }
     
-    func passResultData(questions:[[String]], selectedAnswers: [[String]], memos: [String], titles: [String], timeStamps: [Date]) {
-            historyCollectionView.resultTitles = titles
-            historyCollectionView.timeStamps = dateFormat(timeStamps: timeStamps)
-            self.questions = questions
-            self.selectedAnswers = selectedAnswers
-            self.memos = memos
-        }
+    func passResultData(questions:[[String]], selectedAnswers: [[String]], memos: [String], titles: [String], timeStamps: [Timestamp]) {
+        historyCollectionView.resultTitles = titles
+        let dates = timeStamps.map { $0.dateValue() }
+        historyCollectionView.timeStamps = dateFormat(timeStamps: dates)
+        self.questions = questions
+        self.selectedAnswers = selectedAnswers
+        self.memos = memos
+    }
     
     func dateFormat(timeStamps: [Date]) -> [String] {
         let format = DateFormatter()

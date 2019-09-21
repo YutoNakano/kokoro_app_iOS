@@ -29,6 +29,11 @@ class MapViewController: UIViewController {
         }
     }
     
+    private enum AlartText: String {
+        case notAllowed = "「設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい」"
+        case failed = "このアプリは、位置情報を取得できないために、正常に動作できません"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeConstraints()
@@ -86,12 +91,13 @@ extension MapViewController: CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
             break
         case .denied:
-            print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
+            alert(title: "位置情報を取得できません", message: AlartText.notAllowed.rawValue)
+
             // 「設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい」を表示する
             break
         case .restricted:
-            print("このアプリケーションは位置情報サービスを使用できません(ユーザによって拒否されたわけではありません)")
-            // 「このアプリは、位置情報を取得できないために、正常に動作できません」を表示する
+            alert(title: AlartText.failed.rawValue, message: "申し訳ございません")
+            
             break
         case .authorizedAlways:
             print("常時、位置情報の取得が許可されています。")
@@ -112,6 +118,16 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("一情報の取得に失敗")
+    }
+    
+    func alert(title:String, message:String) {
+        let alertController = UIAlertController(title: title,
+                                            message: message,
+                                            preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK",
+                                                style: .default,
+                                                handler: nil))
+        present(alertController, animated: true)
     }
     
 }

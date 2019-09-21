@@ -200,7 +200,7 @@ extension ResultViewController {
     
     func passQuestionResult(title: String, description: String, urlString: String?, urlDict: [String: String]?,descriptionArray: [String]?) {
         self.resultTitle = title
-        if resultDescription == "様子をみましょう" {
+        if resultTitle == "様子をみましょう" {
             openMapButton.isHidden = true
         }
         self.resultDescription = description
