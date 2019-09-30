@@ -2,6 +2,9 @@
 
 心理的、身体的に辛くて施設にて受診したいが、どの機関や施設に相談すれば良いかわからない人向けの質問型診断アプリ
 
+## アプリのインストール
+Test Flight
+https://testflight.apple.com/join/7AesBuDZ
 
 ## 対応OS
 iOS 12
